@@ -10,7 +10,6 @@ public class Exhibition {
     private LocalDate endDate;
     private List<ArtWork> artWorks;
 
-
     public Exhibition() { }
 
     public Exhibition(String name, LocalDate startDate, LocalDate endDate, List<ArtWork> artWorks) {
@@ -19,7 +18,6 @@ public class Exhibition {
         this.endDate = endDate;
         this.artWorks = artWorks;
     }
-
 
     public String getName() {
         return name;

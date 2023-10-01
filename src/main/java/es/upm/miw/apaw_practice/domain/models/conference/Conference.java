@@ -16,6 +16,7 @@ public class Conference {
     }
 
     public Conference(LocalDateTime conferenceDate, Boolean hasWorkshops, String fieldOfStudy, ConferenceLocation location) {
+        this();
         this.conferenceDate = conferenceDate;
         this.hasWorkshops = hasWorkshops;
         this.fieldOfStudy = fieldOfStudy;

@@ -9,7 +9,7 @@ public class Song {
 
     private Integer duration;
 
-    private Boolean isRemix;
+    private Boolean remix;
 
     private Double rating;
 
@@ -21,11 +21,11 @@ public class Song {
         this.artistsList = new ArrayList<>();
     }
 
-    public Song(String title, Integer duration, Boolean isRemix, Double rating, Genre genre) {
+    public Song(String title, Integer duration, Boolean remix, Double rating, Genre genre) {
         this();
         this.title = title;
         this.duration = duration;
-        this.isRemix = isRemix;
+        this.remix = remix;
         this.rating = rating;
         this.genre = genre;
     }
@@ -46,12 +46,12 @@ public class Song {
         this.duration = duration;
     }
 
-    public Boolean getIsRemix() {
-        return this.isRemix;
+    public Boolean isRemix() {
+        return this.remix;
     }
 
-    public void setIsRemix(Boolean isRemix) {
-        this.isRemix = isRemix;
+    public void setRemix(Boolean remix) {
+        this.remix = remix;
     }
 
     public Double getRating() {
@@ -87,7 +87,7 @@ public class Song {
         return "Song{" +
                 "title='" + this.title + '\'' +
                 ", duration=" + this.duration +
-                ", isRemix=" + this.isRemix +
+                ", isRemix=" + this.remix +
                 ", rating=" + this.rating +
                 ", artistsList=" + this.artistsList +
                 ", genre=" + this.genre +

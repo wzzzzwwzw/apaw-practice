@@ -14,6 +14,7 @@ public class Paper {
     }
 
     public Paper(String title, String digitalObjectIdentifier, Integer length) {
+        this();
         this.title = title;
         this.digitalObjectIdentifier = digitalObjectIdentifier;
         this.length = length;
@@ -57,7 +58,7 @@ public class Paper {
                 "title='" + title + '\'' +
                 ", digitalObjectIdentifier='" + digitalObjectIdentifier + '\'' +
                 ", length=" + length +
-                ", autors=" + authors +
+                ", authors=" + authors +
                 '}';
     }
 }

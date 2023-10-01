@@ -4,20 +4,20 @@ public class ArtWork {
     private String inventoryNumber;
     private String title;
     private Integer approximateYear;
-    private Boolean isExhibited;
+    private Boolean exhibited;
     private Author author;
-
+    private Room room;
 
     public ArtWork() { }
 
-    public ArtWork(String inventoryNumber, String title, Integer approximateYear, Boolean isExhibited, Author author) {
+    public ArtWork(String inventoryNumber, String title, Integer approximateYear, Boolean exhibited, Author author, Room room) {
         this.inventoryNumber = inventoryNumber;
         this.title = title;
         this.approximateYear = approximateYear;
-        this.isExhibited = isExhibited;
+        this.exhibited = exhibited;
         this.author = author;
+        this.room = room;
     }
-
 
     public String getInventoryNumber() {
         return inventoryNumber;
@@ -44,11 +44,11 @@ public class ArtWork {
     }
 
     public Boolean getExhibited() {
-        return isExhibited;
+        return exhibited;
     }
 
     public void setExhibited(Boolean exhibited) {
-        isExhibited = exhibited;
+        this.exhibited = exhibited;
     }
 
     public Author getAuthor() {
@@ -57,5 +57,13 @@ public class ArtWork {
 
     public void setAuthor(Author author) {
         this.author = author;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 }

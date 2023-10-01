@@ -9,19 +9,15 @@ public class Author {
     private String surname;
     private LocalDate birthDate;
     private LocalDate deathDate;
-    private List<ArtWork> artWorks;
-
 
     public Author() { }
 
-    public Author(String name, String surname, LocalDate birthDate, LocalDate deathDate, List<ArtWork> artWorks) {
+    public Author(String name, String surname, LocalDate birthDate, LocalDate deathDate) {
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
         this.deathDate = deathDate;
-        this.artWorks = artWorks;
     }
-
 
     public String getName() {
         return name;
@@ -53,16 +49,5 @@ public class Author {
 
     public void setDeathDate(LocalDate deathDate) {
         this.deathDate = deathDate;
-    }
-
-    public List<ArtWork> getArtWorks() {
-        return artWorks;
-    }
-
-    public void addArtWork(ArtWork artWork) {
-        if (this.artWorks == null) {
-            this.artWorks = new ArrayList<>();
-        }
-        this.artWorks.add(artWork);
     }
 }

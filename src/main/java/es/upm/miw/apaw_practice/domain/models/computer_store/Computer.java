@@ -10,15 +10,17 @@ public class Computer {
     private BigDecimal weight;
     private List<Monitor> monitors;
 
-    public Computer(){
+    public Computer() {
         monitors = new ArrayList<>();
     }
-    public Computer(String name, BigDecimal cost, BigDecimal weight, List<Monitor> monitors){
+
+    public Computer(String name, BigDecimal cost, BigDecimal weight, List<Monitor> monitors) {
         this.name = name;
         this.cost = cost;
         this.weight = weight;
         this.monitors = monitors;
     }
+
     public String getName() {
         return name;
     }
@@ -50,9 +52,11 @@ public class Computer {
     public void setMonitors(List<Monitor> monitors) {
         this.monitors = monitors;
     }
-    public void addMonitor(Monitor monitor){
+
+    public void addMonitor(Monitor monitor) {
         this.monitors.add(monitor);
     }
+
     @Override
     public String toString() {
         return "Computer{" +

@@ -7,8 +7,11 @@ public class Repair {
     private LocalDateTime beginTime;
     private LocalDateTime endTime;
     private Computer computer;
-    public Repair(){}
-    public Repair(String repairNumber, LocalDateTime beginTime, LocalDateTime endTime, Computer computer){
+
+    public Repair() {
+    }
+
+    public Repair(String repairNumber, LocalDateTime beginTime, LocalDateTime endTime, Computer computer) {
         this.repairNumber = repairNumber;
         this.beginTime = beginTime;
         this.endTime = endTime;

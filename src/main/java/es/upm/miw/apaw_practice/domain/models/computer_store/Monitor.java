@@ -9,10 +9,12 @@ public class Monitor {
     private BigDecimal size;
     private Integer refreshRate;
     private List<Wire> wires;
-    public Monitor(){
+
+    public Monitor() {
         wires = new ArrayList<>();
     }
-    public Monitor(String serialNumber, BigDecimal size, Integer refreshRate, List<Wire> wires){
+
+    public Monitor(String serialNumber, BigDecimal size, Integer refreshRate, List<Wire> wires) {
         this.serialNumber = serialNumber;
         this.size = size;
         this.refreshRate = refreshRate;
@@ -50,7 +52,8 @@ public class Monitor {
     public void setWires(List<Wire> wires) {
         this.wires = wires;
     }
-    public void addWire(Wire wire){
+
+    public void addWire(Wire wire) {
         this.wires.add(wire);
     }
 

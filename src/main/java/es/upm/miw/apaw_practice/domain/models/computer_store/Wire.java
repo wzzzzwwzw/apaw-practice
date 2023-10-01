@@ -7,8 +7,10 @@ public class Wire {
     private BigDecimal length;
     private String jacketMaterial;
 
-    public Wire(){}
-    public Wire(String name, BigDecimal length, String jacketMaterial){
+    public Wire() {
+    }
+
+    public Wire(String name, BigDecimal length, String jacketMaterial) {
         this.name = name;
         this.length = length;
         this.jacketMaterial = jacketMaterial;

@@ -8,7 +8,6 @@ public class Room {
     private LocalDate startDate;
     private LocalDate endDate;
 
-
     public Room() { }
 
     public Room(String name, String location, LocalDate startDate, LocalDate endDate) {
@@ -17,7 +16,6 @@ public class Room {
         this.startDate = startDate;
         this.endDate = endDate;
     }
-
 
     public String getName() {
         return name;

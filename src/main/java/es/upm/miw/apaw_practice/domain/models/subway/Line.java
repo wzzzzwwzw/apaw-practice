@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.subway;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
@@ -14,7 +15,7 @@ public class Line {
         this.label = label;
         this.color = color;
         this.works = works;
-        this.stations = new ArrayList<Station>;
+        this.stations = new ArrayList<Station>();
         this.schedule = schedule;
     }
 

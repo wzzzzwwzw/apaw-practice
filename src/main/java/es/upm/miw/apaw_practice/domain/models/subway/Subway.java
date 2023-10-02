@@ -1,19 +1,20 @@
 package es.upm.miw.apaw_practice.domain.models.subway;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class Subway {
 
     private String city;
     private Boolean open24h;
-    private Int capacity;
+    private Integer capacity;
     private List<Line> lines;
 
-    public Line(String city, Boolean open24h, Int capacity) {
+    public Subway(String city, Boolean open24h, Integer capacity) {
         this.city = city;
         this.open24h = open24h;
         this.capacity = capacity;
-        this.lines = new ArrayList<Lines>;
+        this.lines = new ArrayList<Line>();
     }
 
     public Subway() {
@@ -36,11 +37,11 @@ public class Subway {
         this.open24h = open24h;
     }
 
-    public Int getCapacity() {
+    public Integer getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(Int capacity) {
+    public void setCapacity(Integer capacity) {
         this.capacity = capacity;
     }
 

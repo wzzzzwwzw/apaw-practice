@@ -5,8 +5,8 @@ import java.util.Objects;
 public class Ingredient {
 
     private String name;
-    private boolean spicy;
-    private boolean available;
+    private Boolean spicy;
+    private Boolean available;
 
     Ingredient() {
         //empty from framework

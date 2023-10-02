@@ -1,0 +1,82 @@
+package es.upm.miw.apaw_practice.domain.models.videogame_company;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class Videogame {
+    private String name;
+    private BigInteger price;
+    private Date releaseDate;
+    private GameEngine gameEngine;
+    private List<Feature> features;
+
+    private Videogame(){
+        this.features = new ArrayList<>();
+    }
+
+    public Videogame(String name, BigInteger price, Date releaseDate, GameEngine gameEngine) {
+        this();
+        this.name = name;
+        this.price = price;
+        this.releaseDate = releaseDate;
+        this.gameEngine = gameEngine;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public BigInteger getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigInteger price) {
+        this.price = price;
+    }
+
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public GameEngine getGameEngine() {
+        return gameEngine;
+    }
+
+    public void setGameEngine(GameEngine gameEngine) {
+        this.gameEngine = gameEngine;
+    }
+
+    public List<Feature> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(List<Feature> features) {
+        this.features = features;
+    }
+
+    public void addFeature(Feature feature){
+        this.features.add(feature);
+    }
+
+    @Override
+    public String toString() {
+        return "Videogame{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", releaseDate=" + releaseDate +
+                ", gameEngine=" + gameEngine +
+                ", features=" + features +
+                '}';
+    }
+
+}

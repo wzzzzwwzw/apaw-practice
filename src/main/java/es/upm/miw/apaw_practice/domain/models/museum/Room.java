@@ -1,51 +1,39 @@
 package es.upm.miw.apaw_practice.domain.models.museum;
 
-import java.time.LocalDate;
-
 public class Room {
-    private String name;
-    private String location;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private String description;
+    private Integer floor;
+    private Double popularity;
 
     public Room() { }
 
-    public Room(String name, String location, LocalDate startDate, LocalDate endDate) {
-        this.name = name;
-        this.location = location;
-        this.startDate = startDate;
-        this.endDate = endDate;
+    public Room(String description, Integer floor, Double popularity) {
+        this.description = description;
+        this.floor = floor;
+        this.popularity = popularity;
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getLocation() {
-        return location;
+    public Integer getFloor() {
+        return floor;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setFloor(Integer floor) {
+        this.floor = floor;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public Double getPopularity() {
+        return popularity;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
+    public void setPopularity(Double popularity) {
+        this.popularity = popularity;
     }
 }

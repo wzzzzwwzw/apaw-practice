@@ -11,17 +11,17 @@ public class Race {
     private LocalDate date;
     private List<Driver> drivers;
     private Integer laps;
-    private Boolean isNightRace;
+    private Boolean nightRace;
 
     public Race() {
-        //empty for framework
+        this.drivers = new ArrayList<>();
     }
 
     public Race(String circuitName, String hostCountry, LocalDate date) {
+        this();
         this.circuitName = circuitName;
         this.hostCountry = hostCountry;
         this.date = date;
-        this.drivers = new ArrayList<>();
     }
 
     public String getCircuitName() {
@@ -64,12 +64,12 @@ public class Race {
         this.laps = laps;
     }
 
-    public Boolean getNightRace() {
-        return isNightRace;
+    public Boolean isNightRace() {
+        return nightRace;
     }
 
     public void setNightRace(Boolean nightRace) {
-        isNightRace = nightRace;
+        this.nightRace = nightRace;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class Race {
                 ", date=" + date +
                 ", drivers=" + drivers +
                 ", laps=" + laps +
-                ", isNightRace=" + isNightRace +
+                ", nightRace=" + nightRace +
                 '}';
     }
 }

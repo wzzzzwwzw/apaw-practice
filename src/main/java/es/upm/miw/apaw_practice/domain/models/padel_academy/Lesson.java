@@ -46,12 +46,12 @@ public class Lesson {
         this.level = level;
     }
 
-    public List<Instructor> getInstructors() {
-        return instructors;
+    public Instructor getInstructor() {
+        return instructor;
     }
 
-    public void setInstructors(List<Instructor> instructors) {
-        this.instructors = instructors;
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Lesson {
                 ", startAt=" + startAt +
                 ", weekend=" + weekend +
                 ", level='" + level + '\'' +
-                ", instructors=" + instructors +
+                ", instructors=" + instructor +
                 '}';
     }
 }

@@ -64,7 +64,7 @@ public class FootballPlayer {
         return "FootballPlayer{" +
                 "Name=" + this.name +
                 ", Salary=" + this.salary +
-                ", Height=" + this.height + "cm" +
+                ", Height=" + this.height +
                 ", Goals=" + this.goals +
                 ", Assists=" + this.assists +
                 '}';

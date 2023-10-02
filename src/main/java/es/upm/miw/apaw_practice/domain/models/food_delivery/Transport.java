@@ -1,16 +1,17 @@
 package es.upm.miw.apaw_practice.domain.models.food_delivery;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class Transport {
 
     private String code;
     private Boolean avalaible;
-    private Double capacity;
+    private BigDecimal capacity;
     private String licensePlate;
     private List<Restaurant> restaurants;
 
-    public Transport(String code, Boolean avalaible, Double capacity, String licensePlate, List<Restaurant> restaurants) {
+    public Transport(String code, Boolean avalaible, BigDecimal capacity, String licensePlate, List<Restaurant> restaurants) {
         this.code = code;
         this.avalaible = avalaible;
         this.capacity = capacity;
@@ -35,11 +36,11 @@ public class Transport {
         this.avalaible = avalaible;
     }
 
-    public Double getCapacity() {
+    public BigDecimal getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(Double capacity) {
+    public void setCapacity(BigDecimal capacity) {
         this.capacity = capacity;
     }
 

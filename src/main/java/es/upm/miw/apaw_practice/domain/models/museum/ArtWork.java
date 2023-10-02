@@ -43,7 +43,7 @@ public class ArtWork {
         this.approximateYear = approximateYear;
     }
 
-    public Boolean getExhibited() {
+    public Boolean isExhibited() {
         return exhibited;
     }
 

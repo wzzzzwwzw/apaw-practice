@@ -5,13 +5,15 @@ import java.util.List;
 
 public class Lesson {
     private String id;
-    private LocalDate startAt;
-    private Boolean weekend;
+    private LocalDate schedule;
+    private Boolean isWeekend;
     private String level;
-    private Instructor instructor;
 
-    public Lesson(Instructor instructor) {
-        this.instructor = instructor;
+    public Lesson(String id, LocalDate schedule, Boolean isWeekend, String level) {
+        this.id = id;
+        this.schedule = schedule;
+        this.isWeekend = isWeekend;
+        this.level = level;
     }
 
     public String getId() {
@@ -22,20 +24,20 @@ public class Lesson {
         this.id = id;
     }
 
-    public LocalDate getStartAt() {
-        return startAt;
+    public LocalDate getSchedule() {
+        return schedule;
     }
 
-    public void setStartAt(LocalDate startAt) {
-        this.startAt = startAt;
+    public void setSchedule(LocalDate schedule) {
+        this.schedule = schedule;
     }
 
     public Boolean getWeekend() {
-        return weekend;
+        return isWeekend;
     }
 
     public void setWeekend(Boolean weekend) {
-        this.weekend = weekend;
+        isWeekend = weekend;
     }
 
     public String getLevel() {
@@ -46,22 +48,13 @@ public class Lesson {
         this.level = level;
     }
 
-    public Instructor getInstructor() {
-        return instructor;
-    }
-
-    public void setInstructor(Instructor instructor) {
-        this.instructor = instructor;
-    }
-
     @Override
     public String toString() {
         return "Lesson{" +
                 "id='" + id + '\'' +
-                ", startAt=" + startAt +
-                ", weekend=" + weekend +
+                ", schedule=" + schedule +
+                ", isWeekend=" + isWeekend +
                 ", level='" + level + '\'' +
-                ", instructors=" + instructor +
                 '}';
     }
 }

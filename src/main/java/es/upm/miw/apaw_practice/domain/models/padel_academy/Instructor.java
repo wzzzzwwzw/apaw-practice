@@ -1,18 +1,19 @@
 package es.upm.miw.apaw_practice.domain.models.padel_academy;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Instructor {
     private String dni;
     private String name;
     private Integer phoneNumber;
-    private LocalDate birthDate;
+    private List<Lesson> lessons;
 
-    public Instructor(String dni, String name, Integer phoneNumber, LocalDate birthDate) {
+    public Instructor(String dni, String name, Integer phoneNumber, List<Lesson> lessons) {
         this.dni = dni;
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.birthDate = birthDate;
+        this.lessons = lessons;
     }
 
     public String getDni() {
@@ -39,12 +40,12 @@ public class Instructor {
         this.phoneNumber = phoneNumber;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
+    public List<Lesson> getLessons() {
+        return lessons;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
+    public void setLessons(List<Lesson> lessons) {
+        this.lessons = lessons;
     }
 
     @Override
@@ -53,7 +54,7 @@ public class Instructor {
                 "dni='" + dni + '\'' +
                 ", name='" + name + '\'' +
                 ", phoneNumber=" + phoneNumber +
-                ", birthDate=" + birthDate +
+                ", lessons=" + lessons +
                 '}';
     }
 }

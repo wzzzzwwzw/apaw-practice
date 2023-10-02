@@ -8,10 +8,10 @@ public class Lesson {
     private LocalDate startAt;
     private Boolean weekend;
     private String level;
-    private List<Instructor> instructors;
+    private Instructor instructor;
 
-    public Lesson(List<Instructor> instructors) {
-        this.instructors = instructors;
+    public Lesson(Instructor instructor) {
+        this.instructor = instructor;
     }
 
     public String getId() {

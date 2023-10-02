@@ -1,18 +1,17 @@
 package es.upm.miw.apaw_practice.domain.models.padel_academy;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Lesson {
     private String id;
     private LocalDate schedule;
-    private Boolean isWeekend;
+    private Boolean weekend;
     private String level;
 
-    public Lesson(String id, LocalDate schedule, Boolean isWeekend, String level) {
+    public Lesson(String id, LocalDate schedule, Boolean weekend, String level) {
         this.id = id;
         this.schedule = schedule;
-        this.isWeekend = isWeekend;
+        this.weekend = weekend;
         this.level = level;
     }
 
@@ -33,11 +32,11 @@ public class Lesson {
     }
 
     public Boolean getWeekend() {
-        return isWeekend;
+        return weekend;
     }
 
     public void setWeekend(Boolean weekend) {
-        isWeekend = weekend;
+        this.weekend = weekend;
     }
 
     public String getLevel() {
@@ -53,7 +52,7 @@ public class Lesson {
         return "Lesson{" +
                 "id='" + id + '\'' +
                 ", schedule=" + schedule +
-                ", isWeekend=" + isWeekend +
+                ", weekend=" + weekend +
                 ", level='" + level + '\'' +
                 '}';
     }

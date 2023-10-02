@@ -1,20 +1,21 @@
 package es.upm.miw.apaw_practice.domain.models.food_delivery;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Order {
 
     private Integer number;
-    private Double price;
+    private BigDecimal price;
     private Boolean delivered;
-    private Double weight;
+    private BigDecimal weight;
     private LocalDate date;
     private String paymentMethod;
     private Restaurant restaurant;
     private Transport transport;
 
 
-    public Order(Integer number, Double price, Boolean delivered, Double weight,
+    public Order(Integer number, BigDecimal price, Boolean delivered, BigDecimal weight,
                  LocalDate date, String paymentMethod, Restaurant restaurant, Transport transport) {
         this.number = number;
         this.price = price;
@@ -36,11 +37,11 @@ public class Order {
         this.number = number;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -52,11 +53,11 @@ public class Order {
         this.delivered = delivered;
     }
 
-    public Double getWeight() {
+    public BigDecimal getWeight() {
         return weight;
     }
 
-    public void setWeight(Double weight) {
+    public void setWeight(BigDecimal weight) {
         this.weight = weight;
     }
 

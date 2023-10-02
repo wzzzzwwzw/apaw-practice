@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
-public interface RepairRepository extends MongoRepository<RepairEntity,String> {
+public interface RepairRepository extends MongoRepository<RepairEntity, String> {
     Optional<RepairEntity> findByRepairNumber(String repairNumber);
 }

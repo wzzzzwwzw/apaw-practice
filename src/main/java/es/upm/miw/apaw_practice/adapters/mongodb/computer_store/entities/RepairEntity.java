@@ -17,10 +17,12 @@ public class RepairEntity {
     private LocalDateTime beginTime;
     private LocalDateTime endTime;
     private ComputerEntity computer;
+
     public RepairEntity() {
         //empty for framework
     }
-    public RepairEntity(String repairNumber, LocalDateTime beginTime, LocalDateTime endTime, ComputerEntity computer){
+
+    public RepairEntity(String repairNumber, LocalDateTime beginTime, LocalDateTime endTime, ComputerEntity computer) {
         this.id = UUID.randomUUID().toString();
         this.repairNumber = repairNumber;
         this.beginTime = beginTime;

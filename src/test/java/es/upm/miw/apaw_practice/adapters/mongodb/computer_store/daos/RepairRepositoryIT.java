@@ -16,12 +16,13 @@ class RepairRepositoryIT {
     @Autowired
     private RepairRepository repairRepository;
     private static final String REPAIR_NUMBER = "1234";
+
     @Test
-    void testFindByRepairNumber(){
+    void testFindByRepairNumber() {
         assertTrue(repairRepository.findByRepairNumber(REPAIR_NUMBER).isPresent());
         RepairEntity repair = repairRepository.findByRepairNumber(REPAIR_NUMBER).get();
         assertTrue(repair.getBeginTime().isBefore(LocalDateTime.now()));
         assertTrue(repair.getEndTime().isAfter(LocalDateTime.now().plusDays(1)));
-        assertEquals("MSI Pro gaming PC",repair.getComputer().getName());
+        assertEquals("MSI Pro gaming PC", repair.getComputer().getName());
     }
 }

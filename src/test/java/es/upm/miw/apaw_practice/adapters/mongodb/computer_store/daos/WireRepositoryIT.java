@@ -15,11 +15,12 @@ class WireRepositoryIT {
     @Autowired
     private WireRepository wireRepository;
     private static final String HDMI_NAME = "HDMI";
+
     @Test
-    void testFindByName(){
+    void testFindByName() {
         assertTrue(wireRepository.findByName(HDMI_NAME).isPresent());
         WireEntity hdmiWire = wireRepository.findByName(HDMI_NAME).get();
         assertEquals(new BigDecimal("1.5"), hdmiWire.getLength());
-        assertEquals("Plastic",hdmiWire.getJacketMaterial());
+        assertEquals("Plastic", hdmiWire.getJacketMaterial());
     }
 }

@@ -9,14 +9,14 @@ public class Driver {
     private Float points;
 
     public Driver() {
-        //empty for framework
+        this.drivingStyle = new DrivingStyle();
     }
 
     public Driver(Integer number, String driverName, String nationality) {
+        this();
         this.number = number;
         this.driverName = driverName;
         this.nationality = nationality;
-        this.drivingStyle = new DrivingStyle();
     }
 
     public Integer getNumber() {

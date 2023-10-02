@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.subway;
 
+import java.time.LocalDateTime;
+
 public class Schedule {
     private LocalDateTime startTime;
     private LocalDateTime endTime;

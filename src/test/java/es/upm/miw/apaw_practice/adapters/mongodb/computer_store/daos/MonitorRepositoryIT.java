@@ -23,7 +23,7 @@ class MonitorRepositoryIT {
         assertEquals(new BigDecimal("34"),monitor.getSize());
         assertEquals(3,monitor.getWires().size());
         this.assertMonitorWires(monitor,"HDMI");
-        this.assertMonitorWires(monitor,"POWER");
+        this.assertMonitorWires(monitor,"Power");
         this.assertMonitorWires(monitor,"DisplayPort");
     }
     private void assertMonitorWires(MonitorEntity monitor, String wireName){

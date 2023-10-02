@@ -9,6 +9,16 @@ public class FootballPlayer {
     Integer goals;
     Integer assists;
 
+    public FootballPlayer() {}
+
+    public FootballPlayer(String name, BigDecimal salary, Float height, Integer goals, Integer assists) {
+        this.name = name;
+        this.salary = salary;
+        this.height = height;
+        this.goals = goals;
+        this.assists = assists;
+    }
+
     public String getName() {
         return this.name;
     }

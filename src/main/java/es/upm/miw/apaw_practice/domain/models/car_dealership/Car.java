@@ -73,4 +73,16 @@ public class Car {
     public void setSeller(Seller seller) {
         this.sellerList.add(seller);
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "chassisNumber=" + chassisNumber +
+                ", price=" + price +
+                ", sold=" + sold +
+                ", fabricationDate=" + fabricationDate +
+                ", carModel=" + carModel +
+                ", sellerList=" + sellerList +
+                '}';
+    }
 }

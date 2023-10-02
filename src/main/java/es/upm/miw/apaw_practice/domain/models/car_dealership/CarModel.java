@@ -36,4 +36,13 @@ public class CarModel {
     public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
     }
+
+    @Override
+    public String toString() {
+        return "CarModel{" +
+                "model='" + model + '\'' +
+                ", brand='" + brand + '\'' +
+                ", createDate=" + createDate +
+                '}';
+    }
 }

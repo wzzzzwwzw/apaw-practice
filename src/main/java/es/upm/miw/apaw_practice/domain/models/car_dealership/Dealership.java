@@ -51,4 +51,14 @@ public class Dealership {
     public void setCar(Car car) {
         this.carList.add(car);
     }
+
+    @Override
+    public String toString() {
+        return "Dealership{" +
+                "name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                ", district='" + district + '\'' +
+                ", carList=" + carList +
+                '}';
+    }
 }

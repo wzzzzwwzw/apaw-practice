@@ -7,9 +7,7 @@ import java.util.List;
 
 public class Videogame {
     private String name;
-    private String length;
     private BigInteger price;
-    private String ratingCategory;
     private Date releaseDate;
     private GameEngine gameEngine;
     private List<Feature> features;
@@ -18,13 +16,10 @@ public class Videogame {
         this.features = new ArrayList<>();
     }
 
-    public Videogame(String name, String length, BigInteger price,
-                     String ratingCategory, Date releaseDate, GameEngine gameEngine) {
+    public Videogame(String name, BigInteger price, Date releaseDate, GameEngine gameEngine) {
         this();
         this.name = name;
-        this.length = length;
         this.price = price;
-        this.ratingCategory = ratingCategory;
         this.releaseDate = releaseDate;
         this.gameEngine = gameEngine;
     }
@@ -37,28 +32,12 @@ public class Videogame {
         this.name = name;
     }
 
-    public String getLength() {
-        return length;
-    }
-
-    public void setLength(String length) {
-        this.length = length;
-    }
-
     public BigInteger getPrice() {
         return price;
     }
 
     public void setPrice(BigInteger price) {
         this.price = price;
-    }
-
-    public String getRatingCategory() {
-        return ratingCategory;
-    }
-
-    public void setRatingCategory(String ratingCategory) {
-        this.ratingCategory = ratingCategory;
     }
 
     public Date getReleaseDate() {
@@ -93,9 +72,7 @@ public class Videogame {
     public String toString() {
         return "Videogame{" +
                 "name='" + name + '\'' +
-                ", length='" + length + '\'' +
                 ", price=" + price +
-                ", ratingCategory='" + ratingCategory + '\'' +
                 ", releaseDate=" + releaseDate +
                 ", gameEngine=" + gameEngine +
                 ", features=" + features +

@@ -3,14 +3,12 @@ package es.upm.miw.apaw_practice.domain.models.videogame_company;
 public class Feature {
         private String genre;
         private String gameStyle;
-        private Integer numberOfPlayers;
-        private Boolean isCloudSave;
+        private Boolean cloudSynchronization;
 
-    public Feature(String genre, String gameStyle, Integer numberOfPlayers, Boolean isCloudSave) {
+    public Feature(String genre, String gameStyle, Boolean cloudSynchronization) {
         this.genre = genre;
         this.gameStyle = gameStyle;
-        this.numberOfPlayers = numberOfPlayers;
-        this.isCloudSave = isCloudSave;
+        this.cloudSynchronization = cloudSynchronization;
     }
 
     public String getGenre() {
@@ -29,20 +27,12 @@ public class Feature {
         this.gameStyle = gameStyle;
     }
 
-    public Integer getNumberOfPlayers() {
-        return numberOfPlayers;
+    public Boolean getCloudSynchronization() {
+        return cloudSynchronization;
     }
 
-    public void setNumberOfPlayers(Integer numberOfPlayers) {
-        this.numberOfPlayers = numberOfPlayers;
-    }
-
-    public Boolean getCloudSave() {
-        return isCloudSave;
-    }
-
-    public void setCloudSave(Boolean cloudSave) {
-        isCloudSave = cloudSave;
+    public void setCloudSynchronization(Boolean cloudSynchronization) {
+        this.cloudSynchronization = cloudSynchronization;
     }
 
     @Override
@@ -50,8 +40,8 @@ public class Feature {
         return "Feature{" +
                 "genre='" + genre + '\'' +
                 ", gameStyle='" + gameStyle + '\'' +
-                ", numberOfPlayers=" + numberOfPlayers +
-                ", isCloudSave=" + isCloudSave +
+                ", cloudSynchronization=" + cloudSynchronization +
                 '}';
     }
+
 }

@@ -12,6 +12,14 @@ public class DrivingStyle {
         //empty for framework
     }
 
+    public DrivingStyle(Integer aggressiveness, Integer consistency, Integer adaptability, Integer tireManagement, Integer fuelManagement) {
+        this.aggressiveness = aggressiveness;
+        this.consistency = consistency;
+        this.adaptability = adaptability;
+        this.tireManagement = tireManagement;
+        this.fuelManagement = fuelManagement;
+    }
+
     public Integer getAggressiveness() {
         return aggressiveness;
     }

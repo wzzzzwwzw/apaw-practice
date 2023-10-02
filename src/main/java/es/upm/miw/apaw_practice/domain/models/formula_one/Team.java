@@ -11,13 +11,13 @@ public class Team {
     private String mainColor;
 
     public Team() {
-        //empty for framework
+        this.drivers = new ArrayList<>();
     }
 
     public Team(String teamName, String country) {
+        this();
         this.teamName = teamName;
         this.country = country;
-        this.drivers = new ArrayList<>();
     }
 
     public String getTeamName() {

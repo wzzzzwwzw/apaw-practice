@@ -7,17 +7,17 @@ public class CarToRepair {
     private String registrationNumber;
     private String model;
     private String brand;
-    private List<Invoice> invoices;
+    private List<OBDFault> obdFaults;
 
     public CarToRepair() {
-        this.invoices = new ArrayList<Invoice>();
+        obdFaults = new ArrayList<OBDFault>();
     }
 
-    public CarToRepair(String registrationNumber, String model, String brand) {
+    public CarToRepair(String registrationNumber, String model, String brand, List<OBDFault> obdFaults) {
         this.registrationNumber = registrationNumber;
         this.model = model;
         this.brand = brand;
-        this.invoices = new ArrayList<Invoice>();
+        this.obdFaults = obdFaults;
     }
 
     public String getRegistrationNumber() {
@@ -44,11 +44,12 @@ public class CarToRepair {
         this.brand = brand;
     }
 
-    public List<Invoice> getInvoices() {
-        return invoices;
+    public List<OBDFault> getObdFaults() {
+        return obdFaults;
     }
 
-    public void setInvoices(List<Invoice> invoices) {
-        this.invoices = invoices;
+    public void setObdFaults(List<OBDFault> obdFaults) {
+        this.obdFaults = obdFaults;
     }
+
 }

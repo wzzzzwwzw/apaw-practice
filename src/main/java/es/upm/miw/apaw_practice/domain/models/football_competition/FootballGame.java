@@ -1,15 +1,20 @@
 package es.upm.miw.apaw_practice.domain.models.football_competition;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class FootballGame {
     LocalDateTime date;
     String location;
     String refereeName;
+    ArrayList<FootballPlayer> players;
 
-    public FootballGame() {}
+    public FootballGame() {
+        this.players = new ArrayList<>();
+    }
 
     public FootballGame(LocalDateTime date, String location, String refereeName) {
+        this();
         this.date = date;
         this.location = location;
         this.refereeName = refereeName;
@@ -37,6 +42,22 @@ public class FootballGame {
 
     public void setRefereeName(String refereeName) {
         this.refereeName = refereeName;
+    }
+
+    public ArrayList<FootballPlayer> getPlayers() {
+        return this.players;
+    }
+
+    public void setPlayers(ArrayList<FootballPlayer> players) {
+        this.players = players;
+    }
+
+    public void addPlayer(FootballPlayer player) {
+        if (this.players == null) {
+            this.players = new ArrayList<>();
+        }
+
+        this.players.add(player);
     }
 
     @Override

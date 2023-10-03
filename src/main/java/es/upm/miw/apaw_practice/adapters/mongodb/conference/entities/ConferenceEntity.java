@@ -1,7 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.conference.entities;
 
-import es.upm.miw.apaw_practice.domain.models.conference.ConferenceLocation;
-import es.upm.miw.apaw_practice.domain.models.conference.Paper;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,21 +17,21 @@ public class ConferenceEntity {
     private Boolean hasWorkshops;
     private String fieldOfStudy;
     @DBRef
-    private ConferenceLocation location;
+    private ConferenceLocationEntity locationEntity;
     @DBRef
-    private List<Paper> papers;
+    private List<PaperEntity> papersEntities;
 
     public ConferenceEntity() {
         // empty for framework
     }
 
-    public ConferenceEntity(LocalDateTime conferenceDate, Boolean hasWorkshops, String fieldOfStudy, ConferenceLocation location, List<Paper> papers) {
+    public ConferenceEntity(LocalDateTime conferenceDate, Boolean hasWorkshops, String fieldOfStudy, ConferenceLocationEntity locationEntity, List<PaperEntity> papersEntities) {
         this.id = UUID.randomUUID().toString();
         this.conferenceDate = conferenceDate;
         this.hasWorkshops = hasWorkshops;
         this.fieldOfStudy = fieldOfStudy;
-        this.location = location;
-        this.papers = papers;
+        this.locationEntity = locationEntity;
+        this.papersEntities = papersEntities;
     }
 
     public String getId() {
@@ -68,20 +66,20 @@ public class ConferenceEntity {
         this.fieldOfStudy = fieldOfStudy;
     }
 
-    public ConferenceLocation getLocation() {
-        return location;
+    public ConferenceLocationEntity getLocationEntity() {
+        return locationEntity;
     }
 
-    public void setLocation(ConferenceLocation location) {
-        this.location = location;
+    public void setLocationEntity(ConferenceLocationEntity locationEntity) {
+        this.locationEntity = locationEntity;
     }
 
-    public List<Paper> getPapers() {
-        return papers;
+    public List<PaperEntity> getPapersEntities() {
+        return papersEntities;
     }
 
-    public void setPapers(List<Paper> papers) {
-        this.papers = papers;
+    public void setPapersEntities(List<PaperEntity> papersEntities) {
+        this.papersEntities = papersEntities;
     }
 
     @Override
@@ -104,8 +102,8 @@ public class ConferenceEntity {
                 ", conferenceDate=" + conferenceDate +
                 ", hasWorkshops=" + hasWorkshops +
                 ", fieldOfStudy='" + fieldOfStudy + '\'' +
-                ", location=" + location +
-                ", papers=" + papers +
+                ", locationEntity=" + locationEntity +
+                ", papersEntities=" + papersEntities +
                 '}';
     }
 }

@@ -1,9 +1,9 @@
 package es.upm.miw.apaw_practice.domain.models.conference;
 
 public class ConferenceLocation {
-    String city;
-    String building;
-    String hall;
+    private String city;
+    private String building;
+    private String hall;
 
     public ConferenceLocation() {
         //empty for framework

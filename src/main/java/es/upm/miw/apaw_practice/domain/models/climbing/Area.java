@@ -27,7 +27,7 @@ public class Area {
         this.location = location;
     }
 
-    public boolean isEasyAccess() {
+    public boolean getEasyAccess() {
         return easyAccess;
     }
 

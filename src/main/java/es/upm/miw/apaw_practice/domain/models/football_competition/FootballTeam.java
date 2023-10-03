@@ -7,6 +7,8 @@ public class FootballTeam {
     private Integer foundationYear;
     private BigDecimal budget;
 
+    private Boolean removed;
+
     public FootballTeam() {}
 
     public FootballTeam(String city, Integer foundationYear, BigDecimal budget) {
@@ -37,6 +39,14 @@ public class FootballTeam {
 
     public void setBudget(BigDecimal budget) {
         this.budget = budget;
+    }
+
+    public Boolean isRemoved() {
+        return this.removed;
+    }
+
+    public void setRemoved(Boolean removed) {
+        this.removed = removed;
     }
 
     @Override

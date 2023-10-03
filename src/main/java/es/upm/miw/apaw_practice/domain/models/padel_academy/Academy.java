@@ -10,11 +10,11 @@ public class Academy {
     private List<Instructor> instructors;
     private List<Court> courts;
 
-    public Academy(String name, String address, String city) {
+    public Academy(String name, String address, String city, List<Instructor> instructors) {
         this.name = name;
         this.address = address;
         this.city = city;
-        this.instructors = new ArrayList<Instructor>();
+        this.instructors = instructors;
         this.courts = new ArrayList<Court>();
     }
 

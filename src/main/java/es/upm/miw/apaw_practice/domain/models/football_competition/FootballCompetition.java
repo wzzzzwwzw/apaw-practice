@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class FootballCompetition {
-    BigDecimal prize;
-    String organizingEntity;
-    ArrayList<String> sponsors;
-    ArrayList<FootballTeam> teams;
+    private BigDecimal prize;
+    private String organizingEntity;
+    private ArrayList<String> sponsors;
+    private ArrayList<FootballTeam> teams;
 
     public FootballCompetition() {
         this.sponsors = new ArrayList<>();

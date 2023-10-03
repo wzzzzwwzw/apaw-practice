@@ -3,12 +3,12 @@ package es.upm.miw.apaw_practice.domain.models.football_competition;
 import java.math.BigDecimal;
 
 public class FootballPlayer {
-    String name;
-    BigDecimal salary;
-    Float height;
-    Integer goals;
-    Integer assists;
-    FootballTeam team;
+    private String name;
+    private BigDecimal salary;
+    private Float height;
+    private Integer goals;
+    private Integer assists;
+    private FootballTeam team;
 
     public FootballPlayer() {}
 

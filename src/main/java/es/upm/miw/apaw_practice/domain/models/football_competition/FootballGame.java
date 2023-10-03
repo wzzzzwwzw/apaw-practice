@@ -4,10 +4,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class FootballGame {
-    LocalDateTime date;
-    String location;
-    String refereeName;
-    ArrayList<FootballPlayer> players;
+    private LocalDateTime date;
+    private String location;
+    private String refereeName;
+    private ArrayList<FootballPlayer> players;
 
     public FootballGame() {
         this.players = new ArrayList<>();

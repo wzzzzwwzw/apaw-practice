@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
-public interface DishRepository extends MongoRepository<DishRepository, String> {
+public interface DishRepository extends MongoRepository<DishEntity, String> {
     Optional<DishEntity> findByTitle(String title);
 }

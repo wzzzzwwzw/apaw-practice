@@ -59,8 +59,9 @@ public class ConferenceSeederService {
         ConferenceEntity[] conferences = {
                 new ConferenceEntity(LocalDateTime.now(), true, "Security", conferenceLocations[0], List.of(papers[0], papers[1], papers[5])),
                 new ConferenceEntity(LocalDateTime.now().minusDays(30), false, "DevOps", conferenceLocations[1], List.of(papers[2])),
-                new ConferenceEntity(LocalDateTime.now().plusYears(3), true, "Devops", conferenceLocations[2], List.of(papers[3], papers[4]))
+                new ConferenceEntity(LocalDateTime.now().plusYears(3), true, "DevOps", conferenceLocations[2], List.of(papers[3], papers[4]))
         };
+        this.conferenceRepository.saveAll(Arrays.asList(conferences));
     }
 
     public void deleteAll() {

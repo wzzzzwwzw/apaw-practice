@@ -8,17 +8,15 @@ public class CarToRepair {
     private String model;
     private String brand;
     private List<Invoice> invoices;
-    private Mechanic mechanic;
 
     public CarToRepair() {
         this.invoices = new ArrayList<Invoice>();
     }
 
-    public CarToRepair(String registrationNumber, String model, String brand, Mechanic mechanic) {
+    public CarToRepair(String registrationNumber, String model, String brand) {
         this.registrationNumber = registrationNumber;
         this.model = model;
         this.brand = brand;
-        this.mechanic = mechanic;
         this.invoices = new ArrayList<Invoice>();
     }
 
@@ -52,13 +50,5 @@ public class CarToRepair {
 
     public void setInvoices(List<Invoice> invoices) {
         this.invoices = invoices;
-    }
-
-    public Mechanic getMechanic() {
-        return mechanic;
-    }
-
-    public void setMechanic(Mechanic mechanic) {
-        this.mechanic = mechanic;
     }
 }

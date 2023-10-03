@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Flight {
 
-    private int numberOfFlight;
+    private Integer numberOfFlight;
     private LocalDate dateOfFlight;
     private List<Passenger> passengers;
     private AirLine airLine;
@@ -15,18 +15,18 @@ public class Flight {
         //empty for framework
     }
 
-    public Flight(int numberOfFlight, LocalDate dateOfFlight, List<Passenger> passengers, AirLine airLine) {
+    public Flight(Integer numberOfFlight, LocalDate dateOfFlight, List<Passenger> passengers, AirLine airLine) {
         this.numberOfFlight = numberOfFlight;
         this.dateOfFlight = dateOfFlight;
         this.passengers = passengers;
         this.airLine = airLine;
     }
 
-    public int getNumberOfFlight() {
+    public Integer getNumberOfFlight() {
         return numberOfFlight;
     }
 
-    public void setNumberOfFlight(int numberOfFlight) {
+    public void setNumberOfFlight(Integer numberOfFlight) {
         this.numberOfFlight = numberOfFlight;
     }
 

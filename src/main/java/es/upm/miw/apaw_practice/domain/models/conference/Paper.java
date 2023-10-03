@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Paper {
-    String title;
-    String digitalObjectIdentifier;
-    Integer length;
-    List<Author> authors;
+    private String title;
+    private String digitalObjectIdentifier;
+    private Integer length;
+    private List<Author> authors;
 
     public Paper() {
         authors = new ArrayList<>();

@@ -1,9 +1,9 @@
 package es.upm.miw.apaw_practice.domain.models.videogame_company;
 
 public class GameEngine {
-    String name;
-    String ProgrammingLanguage;
-    String License;
+    private String name;
+    private String ProgrammingLanguage;
+    private String License;
 
     public GameEngine(){
 

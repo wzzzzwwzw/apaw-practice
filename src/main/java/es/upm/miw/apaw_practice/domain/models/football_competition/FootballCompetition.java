@@ -7,9 +7,11 @@ public class FootballCompetition {
     BigDecimal prize;
     String organizingEntity;
     ArrayList<String> sponsors;
+    ArrayList<FootballTeam> teams;
 
     public FootballCompetition() {
         this.sponsors = new ArrayList<>();
+        this.teams = new ArrayList<>();
     }
 
     public FootballCompetition(BigDecimal prize, String organizingEntity) {
@@ -48,6 +50,22 @@ public class FootballCompetition {
         }
 
         this.sponsors.add(sponsor);
+    }
+
+    public ArrayList<FootballTeam> getTeams() {
+        return this.teams;
+    }
+
+    public void setTeams(ArrayList<FootballTeam> teams) {
+        this.teams = teams;
+    }
+
+    public void addTeam(FootballTeam team) {
+        if (this.teams == null) {
+            this.teams = new ArrayList<>();
+        }
+
+        this.teams.add(team);
     }
 
     @Override

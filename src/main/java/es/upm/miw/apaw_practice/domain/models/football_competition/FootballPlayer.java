@@ -8,6 +8,7 @@ public class FootballPlayer {
     Float height;
     Integer goals;
     Integer assists;
+    FootballTeam team;
 
     public FootballPlayer() {}
 
@@ -57,6 +58,14 @@ public class FootballPlayer {
 
     public void setAssists(Integer assists) {
         this.assists = assists;
+    }
+
+    public FootballTeam getTeam() {
+        return this.team;
+    }
+
+    public void setTeam(FootballTeam team) {
+        this.team = team;
     }
 
     @Override

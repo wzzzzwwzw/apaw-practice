@@ -1,21 +1,39 @@
-package es.upm.miw.apaw_practice.domain.models.restaurant;
+package es.upm.miw.apaw_practice.adapters.mongodb.restaurant.entities;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
+import java.util.UUID;
 
-public class Ingredient {
+@Document
+public class IngredientEntity {
 
+    @Id
+    private String id;
+    @Indexed(unique = true)
     private String name;
     private Boolean spicy;
     private Boolean available;
 
-    Ingredient() {
+    IngredientEntity() {
         //empty from framework
     }
 
-    public Ingredient(String name, Boolean spicy, Boolean available) {
+    public IngredientEntity(String name, Boolean spicy, Boolean available) {
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.spicy = spicy;
         this.available = available;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -46,8 +64,8 @@ public class Ingredient {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Ingredient that = (Ingredient) o;
-        return spicy == that.spicy && available == that.available && name.equals(that.name);
+        IngredientEntity that = (IngredientEntity) o;
+        return Objects.equals(name, that.name) && Objects.equals(spicy, that.spicy) && Objects.equals(available, that.available);
     }
 
     @Override
@@ -57,8 +75,9 @@ public class Ingredient {
 
     @Override
     public String toString() {
-        return "Ingredient{" +
-                "name='" + name + '\'' +
+        return "IngredientEntity{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", spicy=" + spicy +
                 ", available=" + available +
                 '}';

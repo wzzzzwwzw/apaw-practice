@@ -3,13 +3,13 @@ import java.time.LocalDate;
 public class Passenger {
 
    private String name;
-   private int age;
+   private Integer age;
    private String numberOfPhone;
 
    public Passenger(){
        //empty for framework
    }
-    public Passenger(String name, int age, String numberOfPhone) {
+    public Passenger(String name, Integer age, String numberOfPhone) {
         this.name = name;
         this.age = age;
         this.numberOfPhone = numberOfPhone;
@@ -23,11 +23,11 @@ public class Passenger {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

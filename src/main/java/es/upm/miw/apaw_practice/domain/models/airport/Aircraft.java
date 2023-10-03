@@ -5,13 +5,13 @@ import java.time.LocalDate;
 public class Aircraft {
 
     private LocalDate dateOfLastRevision;
-    private int capacity;
+    private Integer capacity;
     private String model;
 
     public Aircraft(){
         //empty for framework
     }
-    public Aircraft(LocalDate dateOfLastRevision, int capacity, String model) {
+    public Aircraft(LocalDate dateOfLastRevision, Integer capacity, String model) {
         this.dateOfLastRevision = dateOfLastRevision;
         this.capacity = capacity;
         this.model = model;
@@ -25,11 +25,11 @@ public class Aircraft {
         this.dateOfLastRevision = dateOfLastRevision;
     }
 
-    public int getCapacity() {
+    public Integer getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
+    public void setCapacity(Integer capacity) {
         this.capacity = capacity;
     }
 

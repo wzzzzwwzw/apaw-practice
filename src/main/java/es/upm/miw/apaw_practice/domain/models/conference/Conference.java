@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Conference {
-    LocalDateTime conferenceDate;
-    Boolean hasWorkshops;
-    String fieldOfStudy;
-    ConferenceLocation location;
-    List<Paper> papers;
+    private LocalDateTime conferenceDate;
+    private Boolean hasWorkshops;
+    private String fieldOfStudy;
+    private ConferenceLocation location;
+    private List<Paper> papers;
 
     public Conference() {
         this.papers = new ArrayList<>();

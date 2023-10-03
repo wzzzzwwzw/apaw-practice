@@ -3,14 +3,14 @@ package es.upm.miw.apaw_practice.domain.models.car_workshop;
 public class OBDFault {
     private String code;
     private String description;
-    private boolean canPassITV;
+    private Boolean canPassITV;
     private String solution;
 
     public OBDFault() {
         // empty for framework
     }
 
-    public OBDFault(String code, String description, boolean canPassITV, String solution) {
+    public OBDFault(String code, String description, Boolean canPassITV, String solution) {
         this.code = code;
         this.description = description;
         this.canPassITV = canPassITV;
@@ -33,11 +33,11 @@ public class OBDFault {
         this.description = description;
     }
 
-    public boolean isCanPassITV() {
+    public Boolean isCanPassITV() {
         return canPassITV;
     }
 
-    public void setCanPassITV(boolean canPassITV) {
+    public void setCanPassITV(Boolean canPassITV) {
         this.canPassITV = canPassITV;
     }
 

@@ -1,16 +1,14 @@
 package es.upm.miw.apaw_practice.domain.models.videogame_company;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Videogame {
     private String name;
-    private String length;
-    private BigInteger price;
-    private String ratingCategory;
-    private Date releaseDate;
+    private BigDecimal price;
+    private LocalDate releaseDate;
     private GameEngine gameEngine;
     private List<Feature> features;
 
@@ -18,13 +16,10 @@ public class Videogame {
         this.features = new ArrayList<>();
     }
 
-    public Videogame(String name, String length, BigInteger price,
-                     String ratingCategory, Date releaseDate, GameEngine gameEngine) {
+    public Videogame(String name, BigDecimal price, LocalDate releaseDate, GameEngine gameEngine) {
         this();
         this.name = name;
-        this.length = length;
         this.price = price;
-        this.ratingCategory = ratingCategory;
         this.releaseDate = releaseDate;
         this.gameEngine = gameEngine;
     }
@@ -37,35 +32,19 @@ public class Videogame {
         this.name = name;
     }
 
-    public String getLength() {
-        return length;
-    }
-
-    public void setLength(String length) {
-        this.length = length;
-    }
-
-    public BigInteger getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(BigInteger price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public String getRatingCategory() {
-        return ratingCategory;
-    }
-
-    public void setRatingCategory(String ratingCategory) {
-        this.ratingCategory = ratingCategory;
-    }
-
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -93,9 +72,7 @@ public class Videogame {
     public String toString() {
         return "Videogame{" +
                 "name='" + name + '\'' +
-                ", length='" + length + '\'' +
                 ", price=" + price +
-                ", ratingCategory='" + ratingCategory + '\'' +
                 ", releaseDate=" + releaseDate +
                 ", gameEngine=" + gameEngine +
                 ", features=" + features +

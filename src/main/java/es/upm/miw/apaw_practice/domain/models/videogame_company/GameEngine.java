@@ -1,17 +1,17 @@
 package es.upm.miw.apaw_practice.domain.models.videogame_company;
 
 public class GameEngine {
-    String name;
-    String ProgrammingLanguage;
-    String License;
+    private String name;
+    private String programmingLanguage;
+    private String license;
 
     public GameEngine(){
 
     }
     public GameEngine(String name, String programmingLanguage, String license) {
         this.name = name;
-        ProgrammingLanguage = programmingLanguage;
-        License = license;
+        this.programmingLanguage = programmingLanguage;
+        this.license = license;
     }
 
     public String getName() {
@@ -23,27 +23,27 @@ public class GameEngine {
     }
 
     public String getProgrammingLanguage() {
-        return ProgrammingLanguage;
+        return programmingLanguage;
     }
 
     public void setProgrammingLanguage(String programmingLanguage) {
-        ProgrammingLanguage = programmingLanguage;
+        programmingLanguage = programmingLanguage;
     }
 
     public String getLicense() {
-        return License;
+        return license;
     }
 
     public void setLicense(String license) {
-        License = license;
+        license = license;
     }
 
     @Override
     public String toString() {
         return "GameEngine{" +
                 "name='" + name + '\'' +
-                ", ProgrammingLanguage='" + ProgrammingLanguage + '\'' +
-                ", License='" + License + '\'' +
+                ", ProgrammingLanguage='" + programmingLanguage + '\'' +
+                ", License='" + license + '\'' +
                 '}';
     }
 }

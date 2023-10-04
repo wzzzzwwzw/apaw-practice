@@ -38,7 +38,7 @@ public class Car {
         this.price = price;
     }
 
-    public Boolean getSold() {
+    public Boolean isSold() {
         return sold;
     }
 

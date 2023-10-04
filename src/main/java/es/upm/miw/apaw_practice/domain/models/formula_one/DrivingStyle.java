@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.domain.models.formula_one;
 
 public class DrivingStyle {
 
+    private String id;
     private Integer aggressiveness;
     private Integer consistency;
     private Integer adaptability;
@@ -18,6 +19,14 @@ public class DrivingStyle {
         this.adaptability = adaptability;
         this.tireManagement = tireManagement;
         this.fuelManagement = fuelManagement;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Integer getAggressiveness() {
@@ -73,7 +82,8 @@ public class DrivingStyle {
     @Override
     public String toString() {
         return "DrivingStyle{" +
-                "aggressiveness=" + aggressiveness +
+                "id='" + id + '\'' +
+                ", aggressiveness=" + aggressiveness +
                 ", consistency=" + consistency +
                 ", adaptability=" + adaptability +
                 ", tireManagement=" + tireManagement +

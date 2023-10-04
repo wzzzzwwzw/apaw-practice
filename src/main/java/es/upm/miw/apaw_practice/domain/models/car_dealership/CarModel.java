@@ -3,9 +3,9 @@ package es.upm.miw.apaw_practice.domain.models.car_dealership;
 import java.time.LocalDate;
 
 public class CarModel {
-    String model;
-    String brand;
-    LocalDate createDate;
+    private String model;
+    private String brand;
+    private LocalDate createDate;
 
     public CarModel(String model, String brand, LocalDate createDate) {
         this.model = model;

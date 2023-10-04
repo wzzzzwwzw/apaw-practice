@@ -2,14 +2,18 @@ package es.upm.miw.apaw_practice.domain.models.football_competition;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FootballCompetition {
-    BigDecimal prize;
-    String organizingEntity;
-    ArrayList<String> sponsors;
+    private BigDecimal prize;
+    private String organizingEntity;
+    private List<String> sponsors;
+    private List<FootballTeam> teams;
 
     public FootballCompetition() {
-        this.sponsors = new ArrayList<>();
+        this.sponsors = new ArrayList<>() {
+        };
+        this.teams = new ArrayList<>();
     }
 
     public FootballCompetition(BigDecimal prize, String organizingEntity) {
@@ -34,11 +38,11 @@ public class FootballCompetition {
         this.organizingEntity = organizingEntity;
     }
 
-    public ArrayList<String> getSponsors() {
+    public List<String> getSponsors() {
         return this.sponsors;
     }
 
-    public void setSponsors(ArrayList<String> sponsors) {
+    public void setSponsors(List<String> sponsors) {
         this.sponsors = sponsors;
     }
 
@@ -48,6 +52,22 @@ public class FootballCompetition {
         }
 
         this.sponsors.add(sponsor);
+    }
+
+    public List<FootballTeam> getTeams() {
+        return this.teams;
+    }
+
+    public void setTeams(List<FootballTeam> teams) {
+        this.teams = teams;
+    }
+
+    public void addTeam(FootballTeam team) {
+        if (this.teams == null) {
+            this.teams = new ArrayList<>();
+        }
+
+        this.teams.add(team);
     }
 
     @Override

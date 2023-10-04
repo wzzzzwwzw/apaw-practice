@@ -3,9 +3,11 @@ package es.upm.miw.apaw_practice.domain.models.football_competition;
 import java.math.BigDecimal;
 
 public class FootballTeam {
-    String city;
-    Integer foundationYear;
-    BigDecimal budget;
+    private String city;
+    private Integer foundationYear;
+    private BigDecimal budget;
+
+    private Boolean removed;
 
     public FootballTeam() {}
 
@@ -37,6 +39,14 @@ public class FootballTeam {
 
     public void setBudget(BigDecimal budget) {
         this.budget = budget;
+    }
+
+    public Boolean isRemoved() {
+        return this.removed;
+    }
+
+    public void setRemoved(Boolean removed) {
+        this.removed = removed;
     }
 
     @Override

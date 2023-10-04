@@ -3,11 +3,12 @@ package es.upm.miw.apaw_practice.domain.models.football_competition;
 import java.math.BigDecimal;
 
 public class FootballPlayer {
-    String name;
-    BigDecimal salary;
-    Float height;
-    Integer goals;
-    Integer assists;
+    private String name;
+    private BigDecimal salary;
+    private Float height;
+    private Integer goals;
+    private Integer assists;
+    private FootballTeam team;
 
     public FootballPlayer() {}
 
@@ -57,6 +58,14 @@ public class FootballPlayer {
 
     public void setAssists(Integer assists) {
         this.assists = assists;
+    }
+
+    public FootballTeam getTeam() {
+        return this.team;
+    }
+
+    public void setTeam(FootballTeam team) {
+        this.team = team;
     }
 
     @Override

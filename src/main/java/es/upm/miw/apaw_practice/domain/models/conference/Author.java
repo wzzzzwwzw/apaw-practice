@@ -1,9 +1,9 @@
 package es.upm.miw.apaw_practice.domain.models.conference;
 
 public class Author {
-    String name;
-    String surname;
-    String honorific;
+    private String name;
+    private String surname;
+    private String honorific;
 
     public Author() {
         //empty for framework

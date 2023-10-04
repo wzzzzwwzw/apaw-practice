@@ -8,8 +8,8 @@ public class Classroom {
     private Boolean smartBoard;
     private Integer lockers;
 
-    public Classroom () {
-        //empty for framework
+    public Classroom() {
+        //empty from framework
     }
 
     public Classroom(String location, LocalDateTime entryHour, Boolean smartBoard, Integer lockers) {

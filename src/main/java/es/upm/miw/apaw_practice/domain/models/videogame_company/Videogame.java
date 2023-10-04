@@ -1,14 +1,14 @@
 package es.upm.miw.apaw_practice.domain.models.videogame_company;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Videogame {
     private String name;
-    private BigInteger price;
-    private Date releaseDate;
+    private BigDecimal price;
+    private LocalDate releaseDate;
     private GameEngine gameEngine;
     private List<Feature> features;
 
@@ -16,7 +16,7 @@ public class Videogame {
         this.features = new ArrayList<>();
     }
 
-    public Videogame(String name, BigInteger price, Date releaseDate, GameEngine gameEngine) {
+    public Videogame(String name, BigDecimal price, LocalDate releaseDate, GameEngine gameEngine) {
         this();
         this.name = name;
         this.price = price;
@@ -32,19 +32,19 @@ public class Videogame {
         this.name = name;
     }
 
-    public BigInteger getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(BigInteger price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 

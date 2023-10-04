@@ -9,6 +9,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.restaurant.RestaurantSeederServ
 import es.upm.miw.apaw_practice.adapters.mongodb.shop.ShopSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.zoo.ZooSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.FoodDeliverySeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.videogame_company.VideogameCompanySeederService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +25,14 @@ public class DatabaseSeederService {
     private final FoodDeliverySeederService foodDeliverySeederService;
     private final CarDealershipSeederService carDealershipSeederService;
     private final FormulaOneSeederService formulaOneSeederService;
-
+    private final VideogameCompanySeederService videogameCompanySeederService;
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, ZooSeederService zooSeederService,
             ComputerStoreSeederService computerStoreSeederService, ConferenceSeederService conferenceSeederService,
             RestaurantSeederService restaurantSeederService, CarWorkshopSeederService carWorkshopSeederService,
                                  FoodDeliverySeederService foodDeliverySeederService,
-            CarDealershipSeederService carDealershipSeederService, FormulaOneSeederService formulaOneSeederService) {
+            CarDealershipSeederService carDealershipSeederService, FormulaOneSeederService formulaOneSeederService,
+                                 VideogameCompanySeederService videogameCompanySeederService) {
         this.shopSeederService = shopSeederService;
         this.zooSeederService = zooSeederService;
         this.computerStoreSeederService = computerStoreSeederService;
@@ -40,6 +42,7 @@ public class DatabaseSeederService {
         this.foodDeliverySeederService = foodDeliverySeederService;
         this.carDealershipSeederService = carDealershipSeederService;
         this.formulaOneSeederService = formulaOneSeederService;
+        this.videogameCompanySeederService = videogameCompanySeederService;
         this.seedDatabase();
     }
 
@@ -53,6 +56,7 @@ public class DatabaseSeederService {
         this.foodDeliverySeederService.seedDatabase();
         this.carDealershipSeederService.seedDatabase();
         this.formulaOneSeederService.seedDatabase();
+        this.videogameCompanySeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -65,6 +69,8 @@ public class DatabaseSeederService {
         this.foodDeliverySeederService.deleteAll();
         this.carDealershipSeederService.deleteAll();
         this.formulaOneSeederService.deleteAll();
+        this.videogameCompanySeederService.deleteAll();
+
     }
 
     public void reSeedDatabase() {

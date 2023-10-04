@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities;
 
-import es.upm.miw.apaw_practice.domain.models.car_dealership.CarModel;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -21,17 +20,17 @@ public class CarEntity {
     private BigDecimal price;
     private Boolean sold;
     private LocalDate fabricationDate;
-    private CarModel carModel;
+    private CarModelEntity carModelEntity;
     @DBRef
     private List<SellerEntity> sellerEntities;
 
-    public CarEntity(String chassisNumber, BigDecimal price, Boolean sold, LocalDate fabricationDate, CarModel carModel, List<SellerEntity> sellerEntities) {
+    public CarEntity(String chassisNumber, BigDecimal price, Boolean sold, LocalDate fabricationDate, CarModelEntity carModelEntity, List<SellerEntity> sellerEntities) {
         this.id = UUID.randomUUID().toString();
         this.chassisNumber = chassisNumber;
         this.price = price;
         this.sold = sold;
         this.fabricationDate = fabricationDate;
-        this.carModel = carModel;
+        this.carModelEntity = carModelEntity;
         this.sellerEntities = sellerEntities;
     }
 
@@ -75,12 +74,12 @@ public class CarEntity {
         this.fabricationDate = fabricationDate;
     }
 
-    public CarModel getCarModel() {
-        return carModel;
+    public CarModelEntity getCarModelEntity() {
+        return carModelEntity;
     }
 
-    public void setCarModel(CarModel carModel) {
-        this.carModel = carModel;
+    public void setCarModelEntity(CarModelEntity carModelEntity) {
+        this.carModelEntity = carModelEntity;
     }
 
     public List<SellerEntity> getSellerEntities() {
@@ -112,7 +111,7 @@ public class CarEntity {
                 ", price=" + price +
                 ", sold=" + sold +
                 ", fabricationDate=" + fabricationDate +
-                ", carModel=" + carModel +
+                ", carModel=" + carModelEntity +
                 ", sellerEntities=" + sellerEntities +
                 '}';
     }

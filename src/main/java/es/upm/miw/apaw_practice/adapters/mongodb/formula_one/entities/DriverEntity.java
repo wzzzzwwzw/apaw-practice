@@ -24,11 +24,12 @@ public class DriverEntity {
         //empty for framework
     }
 
-    public DriverEntity(Integer number, String driverName, String nationality) {
+    public DriverEntity(Integer number, String driverName, String nationality, DrivingStyleEntity drivingStyleEntity) {
         this.id = UUID.randomUUID().toString();
         this.number = number;
         this.driverName = driverName;
         this.nationality = nationality;
+        this.drivingStyleEntity = drivingStyleEntity;
     }
 
     public String getId() {

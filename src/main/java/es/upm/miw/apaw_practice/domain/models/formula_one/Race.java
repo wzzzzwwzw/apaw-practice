@@ -14,14 +14,14 @@ public class Race {
     private Boolean nightRace;
 
     public Race() {
-        this.drivers = new ArrayList<>();
+        //empty for framework
     }
 
-    public Race(String circuitName, String hostCountry, LocalDate date) {
-        this();
+    public Race(String circuitName, String hostCountry, LocalDate date, List<Driver> drivers) {
         this.circuitName = circuitName;
         this.hostCountry = hostCountry;
         this.date = date;
+        this.drivers = drivers;
     }
 
     public String getCircuitName() {

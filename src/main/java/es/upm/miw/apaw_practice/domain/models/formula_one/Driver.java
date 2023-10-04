@@ -12,10 +12,11 @@ public class Driver {
         //empty for framework
     }
 
-    public Driver(Integer number, String driverName, String nationality) {
+    public Driver(Integer number, String driverName, String nationality, DrivingStyle drivingStyle) {
         this.number = number;
         this.driverName = driverName;
         this.nationality = nationality;
+        this.drivingStyle = drivingStyle;
     }
 
     public Integer getNumber() {

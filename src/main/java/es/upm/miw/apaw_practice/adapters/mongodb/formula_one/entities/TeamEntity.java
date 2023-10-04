@@ -22,14 +22,14 @@ public class TeamEntity {
     private String mainColor;
 
     public TeamEntity() {
-        this.driverEntities = new ArrayList<>();
+        //empty for framework
     }
 
-    public TeamEntity(String teamName, String country) {
-        this();
+    public TeamEntity(String teamName, String country, List<DriverEntity> driverEntities) {
         this.id = UUID.randomUUID().toString();
         this.teamName = teamName;
         this.country = country;
+        this.driverEntities = driverEntities;
     }
 
     public String getId() {

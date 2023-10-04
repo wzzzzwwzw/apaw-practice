@@ -25,15 +25,15 @@ public class RaceEntity {
     private Boolean nightRace;
 
     public RaceEntity() {
-        this.driverEntities = new ArrayList<>();
+        //empty for framework
     }
 
-    public RaceEntity(String circuitName, String hostCountry, LocalDate date) {
-        this();
+    public RaceEntity(String circuitName, String hostCountry, LocalDate date, List<DriverEntity> driverEntities) {
         this.id = UUID.randomUUID().toString();
         this.circuitName = circuitName;
         this.hostCountry = hostCountry;
         this.date = date;
+        this.driverEntities = driverEntities;
     }
 
     public String getId() {

@@ -1,11 +1,18 @@
 package es.upm.miw.apaw_practice.domain.models.climbing;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Climber {
     private String name;
     private LocalDate dateOfBirth;
     private String level;
+    private List<Expedition> expeditions;
+
+    public Climber() {
+        this.expeditions = new ArrayList<>();
+    }
 
     public Climber(String name, LocalDate dateOfBirth, String level) {
         this.name = name;
@@ -35,6 +42,18 @@ public class Climber {
 
     public void setLevel(String level) {
         this.level = level;
+    }
+
+    public List<Expedition> getExpeditions() {
+        return this.expeditions;
+    }
+
+    public void setExpeditions(List<Expedition> expeditions) {
+        this.expeditions = expeditions;
+    }
+
+    public void addExpedition(Expedition expedition) {
+        this.expeditions.add(expedition);
     }
 
     @Override

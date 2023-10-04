@@ -3,8 +3,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.car_workshop.entities;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.beans.BeanUtils;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;

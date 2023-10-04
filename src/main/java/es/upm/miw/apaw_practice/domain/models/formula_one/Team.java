@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.formula_one;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Team {
@@ -11,13 +10,13 @@ public class Team {
     private String mainColor;
 
     public Team() {
-        this.drivers = new ArrayList<>();
+        // empty for framework;
     }
 
-    public Team(String teamName, String country) {
-        this();
+    public Team(String teamName, String country, List<Driver> drivers) {
         this.teamName = teamName;
         this.country = country;
+        this.drivers = drivers;
     }
 
     public String getTeamName() {

@@ -1,7 +1,14 @@
-package es.upm.miw.apaw_practice.domain.models.formula_one;
+package es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities;
 
-public class DrivingStyle {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.UUID;
+
+@Document
+public class DrivingStyleEntity {
+
+    @Id
     private String id;
     private Integer aggressiveness;
     private Integer consistency;
@@ -9,11 +16,12 @@ public class DrivingStyle {
     private Integer tireManagement;
     private Integer fuelManagement;
 
-    public DrivingStyle() {
+    public DrivingStyleEntity() {
         //empty for framework
     }
 
-    public DrivingStyle(Integer aggressiveness, Integer consistency, Integer adaptability, Integer tireManagement, Integer fuelManagement) {
+    public DrivingStyleEntity(Integer aggressiveness, Integer consistency, Integer adaptability, Integer tireManagement, Integer fuelManagement) {
+        this.id = UUID.randomUUID().toString();
         this.aggressiveness = aggressiveness;
         this.consistency = consistency;
         this.adaptability = adaptability;
@@ -25,17 +33,11 @@ public class DrivingStyle {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public Integer getAggressiveness() {
         return aggressiveness;
     }
 
     public void setAggressiveness(Integer aggressiveness) {
-        assert aggressiveness >= 0 && aggressiveness <= 100;
-
         this.aggressiveness = aggressiveness;
     }
 
@@ -44,8 +46,6 @@ public class DrivingStyle {
     }
 
     public void setConsistency(Integer consistency) {
-        assert consistency >= 0 && consistency <= 100;
-
         this.consistency = consistency;
     }
 
@@ -54,8 +54,6 @@ public class DrivingStyle {
     }
 
     public void setAdaptability(Integer adaptability) {
-        assert adaptability >= 0 && adaptability <= 100;
-
         this.adaptability = adaptability;
     }
 
@@ -64,8 +62,6 @@ public class DrivingStyle {
     }
 
     public void setTireManagement(Integer tireManagement) {
-        assert tireManagement >= 0 && tireManagement <= 100;
-
         this.tireManagement = tireManagement;
     }
 
@@ -74,14 +70,12 @@ public class DrivingStyle {
     }
 
     public void setFuelManagement(Integer fuelManagement) {
-        assert fuelManagement >= 0 && fuelManagement <= 100;
-
         this.fuelManagement = fuelManagement;
     }
 
     @Override
     public String toString() {
-        return "DrivingStyle{" +
+        return "DrivingStyleEntity{" +
                 "id='" + id + '\'' +
                 ", aggressiveness=" + aggressiveness +
                 ", consistency=" + consistency +

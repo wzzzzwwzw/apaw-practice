@@ -1,26 +1,46 @@
-package es.upm.miw.apaw_practice.domain.models.formula_one;
+package es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
-public class Race {
+@Document
+public class RaceEntity {
 
+    @Id
+    private String id;
+    @Indexed(unique = true)
     private String circuitName;
     private String hostCountry;
     private LocalDate date;
-    private List<Driver> drivers;
+    @DBRef
+    private List<DriverEntity> driverEntities;
     private Integer laps;
     private Boolean nightRace;
 
-    public Race() {
+    public RaceEntity() {
         //empty for framework
     }
 
-    public Race(String circuitName, String hostCountry, LocalDate date, List<Driver> drivers) {
+    public RaceEntity(String circuitName, String hostCountry, LocalDate date, List<DriverEntity> driverEntities) {
+        this.id = UUID.randomUUID().toString();
         this.circuitName = circuitName;
         this.hostCountry = hostCountry;
         this.date = date;
-        this.drivers = drivers;
+        this.driverEntities = driverEntities;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCircuitName() {
@@ -47,12 +67,12 @@ public class Race {
         this.date = date;
     }
 
-    public List<Driver> getDrivers() {
-        return drivers;
+    public List<DriverEntity> getDriverEntities() {
+        return driverEntities;
     }
 
-    public void setDrivers(List<Driver> drivers) {
-        this.drivers = drivers;
+    public void setDriverEntities(List<DriverEntity> driverEntities) {
+        this.driverEntities = driverEntities;
     }
 
     public Integer getLaps() {
@@ -73,11 +93,12 @@ public class Race {
 
     @Override
     public String toString() {
-        return "Race{" +
-                "circuitName='" + circuitName + '\'' +
+        return "RaceEntity{" +
+                "id='" + id + '\'' +
+                ", circuitName='" + circuitName + '\'' +
                 ", hostCountry='" + hostCountry + '\'' +
                 ", date=" + date +
-                ", drivers=" + drivers +
+                ", drivers=" + driverEntities +
                 ", laps=" + laps +
                 ", nightRace=" + nightRace +
                 '}';

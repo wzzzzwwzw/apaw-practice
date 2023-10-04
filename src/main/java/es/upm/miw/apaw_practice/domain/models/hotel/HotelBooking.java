@@ -21,7 +21,7 @@ public class HotelBooking {
         this.bookingNumber = 0;
         this.date = null;
         this.cost = BigDecimal.ZERO;
-        this.clients = new HotelClient[0];
+        this.clients = new HotelClient[]{new HotelClient()};
     }
 
     public int getBookingNumber() {

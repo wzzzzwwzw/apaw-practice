@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Car {
-    private Integer chassisNumber;
+    private String chassisNumber;
     private BigDecimal price;
     private Boolean sold;
     private LocalDate fabricationDate;
     private CarModel carModel;
     private List<Seller> sellerList;
 
-    public Car(Integer chassisNumber, BigDecimal price, Boolean sold, LocalDate fabricationDate, CarModel carModel) {
+    public Car(String chassisNumber, BigDecimal price, Boolean sold, LocalDate fabricationDate, CarModel carModel) {
         this.chassisNumber = chassisNumber;
         this.price = price;
         this.sold = sold;
@@ -22,11 +22,11 @@ public class Car {
         this.sellerList = new ArrayList<>();
     }
 
-    public Integer getChassisNumber() {
+    public String getChassisNumber() {
         return chassisNumber;
     }
 
-    public void setChassisNumber(Integer chassisNumber) {
+    public void setChassisNumber(String chassisNumber) {
         this.chassisNumber = chassisNumber;
     }
 
@@ -77,7 +77,7 @@ public class Car {
     @Override
     public String toString() {
         return "Car{" +
-                "chassisNumber=" + chassisNumber +
+                "chassisNumber='" + chassisNumber + '\'' +
                 ", price=" + price +
                 ", sold=" + sold +
                 ", fabricationDate=" + fabricationDate +

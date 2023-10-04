@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
-public interface TeamRepository extends MongoRepository<TeamEntity, String>{
+public interface TeamRepository extends MongoRepository<TeamEntity, String> {
     Optional<TeamEntity> findByTeamName(String teamName);
 }

@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.formula_one;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Team {

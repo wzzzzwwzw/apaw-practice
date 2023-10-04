@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Car {
-    Integer chassisNumber;
-    BigDecimal price;
-    Boolean sold;
-    LocalDate fabricationDate;
-    CarModel carModel;
-    List<Seller> sellerList;
+    private Integer chassisNumber;
+    private BigDecimal price;
+    private Boolean sold;
+    private LocalDate fabricationDate;
+    private CarModel carModel;
+    private List<Seller> sellerList;
 
     public Car(Integer chassisNumber, BigDecimal price, Boolean sold, LocalDate fabricationDate, CarModel carModel) {
         this.chassisNumber = chassisNumber;

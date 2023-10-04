@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dealership {
-    String name;
-    String city;
-    String district;
-    List<Car> carList;
+    private String name;
+    private String city;
+    private String district;
+    private List<Car> carList;
 
     public Dealership(String name, String city, String district) {
         this.name = name;

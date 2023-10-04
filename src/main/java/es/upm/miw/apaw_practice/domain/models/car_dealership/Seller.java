@@ -1,9 +1,9 @@
 package es.upm.miw.apaw_practice.domain.models.car_dealership;
 
 public class Seller {
-    String name;
-    String surname;
-    Integer salary;
+    private String name;
+    private String surname;
+    private Integer salary;
 
     public Seller(String name, String surname, Integer salary) {
         this.name = name;

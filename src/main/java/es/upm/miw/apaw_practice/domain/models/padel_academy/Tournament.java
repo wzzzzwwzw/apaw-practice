@@ -4,24 +4,24 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Tournament {
-    private String name;
+    private String title;
     private BigDecimal prize;
     private LocalDate schedule;
     private Academy academy;
 
-    public Tournament(String name, BigDecimal prize, LocalDate schedule, Academy academy) {
-        this.name = name;
+    public Tournament(String title, BigDecimal prize, LocalDate schedule, Academy academy) {
+        this.title = title;
         this.prize = prize;
         this.schedule = schedule;
         this.academy = academy;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public BigDecimal getPrize() {
@@ -51,7 +51,7 @@ public class Tournament {
     @Override
     public String toString() {
         return "Tournament{" +
-                "name='" + name + '\'' +
+                "title='" + title + '\'' +
                 ", prize=" + prize +
                 ", schedule=" + schedule +
                 ", academy=" + academy +

@@ -1,13 +1,16 @@
-package es.upm.miw.apaw_practice.domain.models.car_dealership;
+package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities;
+
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 
-public class CarModel {
+@Document
+public class CarModelEntity {
     private String model;
     private String brand;
     private LocalDate createDate;
 
-    public CarModel(String model, String brand, LocalDate createDate) {
+    public CarModelEntity(String model, String brand, LocalDate createDate) {
         this.model = model;
         this.brand = brand;
         this.createDate = createDate;
@@ -39,7 +42,7 @@ public class CarModel {
 
     @Override
     public String toString() {
-        return "CarModel{" +
+        return "CarModelEntity{" +
                 "model='" + model + '\'' +
                 ", brand='" + brand + '\'' +
                 ", createDate=" + createDate +

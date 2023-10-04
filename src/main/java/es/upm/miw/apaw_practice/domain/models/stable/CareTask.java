@@ -35,5 +35,4 @@ public class CareTask {
                 ", durationHours=" + durationHours +
                 '}';
     }
-
 }

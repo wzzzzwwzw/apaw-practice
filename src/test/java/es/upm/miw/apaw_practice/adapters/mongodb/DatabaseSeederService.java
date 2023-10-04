@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.CarDealershipSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.car_workshop.CarWorkshopSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.ComputerStoreSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.conference.ConferenceSeederService;
@@ -18,17 +19,20 @@ public class DatabaseSeederService {
     private final ConferenceSeederService conferenceSeederService;
     private final RestaurantSeederService restaurantSeederService;
     private final CarWorkshopSeederService carWorkshopSeederService;
+    private final CarDealershipSeederService carDealershipSeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, ZooSeederService zooSeederService,
             ComputerStoreSeederService computerStoreSeederService, ConferenceSeederService conferenceSeederService,
-            RestaurantSeederService restaurantSeederService, CarWorkshopSeederService carWorkshopSeederService) {
+            RestaurantSeederService restaurantSeederService, CarWorkshopSeederService carWorkshopSeederService,
+            CarDealershipSeederService carDealershipSeederService) {
         this.shopSeederService = shopSeederService;
         this.zooSeederService = zooSeederService;
         this.computerStoreSeederService = computerStoreSeederService;
         this.conferenceSeederService = conferenceSeederService;
         this.restaurantSeederService = restaurantSeederService;
         this.carWorkshopSeederService = carWorkshopSeederService;
+        this.carDealershipSeederService = carDealershipSeederService;
         this.seedDatabase();
     }
 
@@ -39,6 +43,7 @@ public class DatabaseSeederService {
         this.conferenceSeederService.seedDatabase();
         this.restaurantSeederService.seedDatabase();
         this.carWorkshopSeederService.seedDatabase();
+        this.carDealershipSeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -48,6 +53,7 @@ public class DatabaseSeederService {
         this.conferenceSeederService.deleteAll();
         this.restaurantSeederService.deleteAll();
         this.carWorkshopSeederService.deleteAll();
+        this.carDealershipSeederService.deleteAll();
     }
 
     public void reSeedDatabase() {

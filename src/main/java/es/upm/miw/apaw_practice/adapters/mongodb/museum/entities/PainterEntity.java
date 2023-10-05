@@ -84,7 +84,7 @@ public class PainterEntity {
         this.artWorks = artWorks;
     }
 
-    public Painter toAuthor() {
+    public Painter toPainter() {
         Painter painter = new Painter();
         BeanUtils.copyProperties(this, painter, "artWorks");
         List<ArtWork> artWorks = this.artWorks.stream()
@@ -109,7 +109,7 @@ public class PainterEntity {
 
     @Override
     public String toString() {
-        return "MuseumAuthorEntity{" +
+        return "MuseumPainterEntity{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +

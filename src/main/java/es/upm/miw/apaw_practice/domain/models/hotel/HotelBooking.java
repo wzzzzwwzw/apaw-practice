@@ -1,16 +1,16 @@
 package es.upm.miw.apaw_practice.domain.models.hotel;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Date;
 
 public class HotelBooking {
-    private int bookingNumber;
-    private Date date;
+    private Integer bookingNumber;
+    private LocalDate date;
     private BigDecimal cost;
     private HotelClient[] clients;
 
-    public HotelBooking(int bookingNumber, Date date, BigDecimal cost, HotelClient[] clients) {
+    public HotelBooking(Integer bookingNumber, LocalDate date, BigDecimal cost, HotelClient[] clients) {
         this.bookingNumber = bookingNumber;
         this.date = date;
         this.cost = cost;
@@ -24,19 +24,19 @@ public class HotelBooking {
         this.clients = new HotelClient[]{new HotelClient()};
     }
 
-    public int getBookingNumber() {
+    public Integer getBookingNumber() {
         return bookingNumber;
     }
 
-    public void setBookingNumber(int bookingNumber) {
+    public void setBookingNumber(Integer bookingNumber) {
         this.bookingNumber = bookingNumber;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

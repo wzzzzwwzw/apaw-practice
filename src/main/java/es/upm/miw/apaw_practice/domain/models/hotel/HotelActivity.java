@@ -4,9 +4,9 @@ public class HotelActivity {
     private String name;
     private String schedule;
     private String instructor;
-    private int maxParticipants;
+    private Integer maxParticipants;
 
-    public HotelActivity(String name, String schedule, String instructor, int maxParticipants) {
+    public HotelActivity(String name, String schedule, String instructor, Integer maxParticipants) {
         this.name = name;
         this.schedule = schedule;
         this.instructor = instructor;
@@ -44,11 +44,11 @@ public class HotelActivity {
         this.instructor = instructor;
     }
 
-    public int getMaxParticipants() {
+    public Integer getMaxParticipants() {
         return maxParticipants;
     }
 
-    public void setMaxParticipants(int maxParticipants) {
+    public void setMaxParticipants(Integer maxParticipants) {
         this.maxParticipants = maxParticipants;
     }
 

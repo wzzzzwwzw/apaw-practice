@@ -4,18 +4,16 @@ import java.util.Arrays;
 
 public class Hotel {
     private String name;
-    private int stars;
-    private int rooms;
+    private Integer stars;
+    private Integer rooms;
     private HotelBooking[] bookings;
-    private HotelClient[] clients;
     private HotelActivity[] activities;
 
-    public Hotel(String name, int stars, int rooms, HotelBooking[] bookings, HotelClient[] clients, HotelActivity[] activities) {
+    public Hotel(String name, Integer stars, Integer rooms, HotelBooking[] bookings, HotelActivity[] activities) {
         this.name = name;
         this.stars = stars;
         this.rooms = rooms;
         this.bookings = bookings;
-        this.clients = clients;
         this.activities = activities;
     }
 
@@ -24,7 +22,6 @@ public class Hotel {
         this.stars = 0;
         this.rooms = 0;
         this.bookings = new HotelBooking[0];
-        this.clients = new HotelClient[0];
         this.activities = new HotelActivity[0];
     }
 
@@ -36,19 +33,17 @@ public class Hotel {
         this.name = name;
     }
 
-    public int getStars() {
+    public Integer getStars() {
         return stars;
     }
 
-    public void setStars(int stars) {
+    public void setStars(Integer stars) {
         this.stars = stars;
     }
 
-    public int getRooms() {
-        return rooms;
-    }
+    public Integer getRooms() { return rooms; }
 
-    public void setRooms(int rooms) {
+    public void setRooms(Integer rooms) {
         this.rooms = rooms;
     }
 
@@ -58,14 +53,6 @@ public class Hotel {
 
     public void setBookings(HotelBooking[] bookings) {
         this.bookings = bookings;
-    }
-
-    public HotelClient[] getClients() {
-        return clients;
-    }
-
-    public void setClients(HotelClient[] clients) {
-        this.clients = clients;
     }
 
     public HotelActivity[] getActivities() {
@@ -82,7 +69,6 @@ public class Hotel {
                 "  name = '" + name + '\'' +
                 "  rooms = '" + rooms + '\'' +
                 "  bookings = " + Arrays.toString(bookings) + '\'' +
-                "  clients = " + Arrays.toString(clients) + '\'' +
                 "  activities =  " + Arrays.toString(activities) + '\'' +
                 '}';
     }

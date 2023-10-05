@@ -3,10 +3,10 @@ package es.upm.miw.apaw_practice.domain.models.hotel;
 public class HotelClient {
     private String dni;
     private String email;
-    private int telephone;
-    private boolean partnership;
+    private Integer telephone;
+    private Boolean partnership;
 
-    public HotelClient(String dni, String email, int telephone, boolean partnership) {
+    public HotelClient(String dni, String email, Integer telephone, Boolean partnership) {
         this.dni = dni;
         this.email = email;
         this.telephone = telephone;
@@ -36,19 +36,19 @@ public class HotelClient {
         this.email = email;
     }
 
-    public int getTelephone() {
+    public Integer getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(int telephone) {
+    public void setTelephone(Integer telephone) {
         this.telephone = telephone;
     }
 
-    public boolean isPartner() {
+    public Boolean isPartner() {
         return partnership;
     }
 
-    public void setPartnership(boolean newPartnership) {
+    public void setPartnership(Boolean newPartnership) {
         this.partnership = newPartnership;
     }
 

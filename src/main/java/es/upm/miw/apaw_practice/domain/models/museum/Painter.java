@@ -4,16 +4,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Author {
+public class Painter {
     private String name;
     private String surname;
     private LocalDate birthDate;
     private LocalDate deathDate;
     private List<ArtWork> artWorks;
 
-    public Author() { }
+    public Painter() { }
 
-    public Author(String name, String surname, LocalDate birthDate, LocalDate deathDate, List<ArtWork> artWorks) {
+    public Painter(String name, String surname, LocalDate birthDate, LocalDate deathDate, List<ArtWork> artWorks) {
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
@@ -55,6 +55,10 @@ public class Author {
 
     public List<ArtWork> getArtWorks() {
         return artWorks;
+    }
+
+    public void setArtWorks(List<ArtWork> artWorks) {
+        this.artWorks = artWorks;
     }
 
     public void addArtWork(ArtWork artWork) {

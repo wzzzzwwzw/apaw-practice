@@ -1,17 +1,16 @@
-package es.upm.miw.apaw_practice.domain.models.coffee_Shop;
+package es.upm.miw.apaw_practice.domain.models.coffee_shop;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class Transaction {
     private BigDecimal totalPrice;
-    private LocalDateTime PayDate;
+    private LocalDateTime payDate;
     private Client client;
 
     public Transaction(BigDecimal totalPrice, LocalDateTime payDate, Client client) {
         this.totalPrice = totalPrice;
-        PayDate = payDate;
+        this.payDate = payDate;
         this.client = client;
     }
 
@@ -32,32 +31,20 @@ public class Transaction {
     }
 
     public LocalDateTime getPayDate() {
-        return PayDate;
+        return payDate;
     }
 
     public void setPayDate(LocalDateTime payDate) {
-        PayDate = payDate;
+        payDate = payDate;
     }
 
     @Override
     public String toString() {
         return "Transaction{" +
                 "totalPrice=" + totalPrice +
-                ", PayDate=" + PayDate +
+                ", PayDate=" + payDate +
                 ", client=" + client +
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Transaction that = (Transaction) o;
-        return Objects.equals(totalPrice, that.totalPrice) && Objects.equals(PayDate, that.PayDate) && Objects.equals(client, that.client);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(totalPrice, PayDate, client);
-    }
 }

@@ -6,20 +6,13 @@ import java.time.LocalDateTime;
 public class Transaction {
     private BigDecimal totalPrice;
     private LocalDateTime payDate;
-    private Client client;
 
-    public Transaction(BigDecimal totalPrice, LocalDateTime payDate, Client client) {
+    public Transaction() {
+    }
+
+    public Transaction(BigDecimal totalPrice, LocalDateTime payDate) {
         this.totalPrice = totalPrice;
         this.payDate = payDate;
-        this.client = client;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
     }
 
     public BigDecimal getTotalPrice() {
@@ -35,16 +28,14 @@ public class Transaction {
     }
 
     public void setPayDate(LocalDateTime payDate) {
-        payDate = payDate;
+        this.payDate = payDate;
     }
 
     @Override
     public String toString() {
         return "Transaction{" +
                 "totalPrice=" + totalPrice +
-                ", PayDate=" + payDate +
-                ", client=" + client +
+                ", payDate=" + payDate +
                 '}';
     }
-
 }

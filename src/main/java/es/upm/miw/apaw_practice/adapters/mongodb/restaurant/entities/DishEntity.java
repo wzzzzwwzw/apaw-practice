@@ -20,6 +20,7 @@ public class DishEntity {
     private BigDecimal price;
     @DBRef
     private CategoryRestaurantEntity category;
+    @DBRef
     private List<IngredientEntity> ingredients;
 
     public DishEntity() {
@@ -36,10 +37,6 @@ public class DishEntity {
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getTitle() {

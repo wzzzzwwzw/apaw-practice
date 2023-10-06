@@ -38,6 +38,10 @@ public class Menu {
         return lastModification;
     }
 
+    public void setLastModification(LocalDateTime lastModification) {
+        this.lastModification = lastModification;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

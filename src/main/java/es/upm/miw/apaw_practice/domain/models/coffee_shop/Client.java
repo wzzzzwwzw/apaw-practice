@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.coffee_shop;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Client {
@@ -12,6 +13,9 @@ public class Client {
     private Dining dining;
 
     public Client() {
+        transactions = new ArrayList<>();
+        coffees = new ArrayList<>();
+        dining = new Dining();
     }
 
     public Client(String name, String address, String phoneNumber, List<Transaction> transactions, List<Coffee> coffees, Dining dining) {

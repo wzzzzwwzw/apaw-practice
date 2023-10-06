@@ -39,6 +39,10 @@ public class CategoryRestaurant {
         return creationDate;
     }
 
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

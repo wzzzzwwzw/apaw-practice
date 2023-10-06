@@ -5,10 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 public class Campaign {
-    Date startDate;
-    Date endDate;
-    String description;
-    List<Content> content;
+    private Date startDate;
+    private Date endDate;
+    private String description;
+    private List<Content> contents;
 
 
     public Campaign(){
@@ -18,7 +18,7 @@ public class Campaign {
     public Campaign(Date startDate, Date endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
-        content = new ArrayList<>();
+        contents = new ArrayList<>();
     }
 
     public Date getStartDate() {
@@ -45,12 +45,21 @@ public class Campaign {
         this.description = description;
     }
 
+    public List<Content> getContents() {
+        return contents;
+    }
+
+    public void setContents(List<Content> contents) {
+        this.contents = contents;
+    }
+
     @Override
     public String toString() {
         return "Campaign{" +
                 "startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", description='" + description + '\'' +
+                ", contents=" + contents +
                 '}';
     }
 }

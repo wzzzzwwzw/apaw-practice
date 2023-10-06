@@ -1,15 +1,15 @@
 package es.upm.miw.apaw_practice.domain.models.hotel;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class Hotel {
     private String name;
     private Integer stars;
     private Integer rooms;
-    private HotelBooking[] bookings;
-    private HotelActivity[] activities;
+    private List<HotelBooking> bookings;
+    private List<HotelActivity> activities;
 
-    public Hotel(String name, Integer stars, Integer rooms, HotelBooking[] bookings, HotelActivity[] activities) {
+    public Hotel(String name, Integer stars, Integer rooms, List<HotelBooking> bookings, List<HotelActivity> activities) {
         this.name = name;
         this.stars = stars;
         this.rooms = rooms;
@@ -18,11 +18,7 @@ public class Hotel {
     }
 
     public Hotel() {
-        this.name = "hotelName";
-        this.stars = 0;
-        this.rooms = 0;
-        this.bookings = new HotelBooking[0];
-        this.activities = new HotelActivity[0];
+        // empty for framework
     }
 
     public String getName() {
@@ -47,29 +43,29 @@ public class Hotel {
         this.rooms = rooms;
     }
 
-    public HotelBooking[] getBookings() {
+    public List<HotelBooking> getBookings() {
         return bookings;
     }
 
-    public void setBookings(HotelBooking[] bookings) {
+    public void setBookings(List<HotelBooking> bookings) {
         this.bookings = bookings;
     }
 
-    public HotelActivity[] getActivities() {
+    public List<HotelActivity> getActivities() {
         return activities;
     }
 
-    public void setActivities(HotelActivity[] activities) {
+    public void setActivities(List<HotelActivity> activities) {
         this.activities = activities;
     }
 
     @Override
     public String toString() {
-        return "Hotel{" + '\'' +
+        return "Hotel {" + '\'' +
                 "  name = '" + name + '\'' +
                 "  rooms = '" + rooms + '\'' +
-                "  bookings = " + Arrays.toString(bookings) + '\'' +
-                "  activities =  " + Arrays.toString(activities) + '\'' +
+                "  bookings = " + bookings + '\'' +
+                "  activities =  " + activities + '\'' +
                 '}';
     }
 }

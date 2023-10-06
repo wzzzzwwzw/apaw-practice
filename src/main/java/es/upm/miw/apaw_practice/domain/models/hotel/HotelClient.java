@@ -14,10 +14,7 @@ public class HotelClient {
     }
 
     public HotelClient() {
-        dni = "00000000A";
-        email = "email@email.com";
-        telephone = 0;
-        partnership = false;
+        // empty for framework
     }
 
     public String getDni() {

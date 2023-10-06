@@ -14,10 +14,7 @@ public class HotelActivity {
     }
 
     public HotelActivity() {
-        this.name = "name";
-        this.schedule = "schedule";
-        this.instructor = "instructor";
-        this.maxParticipants = 0;
+        // empty for framework
     }
 
     public String getName() {

@@ -2,26 +2,24 @@ package es.upm.miw.apaw_practice.domain.models.hotel;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Arrays;
 
 public class HotelBooking {
     private Integer bookingNumber;
+    private Integer roomNumber;
     private LocalDate date;
     private BigDecimal cost;
-    private HotelClient[] clients;
+    private HotelClient client;
 
-    public HotelBooking(Integer bookingNumber, LocalDate date, BigDecimal cost, HotelClient[] clients) {
+    public HotelBooking(Integer bookingNumber, Integer roomNumber, LocalDate date, BigDecimal cost, HotelClient client) {
         this.bookingNumber = bookingNumber;
+        this.roomNumber = roomNumber;
         this.date = date;
         this.cost = cost;
-        this.clients = clients;
+        this.client = client;
     }
 
     public HotelBooking() {
-        this.bookingNumber = 0;
-        this.date = null;
-        this.cost = BigDecimal.ZERO;
-        this.clients = new HotelClient[]{new HotelClient()};
+        // empty for framework
     }
 
     public Integer getBookingNumber() {
@@ -31,6 +29,10 @@ public class HotelBooking {
     public void setBookingNumber(Integer bookingNumber) {
         this.bookingNumber = bookingNumber;
     }
+
+    public Integer getRoomNumber() { return roomNumber; }
+
+    public void setRoomNumber(Integer roomNumber) { this.roomNumber = roomNumber; }
 
     public LocalDate getDate() {
         return date;
@@ -48,21 +50,21 @@ public class HotelBooking {
         this.cost = cost;
     }
 
-    public HotelClient[] getClients() {
-        return this.clients;
+    public HotelClient getClient() {
+        return this.client;
     }
 
-    public void setClients(HotelClient[] clients) {
-        this.clients = clients;
+    public void setClient(HotelClient client) {
+        this.client = client;
     }
 
     @Override
     public String toString() {
-        return "HotelBooking {" + '\'' +
-                "  bookingNumber = " + bookingNumber + '\'' +
-                "  date = " + date + '\'' +
-                "  cost = " + cost + '\'' +
-                "  clients = " + Arrays.toString(clients) + '\'' +
+        return "HotelBooking {" + "\n" +
+                "   bookingNumber = " + bookingNumber + "\n" +
+                "   date = " + date + "\n" +
+                "   cost = " + cost + "\n" +
+                "   client = " + client + "\n" +
                 '}';
     }
 }

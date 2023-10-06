@@ -72,6 +72,7 @@ public class Tag {
         this.favourite = favourite;
     }
 
+
     @Override
     public String toString() {
         return "Tag{" +

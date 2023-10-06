@@ -1,9 +1,12 @@
 package es.upm.miw.apaw_practice.domain.models.videogame_company;
 
-public class Feature {
-        private String genre;
-        private String gameStyle;
-        private Boolean cloudSynchronization;
+public class Feature{
+    private String genre;
+    private String gameStyle;
+    private Boolean cloudSynchronization;
+
+    public Feature() {
+    }
 
     public Feature(String genre, String gameStyle, Boolean cloudSynchronization) {
         this.genre = genre;

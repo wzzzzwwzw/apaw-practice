@@ -12,7 +12,7 @@ public class Ingredient {
         //empty from framework
     }
 
-    public Ingredient(String name, boolean spicy, boolean available) {
+    public Ingredient(String name, Boolean spicy, Boolean available) {
         this.name = name;
         this.spicy = spicy;
         this.available = available;
@@ -26,19 +26,19 @@ public class Ingredient {
         this.name = name;
     }
 
-    public boolean isSpicy() {
+    public Boolean isSpicy() {
         return spicy;
     }
 
-    public void setSpicy(boolean spicy) {
+    public void setSpicy(Boolean spicy) {
         this.spicy = spicy;
     }
 
-    public boolean isAvailable() {
+    public Boolean isAvailable() {
         return available;
     }
 
-    public void setAvailable(boolean available) {
+    public void setAvailable(Boolean available) {
         this.available = available;
     }
 

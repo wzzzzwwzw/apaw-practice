@@ -10,16 +10,19 @@ public class Invoice {
     private BigDecimal totalPrice;
     private Boolean paid;
     private List<CarComponent> carComponents;
+    private CarToRepair carToRepair;
 
     public Invoice() {
         this.carComponents = new ArrayList<CarComponent>();
     }
 
-    public Invoice(LocalDateTime invoiceDate, BigDecimal totalPrice, Boolean paid) {
+    public Invoice(LocalDateTime invoiceDate, BigDecimal totalPrice, Boolean paid, List<CarComponent> carComponents,
+            CarToRepair carToRepair) {
         this.invoiceDate = invoiceDate;
         this.totalPrice = totalPrice;
         this.paid = paid;
-        this.carComponents = new ArrayList<CarComponent>();
+        this.carComponents = carComponents;
+        this.carToRepair = carToRepair;
     }
 
     public LocalDateTime getInvoiceDate() {
@@ -30,11 +33,11 @@ public class Invoice {
         this.invoiceDate = invoiceDate;
     }
 
-    public BigDecimal gettotalPrice() {
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 
-    public void settotalPrice(BigDecimal totalPrice) {
+    public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -53,4 +56,13 @@ public class Invoice {
     public void setCarComponents(List<CarComponent> carComponents) {
         this.carComponents = carComponents;
     }
+
+    public CarToRepair getCarToRepair() {
+        return carToRepair;
+    }
+
+    public void setCarToRepair(CarToRepair carToRepair) {
+        this.carToRepair = carToRepair;
+    }
+
 }

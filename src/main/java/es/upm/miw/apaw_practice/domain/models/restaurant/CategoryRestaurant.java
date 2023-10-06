@@ -44,12 +44,12 @@ public class CategoryRestaurant {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CategoryRestaurant that = (CategoryRestaurant) o;
-        return tag.equals(that.tag) && Objects.equals(color, that.color) && Objects.equals(creationDate, that.creationDate);
+        return tag.equals(that.tag) && Objects.equals(color, that.color);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tag, color, creationDate);
+        return Objects.hash(tag, color);
     }
 
     @Override

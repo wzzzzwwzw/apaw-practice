@@ -1,13 +1,14 @@
 package es.upm.miw.apaw_practice.domain.models.coffee_shop;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Objects;
 
 public class Coffee {
     private String coffee;
     private String category;
     private BigDecimal price;
+
+    public Coffee() {
+    }
 
     public Coffee(String coffee, String category, BigDecimal price) {
         this.coffee = coffee;

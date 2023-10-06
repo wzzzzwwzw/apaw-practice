@@ -2,19 +2,25 @@ package es.upm.miw.apaw_practice.domain.models.coffee_shop;
 
 
 import java.util.List;
-import java.util.Objects;
 
 public class Client {
     private String name;
     private String address;
     private String phoneNumber;
     private List<Transaction> transactions;
+    private List<Coffee> coffees;
+    private Dining dining;
 
-    public Client(String name, String address, String phoneNumber, List<Transaction> transactions) {
+    public Client() {
+    }
+
+    public Client(String name, String address, String phoneNumber, List<Transaction> transactions, List<Coffee> coffees, Dining dining) {
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.transactions = transactions;
+        this.coffees = coffees;
+        this.dining = dining;
     }
 
     public String getName() {
@@ -49,6 +55,22 @@ public class Client {
         this.transactions = transactions;
     }
 
+    public List<Coffee> getCoffees() {
+        return coffees;
+    }
+
+    public void setCoffees(List<Coffee> coffees) {
+        this.coffees = coffees;
+    }
+
+    public Dining getDining() {
+        return dining;
+    }
+
+    public void setDining(Dining dining) {
+        this.dining = dining;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
@@ -56,6 +78,8 @@ public class Client {
                 ", address='" + address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", transactions=" + transactions +
+                ", coffees=" + coffees +
+                ", dining=" + dining +
                 '}';
     }
 }

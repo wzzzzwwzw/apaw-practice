@@ -12,7 +12,9 @@ public class Fish {
         this.color = color;
         this.dateOfEntrance = dateOfEntrance;
     }
-
+    public Fish(){
+        //empty for framework
+    }
     public String getSpecies() {
         return species;
     }

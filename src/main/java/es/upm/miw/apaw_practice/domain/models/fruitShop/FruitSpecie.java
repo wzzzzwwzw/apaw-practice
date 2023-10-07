@@ -1,31 +1,31 @@
 package es.upm.miw.apaw_practice.domain.models.fruitShop;
 
-public class FruitSpecies {
+public class FruitSpecie {
 
-    private String species;
+    private String specie;
 
     private String season;
 
     private Integer size;
 
 
-    public FruitSpecies() {
+    public FruitSpecie() {
         //empty for framework
     }
 
 
-    public FruitSpecies(String species, String season, Integer size) {
-        this.species = species;
+    public FruitSpecie(String specie, String season, Integer size) {
+        this.specie = specie;
         this.season = season;
         this.size = size;
     }
 
-    public String getSpecies() {
-        return species;
+    public String getSpecie() {
+        return specie;
     }
 
-    public void setSpecies(String species) {
-        this.species = species;
+    public void setSpecie(String specie) {
+        this.specie = specie;
     }
 
     public String getSeason() {
@@ -46,8 +46,8 @@ public class FruitSpecies {
 
     @Override
     public String toString() {
-        return "FruitSpecies{" +
-                "species='" + species + '\'' +
+        return "FruitSpecie{" +
+                "specie='" + specie + '\'' +
                 ", season='" + season + '\'' +
                 ", size=" + size +
                 '}';

@@ -6,15 +6,18 @@ class Basket {
     private Integer value;
     private String description;
     private LocalDateTime basketTime;
+    private Player player;
 
     public Basket() {
 
     }
 
-    public Basket(Integer value, String description, LocalDateTime basketTime) {
+
+    public Basket(Integer value, String description, LocalDateTime basketTime, Player player) {
         this.value = value;
         this.description = description;
         this.basketTime = basketTime;
+        this.player=player;
     }
 
     public Integer getValue() {
@@ -39,6 +42,12 @@ class Basket {
 
     public void setBasketTime(LocalDateTime basketTime) {
         this.basketTime = basketTime;
+    }
+    public Player getPlayer() {
+        return player;
+    }
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     @Override

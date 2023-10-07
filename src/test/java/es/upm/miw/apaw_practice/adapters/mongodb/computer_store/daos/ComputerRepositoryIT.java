@@ -12,18 +12,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
 class ComputerRepositoryIT {
+    private static final String CUSTOMIZED_COMPUTER_NAME = "Customized PC Bate Ye";
     @Autowired
     private ComputerRepository computerRepository;
-    private static final String CUSTOMIZED_COMPUTER_NAME = "Customized PC Bate Ye";
 
     @Test
     void testComputerFindByName() {
-        assertTrue(computerRepository.findByName(CUSTOMIZED_COMPUTER_NAME).isPresent());
-        ComputerEntity computer = computerRepository.findByName(CUSTOMIZED_COMPUTER_NAME).get();
+        assertTrue(this.computerRepository.findByName(CUSTOMIZED_COMPUTER_NAME).isPresent());
+        ComputerEntity computer = this.computerRepository.findByName(CUSTOMIZED_COMPUTER_NAME).get();
         assertEquals(new BigDecimal("1250"), computer.getCost());
         assertEquals(new BigDecimal("8"), computer.getWeight());
         assertTrue(
-                computer.getMonitors().stream()
+                computer.getMonitorEntities().stream()
                         .anyMatch(monitor ->
                                 monitor.getSerialNumber().equals("XIAOMIC34001") &&
                                         monitor.getRefreshRate() == 165 &&

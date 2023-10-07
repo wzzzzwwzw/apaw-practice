@@ -6,7 +6,7 @@ import java.util.List;
 public class Line {
     private String label;
     private String color;
-    private boolean works;
+    private Boolean works;
     private List<Station> stations;
     private Schedule schedule;
 
@@ -39,11 +39,11 @@ public class Line {
         this.color = color;
     }
 
-    public boolean isWorking() {
+    public Boolean isWorking() {
         return works;
     }
 
-    public void setWorks(boolean works) {
+    public void setWorks(Boolean works) {
         this.works = works;
     }
 

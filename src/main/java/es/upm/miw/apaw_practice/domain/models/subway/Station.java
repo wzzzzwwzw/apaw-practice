@@ -3,9 +3,9 @@ package es.upm.miw.apaw_practice.domain.models.subway;
 public class Station {
     private String name;
     private String order;
-    private boolean open;
+    private Boolean open;
 
-    public Station(String name, String order, boolean open) {
+    public Station(String name, String order, Boolean open) {
         this.name = name;
         this.order = order;
         this.open = open;
@@ -31,11 +31,11 @@ public class Station {
         this.order = order;
     }
 
-    public boolean isOpen() {
+    public Boolean isOpen() {
         return open;
     }
 
-    public void setOpen(boolean open) {
+    public void setOpen(Boolean open) {
         this.open = open;
     }
 

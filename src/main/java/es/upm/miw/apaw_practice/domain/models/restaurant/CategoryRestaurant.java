@@ -16,7 +16,6 @@ public class CategoryRestaurant {
     public CategoryRestaurant(String tag, String color) {
         this.tag = tag;
         this.color = color;
-        this.creationDate = LocalDateTime.now();
     }
 
     public String getTag() {
@@ -37,6 +36,10 @@ public class CategoryRestaurant {
 
     public LocalDateTime getCreationDate() {
         return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 
     @Override

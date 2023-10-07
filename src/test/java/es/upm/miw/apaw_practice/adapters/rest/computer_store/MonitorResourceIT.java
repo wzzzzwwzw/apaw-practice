@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.rest.computer_store;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.ComputerStoreSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.computer_store.Monitor;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class MonitorResourceIT {
     @Autowired
     private WebTestClient webTestClient;
-
+    @Autowired
+    private ComputerStoreSeederService computerStoreSeederService;
+    @AfterEach
+    void resetDataBase(){
+        this.computerStoreSeederService.deleteAll();
+        this.computerStoreSeederService.seedDatabase();
+    }
     @Test
     void testUpdateRefreshRate() {
         this.webTestClient

@@ -1,8 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.computer_store.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.ComputerStoreSeederService;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.computer_store.Monitor;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,7 +19,13 @@ class MonitorPersistenceMongodbIT {
     private static final String XIAOMI_SERIAL_NUMBER = "XIAOMIC34001";
     @Autowired
     private MonitorPersistenceMongodb monitorPersistenceMongodb;
-
+    @Autowired
+    private ComputerStoreSeederService computerStoreSeederService;
+    @AfterEach
+    void resetDataBase(){
+        this.computerStoreSeederService.deleteAll();
+        this.computerStoreSeederService.seedDatabase();
+    }
     @Test
     void testReadBySerialNumber() {
         Monitor monitor = this.monitorPersistenceMongodb.readBySerialNumber(XIAOMI_SERIAL_NUMBER);

@@ -36,23 +36,23 @@ public class RestaurantSeederService {
                 new IngredientEntity("Wasabi", true, false),
                 new IngredientEntity("Lubina", false, true),
                 new IngredientEntity("Ternera", false, false),
-                new IngredientEntity("Salsa de setas", false, true),
+                new IngredientEntity("Salsa_de_setas", false, true),
         };
         ingredientRepository.saveAll(Arrays.asList(ingredients));
 
         CategoryRestaurantEntity[] categories = {
                 new CategoryRestaurantEntity("Carne", "Rojo"),
                 new CategoryRestaurantEntity("Pescado", "Azul"),
-                new CategoryRestaurantEntity("Cereal", "Marrón"),
-                new CategoryRestaurantEntity("Tubérculo", "Verde claro"),
+                new CategoryRestaurantEntity("Cereal", "Marron"),
+                new CategoryRestaurantEntity("Tuberculo", "Verde_claro"),
                 new CategoryRestaurantEntity("Salsa", "Gris"),
         };
         categoryRestaurantRepository.saveAll(Arrays.asList(categories));
 
         DishEntity[] dishes = {
-                new DishEntity("Pollo con patatas", new BigDecimal("13.5"), categories[0], Arrays.asList(ingredients[0], ingredients[2])),
-                new DishEntity("Lubina con arroz", new BigDecimal("18"), categories[1], Arrays.asList(ingredients[1], ingredients[4])),
-                new DishEntity("Ternera bañada en setas", new BigDecimal("23"), categories[4], Arrays.asList(ingredients[5], ingredients[6])),
+                new DishEntity("Pollo_con_patatas", new BigDecimal("13.5"), categories[0], Arrays.asList(ingredients[0], ingredients[2])),
+                new DishEntity("Lubina_con_arroz", new BigDecimal("18"), categories[1], Arrays.asList(ingredients[1], ingredients[4])),
+                new DishEntity("Ternera_banhada_en_setas", new BigDecimal("23"), categories[4], Arrays.asList(ingredients[5], ingredients[6])),
 
         };
         dishRepository.saveAll(Arrays.asList(dishes));

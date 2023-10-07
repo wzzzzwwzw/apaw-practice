@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Fruit {
 
+
     private String type;
 
     private BigDecimal unitPrice;

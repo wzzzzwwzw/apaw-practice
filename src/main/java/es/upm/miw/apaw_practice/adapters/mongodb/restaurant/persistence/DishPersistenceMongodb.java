@@ -10,6 +10,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.restaurant.DishPersiste
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("dishPersistence")
 public class DishPersistenceMongodb implements DishPersistence {
 
@@ -19,10 +21,16 @@ public class DishPersistenceMongodb implements DishPersistence {
 
     @Autowired
     public DishPersistenceMongodb(DishRepository dishRepository, IngredientRepository ingredientRepository,
-            CategoryRestaurantRepository categoryRestaurantRepository) {
+                                  CategoryRestaurantRepository categoryRestaurantRepository) {
         this.dishRepository = dishRepository;
         this.ingredientRepository = ingredientRepository;
         this.categoryRestaurantRepository = categoryRestaurantRepository;
+    }
+
+    @Override
+    public Stream<Dish> readAll() {
+        return this.dishRepository.findAll().stream()
+                .map(DishEntity::toDish);
     }
 
     @Override

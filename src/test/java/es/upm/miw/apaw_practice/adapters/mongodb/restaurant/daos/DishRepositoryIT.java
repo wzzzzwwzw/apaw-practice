@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class DishRepositoryIT {
     @Autowired
     private DishRepository dishRepository;
-    private static final String TITLE = "Pollo con patatas";
+    private static final String TITLE = "Pollo_con_patatas";
 
     @Test
     void testFindByTitle() {

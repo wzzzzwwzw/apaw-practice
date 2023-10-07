@@ -33,10 +33,6 @@ public class CategoryRestaurantEntity {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getTag() {
         return tag;
     }

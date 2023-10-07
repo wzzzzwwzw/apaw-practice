@@ -2,9 +2,12 @@ package es.upm.miw.apaw_practice.domain.models.stable;
 
 public class CareTask {
     private String description;
-    private double durationHours;
+    private Double durationHours;
 
-    public CareTask(String description, double durationHours) {
+    public CareTask() {
+    }
+
+    public CareTask(String description, Double durationHours) {
         this.description = description;
         this.durationHours = durationHours;
     }
@@ -23,5 +26,13 @@ public class CareTask {
 
     public void setDurationHours(double durationHours) {
         this.durationHours = durationHours;
+    }
+
+    @Override
+    public String toString() {
+        return "CareTask{" +
+                "description='" + description + '\'' +
+                ", durationHours=" + durationHours +
+                '}';
     }
 }

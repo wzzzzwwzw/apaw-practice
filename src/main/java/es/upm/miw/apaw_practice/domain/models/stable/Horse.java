@@ -6,16 +6,20 @@ import java.util.List;
 
 public class Horse {
     private String name;
-    private int age;
+    private Integer age;
     private LocalDate birthDate;
     private String race;
-    private double health;
-    private double purchasePrice;
-    private boolean sold;
-    private Keeper keeper;
+    private Double health;
+    private Double purchasePrice;
+    private Boolean sold;
+    private List<Keeper> keepers;
     private List<CareTask> careTasks;
 
-    public Horse(String name, int age, LocalDate birthDate, String race, double health, double purchasePrice, boolean sold) {
+    public Horse() {
+
+    }
+
+    public Horse(String name, Integer age, LocalDate birthDate, String race, Double health, Double purchasePrice, Boolean sold) {
         this.name = name;
         this.age = age;
         this.birthDate = birthDate;
@@ -23,6 +27,7 @@ public class Horse {
         this.health = health;
         this.purchasePrice = purchasePrice;
         this.sold = sold;
+        this.keepers = new ArrayList<>();
         this.careTasks = new ArrayList<>();
     }
 
@@ -34,7 +39,7 @@ public class Horse {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
@@ -58,7 +63,7 @@ public class Horse {
         this.race = race;
     }
 
-    public double getHealth() {
+    public Double getHealth() {
         return health;
     }
 
@@ -66,7 +71,7 @@ public class Horse {
         this.health = health;
     }
 
-    public double getPurchasePrice() {
+    public Double getPurchasePrice() {
         return purchasePrice;
     }
 
@@ -74,7 +79,7 @@ public class Horse {
         this.purchasePrice = purchasePrice;
     }
 
-    public boolean isSold() {
+    public Boolean isSold() {
         return sold;
     }
 
@@ -82,12 +87,12 @@ public class Horse {
         this.sold = sold;
     }
 
-    public Keeper getKeeper() {
-        return keeper;
+    public List<Keeper> getKeepers() {
+        return keepers;
     }
 
-    public void setKeeper(Keeper keeper) {
-        this.keeper = keeper;
+    public void setHorses(List<Keeper> keepers) {
+        this.keepers = keepers;
     }
 
     public List<CareTask> getCareTasks() {
@@ -98,8 +103,12 @@ public class Horse {
         this.careTasks = careTasks;
     }
 
-    public void assignKeeper(Keeper keeper) {
-        this.keeper = keeper;
+    public void addKeeper(Keeper keeper) {
+        keepers.add(keeper);
+    }
+
+    public void removeKeeper(Keeper keeper) {
+        keepers.remove(keeper);
     }
 
     public void addCareTask(CareTask careTask) {
@@ -108,5 +117,20 @@ public class Horse {
 
     public void removeCareTask(CareTask careTask) {
         careTasks.remove(careTask);
+    }
+
+    @Override
+    public String toString() {
+        return "Horse{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", birthDate=" + birthDate +
+                ", race='" + race + '\'' +
+                ", health=" + health +
+                ", purchasePrice=" + purchasePrice +
+                ", sold=" + sold +
+                ", keepers=" + keepers +
+                ", careTasks=" + careTasks +
+                '}';
     }
 }

@@ -8,29 +8,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Area {
-    private String areaName;
+    private String name;
     private String location;
     private boolean easyAccess;
     private List<Route> routes;
     private Expedition expedition;
 
     public Area() {
-        this.routes = new ArrayList<>();
+
     }
 
-    public Area(String areaName, String location, boolean easyAccess, Expedition expedition) {
-        this.areaName = areaName;
+    public Area(String name, String location, boolean easyAccess, List<Route> routes, Expedition expedition) {
+        this.name = name;
         this.location = location;
         this.easyAccess = easyAccess;
+        this.routes = routes;
         this.expedition = expedition;
     }
 
-    public String getAreaName() {
-        return areaName;
+    public String getName() {
+        return name;
     }
 
-    public void setAreaName(String areaName) {
-        this.areaName = areaName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLocation() {
@@ -41,7 +42,7 @@ public class Area {
         this.location = location;
     }
 
-    public boolean getEasyAccess() {
+    public boolean isEasyAccess() {
         return easyAccess;
     }
 
@@ -50,7 +51,7 @@ public class Area {
     }
 
     public List<Route> getRoutes() {
-        return this.routes;
+        return routes;
     }
 
     public void setRoutes(List<Route> routes) {
@@ -62,7 +63,7 @@ public class Area {
     }
 
     public Expedition getExpedition() {
-        return  this.expedition;
+        return expedition;
     }
 
     public void setExpedition(Expedition expedition) {
@@ -72,9 +73,11 @@ public class Area {
     @Override
     public String toString() {
         return "Area{" +
-                "areaName='" + areaName + '\'' +
+                "name='" + name + '\'' +
                 ", location='" + location + '\'' +
                 ", easyAccess=" + easyAccess +
+                ", routes=" + routes +
+                ", expedition=" + expedition +
                 '}';
     }
 }

@@ -1,7 +1,11 @@
 package es.upm.miw.apaw_practice.domain.services.computer_store;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.ComputerStoreSeederService;
 import es.upm.miw.apaw_practice.domain.models.computer_store.Monitor;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,6 +17,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class MonitorServiceIT {
     @Autowired
     private MonitorService monitorService;
+    @Autowired
+    private ComputerStoreSeederService computerStoreSeederService;
+    @AfterEach
+    void resetDataBase(){
+        this.computerStoreSeederService.deleteAll();
+        this.computerStoreSeederService.seedDatabase();
+    }
 
     @Test
     void testUpdateRefreshRate() {
@@ -20,5 +31,6 @@ class MonitorServiceIT {
         assertEquals(new BigDecimal("34"), monitor.getSize());
         assertEquals(240, monitor.getRefreshRate());
         assertEquals(3, monitor.getWires().size());
+        this.monitorService.updateRefreshRate("XIAOMIC34001", 165);
     }
 }

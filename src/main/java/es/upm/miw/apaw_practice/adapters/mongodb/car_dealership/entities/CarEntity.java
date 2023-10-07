@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities;
 
+import es.upm.miw.apaw_practice.domain.models.car_dealership.Car;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -114,5 +116,11 @@ public class CarEntity {
                 ", carModel=" + carModelEntity +
                 ", sellerEntities=" + sellerEntities +
                 '}';
+    }
+
+    public Car toCar() {
+        Car car = new Car();
+        BeanUtils.copyProperties(this, car);
+        return car;
     }
 }

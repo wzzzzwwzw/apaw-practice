@@ -62,7 +62,7 @@ public class Area {
     }
 
     public Expedition getExpedition() {
-        return this.expedition;
+        return  this.expedition;
     }
 
     public void setExpedition(Expedition expedition) {

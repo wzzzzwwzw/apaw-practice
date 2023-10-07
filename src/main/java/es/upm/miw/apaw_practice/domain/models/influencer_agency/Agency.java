@@ -2,10 +2,10 @@ package es.upm.miw.apaw_practice.domain.models.influencer_agency;
 
 public class Agency {
 
-    String company;
-    String address;
+    private String company;
+    private String address;
 
-    Integer phone;
+    private Integer phone;
 
     public Agency() {
         //empty for framework
@@ -43,7 +43,7 @@ public class Agency {
     @Override
     public String toString() {
         return "Agency{" +
-                "agency='" + company + '\'' +
+                "company='" + company + '\'' +
                 ", address='" + address + '\'' +
                 ", phone=" + phone +
                 '}';

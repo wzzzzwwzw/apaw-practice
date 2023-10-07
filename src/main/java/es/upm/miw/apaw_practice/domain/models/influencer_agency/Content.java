@@ -1,10 +1,10 @@
 package es.upm.miw.apaw_practice.domain.models.influencer_agency;
 
 public class Content {
-    String information;
-    Boolean viral;
-    String creator;
-    String platform;
+    private String information;
+    private Boolean viral;
+    private String creator;
+    private String platform;
 
     public Content() {
         //empty for framework

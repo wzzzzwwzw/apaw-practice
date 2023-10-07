@@ -16,18 +16,18 @@ public class RepairEntity {
     private String repairNumber;
     private LocalDateTime beginTime;
     private LocalDateTime endTime;
-    private ComputerEntity computer;
+    private ComputerEntity computerEntity;
 
     public RepairEntity() {
         //empty for framework
     }
 
-    public RepairEntity(String repairNumber, LocalDateTime beginTime, LocalDateTime endTime, ComputerEntity computer) {
+    public RepairEntity(String repairNumber, LocalDateTime beginTime, LocalDateTime endTime, ComputerEntity computerEntity) {
         this.id = UUID.randomUUID().toString();
         this.repairNumber = repairNumber;
         this.beginTime = beginTime;
         this.endTime = endTime;
-        this.computer = computer;
+        this.computerEntity = computerEntity;
     }
 
     public String getId() {
@@ -62,12 +62,12 @@ public class RepairEntity {
         this.endTime = endTime;
     }
 
-    public ComputerEntity getComputer() {
-        return computer;
+    public ComputerEntity getComputerEntity() {
+        return computerEntity;
     }
 
-    public void setComputer(ComputerEntity computer) {
-        this.computer = computer;
+    public void setComputerEntity(ComputerEntity computerEntity) {
+        this.computerEntity = computerEntity;
     }
 
     @Override
@@ -77,7 +77,7 @@ public class RepairEntity {
         return (Objects.equals(getId(), that.getId()) || Objects.equals(getRepairNumber(), that.getRepairNumber()))
                 && Objects.equals(getBeginTime(), that.getBeginTime())
                 && Objects.equals(getEndTime(), that.getEndTime())
-                && Objects.equals(getComputer(), that.getComputer());
+                && Objects.equals(getComputerEntity(), that.getComputerEntity());
     }
 
     @Override
@@ -92,7 +92,7 @@ public class RepairEntity {
                 ", repairNumber='" + repairNumber + '\'' +
                 ", beginTime=" + beginTime +
                 ", endTime=" + endTime +
-                ", computer=" + computer +
+                ", computer=" + computerEntity +
                 '}';
     }
 }

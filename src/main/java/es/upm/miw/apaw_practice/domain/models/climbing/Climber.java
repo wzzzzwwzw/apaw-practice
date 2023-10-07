@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.climbing;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Climber {

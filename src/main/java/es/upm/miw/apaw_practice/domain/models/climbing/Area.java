@@ -1,10 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.climbing;
 
-import es.upm.miw.apaw_practice.domain.models.computer_store.Monitor;
-import es.upm.miw.apaw_practice.domain.models.music.Artist;
-import es.upm.miw.apaw_practice.domain.models.music.Genre;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Area {

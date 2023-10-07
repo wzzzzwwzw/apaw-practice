@@ -27,7 +27,7 @@ class CarRepositoryIT {
         assertNotNull(car.getFabricationDate());
         assertTrue(car.getFabricationDate().isBefore(LocalDate.now()));
 
-        assertEquals("Camry", car.getCarModelEntity().getModel());
+        assertEquals("Camry", car.getCarModelEntity().getName());
         assertEquals("Toyota", car.getCarModelEntity().getBrand());
         assertNotNull(car.getCarModelEntity().getCreateDate());
         assertTrue(car.getCarModelEntity().getCreateDate().isBefore(LocalDate.now()));

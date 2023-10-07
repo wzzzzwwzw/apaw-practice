@@ -4,8 +4,8 @@ import java.util.List;
 
 public class Shelf {
     private String name;
-    private int maxCapacity;
-    private int shelves;
+    private Integer maxCapacity;
+    private Integer shelves;
     private String location;
     private List<Product> products;
 
@@ -13,7 +13,7 @@ public class Shelf {
         //empty for framework
     }
 
-    public Shelf(String name, int maxCapacity, int shelves, String location, List<Product> products) {
+    public Shelf(String name, Integer maxCapacity, Integer shelves, String location, List<Product> products) {
         this.name = name;
         this.maxCapacity = maxCapacity;
         this.shelves = shelves;
@@ -29,19 +29,19 @@ public class Shelf {
         this.name = name;
     }
 
-    public int getMaxCapacity() {
+    public Integer getMaxCapacity() {
         return this.maxCapacity;
     }
 
-    public void setMaxCapacity(int maxCapacity) {
+    public void setMaxCapacity(Integer maxCapacity) {
         this.maxCapacity = maxCapacity;
     }
 
-    public int getShelves() {
+    public Integer getShelves() {
         return this.shelves;
     }
 
-    public void setShelves(int shelves) {
+    public void setShelves(Integer shelves) {
         this.shelves = shelves;
     }
 

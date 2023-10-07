@@ -52,6 +52,10 @@ public class Paper {
         this.authors.add(author);
     }
 
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
+    }
+
     @Override
     public String toString() {
         return "Paper{" +

@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.restaurant.entities;
 
 import es.upm.miw.apaw_practice.domain.models.restaurant.Ingredient;
-import es.upm.miw.apaw_practice.domain.models.shop.Article;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -43,7 +42,7 @@ public class IngredientEntity {
         this.name = name;
     }
 
-    public Boolean isSpicy() {
+    public Boolean getSpicy() {
         return spicy;
     }
 
@@ -51,7 +50,7 @@ public class IngredientEntity {
         this.spicy = spicy;
     }
 
-    public Boolean isAvailable() {
+    public Boolean getAvailable() {
         return available;
     }
 

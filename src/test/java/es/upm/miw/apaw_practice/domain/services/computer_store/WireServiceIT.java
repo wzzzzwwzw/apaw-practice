@@ -9,16 +9,17 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 @TestConfig
 class WireServiceIT {
     @Autowired
     private WireService wireService;
 
     @Test
-    void testReadService(){
-        Wire wire = wireService.read("DisplayPort");
+    void testReadService() {
+        Wire wire = this.wireService.read("DisplayPort");
         assertNotNull(wire);
-        assertEquals(new BigDecimal("3.5"),wire.getLength());
+        assertEquals(new BigDecimal("3.5"), wire.getLength());
         assertEquals("Nylon", wire.getJacketMaterial());
     }
 }

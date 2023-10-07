@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.restaurant.entities;
 
+import es.upm.miw.apaw_practice.domain.models.restaurant.Ingredient;
+import es.upm.miw.apaw_practice.domain.models.shop.Article;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -17,7 +20,7 @@ public class IngredientEntity {
     private Boolean spicy;
     private Boolean available;
 
-    IngredientEntity() {
+    public IngredientEntity() {
         //empty from framework
     }
 
@@ -54,6 +57,12 @@ public class IngredientEntity {
 
     public void setAvailable(Boolean available) {
         this.available = available;
+    }
+
+    public Ingredient toIngredient() {
+        Ingredient ingredient = new Ingredient();
+        BeanUtils.copyProperties(this, ingredient);
+        return ingredient;
     }
 
     @Override

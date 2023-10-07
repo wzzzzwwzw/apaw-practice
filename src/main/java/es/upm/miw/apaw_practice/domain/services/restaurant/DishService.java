@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.restaurant.DishPersiste
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class DishService {
 
@@ -15,8 +17,8 @@ public class DishService {
         this.dishPersistence = dishPersistence;
     }
 
-    public Dish update(Dish dish) {
-        return this.dishPersistence.update(dish);
+    public Dish updatePrice(String title, BigDecimal price) {
+        return this.dishPersistence.updatePrice(title, price);
     }
 
 }

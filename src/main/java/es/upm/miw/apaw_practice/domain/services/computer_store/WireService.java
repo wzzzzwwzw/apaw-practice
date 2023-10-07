@@ -8,11 +8,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class WireService {
     private final WirePersistence wirePersistence;
+
     @Autowired
-    public WireService(WirePersistence wirePersistence){
+    public WireService(WirePersistence wirePersistence) {
         this.wirePersistence = wirePersistence;
     }
-    public Wire read(String name){
+
+    public Wire read(String name) {
         return this.wirePersistence.read(name);
     }
 }

@@ -5,7 +5,8 @@ import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @TestConfig
 class WirePersistenceMongodbIT {
@@ -13,11 +14,12 @@ class WirePersistenceMongodbIT {
     private WirePersistenceMongodb wirePersistence;
 
     @Test
-    void testReadNotFound(){
-        assertThrows(NotFoundException.class,()->this.wirePersistence.read(".."));
+    void testReadNotFound() {
+        assertThrows(NotFoundException.class, () -> this.wirePersistence.read(".."));
     }
+
     @Test
-    void testReadFound(){
+    void testReadFound() {
         assertNotNull(this.wirePersistence.read("HDMI"));
     }
 }

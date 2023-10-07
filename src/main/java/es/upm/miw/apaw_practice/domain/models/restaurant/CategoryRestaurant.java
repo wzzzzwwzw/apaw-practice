@@ -16,7 +16,6 @@ public class CategoryRestaurant {
     public CategoryRestaurant(String tag, String color) {
         this.tag = tag;
         this.color = color;
-        this.creationDate = LocalDateTime.now();
     }
 
     public String getTag() {

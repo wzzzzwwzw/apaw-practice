@@ -10,18 +10,16 @@ public class OlympicGames {
     private LocalDate startDate;
     private Boolean summerGames;
     private List<OlympicDiscipline> disciplines;
-    private List<OlympicCompetitor> competitors;
 
     public OlympicGames() {}
 
 
-    public OlympicGames(Integer edition, String hostingPlace, LocalDate startDate, Boolean summerGames, List<OlympicDiscipline> disciplines, List<OlympicCompetitor> competitors) {
+    public OlympicGames(Integer edition, String hostingPlace, LocalDate startDate, Boolean summerGames, List<OlympicDiscipline> disciplines) {
         this.edition = edition;
         this.hostingPlace = hostingPlace;
         this.startDate = startDate;
         this.summerGames = summerGames;
         this.disciplines = disciplines;
-        this.competitors = competitors;
     }
 
     public Integer getEdition() {
@@ -64,13 +62,6 @@ public class OlympicGames {
         this.disciplines = disciplines;
     }
 
-    public List<OlympicCompetitor> getCompetitors() {
-        return competitors;
-    }
-
-    public void setCompetitors(List<OlympicCompetitor> competitors) {
-        this.competitors = competitors;
-    }
 
     @Override
     public String toString() {
@@ -80,7 +71,6 @@ public class OlympicGames {
                 ", startDate=" + startDate +
                 ", summerGames=" + summerGames +
                 ", disciplines=" + disciplines +
-                ", competitors=" + competitors +
                 '}';
     }
 }

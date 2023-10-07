@@ -7,14 +7,14 @@ import java.util.List;
 public class Ticket {
     private LocalDateTime createdAt;
     private BigDecimal totalPrice;
-    private int totalProducts;
+    private Integer totalProducts;
     private List<Product> products;
 
     public Ticket() {
         //empty for framework
     }
 
-    public Ticket(LocalDateTime createdAt, BigDecimal totalPrice, int totalProducts, List<Product> products) {
+    public Ticket(LocalDateTime createdAt, BigDecimal totalPrice, Integer totalProducts, List<Product> products) {
         this.createdAt = createdAt;
         this.totalPrice = totalPrice;
         this.totalProducts = totalProducts;
@@ -37,11 +37,11 @@ public class Ticket {
         this.totalPrice = totalPrice;
     }
 
-    public int getTotalProducts() {
+    public Integer getTotalProducts() {
         return this.totalProducts;
     }
 
-    public void setTotalProducts(int totalProducts) {
+    public void setTotalProducts(Integer totalProducts) {
         this.totalProducts = totalProducts;
     }
 

@@ -14,7 +14,7 @@ public class DishResource {
 
     static final String DISHES = "/restaurant/dishes";
     static final String TITLE_ID = "/{title}";
-    static final String PRICE_ID = "/{price}";
+    static final String PRICE = "/price";
 
     private final DishService dishService;
 
@@ -23,7 +23,7 @@ public class DishResource {
         this.dishService = dishService;
     }
 
-    @PutMapping(TITLE_ID + PRICE_ID)
+    @PutMapping(TITLE_ID + PRICE)
     public Dish updatePrice(@PathVariable String title, @RequestBody BigDecimal price) {
         return this.dishService.updatePrice(title, price);
     }

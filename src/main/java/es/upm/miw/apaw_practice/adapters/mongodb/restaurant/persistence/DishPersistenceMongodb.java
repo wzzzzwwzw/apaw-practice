@@ -10,8 +10,6 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.restaurant.DishPersiste
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
-
 @Repository("dishPersistence")
 public class DishPersistenceMongodb implements DishPersistence {
 
@@ -28,12 +26,20 @@ public class DishPersistenceMongodb implements DishPersistence {
     }
 
     @Override
-    public Dish updatePrice(String title, BigDecimal price) {
+    public Dish update(Dish dish) {
         DishEntity dishEntity = this.dishRepository
-                .findByTitle(title)
-                .orElseThrow(() -> new NotFoundException("Dish title:" + title));
-        dishEntity.setPrice(price);
+                .findByTitle(dish.getTitle())
+                .orElseThrow(() -> new NotFoundException("Dish title:" + dish.getTitle()));
+        dishEntity.setPrice(dish.getPrice());
         return this.dishRepository.save(dishEntity).toDish();
+    }
+
+    @Override
+    public Dish readByTitle(String title) {
+        return this.dishRepository
+                .findByTitle(title)
+                .orElseThrow(() -> new NotFoundException("Dish title:" + title))
+                .toDish();
     }
 
 }

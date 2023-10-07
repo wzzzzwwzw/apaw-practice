@@ -18,7 +18,9 @@ public class DishService {
     }
 
     public Dish updatePrice(String title, BigDecimal price) {
-        return this.dishPersistence.updatePrice(title, price);
+        Dish dish = this.dishPersistence.readByTitle(title);
+        dish.setPrice(price);
+        return this.dishPersistence.update(dish);
     }
 
 }

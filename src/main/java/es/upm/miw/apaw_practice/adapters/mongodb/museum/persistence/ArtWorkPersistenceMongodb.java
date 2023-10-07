@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.museum.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.museum.daos.ArtWorkRepository;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.museum.ArtWork;
 import es.upm.miw.apaw_practice.domain.persistence_ports.museum.ArtWorkPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,10 @@ public class ArtWorkPersistenceMongodb implements ArtWorkPersistence {
 
     @Override
     public ArtWork findByInventoryNumber(String inventoryNumber) {
-        // TODO
-        return null;
+        return this.artWorkRepository.findAll().stream()
+                .filter(artWork -> inventoryNumber.equals(artWork.getInventoryNumber()))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException("Art work with inventory number: " + inventoryNumber))
+                .toArtWork();
     }
 }

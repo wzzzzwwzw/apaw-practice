@@ -5,27 +5,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Climber {
-    private String name;
+    private String email;
     private LocalDate dateOfBirth;
     private String level;
     private List<Expedition> expeditions;
 
     public Climber() {
-        this.expeditions = new ArrayList<>();
+
     }
 
-    public Climber(String name, LocalDate dateOfBirth, String level) {
-        this.name = name;
+    public Climber(String email, LocalDate dateOfBirth, String level, List<Expedition> expeditions) {
+        this.email = email;
         this.dateOfBirth = dateOfBirth;
         this.level = level;
+        this.expeditions = expeditions;
     }
 
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public LocalDate getDateOfBirth() {
@@ -45,7 +46,7 @@ public class Climber {
     }
 
     public List<Expedition> getExpeditions() {
-        return this.expeditions;
+        return expeditions;
     }
 
     public void setExpeditions(List<Expedition> expeditions) {
@@ -59,9 +60,10 @@ public class Climber {
     @Override
     public String toString() {
         return "Climber{" +
-                "name='" + name + '\'' +
+                "email='" + email + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 ", level='" + level + '\'' +
+                ", expeditions=" + expeditions +
                 '}';
     }
 }

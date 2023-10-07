@@ -18,4 +18,5 @@ public class IngredientService {
     public Ingredient findByName(String name) {
         return this.ingredientPersistence.findByName(name);
     }
+
 }

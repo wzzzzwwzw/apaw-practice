@@ -4,15 +4,25 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Transaction {
+    private String order;
     private BigDecimal totalPrice;
     private LocalDateTime payDate;
 
     public Transaction() {
     }
 
-    public Transaction(BigDecimal totalPrice, LocalDateTime payDate) {
+    public Transaction(String order, BigDecimal totalPrice, LocalDateTime payDate) {
+        this.order = order;
         this.totalPrice = totalPrice;
         this.payDate = payDate;
+    }
+
+    public String getOrder() {
+        return order;
+    }
+
+    public void setOrder(String order) {
+        this.order = order;
     }
 
     public BigDecimal getTotalPrice() {
@@ -34,7 +44,8 @@ public class Transaction {
     @Override
     public String toString() {
         return "Transaction{" +
-                "totalPrice=" + totalPrice +
+                "order='" + order + '\'' +
+                ", totalPrice=" + totalPrice +
                 ", payDate=" + payDate +
                 '}';
     }

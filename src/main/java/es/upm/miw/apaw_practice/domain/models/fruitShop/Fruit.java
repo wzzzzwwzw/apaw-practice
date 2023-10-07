@@ -11,26 +11,25 @@ public class Fruit {
 
     private BigDecimal unitPrice;
 
-    private Boolean isTropical;
+    private Boolean tropical;
 
     private LocalDate stockTime;
 
-    private FruitSpecies fruitSpecies;
+    private FruitSpecie fruitSpecie;
 
-    private List<Customer> customer;
+    private List<Customer> customers;
 
     public Fruit() {
         //empty for framework
     }
 
-
-    public Fruit(String type, BigDecimal unitPrice, Boolean isTropical, LocalDate stockTime, FruitSpecies fruitSpecies, List<Customer> customer) {
+    public Fruit(String type, BigDecimal unitPrice, Boolean tropical, LocalDate stockTime, FruitSpecie fruitSpecie, List<Customer> customers) {
         this.type = type;
         this.unitPrice = unitPrice;
-        this.isTropical = isTropical;
+        this.tropical = tropical;
         this.stockTime = stockTime;
-        this.fruitSpecies = fruitSpecies;
-        this.customer = customer;
+        this.fruitSpecie = fruitSpecie;
+        this.customers = customers;
     }
 
     public String getType() {
@@ -50,11 +49,11 @@ public class Fruit {
     }
 
     public Boolean getTropical() {
-        return isTropical;
+        return tropical;
     }
 
     public void setTropical(Boolean tropical) {
-        isTropical = tropical;
+        this.tropical = tropical;
     }
 
     public LocalDate getStockTime() {
@@ -65,20 +64,20 @@ public class Fruit {
         this.stockTime = stockTime;
     }
 
-    public FruitSpecies getFruitSpecies() {
-        return fruitSpecies;
+    public FruitSpecie getFruitSpecie() {
+        return fruitSpecie;
     }
 
-    public void setFruitSpecies(FruitSpecies fruitSpecies) {
-        this.fruitSpecies = fruitSpecies;
+    public void setFruitSpecie(FruitSpecie fruitSpecie) {
+        this.fruitSpecie = fruitSpecie;
     }
 
-    public List<Customer> getCustomer() {
-        return customer;
+    public List<Customer> getCustomers() {
+        return customers;
     }
 
-    public void setCustomer(List<Customer> customer) {
-        this.customer = customer;
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 
     @Override
@@ -86,10 +85,10 @@ public class Fruit {
         return "Fruit{" +
                 "type='" + type + '\'' +
                 ", unitPrice=" + unitPrice +
-                ", isTropical=" + isTropical +
+                ", tropical=" + tropical +
                 ", stockTime=" + stockTime +
-                ", fruitSpecies=" + fruitSpecies +
-                ", customer=" + customer +
+                ", fruitSpecie=" + fruitSpecie +
+                ", customers=" + customers +
                 '}';
     }
 }

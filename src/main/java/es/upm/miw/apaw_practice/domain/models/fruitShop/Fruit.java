@@ -48,7 +48,7 @@ public class Fruit {
         this.unitPrice = unitPrice;
     }
 
-    public Boolean getTropical() {
+    public Boolean isTropical() {
         return tropical;
     }
 

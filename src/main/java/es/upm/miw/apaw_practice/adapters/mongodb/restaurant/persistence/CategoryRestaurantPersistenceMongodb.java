@@ -22,4 +22,11 @@ public class CategoryRestaurantPersistenceMongodb implements CategoryRestaurantP
                 .toCategoryRestaurant();
     }
 
+    @Override
+    public boolean existTag(String tag) {
+        return this.categoryRestaurantRepository
+                .findByTag(tag)
+                .isPresent();
+    }
+
 }

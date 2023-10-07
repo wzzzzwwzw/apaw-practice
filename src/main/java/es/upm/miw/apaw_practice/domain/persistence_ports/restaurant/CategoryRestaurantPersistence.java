@@ -8,4 +8,6 @@ public interface CategoryRestaurantPersistence {
 
     CategoryRestaurant create(CategoryRestaurant categoryRestaurant);
 
+    boolean existTag(String tag);
+
 }

@@ -16,7 +16,6 @@ public class ArtWorkService {
     }
 
     public ArtWork findByInventoryNumber(String inventoryNumber) {
-        // TODO
-        return null;
+        return this.artWorkPersistence.findByInventoryNumber(inventoryNumber);
     }
 }

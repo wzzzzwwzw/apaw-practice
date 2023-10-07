@@ -23,6 +23,7 @@ public class Fruit {
         //empty for framework
     }
 
+    
     public Fruit(String type, BigDecimal unitPrice, Boolean tropical, LocalDate stockTime, FruitSpecie fruitSpecie, List<Customer> customers) {
         this.type = type;
         this.unitPrice = unitPrice;

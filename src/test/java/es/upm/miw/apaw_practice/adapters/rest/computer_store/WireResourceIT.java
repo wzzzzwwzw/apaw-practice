@@ -17,18 +17,18 @@ class WireResourceIT {
     private WebTestClient webTestClient;
 
     @Test
-    void testGetByName(){
+    void testGetByName() {
         this.webTestClient
                 .get()
-                .uri(WireResource.WIRES+WireResource.NAME_ID,"HDMI")
+                .uri(WireResource.WIRES + WireResource.NAME_ID, "HDMI")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Wire.class)
                 .value(Assertions::assertNotNull)
-                .value(wire->{
-                   assertEquals("HDMI",wire.getName());
-                   assertEquals(new BigDecimal("1.5"),wire.getLength());
-                   assertEquals("Plastic",wire.getJacketMaterial());
+                .value(wire -> {
+                    assertEquals("HDMI", wire.getName());
+                    assertEquals(new BigDecimal("1.5"), wire.getLength());
+                    assertEquals("Plastic", wire.getJacketMaterial());
                 });
     }
 }

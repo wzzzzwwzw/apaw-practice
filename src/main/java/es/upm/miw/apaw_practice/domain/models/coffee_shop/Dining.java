@@ -2,12 +2,25 @@ package es.upm.miw.apaw_practice.domain.models.coffee_shop;
 
 
 public class Dining {
+    private String diningNumber;
     private String location;
     private Integer capacity;
 
-    public Dining(String location, Integer capacity) {
+    public Dining() {
+    }
+
+    public Dining(String diningNumber, String location, Integer capacity) {
+        this.diningNumber = diningNumber;
         this.location = location;
         this.capacity = capacity;
+    }
+
+    public String getDiningNumber() {
+        return diningNumber;
+    }
+
+    public void setDiningNumber(String diningNumber) {
+        this.diningNumber = diningNumber;
     }
 
     public String getLocation() {
@@ -29,7 +42,8 @@ public class Dining {
     @Override
     public String toString() {
         return "Dining{" +
-                "location='" + location + '\'' +
+                "diningNumber='" + diningNumber + '\'' +
+                ", location='" + location + '\'' +
                 ", capacity=" + capacity +
                 '}';
     }

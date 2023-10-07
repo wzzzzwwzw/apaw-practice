@@ -6,15 +6,17 @@ public class OlympicMedal {
     private String tier;
     private Boolean teamMedal;
     private String competition;
+    private OlympicCompetitor winner;
+
 
     public OlympicMedal() {
     }
 
-
-    public OlympicMedal(String tier, Boolean teamMedal, String competition) {
+    public OlympicMedal(String tier, Boolean teamMedal, String competition, OlympicCompetitor winner) {
         this.tier = tier;
         this.teamMedal = teamMedal;
         this.competition = competition;
+        this.winner = winner;
     }
 
     public String getTier() {
@@ -41,6 +43,13 @@ public class OlympicMedal {
         this.competition = competition;
     }
 
+    public OlympicCompetitor getWinner() {
+        return winner;
+    }
+
+    public void setWinner(OlympicCompetitor winner) {
+        this.winner = winner;
+    }
 
     @Override
     public String toString() {
@@ -48,6 +57,7 @@ public class OlympicMedal {
                 "tier='" + tier + '\'' +
                 ", teamMedal=" + teamMedal +
                 ", competition='" + competition + '\'' +
+                ", winner=" + winner +
                 '}';
     }
 }

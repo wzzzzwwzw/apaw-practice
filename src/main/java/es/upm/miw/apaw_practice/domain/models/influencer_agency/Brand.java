@@ -5,23 +5,19 @@ import java.util.List;
 
 public class Brand {
     private String trademark;
-    BigDecimal advertisingBudget;
-    String industry;
-    Agency agency;
-    List<Campaign> campaign;
+    private BigDecimal advertisingBudget;
+    private String industry;
+    private Agency agency;
+    private List<Campaign> campaigns;
 
     public Brand() {
         //empty for framework
     }
 
-    public Brand(String trademark, Agency agency, List<Campaign> campaign) {
+    public Brand(String trademark, Agency agency, List<Campaign> campaigns) {
         this.trademark = trademark;
         this.agency = agency;
-        this.campaign = campaign;
-    }
-
-    public String getBrand() {
-        return trademark;
+        this.campaigns = campaigns;
     }
 
     public void setBrand(String brand) {
@@ -44,12 +40,38 @@ public class Brand {
         this.industry = industry;
     }
 
+    public String getTrademark() {
+        return trademark;
+    }
+
+    public void setTrademark(String trademark) {
+        this.trademark = trademark;
+    }
+
+    public Agency getAgency() {
+        return agency;
+    }
+
+    public void setAgency(Agency agency) {
+        this.agency = agency;
+    }
+
+    public List<Campaign> getCampaigns() {
+        return campaigns;
+    }
+
+    public void setCampaign(List<Campaign> campaigns) {
+        this.campaigns = campaigns;
+    }
+
     @Override
     public String toString() {
         return "Brand{" +
-                "brand='" + trademark + '\'' +
+                "trademark='" + trademark + '\'' +
                 ", advertisingBudget=" + advertisingBudget +
                 ", industry='" + industry + '\'' +
+                ", agency=" + agency +
+                ", campaigns=" + campaigns +
                 '}';
     }
 }

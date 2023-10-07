@@ -5,6 +5,9 @@ public class Dining {
     private String location;
     private Integer capacity;
 
+    public Dining() {
+    }
+
     public Dining(String location, Integer capacity) {
         this.location = location;
         this.capacity = capacity;

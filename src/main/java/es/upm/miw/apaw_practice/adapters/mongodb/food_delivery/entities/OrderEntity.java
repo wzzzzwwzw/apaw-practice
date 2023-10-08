@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.entities;
 
+import es.upm.miw.apaw_practice.domain.models.food_delivery.Order;
+import es.upm.miw.apaw_practice.domain.models.shop.Article;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -116,6 +119,15 @@ public class OrderEntity {
         this.transport = transport;
     }
 
+    public void fromOrder(Order order) {
+        BeanUtils.copyProperties(order, this);
+    }
+
+    public Order toOrder() {
+        Order order = new Order();
+        BeanUtils.copyProperties(this, order);
+        return order;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

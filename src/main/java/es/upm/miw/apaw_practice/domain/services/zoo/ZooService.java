@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.domain.services.zoo;
 
-import es.upm.miw.apaw_practice.domain.models.shop.Article;
 import es.upm.miw.apaw_practice.domain.models.zoo.Zoo;
 import es.upm.miw.apaw_practice.domain.models.zoo.ZooPriceUpdating;
 import es.upm.miw.apaw_practice.domain.persistence_ports.zoo.ZooPersistence;
@@ -32,4 +31,5 @@ public class ZooService {
                 })
                 .forEach(zoo -> this.zooPersistence.update(zoo.getName(), zoo));
     }
+
 }

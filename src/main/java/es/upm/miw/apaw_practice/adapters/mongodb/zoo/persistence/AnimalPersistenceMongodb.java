@@ -12,8 +12,6 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.zoo.AnimalPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository("animalPersistence")
 public class AnimalPersistenceMongodb implements AnimalPersistence {
 
@@ -60,7 +58,6 @@ public class AnimalPersistenceMongodb implements AnimalPersistence {
         TaxonomicSpecieEntity taxonomicSpecieEntity = taxonomicSpecieRepository.findBySpeciesName(animal.getTaxonomicSpecie().getSpeciesName()).orElseThrow(() -> new NotFoundException("Vacine IdentifierBatch: "
                 + animal.getTaxonomicSpecie().getSpeciesName()));
         animalEntity.setTaxonomicSpecieEntity(taxonomicSpecieEntity);
-        System.out.println(animalEntity.toString());
         return this.animalRepository.save(animalEntity).toAnimal();
     }
 }

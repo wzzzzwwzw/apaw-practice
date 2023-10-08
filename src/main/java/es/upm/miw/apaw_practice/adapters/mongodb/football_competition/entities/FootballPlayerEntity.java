@@ -1,7 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.football_competition.entities;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.entities.ComputerEntity;
-import es.upm.miw.apaw_practice.domain.models.football_competition.FootballPlayer;
 import es.upm.miw.apaw_practice.domain.models.football_competition.FootballTeam;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;

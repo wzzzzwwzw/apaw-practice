@@ -56,9 +56,9 @@ public class FilmSeederService {
                 new FilmEntity("Face/Off", "Synopsis 1", Arrays.asList(genres[0], genres[2]),
                         directors[0], Arrays.asList(reviews[0], reviews[1], reviews[2])),
                 new FilmEntity("Face/Off", "Synopsis 2", Arrays.asList(genres[4]),
-                        directors[0], Arrays.asList(reviews[3])),
+                        directors[1], Arrays.asList(reviews[3])),
                 new FilmEntity("Gladiator", "Synopsis 3", Arrays.asList(genres[1], genres[3]),
-                        directors[0], Arrays.asList(reviews[4], reviews[5], reviews[6]))
+                        directors[2], Arrays.asList(reviews[4], reviews[5], reviews[6]))
         };
         this.filmRepository.saveAll(Arrays.asList(films));
     }

@@ -4,6 +4,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.CarDealershipSee
 import es.upm.miw.apaw_practice.adapters.mongodb.car_workshop.CarWorkshopSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.ComputerStoreSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.conference.ConferenceSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.FootballCompetitionSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.film.FilmSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.FormulaOneSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.InfluencerAgencySeederService;
@@ -30,18 +31,20 @@ public class DatabaseSeederService {
     private final FormulaOneSeederService formulaOneSeederService;
     private final VideogameCompanySeederService videogameCompanySeederService;
     private final MuseumSeederService museumSeederService;
+    private final FootballCompetitionSeederService footballCompetitionSeederService;
     private final FilmSeederService filmSeederService;
     private final InfluencerAgencySeederService influencerAgencySeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, ZooSeederService zooSeederService,
-            ComputerStoreSeederService computerStoreSeederService, ConferenceSeederService conferenceSeederService,
-            RestaurantSeederService restaurantSeederService, CarWorkshopSeederService carWorkshopSeederService,
+                                 ComputerStoreSeederService computerStoreSeederService, ConferenceSeederService conferenceSeederService,
+                                 RestaurantSeederService restaurantSeederService, CarWorkshopSeederService carWorkshopSeederService,
                                  FoodDeliverySeederService foodDeliverySeederService,
-            CarDealershipSeederService carDealershipSeederService, FormulaOneSeederService formulaOneSeederService,
+                                 CarDealershipSeederService carDealershipSeederService, FormulaOneSeederService formulaOneSeederService,
                                  VideogameCompanySeederService videogameCompanySeederService,
-                                 MuseumSeederService museumSeederService, FilmSeederService filmSeederService,
-                                 InfluencerAgencySeederService influencerAgencySeederService) {
+                                 MuseumSeederService museumSeederService,
+                                 FootballCompetitionSeederService footballCompetitionSeederService,
+                                 FilmSeederService filmSeederService, InfluencerAgencySeederService influencerAgencySeederService) {
         this.shopSeederService = shopSeederService;
         this.zooSeederService = zooSeederService;
         this.computerStoreSeederService = computerStoreSeederService;
@@ -53,6 +56,7 @@ public class DatabaseSeederService {
         this.formulaOneSeederService = formulaOneSeederService;
         this.videogameCompanySeederService = videogameCompanySeederService;
         this.museumSeederService = museumSeederService;
+        this.footballCompetitionSeederService = footballCompetitionSeederService;
         this.filmSeederService = filmSeederService;
         this.influencerAgencySeederService = influencerAgencySeederService;
         this.seedDatabase();
@@ -70,6 +74,7 @@ public class DatabaseSeederService {
         this.formulaOneSeederService.seedDatabase();
         this.videogameCompanySeederService.seedDatabase();
         this.museumSeederService.seedDatabase();
+        this.footballCompetitionSeederService.seedDatabase();
         this.filmSeederService.seedDatabase();
         this.influencerAgencySeederService.seedDatabase();
     }
@@ -86,6 +91,7 @@ public class DatabaseSeederService {
         this.formulaOneSeederService.deleteAll();
         this.videogameCompanySeederService.deleteAll();
         // this.museumSeederService.deleteAll();
+        this.footballCompetitionSeederService.deleteAll();
         this.filmSeederService.deleteAll();
         this.influencerAgencySeederService.deleteAll();
     }

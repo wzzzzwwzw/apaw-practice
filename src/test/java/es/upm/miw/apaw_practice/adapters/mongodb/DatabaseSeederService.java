@@ -5,6 +5,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.car_workshop.CarWorkshopSeederS
 import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.ComputerStoreSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.conference.ConferenceSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.FormulaOneSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.InfluencerAgencySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.museum.MuseumSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.restaurant.RestaurantSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.shop.ShopSeederService;
@@ -28,15 +29,16 @@ public class DatabaseSeederService {
     private final FormulaOneSeederService formulaOneSeederService;
     private final VideogameCompanySeederService videogameCompanySeederService;
     private final MuseumSeederService museumSeederService;
+    private final InfluencerAgencySeederService influencerAgencySeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, ZooSeederService zooSeederService,
-            ComputerStoreSeederService computerStoreSeederService, ConferenceSeederService conferenceSeederService,
-            RestaurantSeederService restaurantSeederService, CarWorkshopSeederService carWorkshopSeederService,
+                                 ComputerStoreSeederService computerStoreSeederService, ConferenceSeederService conferenceSeederService,
+                                 RestaurantSeederService restaurantSeederService, CarWorkshopSeederService carWorkshopSeederService,
                                  FoodDeliverySeederService foodDeliverySeederService,
-            CarDealershipSeederService carDealershipSeederService, FormulaOneSeederService formulaOneSeederService,
+                                 CarDealershipSeederService carDealershipSeederService, FormulaOneSeederService formulaOneSeederService,
                                  VideogameCompanySeederService videogameCompanySeederService,
-                                 MuseumSeederService museumSeederService) {
+                                 MuseumSeederService museumSeederService, InfluencerAgencySeederService influencerAgencySeederService) {
         this.shopSeederService = shopSeederService;
         this.zooSeederService = zooSeederService;
         this.computerStoreSeederService = computerStoreSeederService;
@@ -48,6 +50,7 @@ public class DatabaseSeederService {
         this.formulaOneSeederService = formulaOneSeederService;
         this.videogameCompanySeederService = videogameCompanySeederService;
         this.museumSeederService = museumSeederService;
+        this.influencerAgencySeederService = influencerAgencySeederService;
         this.seedDatabase();
     }
 
@@ -63,6 +66,7 @@ public class DatabaseSeederService {
         this.formulaOneSeederService.seedDatabase();
         this.videogameCompanySeederService.seedDatabase();
         this.museumSeederService.seedDatabase();
+        this.influencerAgencySeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -76,6 +80,7 @@ public class DatabaseSeederService {
         this.carDealershipSeederService.deleteAll();
         this.formulaOneSeederService.deleteAll();
         this.videogameCompanySeederService.deleteAll();
+        this.influencerAgencySeederService.deleteAll();
         // this.museumSeederService.deleteAll();
     }
 

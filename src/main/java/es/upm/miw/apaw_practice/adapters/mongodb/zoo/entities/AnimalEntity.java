@@ -92,15 +92,21 @@ public class AnimalEntity {
         TaxonomicSpecie taxonomicSpecie = this.taxonomicSpecieEntity.toTaxonomicSpecie();
         List<Vaccine> vaccines = this.vaccineEntities.stream()
                 .map(VaccineEntity::toVaccine)
-                .collect(Collectors.toList());
+                .toList();
         return new Animal(this.identificationChip, this.name, this.age, taxonomicSpecie, vaccines);
     }
-
+    @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         AnimalEntity objAux = (AnimalEntity) obj;
-        return this == obj || obj != null && getClass() == obj.getClass() && (this.identificationChip.equals(objAux.getIdentificationChip()));
+        return this == obj || getClass() == obj.getClass() && this.identificationChip.equals(objAux.getIdentificationChip());
     }
-
+    @Override
+    public int hashCode() {
+        return this.hashCode();
+    }
 
     @Override
     public String toString() {

@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.computer_store.entities;
 
+import es.upm.miw.apaw_practice.domain.models.computer_store.Monitor;
+import es.upm.miw.apaw_practice.domain.models.computer_store.Wire;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -19,18 +22,18 @@ public class MonitorEntity {
     private BigDecimal size;
     private Integer refreshRate;
     @DBRef
-    private List<WireEntity> wires;
+    private List<WireEntity> wireEntities;
 
     public MonitorEntity() {
         //empty for framework
     }
 
-    public MonitorEntity(String serialNumber, BigDecimal size, Integer refreshRate, List<WireEntity> wires) {
+    public MonitorEntity(String serialNumber, BigDecimal size, Integer refreshRate, List<WireEntity> wireEntities) {
         this.id = UUID.randomUUID().toString();
         this.serialNumber = serialNumber;
         this.size = size;
         this.refreshRate = refreshRate;
-        this.wires = wires;
+        this.wireEntities = wireEntities;
     }
 
     public String getId() {
@@ -65,12 +68,23 @@ public class MonitorEntity {
         this.refreshRate = refreshRate;
     }
 
-    public List<WireEntity> getWires() {
-        return wires;
+    public List<WireEntity> getWireEntities() {
+        return wireEntities;
     }
 
-    public void setWires(List<WireEntity> wires) {
-        this.wires = wires;
+    public void setWireEntities(List<WireEntity> wireEntities) {
+        this.wireEntities = wireEntities;
+    }
+
+    public Monitor toMonitor() {
+        Monitor monitor = new Monitor();
+        BeanUtils.copyProperties(this, monitor);
+        List<Wire> wires = this.getWireEntities()
+                .stream()
+                .map(WireEntity::toWire)
+                .toList();
+        monitor.setWires(wires);
+        return monitor;
     }
 
     @Override
@@ -92,7 +106,7 @@ public class MonitorEntity {
                 ", serialNumber='" + serialNumber + '\'' +
                 ", size=" + size +
                 ", refreshRate=" + refreshRate +
-                ", wires=" + wires +
+                ", wires=" + wireEntities +
                 '}';
     }
 }

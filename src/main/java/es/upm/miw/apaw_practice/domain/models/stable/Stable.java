@@ -7,11 +7,14 @@ import java.util.List;
 public class Stable {
     private String name;
     private String address;
-    private int maxCapacity;
+    private Integer maxCapacity;
     private LocalDate foundationDate;
     private List<Horse> horses;
 
-    public Stable(String name, String address, int maxCapacity, LocalDate foundationDate) {
+    public Stable() {
+    }
+
+    public Stable(String name, String address, Integer maxCapacity, LocalDate foundationDate) {
         this.name = name;
         this.address = address;
         this.maxCapacity = maxCapacity;
@@ -35,11 +38,11 @@ public class Stable {
         this.address = address;
     }
 
-    public int getMaxCapacity() {
+    public Integer getMaxCapacity() {
         return maxCapacity;
     }
 
-    public void setMaxCapacity(int maxCapacity) {
+    public void setMaxCapacity(Integer maxCapacity) {
         this.maxCapacity = maxCapacity;
     }
 
@@ -65,5 +68,16 @@ public class Stable {
 
     public void removeHorse(Horse horse) {
         horses.remove(horse);
+    }
+
+    @Override
+    public String toString() {
+        return "Stable{" +
+                "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", maxCapacity=" + maxCapacity +
+                ", foundationDate=" + foundationDate +
+                ", horses=" + horses +
+                '}';
     }
 }

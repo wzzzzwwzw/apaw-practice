@@ -1,18 +1,25 @@
 package es.upm.miw.apaw_practice.domain.models.stable;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Keeper {
     private String name;
-    private int age;
+    private Integer age;
     private LocalDate hireDate;
-    private double salary;
+    private Double salary;
+    private List<Horse> horses;
 
-    public Keeper(String name, int age, LocalDate hireDate, double salary) {
+    public Keeper() {
+    }
+
+    public Keeper(String name, Integer age, LocalDate hireDate, Double salary) {
         this.name = name;
         this.age = age;
         this.hireDate = hireDate;
         this.salary = salary;
+        this.horses = new ArrayList<>();
     }
 
     public String getName() {
@@ -23,11 +30,11 @@ public class Keeper {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -39,11 +46,38 @@ public class Keeper {
         this.hireDate = hireDate;
     }
 
-    public double getSalary() {
+    public Double getSalary() {
         return salary;
     }
 
-    public void setSalary(double salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
+    }
+
+    public List<Horse> getHorses() {
+        return horses;
+    }
+
+    public void setHorses(List<Horse> horses) {
+        this.horses = horses;
+    }
+
+    public void addHorse(Horse horse) {
+        horses.add(horse);
+    }
+
+    public void removeHorse(Horse horse) {
+        horses.remove(horse);
+    }
+
+    @Override
+    public String toString() {
+        return "Keeper{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", hireDate=" + hireDate +
+                ", salary=" + salary +
+                ", horses=" + horses +
+                '}';
     }
 }

@@ -8,6 +8,10 @@ public class Expedition {
     private LocalDateTime endDate;
     private BigDecimal totalExpense;
 
+    public Expedition() {
+
+    }
+
     public Expedition(LocalDateTime startDate, LocalDateTime endDate, BigDecimal totalExpense) {
         this.startDate = startDate;
         this.endDate = endDate;

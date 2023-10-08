@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.formula_one;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Race {
@@ -9,19 +8,19 @@ public class Race {
     private String circuitName;
     private String hostCountry;
     private LocalDate date;
-    private List<Driver> drivers;
+    private List<Driver> raceDrivers;
     private Integer laps;
     private Boolean nightRace;
 
     public Race() {
-        this.drivers = new ArrayList<>();
+        //empty for framework
     }
 
-    public Race(String circuitName, String hostCountry, LocalDate date) {
-        this();
+    public Race(String circuitName, String hostCountry, LocalDate date, List<Driver> raceDrivers) {
         this.circuitName = circuitName;
         this.hostCountry = hostCountry;
         this.date = date;
+        this.raceDrivers = raceDrivers;
     }
 
     public String getCircuitName() {
@@ -48,12 +47,12 @@ public class Race {
         this.date = date;
     }
 
-    public List<Driver> getDrivers() {
-        return drivers;
+    public List<Driver> getRaceDrivers() {
+        return raceDrivers;
     }
 
-    public void setDrivers(List<Driver> drivers) {
-        this.drivers = drivers;
+    public void setRaceDrivers(List<Driver> raceDrivers) {
+        this.raceDrivers = raceDrivers;
     }
 
     public Integer getLaps() {
@@ -78,7 +77,7 @@ public class Race {
                 "circuitName='" + circuitName + '\'' +
                 ", hostCountry='" + hostCountry + '\'' +
                 ", date=" + date +
-                ", drivers=" + drivers +
+                ", raceDrivers=" + raceDrivers +
                 ", laps=" + laps +
                 ", nightRace=" + nightRace +
                 '}';

@@ -5,6 +5,10 @@ public class Route {
     private String difficulty;
     private String type;
 
+    public Route() {
+
+    }
+
     public Route(String description, String difficulty, String type) {
         this.description = description;
         this.difficulty = difficulty;

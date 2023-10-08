@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface AnimalRepository extends MongoRepository<AnimalEntity, String> {
 
+    Optional<AnimalEntity> findByIdentificationChip(String identificationChip);
 }

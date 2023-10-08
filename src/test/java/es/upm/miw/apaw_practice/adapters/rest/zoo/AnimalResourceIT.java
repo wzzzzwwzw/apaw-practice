@@ -22,7 +22,7 @@ public class AnimalResourceIT {
         String identificationChip = "005DOG";
         this.webTestClient
                 .put()
-                .uri(AnimalResource.ANIMALS + AnimalResource.ID_identificationChip + AnimalResource.AGE, identificationChip)
+                .uri(AnimalResource.ANIMALS + AnimalResource.ID_IDENTIFICATION_CHIP + AnimalResource.AGE, identificationChip)
                 .body(BodyInserters.fromValue(age))
                 .exchange()
                 .expectStatus().isOk()
@@ -40,7 +40,7 @@ public class AnimalResourceIT {
         String identificationChip = "XXXX";
         this.webTestClient
                 .put()
-                .uri(AnimalResource.ANIMALS + AnimalResource.ID_identificationChip + AnimalResource.AGE, identificationChip)
+                .uri(AnimalResource.ANIMALS + AnimalResource.ID_IDENTIFICATION_CHIP + AnimalResource.AGE, identificationChip)
                 .body(BodyInserters.fromValue(age))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.NOT_FOUND);

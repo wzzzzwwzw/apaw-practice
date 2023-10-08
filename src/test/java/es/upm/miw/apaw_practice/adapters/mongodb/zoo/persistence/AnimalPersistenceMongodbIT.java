@@ -23,15 +23,15 @@ public class AnimalPersistenceMongodbIT {
 
     @Test
     void testUpdate() {
-        Animal animal = this.animalPersistence.readByIdentificationChip("001DOG");
+        Animal animal = this.animalPersistence.readByIdentificationChip("001CAT");
 
         animal.setAge(3);
-        animal.setName("KIRAAAA");
+        animal.setName("BOLAAA");
 
         Animal animalChange = animalPersistence.update(animal);
-        assertEquals("001DOG", animalChange.getIdentificationChip());
-        assertEquals("KIRAAAA", animalChange.getName());
+        assertEquals("001CAT", animalChange.getIdentificationChip());
+        assertEquals("BOLAAA", animalChange.getName());
         assertEquals(3, animalChange.getAge());
-        assertEquals("familiaris", animalChange.getTaxonomicSpecie().getSpeciesName());
+        assertEquals("catus", animalChange.getTaxonomicSpecie().getSpeciesName());
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(AnimalResource.ANIMALS)
 public class AnimalResource {
     static final String ANIMALS = "/zoo/animals";
-    static final String ID_identificationChip = "/{identificationChip}";
+    static final String ID_IDENTIFICATION_CHIP = "/{identificationChip}";
     static final String AGE = "/age";
     private final AnimalService animalService;
 
@@ -17,7 +17,7 @@ public class AnimalResource {
         this.animalService = animalService;
     }
 
-    @PutMapping(ID_identificationChip + AGE)
+    @PutMapping(ID_IDENTIFICATION_CHIP + AGE)
     public Animal putAge(@PathVariable String identificationChip, @RequestBody Integer age) {
         return this.animalService.updateAge(identificationChip, age);
     }

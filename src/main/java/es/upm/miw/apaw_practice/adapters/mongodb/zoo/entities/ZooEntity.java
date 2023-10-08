@@ -77,13 +77,20 @@ public class ZooEntity {
     public Zoo toZoo() {
         List<Animal> animals = this.animalEntities.stream()
                 .map(AnimalEntity::toAnimal)
-                .collect(Collectors.toList());
+                .toList();
         return new Zoo(this.name, this.location, this.ticketPrice, animals);
     }
-
+    @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         ZooEntity objAux = (ZooEntity) obj;
-        return this == obj || obj != null && getClass() == obj.getClass() && (this.name.equals(objAux.getName()));
+        return this == obj || getClass() == obj.getClass() && this.name.equals(objAux.getName());
+    }
+    @Override
+    public int hashCode() {
+        return this.hashCode();
     }
 
     @Override

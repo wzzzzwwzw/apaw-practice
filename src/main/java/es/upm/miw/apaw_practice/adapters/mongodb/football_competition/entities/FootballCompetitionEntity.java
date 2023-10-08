@@ -1,7 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.football_competition.entities;
 
-import es.upm.miw.apaw_practice.domain.models.football_competition.FootballTeam;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -9,13 +10,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+@Document
 public class FootballCompetitionEntity {
     @Id
     private String id;
     private BigDecimal prize;
+    @Indexed(unique = true)
     private String organizingEntity;
     private List<String> sponsors;
-    private List<FootballTeam> teams;
+    private List<FootballTeamEntity> teams;
 
     public FootballCompetitionEntity() {
         //empty for framework
@@ -71,15 +74,15 @@ public class FootballCompetitionEntity {
         this.sponsors.add(sponsor);
     }
 
-    public List<FootballTeam> getTeams() {
+    public List<FootballTeamEntity> getTeams() {
         return this.teams;
     }
 
-    public void setTeams(List<FootballTeam> teams) {
+    public void setTeams(List<FootballTeamEntity> teams) {
         this.teams = teams;
     }
 
-    public void addTeam(FootballTeam team) {
+    public void addTeam(FootballTeamEntity team) {
         if (this.teams == null) {
             this.teams = new ArrayList<>();
         }
@@ -91,7 +94,8 @@ public class FootballCompetitionEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof FootballCompetitionEntity that)) return false;
-        return (Objects.equals(getId(), that.getId()));
+        return (Objects.equals(getId(), that.getId()))
+                && (Objects.equals(getOrganizingEntity(), that.getOrganizingEntity()));
     }
 
     @Override

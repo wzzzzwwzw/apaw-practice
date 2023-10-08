@@ -1,13 +1,14 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.football_competition.entities;
 
-import es.upm.miw.apaw_practice.domain.models.football_competition.FootballTeam;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.UUID;
 
+@Document
 public class FootballPlayerEntity {
     @Id
     private String id;
@@ -17,7 +18,7 @@ public class FootballPlayerEntity {
     private Float height;
     private Integer goals;
     private Integer assists;
-    private FootballTeam team;
+    private FootballTeamEntity team;
 
     public FootballPlayerEntity() {
         //empty for framework
@@ -29,7 +30,7 @@ public class FootballPlayerEntity {
             Float height,
             Integer goals,
             Integer assists,
-            FootballTeam team) {
+            FootballTeamEntity team) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.salary = salary;
@@ -87,11 +88,11 @@ public class FootballPlayerEntity {
         this.assists = assists;
     }
 
-    public FootballTeam getTeam() {
+    public FootballTeamEntity getTeam() {
         return this.team;
     }
 
-    public void setTeam(FootballTeam team) {
+    public void setTeam(FootballTeamEntity team) {
         this.team = team;
     }
 

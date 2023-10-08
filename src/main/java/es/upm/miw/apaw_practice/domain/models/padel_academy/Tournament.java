@@ -9,6 +9,10 @@ public class Tournament {
     private LocalDate schedule;
     private Academy academy;
 
+    public Tournament() {
+        //empty for framework
+    }
+
     public Tournament(String title, BigDecimal prize, LocalDate schedule, Academy academy) {
         this.title = title;
         this.prize = prize;

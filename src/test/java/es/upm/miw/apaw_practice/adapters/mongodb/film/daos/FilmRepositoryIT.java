@@ -5,6 +5,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.film.entities.FilmEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,6 +22,8 @@ class FilmRepositoryIT {
         List<FilmEntity> films = this.filmRepository.findByTitle("Gladiator");
         assertEquals("Synopsis 3", films.get(0).getSynopsis());
         assertEquals("75128762Z", films.get(0).getDirectorEntity().getDni());
+        assertTrue(films.get(0).getReleaseDate() != null &&
+                films.get(0).getReleaseDate().isBefore(LocalDate.now().plusDays(1)));
         assertTrue(
                 films.get(0).getGenreEntities().stream()
                         .anyMatch(genre ->

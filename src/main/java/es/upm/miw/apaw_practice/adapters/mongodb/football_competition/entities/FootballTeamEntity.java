@@ -1,12 +1,16 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.football_competition.entities;
 
+import es.upm.miw.apaw_practice.domain.models.football_competition.FootballTeam;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.UUID;
 
+@Document
 public class FootballTeamEntity {
     @Id
     private String id;
@@ -70,6 +74,12 @@ public class FootballTeamEntity {
 
     public void setRemoved(Boolean removed) {
         this.removed = removed;
+    }
+
+    public FootballTeam toFootballTeam() {
+        FootballTeam team = new FootballTeam();
+        BeanUtils.copyProperties(this, team);
+        return team;
     }
 
     @Override

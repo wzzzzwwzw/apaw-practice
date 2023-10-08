@@ -1,8 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.football_competition.entities;
 
-import es.upm.miw.apaw_practice.domain.models.football_competition.FootballTeam;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+@Document
 public class FootballCompetitionEntity {
     @Id
     private String id;

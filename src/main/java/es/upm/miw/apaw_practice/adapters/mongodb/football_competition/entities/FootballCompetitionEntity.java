@@ -17,7 +17,7 @@ public class FootballCompetitionEntity {
     @Indexed(unique = true)
     private String organizingEntity;
     private List<String> sponsors;
-    private List<FootballTeam> teams;
+    private List<FootballTeamEntity> teams;
 
     public FootballCompetitionEntity() {
         //empty for framework
@@ -73,15 +73,15 @@ public class FootballCompetitionEntity {
         this.sponsors.add(sponsor);
     }
 
-    public List<FootballTeam> getTeams() {
+    public List<FootballTeamEntity> getTeams() {
         return this.teams;
     }
 
-    public void setTeams(List<FootballTeam> teams) {
+    public void setTeams(List<FootballTeamEntity> teams) {
         this.teams = teams;
     }
 
-    public void addTeam(FootballTeam team) {
+    public void addTeam(FootballTeamEntity team) {
         if (this.teams == null) {
             this.teams = new ArrayList<>();
         }

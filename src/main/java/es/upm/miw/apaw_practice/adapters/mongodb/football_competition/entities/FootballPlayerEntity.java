@@ -17,7 +17,7 @@ public class FootballPlayerEntity {
     private Float height;
     private Integer goals;
     private Integer assists;
-    private FootballTeam team;
+    private FootballTeamEntity team;
 
     public FootballPlayerEntity() {
         //empty for framework
@@ -29,7 +29,7 @@ public class FootballPlayerEntity {
             Float height,
             Integer goals,
             Integer assists,
-            FootballTeam team) {
+            FootballTeamEntity team) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.salary = salary;
@@ -87,11 +87,11 @@ public class FootballPlayerEntity {
         this.assists = assists;
     }
 
-    public FootballTeam getTeam() {
+    public FootballTeamEntity getTeam() {
         return this.team;
     }
 
-    public void setTeam(FootballTeam team) {
+    public void setTeam(FootballTeamEntity team) {
         this.team = team;
     }
 

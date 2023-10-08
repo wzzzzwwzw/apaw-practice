@@ -126,6 +126,8 @@ public class OrderEntity {
     public Order toOrder() {
         Order order = new Order();
         BeanUtils.copyProperties(this, order);
+        order.setRestaurant(this.restaurant.toRestaurant());
+        order.setTransport(this.transport.toTransport());
         return order;
     }
     @Override

@@ -15,7 +15,7 @@ public class FootballGameEntity {
     private LocalDateTime date;
     private String location;
     private String refereeName;
-    private List<FootballPlayer> players;
+    private List<FootballPlayerEntity> players;
 
     public FootballGameEntity() {
         //empty for framework
@@ -64,15 +64,15 @@ public class FootballGameEntity {
         this.refereeName = refereeName;
     }
 
-    public List<FootballPlayer> getPlayers() {
+    public List<FootballPlayerEntity> getPlayers() {
         return this.players;
     }
 
-    public void setPlayers(List<FootballPlayer> players) {
+    public void setPlayers(List<FootballPlayerEntity> players) {
         this.players = players;
     }
 
-    public void addPlayer(FootballPlayer player) {
+    public void addPlayer(FootballPlayerEntity player) {
         if (this.players == null) {
             this.players = new ArrayList<>();
         }

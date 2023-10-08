@@ -27,7 +27,7 @@ public class RaceRepositoryIT {
         assertEquals("Mexico", race.getHostCountry());
         assertEquals(LocalDate.of(2023, 10, 29), race.getDate());
         assertTrue(
-                race.getDriverEntities().stream()
+                race.getRaceDriverEntities().stream()
                         .anyMatch(driver ->
                                 driver.getDriverName().equals("Fernando Alonso") &&
                                         driver.getNumber() == 14 &&

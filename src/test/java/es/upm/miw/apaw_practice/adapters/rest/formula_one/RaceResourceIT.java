@@ -9,8 +9,10 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 import java.time.LocalDate;
 
-import static es.upm.miw.apaw_practice.adapters.rest.formula_one.RaceResource.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static es.upm.miw.apaw_practice.adapters.rest.formula_one.RaceResource.CIRCUIT_NAME_ID;
+import static es.upm.miw.apaw_practice.adapters.rest.formula_one.RaceResource.RACES;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RestTestConfig
 public class RaceResourceIT {
@@ -22,7 +24,7 @@ public class RaceResourceIT {
     void testFindByCircuitName() {
         this.webTestClient
                 .get()
-                .uri(RACES+CIRCUIT_NAME_ID, "Albert Park")
+                .uri(RACES + CIRCUIT_NAME_ID, "Albert Park")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Race.class)
@@ -46,7 +48,7 @@ public class RaceResourceIT {
     void testFindByCircuitNameNotFound() {
         this.webTestClient
                 .get()
-                .uri(RACES+CIRCUIT_NAME_ID, "Imola")
+                .uri(RACES + CIRCUIT_NAME_ID, "Imola")
                 .exchange()
                 .expectStatus().isNotFound();
     }

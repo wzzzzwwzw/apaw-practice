@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FootballTeamPersistence {
     FootballTeam read(String city);
+
+    FootballTeam create(FootballTeam team);
 }

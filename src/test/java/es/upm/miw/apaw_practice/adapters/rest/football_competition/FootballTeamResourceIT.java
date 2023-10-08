@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.web.reactive.function.BodyInserters;
 
 import java.math.BigDecimal;
 
@@ -31,5 +32,19 @@ public class FootballTeamResourceIT {
                    assertEquals(new BigDecimal("1238333.23"), team.getBudget());
                    assertEquals(false, team.isRemoved());
                 });
+    }
+
+    @Test
+    public void testCreateFootballTeam() {
+        FootballTeam footballTeam = new FootballTeam("Albacete", 1890, new BigDecimal("123922.16"), false);
+
+        this.webTestClient
+                .post()
+                .uri(FootballTeamResource.TEAMS)
+                .body(BodyInserters.fromValue(footballTeam))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(FootballTeam.class)
+                .value(Assertions::assertNotNull);
     }
 }

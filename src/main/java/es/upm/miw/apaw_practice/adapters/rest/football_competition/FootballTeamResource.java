@@ -3,10 +3,7 @@ package es.upm.miw.apaw_practice.adapters.rest.football_competition;
 import es.upm.miw.apaw_practice.domain.models.football_competition.FootballTeam;
 import es.upm.miw.apaw_practice.domain.services.football_competition.FootballTeamService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(FootballTeamResource.TEAMS)
@@ -23,5 +20,10 @@ public class FootballTeamResource {
     @GetMapping(CITY_ID)
     public FootballTeam read(@PathVariable String city) {
         return this.footballTeamService.read(city);
+    }
+
+    @PostMapping
+    public FootballTeam create(@RequestBody FootballTeam team) {
+        return this.footballTeamService.create(team);
     }
 }

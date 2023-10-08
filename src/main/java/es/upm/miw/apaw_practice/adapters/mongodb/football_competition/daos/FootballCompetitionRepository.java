@@ -5,5 +5,5 @@ import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.entities.F
 import java.util.Optional;
 
 public interface FootballCompetitionRepository {
-    Optional<FootballCompetitionEntity> findById(String id);
+    Optional<FootballCompetitionEntity> findByOrganizingEntity(String organizingEntity);
 }

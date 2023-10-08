@@ -17,4 +17,8 @@ public class FootballTeamService {
     public FootballTeam read(String city) {
         return this.footballTeamPersistence.read(city);
     }
+
+    public FootballTeam create(FootballTeam team) {
+        return this.footballTeamPersistence.create(team);
+    }
 }

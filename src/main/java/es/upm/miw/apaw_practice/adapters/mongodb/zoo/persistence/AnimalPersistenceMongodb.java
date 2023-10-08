@@ -46,7 +46,7 @@ public class AnimalPersistenceMongodb implements AnimalPersistence {
         animalEntity.setName(animal.getName());
         animalEntity.setAge(animal.getAge());
 
-        List<VaccineEntity> vaccineEntities = animal.getVaccines().stream()
+        animalEntity.setVaccineEntities(animal.getVaccines().stream()
                 .map(vaccineItem -> new VaccineEntity(
                         this.vaccineRepository
                                 .findByIdentifierBatch(vaccineItem.getIdentifierBatch())
@@ -54,10 +54,13 @@ public class AnimalPersistenceMongodb implements AnimalPersistence {
                                         + vaccineItem.getIdentifierBatch())).toVaccine())
 
 
-                ).toList();
+                ).toList());
+
+
         TaxonomicSpecieEntity taxonomicSpecieEntity = taxonomicSpecieRepository.findBySpeciesName(animal.getTaxonomicSpecie().getSpeciesName()).orElseThrow(() -> new NotFoundException("Vacine IdentifierBatch: "
                 + animal.getTaxonomicSpecie().getSpeciesName()));
         animalEntity.setTaxonomicSpecieEntity(taxonomicSpecieEntity);
+        System.out.println(animalEntity.toString());
         return this.animalRepository.save(animalEntity).toAnimal();
     }
 }

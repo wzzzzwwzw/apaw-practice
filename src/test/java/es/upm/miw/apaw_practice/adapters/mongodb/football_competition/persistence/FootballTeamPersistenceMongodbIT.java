@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.football_competition.persisten
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
-import es.upm.miw.apaw_practice.domain.persistence_ports.football_competition.FootballTeamPersistence;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

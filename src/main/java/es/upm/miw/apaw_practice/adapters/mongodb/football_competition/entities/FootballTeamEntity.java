@@ -79,6 +79,7 @@ public class FootballTeamEntity {
     public FootballTeam toFootballTeam() {
         FootballTeam team = new FootballTeam();
         BeanUtils.copyProperties(this, team);
+        team.setRemoved(this.isRemoved());
         return team;
     }
 

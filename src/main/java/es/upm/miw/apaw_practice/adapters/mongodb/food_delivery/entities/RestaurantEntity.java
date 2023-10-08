@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.entities;
 
+import es.upm.miw.apaw_practice.domain.models.food_delivery.Restaurant;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -80,6 +82,12 @@ public class RestaurantEntity {
         this.maximumOrders = maximumOrders;
     }
 
+
+    public Restaurant toRestaurant() {
+        Restaurant restaurant = new Restaurant();
+        BeanUtils.copyProperties(this, restaurant);
+        return restaurant;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

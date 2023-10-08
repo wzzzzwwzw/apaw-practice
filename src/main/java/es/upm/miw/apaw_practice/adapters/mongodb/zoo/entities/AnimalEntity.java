@@ -10,7 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Document
 public class AnimalEntity {
@@ -95,17 +94,19 @@ public class AnimalEntity {
                 .toList();
         return new Animal(this.identificationChip, this.name, this.age, taxonomicSpecie, vaccines);
     }
+
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (obj == null || this == obj) {
             return false;
         }
         AnimalEntity objAux = (AnimalEntity) obj;
-        return this == obj || getClass() == obj.getClass() && this.identificationChip.equals(objAux.getIdentificationChip());
+        return getClass() == obj.getClass() && this.identificationChip.equals(objAux.getIdentificationChip());
     }
+
     @Override
     public int hashCode() {
-        return this.hashCode();
+        return this.identificationChip.hashCode();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities;
 
+import es.upm.miw.apaw_practice.domain.models.formula_one.Driver;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -78,6 +79,10 @@ public class DriverEntity {
 
     public void setPoints(Float points) {
         this.points = points;
+    }
+
+    public Driver toDriver() {
+        return new Driver(this.number, this.driverName, this.nationality, this.drivingStyleEntity.toDrivingStyle());
     }
 
     @Override

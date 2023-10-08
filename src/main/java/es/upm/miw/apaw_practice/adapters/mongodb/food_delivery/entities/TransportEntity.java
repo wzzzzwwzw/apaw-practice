@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.entities;
 
+import es.upm.miw.apaw_practice.domain.models.food_delivery.Restaurant;
+import es.upm.miw.apaw_practice.domain.models.food_delivery.Transport;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -83,6 +86,17 @@ public class TransportEntity {
 
     public void setRestaurants(List<RestaurantEntity> restaurants) {
         this.restaurants = restaurants;
+    }
+
+    public Transport toTransport(){
+        Transport transport = new Transport();
+        BeanUtils.copyProperties(this, transport);
+        List<Restaurant> restaurants = this.getRestaurants()
+                .stream()
+                .map(RestaurantEntity::toRestaurant)
+                .toList();
+        transport.setRestaurants(restaurants);
+        return transport;
     }
 
     @Override

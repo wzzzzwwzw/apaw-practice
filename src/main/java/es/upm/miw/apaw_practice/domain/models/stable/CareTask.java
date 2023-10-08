@@ -24,13 +24,14 @@ public class CareTask {
         this.description = description;
     }
 
-    public double getDurationHours() {
+    public Double getDurationHours() {
         return durationHours;
     }
 
-    public void setDurationHours(double durationHours) {
+    public void setDurationHours(Double durationHours) {
         this.durationHours = durationHours;
     }
+
     public List<Horse> getHorses() {
         return horses;
     }
@@ -38,6 +39,7 @@ public class CareTask {
     public void setHorses(List<Horse> horses) {
         this.horses = horses;
     }
+
     public void addHorses(Horse horse) {
         horses.add(horse);
     }

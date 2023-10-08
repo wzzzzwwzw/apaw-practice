@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.domain.models.stable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.math.BigDecimal;
 
 public class Horse {
     private String name;
@@ -10,7 +11,7 @@ public class Horse {
     private LocalDate birthDate;
     private String race;
     private Double health;
-    private Double purchasePrice;
+    private BigDecimal purchasePrice;
     private Boolean sold;
     private List<Keeper> keepers;
     private CareTask careTask;
@@ -19,7 +20,7 @@ public class Horse {
 
     }
 
-    public Horse(String name, Integer age, LocalDate birthDate, String race, Double health, Double purchasePrice, Boolean sold, CareTask careTask) {
+    public Horse(String name, Integer age, LocalDate birthDate, String race, Double health, BigDecimal purchasePrice, Boolean sold, CareTask careTask) {
         this.name = name;
         this.age = age;
         this.birthDate = birthDate;
@@ -43,7 +44,7 @@ public class Horse {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -67,31 +68,30 @@ public class Horse {
         return health;
     }
 
-    public void setHealth(double health) {
+    public void setHealth(Double health) {
         this.health = health;
     }
 
-    public Double getPurchasePrice() {
+    public BigDecimal getPurchasePrice() {
         return purchasePrice;
     }
 
-    public void setPurchasePrice(double purchasePrice) {
+    public void setPurchasePrice(BigDecimal purchasePrice) {
         this.purchasePrice = purchasePrice;
     }
 
-    public Boolean isSold() {
+    public Boolean getSold() {
         return sold;
     }
 
-    public void setSold(boolean sold) {
+    public void setSold(Boolean sold) {
         this.sold = sold;
     }
 
     public List<Keeper> getKeepers() {
         return keepers;
     }
-
-    public void setHorses(List<Keeper> keepers) {
+    public void setKeepers(List<Keeper> keepers) {
         this.keepers = keepers;
     }
 

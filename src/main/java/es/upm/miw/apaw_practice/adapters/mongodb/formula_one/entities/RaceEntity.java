@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities;
 
+import es.upm.miw.apaw_practice.domain.models.formula_one.Race;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -89,6 +90,9 @@ public class RaceEntity {
 
     public void setNightRace(Boolean nightRace) {
         this.nightRace = nightRace;
+    }
+
+    public Race toRace() {
     }
 
     @Override

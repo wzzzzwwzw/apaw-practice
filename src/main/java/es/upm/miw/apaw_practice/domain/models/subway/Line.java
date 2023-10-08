@@ -11,11 +11,11 @@ public class Line {
     private Schedule schedule;
 
 
-    public Line(String label, String color, boolean works, Schedule schedule) {
+    public Line(String label, String color, Boolean works, Schedule schedule, List<Station> stations ) {
         this.label = label;
         this.color = color;
         this.works = works;
-        this.stations = new ArrayList<Station>();
+        this.stations = stations;
         this.schedule = schedule;
     }
 

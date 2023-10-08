@@ -11,6 +11,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.InfluencerAge
 import es.upm.miw.apaw_practice.adapters.mongodb.museum.MuseumSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.restaurant.RestaurantSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.shop.ShopSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.subway.SubwaySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.zoo.ZooSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.FoodDeliverySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame_company.VideogameCompanySeederService;
@@ -34,6 +35,7 @@ public class DatabaseSeederService {
     private final FootballCompetitionSeederService footballCompetitionSeederService;
     private final FilmSeederService filmSeederService;
     private final InfluencerAgencySeederService influencerAgencySeederService;
+    private final SubwaySeederService subwaySeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, ZooSeederService zooSeederService,
@@ -44,7 +46,7 @@ public class DatabaseSeederService {
                                  VideogameCompanySeederService videogameCompanySeederService,
                                  MuseumSeederService museumSeederService,
                                  FootballCompetitionSeederService footballCompetitionSeederService,
-                                 FilmSeederService filmSeederService, InfluencerAgencySeederService influencerAgencySeederService) {
+                                 FilmSeederService filmSeederService, InfluencerAgencySeederService influencerAgencySeederService, SubwaySeederService subwaySeederService) {
         this.shopSeederService = shopSeederService;
         this.zooSeederService = zooSeederService;
         this.computerStoreSeederService = computerStoreSeederService;
@@ -59,6 +61,7 @@ public class DatabaseSeederService {
         this.footballCompetitionSeederService = footballCompetitionSeederService;
         this.filmSeederService = filmSeederService;
         this.influencerAgencySeederService = influencerAgencySeederService;
+        this.subwaySeederService = subwaySeederService;
         this.seedDatabase();
     }
 
@@ -77,6 +80,7 @@ public class DatabaseSeederService {
         this.footballCompetitionSeederService.seedDatabase();
         this.filmSeederService.seedDatabase();
         this.influencerAgencySeederService.seedDatabase();
+        this.subwaySeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -94,6 +98,7 @@ public class DatabaseSeederService {
         this.footballCompetitionSeederService.deleteAll();
         this.filmSeederService.deleteAll();
         this.influencerAgencySeederService.deleteAll();
+        this.subwaySeederService.deleteAll();
     }
 
     public void reSeedDatabase() {

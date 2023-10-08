@@ -13,13 +13,13 @@ public class Horse {
     private Double purchasePrice;
     private Boolean sold;
     private List<Keeper> keepers;
-    private List<CareTask> careTasks;
+    private CareTask careTask;
 
     public Horse() {
 
     }
 
-    public Horse(String name, Integer age, LocalDate birthDate, String race, Double health, Double purchasePrice, Boolean sold) {
+    public Horse(String name, Integer age, LocalDate birthDate, String race, Double health, Double purchasePrice, Boolean sold, CareTask careTask) {
         this.name = name;
         this.age = age;
         this.birthDate = birthDate;
@@ -28,7 +28,7 @@ public class Horse {
         this.purchasePrice = purchasePrice;
         this.sold = sold;
         this.keepers = new ArrayList<>();
-        this.careTasks = new ArrayList<>();
+        this.careTask = careTask;
     }
 
     public String getName() {
@@ -95,12 +95,12 @@ public class Horse {
         this.keepers = keepers;
     }
 
-    public List<CareTask> getCareTasks() {
-        return careTasks;
+    public CareTask getCareTask() {
+        return careTask;
     }
 
-    public void setCareTasks(List<CareTask> careTasks) {
-        this.careTasks = careTasks;
+    public void setCareTask(CareTask careTask) {
+        this.careTask = careTask;
     }
 
     public void addKeeper(Keeper keeper) {
@@ -109,14 +109,6 @@ public class Horse {
 
     public void removeKeeper(Keeper keeper) {
         keepers.remove(keeper);
-    }
-
-    public void addCareTask(CareTask careTask) {
-        careTasks.add(careTask);
-    }
-
-    public void removeCareTask(CareTask careTask) {
-        careTasks.remove(careTask);
     }
 
     @Override
@@ -130,7 +122,7 @@ public class Horse {
                 ", purchasePrice=" + purchasePrice +
                 ", sold=" + sold +
                 ", keepers=" + keepers +
-                ", careTasks=" + careTasks +
+                ", careTask=" + careTask +
                 '}';
     }
 }

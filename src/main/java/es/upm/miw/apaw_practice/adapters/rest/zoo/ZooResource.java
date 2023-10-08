@@ -1,12 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.rest.zoo;
 
 
+import es.upm.miw.apaw_practice.domain.models.shop.ArticlePriceUpdating;
+import es.upm.miw.apaw_practice.domain.models.zoo.ZooPriceUpdating;
 import es.upm.miw.apaw_practice.domain.services.zoo.ZooService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(ZooResource.ZOO)
@@ -27,5 +28,9 @@ public class ZooResource {
         this.zooService.delete(name);
     }
 
+    @PatchMapping
+    public void updatePrices(@RequestBody List<ZooPriceUpdating> zooPriceUpdatingList) {
+        this.zooService.updatePrices(zooPriceUpdatingList.stream());
+    }
 }
 

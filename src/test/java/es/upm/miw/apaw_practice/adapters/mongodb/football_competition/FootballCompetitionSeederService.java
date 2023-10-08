@@ -10,12 +10,14 @@ import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.entities.F
 import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.entities.FootballTeamEntity;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
+@Service
 public class FootballCompetitionSeederService {
     @Autowired
     private FootballTeamRepository footballTeamRepository;

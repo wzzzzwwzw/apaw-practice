@@ -34,7 +34,7 @@ public class Keeper {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -50,8 +50,7 @@ public class Keeper {
         return salary;
     }
 
-
-    public void setSalary(double salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
     }
 
@@ -63,11 +62,11 @@ public class Keeper {
         this.horses = horses;
     }
 
-    public void addCareTask(Horse horse) {
+    public void addHorse(Horse horse) {
         horses.add(horse);
     }
 
-    public void removeCareTask(Horse horse) {
+    public void removeHorse(Horse horse) {
         horses.remove(horse);
     }
 

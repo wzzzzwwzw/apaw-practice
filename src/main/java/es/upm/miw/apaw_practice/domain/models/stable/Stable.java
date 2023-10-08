@@ -42,7 +42,7 @@ public class Stable {
         return maxCapacity;
     }
 
-    public void setMaxCapacity(int maxCapacity) {
+    public void setMaxCapacity(Integer maxCapacity) {
         this.maxCapacity = maxCapacity;
     }
 

@@ -1,9 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.school;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.school.daos.ClassroomRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.school.daos.SchoolRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.daos.StudentRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.daos.SubjectRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.ClassroomEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.SchoolEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.StudentEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.SubjectEntity;
 
@@ -13,6 +15,8 @@ import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +30,8 @@ public class SchoolSeederService {
     private ClassroomRepository classroomRepository;
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private SchoolRepository schoolRepository;
 
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- School Initial Load -----------");
@@ -55,6 +61,12 @@ public class SchoolSeederService {
                 new StudentEntity("student5", 60, 888888888, "student5@mail.test", classrooms[4], List.of(subjects[1], subjects[2], subjects[3], subjects[4]))
         };
         this.studentRepository.saveAll(Arrays.asList(students));
+
+        SchoolEntity[] schools = {
+                new SchoolEntity("school1", "address1", LocalDate.of(2001, 3, 5), new BigDecimal("3000.00"), List.of(students[0], students[1])),
+                new SchoolEntity("school2", "address2", LocalDate.of(2010, 9, 21), new BigDecimal("250.75"), List.of(students[0], students[1], students[2], students[3])),
+        };
+        this.schoolRepository.saveAll(Arrays.asList(schools));
     }
 
     public void deleteAll() {

@@ -1,16 +1,20 @@
-package es.upm.miw.apaw_practice.domain.models.climbing;
+package es.upm.miw.apaw_practice.adapters.mongodb.climbing.entities;
 
-public class Route {
+import es.upm.miw.apaw_practice.domain.models.climbing.Route;
+
+import java.util.UUID;
+
+public class RouteEntity {
     private String key;
     private String name;
     private String difficulty;
 
-    public Route() {
+    public RouteEntity() {
 
     }
 
-    public Route(String key, String name, String difficulty) {
-        this.key = key;
+    public RouteEntity(String name, String difficulty) {
+        this.key = UUID.randomUUID().toString();
         this.name = name;
         this.difficulty = difficulty;
     }
@@ -39,9 +43,13 @@ public class Route {
         this.difficulty = difficulty;
     }
 
+    public Route toRoute() {
+        return new Route(this.key, this.name, this.difficulty);
+    }
+
     @Override
     public String toString() {
-        return "Route{" +
+        return "RouteEntity{" +
                 "key='" + key + '\'' +
                 ", name='" + name + '\'' +
                 ", difficulty='" + difficulty + '\'' +

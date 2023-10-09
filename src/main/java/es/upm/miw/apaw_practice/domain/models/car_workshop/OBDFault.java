@@ -3,17 +3,17 @@ package es.upm.miw.apaw_practice.domain.models.car_workshop;
 public class OBDFault {
     private String code;
     private String description;
-    private Boolean canPassITV;
+    private Boolean isITVSafe;
     private String solution;
 
     public OBDFault() {
         // empty for framework
     }
 
-    public OBDFault(String code, String description, Boolean canPassITV, String solution) {
+    public OBDFault(String code, String description, Boolean isITVSafe, String solution) {
         this.code = code;
         this.description = description;
-        this.canPassITV = canPassITV;
+        this.isITVSafe = isITVSafe;
         this.solution = solution;
     }
 
@@ -34,11 +34,11 @@ public class OBDFault {
     }
 
     public Boolean isCanPassITV() {
-        return canPassITV;
+        return isITVSafe;
     }
 
-    public void setCanPassITV(Boolean canPassITV) {
-        this.canPassITV = canPassITV;
+    public void setIsITVSafe(Boolean isITVSafe) {
+        this.isITVSafe = isITVSafe;
     }
 
     public String getSolution() {

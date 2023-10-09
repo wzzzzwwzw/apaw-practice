@@ -20,6 +20,9 @@ public class ClientPersistenceMongodb implements ClientPersistence {
     }
     @Override
     public void delete(String identity) {
-       //
+        Optional<ClientEntity> clientEntity = this.clientRepository.findByIdentity(identity);
+        if(clientEntity.isPresent()){
+            clientRepository.delete(clientEntity.get());
+        }
     }
 }

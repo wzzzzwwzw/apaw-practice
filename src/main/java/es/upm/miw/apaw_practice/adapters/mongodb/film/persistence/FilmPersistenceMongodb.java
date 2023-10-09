@@ -21,17 +21,10 @@ public class FilmPersistenceMongodb implements FilmPersistence {
     }
 
     @Override
-    public Film readById(String id) {
-        return this.filmRepository.findAll().stream()
-                .filter(filmEntity -> filmEntity.getId().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new NotFoundException((" Film id: " + id)))
-                .toFilm();
-    }
-
-    @Override
-    public Stream<Film> readAll() {
-        return this.filmRepository.findAll().stream()
+    public Stream<Film> readByTitle(String title) {
+        if (this.filmRepository.findByTitle(title).isEmpty())
+            throw new NotFoundException("Film title : " + title);
+        return this.filmRepository.findByTitle(title).stream()
                 .map(FilmEntity::toFilm);
     }
 }

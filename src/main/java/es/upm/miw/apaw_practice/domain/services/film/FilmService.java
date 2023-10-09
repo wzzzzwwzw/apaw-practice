@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.film.FilmPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Stream;
+
 @Service
 public class FilmService {
 
@@ -15,7 +17,7 @@ public class FilmService {
         this.filmPersistence = filmPersistence;
     }
 
-    public Film read(String id) {
-        return this.filmPersistence.readById(id);
+    public Stream<Film> read(String title) {
+        return this.filmPersistence.readByTitle(title);
     }
 }

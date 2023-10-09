@@ -21,9 +21,8 @@ class FilmPersistenceMongodbIT {
     private FilmSeederService filmSeederService;
 
     @Test
-    void testReadById() {
-        Optional<Film> film = this.filmPersistenceMongodb.readAll()
-                .filter(film1 -> "Face/Off".equals(film1.getTitle()))
+    void testReadByTitle() {
+        Optional<Film> film = this.filmPersistenceMongodb.readByTitle("Face/Off")
                 .findFirst();
         assertTrue(film.isPresent());
         assertNotNull(film.get().getFilmId());

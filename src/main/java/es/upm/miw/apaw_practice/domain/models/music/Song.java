@@ -21,13 +21,14 @@ public class Song {
         this.artistsList = new ArrayList<>();
     }
 
-    public Song(String title, Integer duration, Boolean remix, Double rating, Genre genre) {
+    public Song(String title, Integer duration, Boolean remix, Double rating, Genre genre, List<Artist> artistsList) {
         this();
         this.title = title;
         this.duration = duration;
         this.remix = remix;
         this.rating = rating;
         this.genre = genre;
+        this.artistsList = artistsList;
     }
 
     public String getTitle() {

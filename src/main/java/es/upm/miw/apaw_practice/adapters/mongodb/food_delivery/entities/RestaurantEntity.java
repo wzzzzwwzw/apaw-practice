@@ -25,6 +25,11 @@ public class RestaurantEntity {
 
     }
 
+    public RestaurantEntity(Restaurant restaurant){
+        BeanUtils.copyProperties(restaurant,this);
+        this.id = UUID.randomUUID().toString();
+    }
+
     public RestaurantEntity(String name, String type, String description, String adress, Integer maximumOrders) {
         this.id = UUID.randomUUID().toString();
         this.name = name;

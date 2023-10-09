@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.adapters.rest.food_delivery;
 import es.upm.miw.apaw_practice.adapters.rest.shop.ArticleResource;
 import es.upm.miw.apaw_practice.domain.models.food_delivery.Restaurant;
 import es.upm.miw.apaw_practice.domain.services.food_delivery.RestaurantService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ public class RestaurantResource {
 
     private final RestaurantService restaurantService;
 
+    @Autowired
     public RestaurantResource( RestaurantService restaurantService){
         this.restaurantService = restaurantService;
     }

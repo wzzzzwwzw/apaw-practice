@@ -23,6 +23,6 @@ class SubjectRepositoryIT {
 
         assertTrue(this.subjectRepository.findByTitle("subject2").isPresent());
         SubjectEntity subject2 = this.subjectRepository.findByTitle("subject2").get();
-        assertFalse(subject1.equals(subject2));
+        assertNotEquals(subject1, subject2);
     }
 }

@@ -25,6 +25,6 @@ class ClassroomRepositoryIT {
 
         assertTrue(this.classroomRepository.findByLocation("classroom2").isPresent());
         ClassroomEntity subject2 = this.classroomRepository.findByLocation("classroom2").get();
-        assertFalse(subject1.equals(subject2));
+        assertNotEquals(subject1, subject2);
     }
 }

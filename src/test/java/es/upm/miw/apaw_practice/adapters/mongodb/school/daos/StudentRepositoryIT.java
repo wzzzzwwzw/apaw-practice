@@ -5,11 +5,6 @@ import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.StudentEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
@@ -28,7 +23,7 @@ class StudentRepositoryIT {
 
         assertTrue(this.studentRepository.findByName("student2").isPresent());
         StudentEntity student2 = this.studentRepository.findByName("student2").get();
-        assertFalse(student1.equals(student2));
+        assertNotEquals(student1, student2);
 
         assertTrue(this.studentRepository.findAll().stream()
             .anyMatch(student ->

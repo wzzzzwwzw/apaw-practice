@@ -14,11 +14,10 @@ public class Team {
         // empty for framework;
     }
 
-    public Team(String teamName, String country, List<Driver> drivers, EngineManufacturer engineManufacturer, String mainColor) {
+    public Team(String teamName, String country, List<Driver> drivers, EngineManufacturer engineManufacturer) {
         this.teamName = teamName;
         this.country = country;
         this.drivers = drivers;
-        this.mainColor = mainColor;
     }
 
     public String getTeamName() {

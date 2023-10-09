@@ -5,7 +5,6 @@ import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.daos.DrivingStyleRe
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.daos.RaceRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.daos.TeamRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities.DriverEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities.DrivingStyleEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities.RaceEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities.TeamEntity;
 import org.apache.logging.log4j.LogManager;

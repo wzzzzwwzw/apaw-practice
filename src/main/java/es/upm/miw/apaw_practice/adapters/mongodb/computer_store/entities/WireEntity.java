@@ -30,6 +30,11 @@ public class WireEntity {
         this.jacketMaterial = jacketMaterial;
     }
 
+    public WireEntity(Wire wire) {
+        this.id = UUID.randomUUID().toString();
+        BeanUtils.copyProperties(wire, this);
+    }
+
     public String getId() {
         return id;
     }

@@ -23,7 +23,7 @@ public class WireResource {
     }
 
     @PostMapping
-    public Wire create(Wire wire) {
+    public Wire create(@RequestBody Wire wire) {
         return this.wireService.create(wire);
     }
 }

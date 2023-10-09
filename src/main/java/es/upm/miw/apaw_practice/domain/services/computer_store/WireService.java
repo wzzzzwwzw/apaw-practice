@@ -25,7 +25,7 @@ public class WireService {
     }
 
     private void assertWireNameNotExists(String name) {
-        if (this.wirePersistence.existWireName(name)) {
+        if (this.wirePersistence.existsWireName(name)) {
             throw new ConflictException("Wire name already exists: " + name);
         }
     }

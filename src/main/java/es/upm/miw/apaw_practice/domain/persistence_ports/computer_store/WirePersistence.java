@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 public interface WirePersistence {
     Wire read(String name);
 
-    boolean existWireName(String name);
+    boolean existsWireName(String name);
 
     Wire create(Wire wire);
 }

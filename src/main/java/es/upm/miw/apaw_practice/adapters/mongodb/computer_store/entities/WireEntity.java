@@ -31,8 +31,8 @@ public class WireEntity {
     }
 
     public WireEntity(Wire wire) {
-        this.id = UUID.randomUUID().toString();
         BeanUtils.copyProperties(wire, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {

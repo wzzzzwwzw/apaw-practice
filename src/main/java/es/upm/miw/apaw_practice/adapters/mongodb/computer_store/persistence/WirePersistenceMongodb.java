@@ -26,7 +26,7 @@ public class WirePersistenceMongodb implements WirePersistence {
     }
 
     @Override
-    public boolean existWireName(String name) {
+    public boolean existsWireName(String name) {
         return this.wireRepository
                 .findByName(name)
                 .isPresent();

@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.furniture_store.entities;
 
-import es.upm.miw.apaw_practice.domain.models.furniture_store.Manager;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -20,7 +19,7 @@ public class FurnitureStoreEntity {
     private LocalDateTime openingTime;
     private LocalDateTime closeTime;
     @DBRef
-    private Manager managerEntity;
+    private ManagerEntity managerEntity;
     private List<FurnitureEntity> furnitureEntities;
 
     public FurnitureStoreEntity() {
@@ -28,7 +27,7 @@ public class FurnitureStoreEntity {
     }
 
     public FurnitureStoreEntity(String name, LocalDateTime openingTime, LocalDateTime closeTime,
-                                Manager managerEntity, List<FurnitureEntity> furnitureEntities) {
+                                ManagerEntity managerEntity, List<FurnitureEntity> furnitureEntities) {
         this.name = name;
         this.openingTime = openingTime;
         this.closeTime = closeTime;
@@ -61,11 +60,11 @@ public class FurnitureStoreEntity {
         this.closeTime = closeTime;
     }
 
-    public Manager getManagerEntity() {
+    public ManagerEntity getManagerEntity() {
         return managerEntity;
     }
 
-    public void setManagerEntity(Manager managerEntity) {
+    public void setManagerEntity(ManagerEntity managerEntity) {
         this.managerEntity = managerEntity;
     }
 

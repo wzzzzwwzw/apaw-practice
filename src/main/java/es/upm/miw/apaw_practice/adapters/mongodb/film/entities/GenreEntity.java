@@ -53,6 +53,12 @@ public class GenreEntity {
         this.style = style;
     }
 
+    public Genre toGenre() {
+        Genre genre = new Genre();
+        BeanUtils.copyProperties(this, genre);
+        return genre;
+    }
+
     @Override
     public int hashCode() {
         return name.hashCode();

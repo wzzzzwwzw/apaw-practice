@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.restaurant.entities;
 
+import es.upm.miw.apaw_practice.domain.models.restaurant.Dish;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -20,6 +22,7 @@ public class DishEntity {
     private BigDecimal price;
     @DBRef
     private CategoryRestaurantEntity category;
+    @DBRef
     private List<IngredientEntity> ingredients;
 
     public DishEntity() {
@@ -36,10 +39,6 @@ public class DishEntity {
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -72,6 +71,12 @@ public class DishEntity {
 
     public void setIngredients(List<IngredientEntity> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public Dish toDish() {
+        Dish dish = new Dish();
+        BeanUtils.copyProperties(this, dish);
+        return dish;
     }
 
     @Override

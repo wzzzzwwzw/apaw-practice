@@ -54,7 +54,8 @@ public class FoodDeliverySeederService {
         this.orderRepository.saveAll(Arrays.asList(orders));
         ClientEntity[] clients = {
                 new ClientEntity("ID001", "customer1@example.com", "123456789", Arrays.asList(orders[0],orders[1])),
-                new ClientEntity("ID002", "customer2@example.com", "987654321", Arrays.asList(orders[2], orders[3], orders[4]))
+                new ClientEntity("ID002", "customer2@example.com", "987654321", Arrays.asList(orders[2], orders[3], orders[4])),
+                new ClientEntity("ID003", "customer3@example.com", "000111222",null)
         };
         this.clientRepository.saveAll(Arrays.asList(clients));
     }

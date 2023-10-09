@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities;
 
+import es.upm.miw.apaw_practice.domain.models.formula_one.DrivingStyle;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -71,6 +73,12 @@ public class DrivingStyleEntity {
 
     public void setFuelManagement(Integer fuelManagement) {
         this.fuelManagement = fuelManagement;
+    }
+
+    public DrivingStyle toDrivingStyle() {
+        DrivingStyle divingStyle = new DrivingStyle();
+        BeanUtils.copyProperties(this, divingStyle);
+        return divingStyle;
     }
 
     @Override

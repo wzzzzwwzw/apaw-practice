@@ -57,6 +57,10 @@ public class Exhibition {
         return artWorks;
     }
 
+    public void setArtWorks(List<ArtWork> artWorks) {
+        this.artWorks = artWorks;
+    }
+
     public void addArtWork(ArtWork artWork) {
         if (this.artWorks == null) {
             this.artWorks = new ArrayList<>();

@@ -8,6 +8,8 @@ public class Restaurant {
     private String adress;
     private Integer maximumOrders;
 
+    public Restaurant(){}
+
     public Restaurant(String name, String type, String description, String adress, Integer maximumOrders) {
         this.name = name;
         this.type = type;

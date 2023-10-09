@@ -8,7 +8,9 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -89,23 +91,30 @@ public class AnimalEntity {
     }
 
     public Animal toAnimal() {
-        TaxonomicSpecie taxonomicSpecie = this.taxonomicSpecieEntity.toTaxonomicSpecie();
-        List<Vaccine> vaccines = this.vaccineEntities.stream()
-                .map(VaccineEntity::toVaccine)
-                .toList();
+        TaxonomicSpecie taxonomicSpecie = (this.taxonomicSpecieEntity != null) ? this.taxonomicSpecieEntity.toTaxonomicSpecie() : null;
+        List<Vaccine> vaccines = new ArrayList<>();
+        if (this.vaccineEntities != null) {
+            vaccines = this.vaccineEntities.stream()
+                    .filter(Objects::nonNull)
+                    .map(VaccineEntity::toVaccine)
+                    .toList();
+        }
         return new Animal(this.identificationChip, this.name, this.age, taxonomicSpecie, vaccines);
     }
+
+
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (obj == null || this == obj) {
             return false;
         }
         AnimalEntity objAux = (AnimalEntity) obj;
-        return this == obj || getClass() == obj.getClass() && this.identificationChip.equals(objAux.getIdentificationChip());
+        return getClass() == obj.getClass() && this.identificationChip.equals(objAux.getIdentificationChip());
     }
+
     @Override
     public int hashCode() {
-        return this.hashCode();
+        return this.identificationChip.hashCode();
     }
 
     @Override

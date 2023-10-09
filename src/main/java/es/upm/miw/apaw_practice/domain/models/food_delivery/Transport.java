@@ -11,6 +11,8 @@ public class Transport {
     private String licensePlate;
     private List<Restaurant> restaurants;
 
+    public Transport(){}
+
     public Transport(String code, Boolean avalaible, BigDecimal capacity, String licensePlate, List<Restaurant> restaurants) {
         this.code = code;
         this.avalaible = avalaible;

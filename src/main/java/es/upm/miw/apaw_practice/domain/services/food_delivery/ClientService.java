@@ -16,6 +16,6 @@ public class ClientService {
     }
 
     public void delete(String identity){
-        //
+        clientPersistence.delete(identity);
     }
 }

@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.stream.Stream;
+
 @RestController
 @RequestMapping(FilmResource.FILMS)
 public class FilmResource {
     static final String FILMS = "/film/films";
 
-    static final String ID_ID = "/{id}";
+    static final String TITLE_ID = "/{title}";
 
     private final FilmService filmService;
 
@@ -22,8 +24,8 @@ public class FilmResource {
         this.filmService = filmService;
     }
 
-    @GetMapping(ID_ID)
-    public Film read(@PathVariable String id) {
-        return this.filmService.read(id);
+    @GetMapping(TITLE_ID)
+    public Stream<Film> read(@PathVariable String title) {
+        return this.filmService.read(title);
     }
 }

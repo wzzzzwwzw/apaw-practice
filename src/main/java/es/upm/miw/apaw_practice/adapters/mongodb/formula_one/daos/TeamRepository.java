@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface TeamRepository extends MongoRepository<TeamEntity, String> {
     Optional<TeamEntity> findByTeamName(String teamName);
+
+    void deleteByTeamName(String teamName);
 }

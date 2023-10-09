@@ -19,6 +19,8 @@ public class PaperService {
     }
 
     public Paper updatePaperTitle(String digitalObjectIdentifier, String title) {
-        return null;
+        Paper paper = this.paperPersistence.readByDigitalObjectIdentifier(digitalObjectIdentifier);
+        paper.setTitle(title);
+        return this.paperPersistence.update(paper);
     }
 }

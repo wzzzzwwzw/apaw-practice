@@ -4,4 +4,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TeamPersistence {
+    void delete(String teamName);
 }

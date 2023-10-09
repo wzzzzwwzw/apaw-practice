@@ -15,5 +15,6 @@ public class TeamService {
     }
 
     public void delete(String teamName) {
+        this.teamPersistence.delete(teamName);
     }
 }

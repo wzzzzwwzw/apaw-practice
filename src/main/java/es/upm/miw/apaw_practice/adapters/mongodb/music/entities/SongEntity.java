@@ -19,19 +19,19 @@ public class SongEntity {
     private List<ArtistEntity> artistsEntitiesList;
 
     @DBRef
-    private GenreEntity genre;
+    private MusicGenreEntity musicGenreEntity;
 
     public SongEntity() {
         this.artistsEntitiesList = new ArrayList<>();
     }
 
-    public SongEntity(String title, Integer duration, Boolean remix, Double rating, GenreEntity genre, List<ArtistEntity> artistsEntitiesList) {
+    public SongEntity(String title, Integer duration, Boolean remix, Double rating, MusicGenreEntity musicGenreEntity, List<ArtistEntity> artistsEntitiesList) {
         this();
         this.title = title;
         this.duration = duration;
         this.remix = remix;
         this.rating = rating;
-        this.genre = genre;
+        this.musicGenreEntity = musicGenreEntity;
         this.artistsEntitiesList = artistsEntitiesList;
     }
 
@@ -79,12 +79,12 @@ public class SongEntity {
         this.artistsEntitiesList.add(artist);
     }
 
-    public GenreEntity getGenre() {
-        return genre;
+    public MusicGenreEntity getMusicGenreEntity() {
+        return musicGenreEntity;
     }
 
-    public void setGenre(GenreEntity genre) {
-        this.genre = genre;
+    public void setMusicGenreEntity(MusicGenreEntity musicGenreEntity) {
+        this.musicGenreEntity = musicGenreEntity;
     }
 
     @Override
@@ -95,7 +95,7 @@ public class SongEntity {
         return Objects.equals(title, that.title) &&
                 Objects.equals(duration, that.duration) && Objects.equals(remix, that.remix)
                 && Objects.equals(rating, that.rating) && Objects.equals(artistsEntitiesList, that.artistsEntitiesList)
-                && Objects.equals(genre, that.genre);
+                && Objects.equals(musicGenreEntity, that.musicGenreEntity);
     }
 
     @Override
@@ -111,7 +111,7 @@ public class SongEntity {
                 ", remix=" + remix +
                 ", rating=" + rating +
                 ", artistsEntitiesList=" + artistsEntitiesList +
-                ", genre=" + genre +
+                ", musicgenre=" + musicGenreEntity +
                 '}';
     }
 }

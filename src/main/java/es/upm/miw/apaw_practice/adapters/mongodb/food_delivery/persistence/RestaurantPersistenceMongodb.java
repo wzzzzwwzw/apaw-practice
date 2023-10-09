@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.daos.RestaurantRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.entities.RestaurantEntity;
 import es.upm.miw.apaw_practice.domain.models.food_delivery.Restaurant;
 import es.upm.miw.apaw_practice.domain.persistence_ports.food_delivery.RestaurantPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,12 @@ public class RestaurantPersistenceMongodb implements RestaurantPersistence {
 
     @Override
     public Restaurant create(Restaurant restaurant) {
-        return null;
+       return restaurantRepository.save(new RestaurantEntity(restaurant)).toRestaurant();
     }
 
     @Override
     public boolean existName(String name) {
-        return false;
+        return restaurantRepository.findByName(name).isPresent();
     }
 
 

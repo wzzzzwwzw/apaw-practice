@@ -1,11 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.formula_one;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.daos.DriverRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.daos.DrivingStyleRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.daos.EngineManufacturerRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.daos.RaceRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.daos.TeamRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities.DriverEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities.DrivingStyleEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities.EngineManufacturerEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities.RaceEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities.TeamEntity;
 import org.apache.logging.log4j.LogManager;
@@ -21,7 +21,7 @@ import java.util.List;
 public class FormulaOneSeederService {
 
     @Autowired
-    private DrivingStyleRepository drivingStyleRepository;
+    private EngineManufacturerRepository engineManufacturerRepository;
     @Autowired
     private DriverRepository driverRepository;
     @Autowired
@@ -31,30 +31,27 @@ public class FormulaOneSeederService {
 
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Formula One Initial Load -----------");
-        DrivingStyleEntity[] drivingStyles = {
-                new DrivingStyleEntity(95, 98, 92, 85, 82),
-                new DrivingStyleEntity(80, 78, 75, 99, 96),
-                new DrivingStyleEntity(90, 97, 95, 90, 90),
-                new DrivingStyleEntity(82, 62, 60, 72, 71),
-                new DrivingStyleEntity(89, 96, 90, 83, 85),
-                new DrivingStyleEntity(88, 82, 80, 79, 80),
+        EngineManufacturerEntity[] engineManufacturers = {
+                new EngineManufacturerEntity("Honda", "Japan", 6),
+                new EngineManufacturerEntity("Mercedes", "United Kingdom", 12),
+
         };
-        this.drivingStyleRepository.saveAll(Arrays.asList(drivingStyles));
+        this.engineManufacturerRepository.saveAll(Arrays.asList(engineManufacturers));
 
         DriverEntity[] drivers = {
-                new DriverEntity(1, "Max Verstappen", "Netherlands", drivingStyles[0]),
-                new DriverEntity(11, "Sergio Pérez", "Mexico", drivingStyles[1]),
-                new DriverEntity(14, "Fernando Alonso", "Spain", drivingStyles[2]),
-                new DriverEntity(18, "Lance Stroll", "Canada", drivingStyles[3]),
-                new DriverEntity(44, "Lewis Hamilton", "United Kingdom", drivingStyles[4]),
-                new DriverEntity(63, "George Russell", "United Kingdom", drivingStyles[5]),
+                new DriverEntity(1, "Max Verstappen", "Netherlands"),
+                new DriverEntity(11, "Sergio Pérez", "Mexico"),
+                new DriverEntity(14, "Fernando Alonso", "Spain"),
+                new DriverEntity(18, "Lance Stroll", "Canada"),
+                new DriverEntity(44, "Lewis Hamilton", "United Kingdom"),
+                new DriverEntity(63, "George Russell", "United Kingdom"),
         };
         this.driverRepository.saveAll(Arrays.asList(drivers));
 
         TeamEntity[] teams = {
-                new TeamEntity("Red Bull Racing", "Austria", Arrays.asList(drivers[0], drivers[1])),
-                new TeamEntity("Aston Martin", "United Kingdom", Arrays.asList(drivers[2], drivers[3])),
-                new TeamEntity("Mercedes", "Germany", Arrays.asList(drivers[4], drivers[5])),
+                new TeamEntity("Red Bull Racing", "Austria", Arrays.asList(drivers[0], drivers[1]), engineManufacturers[0]),
+                new TeamEntity("Aston Martin", "United Kingdom", Arrays.asList(drivers[2], drivers[3]), engineManufacturers[1]),
+                new TeamEntity("Mercedes", "Germany", Arrays.asList(drivers[4], drivers[5]), engineManufacturers[1]),
         };
         this.teamRepository.saveAll(Arrays.asList(teams));
 
@@ -66,7 +63,7 @@ public class FormulaOneSeederService {
     }
 
     public void deleteAll() {
-        this.drivingStyleRepository.deleteAll();
+        this.engineManufacturerRepository.deleteAll();
         this.driverRepository.deleteAll();
         this.teamRepository.deleteAll();
         this.raceRepository.deleteAll();

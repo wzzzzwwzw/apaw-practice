@@ -17,18 +17,18 @@ public class ComputerEntity {
     private String name;
     private BigDecimal cost;
     private BigDecimal weight;
-    private List<MonitorEntity> monitors;
+    private List<MonitorEntity> monitorEntities;
 
     public ComputerEntity() {
         //empty for framework
     }
 
-    public ComputerEntity(String name, BigDecimal cost, BigDecimal weight, List<MonitorEntity> monitors) {
+    public ComputerEntity(String name, BigDecimal cost, BigDecimal weight, List<MonitorEntity> monitorEntities) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.cost = cost;
         this.weight = weight;
-        this.monitors = monitors;
+        this.monitorEntities = monitorEntities;
     }
 
     public String getId() {
@@ -63,12 +63,12 @@ public class ComputerEntity {
         this.weight = weight;
     }
 
-    public List<MonitorEntity> getMonitors() {
-        return monitors;
+    public List<MonitorEntity> getMonitorEntities() {
+        return monitorEntities;
     }
 
-    public void setMonitors(List<MonitorEntity> monitors) {
-        this.monitors = monitors;
+    public void setMonitorEntities(List<MonitorEntity> monitorEntities) {
+        this.monitorEntities = monitorEntities;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class ComputerEntity {
         if (this == o) return true;
         if (!(o instanceof ComputerEntity that)) return false;
         return (Objects.equals(getId(), that.getId()) || Objects.equals(getName(), that.getName()))
-                && Objects.equals(getMonitors(), that.getMonitors());
+                && Objects.equals(getMonitorEntities(), that.getMonitorEntities());
     }
 
     @Override
@@ -91,7 +91,7 @@ public class ComputerEntity {
                 ", name='" + name + '\'' +
                 ", cost=" + cost +
                 ", weight=" + weight +
-                ", monitors=" + monitors +
+                ", monitors=" + monitorEntities +
                 '}';
     }
 }

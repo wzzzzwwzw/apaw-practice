@@ -13,16 +13,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
 class RepairRepositoryIT {
+    private static final String REPAIR_NUMBER = "1234";
     @Autowired
     private RepairRepository repairRepository;
-    private static final String REPAIR_NUMBER = "1234";
 
     @Test
     void testFindByRepairNumber() {
-        assertTrue(repairRepository.findByRepairNumber(REPAIR_NUMBER).isPresent());
-        RepairEntity repair = repairRepository.findByRepairNumber(REPAIR_NUMBER).get();
+        assertTrue(this.repairRepository.findByRepairNumber(REPAIR_NUMBER).isPresent());
+        RepairEntity repair = this.repairRepository.findByRepairNumber(REPAIR_NUMBER).get();
         assertTrue(repair.getBeginTime().isBefore(LocalDateTime.now()));
         assertTrue(repair.getEndTime().isAfter(LocalDateTime.now().plusDays(1)));
-        assertEquals("MSI Pro gaming PC", repair.getComputer().getName());
+        assertEquals("MSI Pro gaming PC", repair.getComputerEntity().getName());
     }
 }

@@ -19,15 +19,15 @@ public class RaceRepositoryIT {
     @Test
     void testFindByCircuitName() {
         assertTrue(this.raceRepository.findByCircuitName("Hermanos Rodríguez").isPresent());
-
         RaceEntity race = this.raceRepository.findByCircuitName("Hermanos Rodríguez").get();
         race.setNightRace(false);
         race.setLaps(71);
 
+        assertEquals("Hermanos Rodríguez", race.getCircuitName());
         assertEquals("Mexico", race.getHostCountry());
         assertEquals(LocalDate.of(2023, 10, 29), race.getDate());
         assertTrue(
-                race.getDriverEntities().stream()
+                race.getRaceDriverEntities().stream()
                         .anyMatch(driver ->
                                 driver.getDriverName().equals("Fernando Alonso") &&
                                         driver.getNumber() == 14 &&

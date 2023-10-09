@@ -4,6 +4,7 @@ import es.upm.miw.apaw_practice.domain.models.formula_one.EngineManufacturer;
 import es.upm.miw.apaw_practice.domain.services.formula_one.EngineManufacturerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +22,7 @@ public class EngineManufacturerResource {
     }
 
     @PostMapping
-    public EngineManufacturer create(EngineManufacturer engineManufacturer) {
+    public EngineManufacturer create(@RequestBody EngineManufacturer engineManufacturer) {
         return this.engineManufacturerService.create(engineManufacturer);
     }
 }

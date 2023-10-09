@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,5 +34,14 @@ public class FootballCompetitionRepositoryIT {
                 .map(FootballTeamEntity::getCity)
                 .toList()
                 .containsAll(Arrays.asList("Madrid", "Barcelona", "Valencia", "Zaragoza")));
+    }
+
+    @Test
+    void testDelete() {
+        assertTrue(this.footballCompetitionRepository.findByOrganizingEntity("FFF").isPresent());
+        FootballCompetitionEntity competition = this.footballCompetitionRepository
+                .findByOrganizingEntity("FFF").get();
+        this.footballCompetitionRepository.delete(competition);
+        assertEquals(Optional.empty(), this.footballCompetitionRepository.findByOrganizingEntity("FFF"));
     }
 }

@@ -20,11 +20,13 @@ class MonitorResourceIT {
     private WebTestClient webTestClient;
     @Autowired
     private ComputerStoreSeederService computerStoreSeederService;
+
     @AfterEach
-    void resetDataBase(){
+    void resetDataBase() {
         this.computerStoreSeederService.deleteAll();
         this.computerStoreSeederService.seedDatabase();
     }
+
     @Test
     void testUpdateRefreshRate() {
         this.webTestClient

@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class RacePersistenceMongodbIT {
 
     @Autowired
-    RacePersistenceMongodb racePersistenceMongodb;
+    private RacePersistenceMongodb racePersistenceMongodb;
 
     @Test
     void testFindByCircuitName() {

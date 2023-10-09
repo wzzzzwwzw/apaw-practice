@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class EngineManufacturerPersistenceMongodbIT {
 
     @Autowired
-    EngineManufacturerPersistenceMongodb engineManufacturerPersistenceMongodb;
+    private EngineManufacturerPersistenceMongodb engineManufacturerPersistenceMongodb;
 
     @Test
     void testCreate() {

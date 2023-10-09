@@ -22,17 +22,20 @@ public class TeamEntity {
     private String country;
     @DBRef
     private List<DriverEntity> driverEntities;
+    @DBRef
+    private EngineManufacturerEntity engineManufacturerEntity;
     private String mainColor;
 
     public TeamEntity() {
         //empty for framework
     }
 
-    public TeamEntity(String teamName, String country, List<DriverEntity> driverEntities) {
+    public TeamEntity(String teamName, String country, List<DriverEntity> driverEntities, EngineManufacturerEntity engineManufacturerEntity) {
         this.id = UUID.randomUUID().toString();
         this.teamName = teamName;
         this.country = country;
         this.driverEntities = driverEntities;
+        this.engineManufacturerEntity = engineManufacturerEntity;
     }
 
     public String getId() {
@@ -67,6 +70,14 @@ public class TeamEntity {
         this.driverEntities = driverEntities;
     }
 
+    public EngineManufacturerEntity getEngineManufacturerEntity() {
+        return engineManufacturerEntity;
+    }
+
+    public void setEngineManufacturerEntity(EngineManufacturerEntity engineManufacturerEntity) {
+        this.engineManufacturerEntity = engineManufacturerEntity;
+    }
+
     public String getMainColor() {
         return mainColor;
     }
@@ -77,11 +88,12 @@ public class TeamEntity {
 
     public Team toTeam() {
         Team team = new Team();
-        BeanUtils.copyProperties(this, team, "driverEntities");
+        BeanUtils.copyProperties(this, team, "driverEntities", "engineManufacturer");
         List<Driver> drivers = this.driverEntities.stream()
                 .map(DriverEntity::toDriver)
                 .collect(Collectors.toList());
         team.setDrivers(drivers);
+        team.setEngineManufacturer(this.engineManufacturerEntity.toEngineManufacturer());
         return team;
     }
 
@@ -91,7 +103,8 @@ public class TeamEntity {
                 "id='" + id + '\'' +
                 ", teamName='" + teamName + '\'' +
                 ", country='" + country + '\'' +
-                ", drivers=" + driverEntities +
+                ", driverEntities=" + driverEntities +
+                ", engineManufacturerEntity=" + engineManufacturerEntity +
                 ", mainColor='" + mainColor + '\'' +
                 '}';
     }

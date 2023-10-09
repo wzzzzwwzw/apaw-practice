@@ -33,7 +33,7 @@ public class OBDFault {
         this.description = description;
     }
 
-    public Boolean isCanPassITV() {
+    public Boolean getIsITVSafe() {
         return isITVSafe;
     }
 
@@ -49,4 +49,13 @@ public class OBDFault {
         this.solution = solution;
     }
 
+    @Override
+    public String toString() {
+        return "OBDFault{" +
+                "code='" + code + '\'' +
+                ", description='" + description + '\'' +
+                ", isITVSafe=" + isITVSafe +
+                ", solution='" + solution + '\'' +
+                '}';
+    }
 }

@@ -17,7 +17,7 @@ public class OBDFaultServiceIT {
 
     @Test
     void testFindByIsITVSafe() {
-        Stream<OBDFault> result = obdFaultService.findByIsITVSafe(false);
-        assertEquals(result.toArray().length, 1);
+        Stream<OBDFault> result = this.obdFaultService.findByIsITVSafe(false);
+        assertEquals(result.toList().size(), 2);
     }
 }

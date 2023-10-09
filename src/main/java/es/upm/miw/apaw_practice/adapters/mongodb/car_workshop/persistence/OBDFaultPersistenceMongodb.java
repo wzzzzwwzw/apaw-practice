@@ -20,7 +20,7 @@ public class OBDFaultPersistenceMongodb implements OBDFaultPersistence {
     @Override
     public Stream<OBDFault> findByIsITVSafe(Boolean isITVSafe) {
         return this.obdFaultRepository.findAll().stream()
-                .filter(OBDFaultEntity::getIsITVSafe)
+                .filter(obdFaultEntity -> obdFaultEntity.getIsITVSafe().equals(isITVSafe))
                 .map(OBDFaultEntity::toOBDFault);
     }
 }

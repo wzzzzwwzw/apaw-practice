@@ -12,6 +12,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.zoo.AnimalPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("animalPersistence")
 public class AnimalPersistenceMongodb implements AnimalPersistence {
 
@@ -59,5 +61,11 @@ public class AnimalPersistenceMongodb implements AnimalPersistence {
                 + animal.getTaxonomicSpecie().getSpeciesName()));
         animalEntity.setTaxonomicSpecieEntity(taxonomicSpecieEntity);
         return this.animalRepository.save(animalEntity).toAnimal();
+    }
+
+    @Override
+    public Stream<Animal> readAll() {
+        return this.animalRepository.findAll().stream()
+                .map(AnimalEntity::toAnimal);
     }
 }

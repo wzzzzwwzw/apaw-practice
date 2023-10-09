@@ -30,10 +30,12 @@ public class TaxonomicSpecieResource {
 
     @GetMapping(GENUSNAME + SEARCH_BY_VACCINE_NAME)
     public Stream<String> findByVaccine(@RequestParam String q) {
+
         String name = new LexicalAnalyzer().extractWithAssure(q, "name");
         if (name.isEmpty()) {
             throw new BadRequestException("q incorrect, expected Vaccine Name");
         }
+
         return this.taxonomicSpecieService.findByVaccineName(name);
     }
 

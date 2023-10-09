@@ -1,15 +1,14 @@
 package es.upm.miw.apaw_practice.domain.services.zoo;
 
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
+import es.upm.miw.apaw_practice.domain.models.zoo.Animal;
 import es.upm.miw.apaw_practice.domain.models.zoo.TaxonomicSpecie;
-import es.upm.miw.apaw_practice.domain.models.zoo.Vaccine;
 import es.upm.miw.apaw_practice.domain.persistence_ports.zoo.AnimalPersistence;
 import es.upm.miw.apaw_practice.domain.persistence_ports.zoo.TaxonomicSpeciePersistence;
 import es.upm.miw.apaw_practice.domain.persistence_ports.zoo.VaccinePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 @Service
@@ -37,13 +36,15 @@ public class TaxonomicSpecieService {
     }
 
     public Stream<String> findByVaccineName(String name) {
-        List<String> vaccineidentifierBatches = this.vaccinePersistence.readAll()
-                .filter(vaccine -> vaccine.getName().equals(name))
-                .map(Vaccine::getIdentifierBatch)
-                .toList();
-        //TODO
-        //System.out.println(vaccineidentifierBatches);
-        return null;
+
+        return this.animalPersistence.readAll()
+                .filter(animal -> animal.getVaccines()
+                        .stream()
+                        .anyMatch(vaccine -> vaccine.getName().equals(name))
+                )
+                .map(Animal::getTaxonomicSpecie)
+                .map(TaxonomicSpecie::getGenusName)
+                .distinct();
     }
 
 }

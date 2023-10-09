@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import es.upm.miw.apaw_practice.domain.models.school.Classroom;
 import es.upm.miw.apaw_practice.domain.models.school.Student;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public class StudentEntity {
     private Integer age;
     private long contact;
     private String email;
-    private Classroom classroom;
+    private ClassroomEntity classroomEntity;
     @DBRef
     private List<SubjectEntity> subjectsEntities;
 
@@ -33,6 +32,16 @@ public class StudentEntity {
     public StudentEntity(Student student) {
         BeanUtils.copyProperties(student, this);
         this.id = UUID.randomUUID().toString();
+    }
+
+    public StudentEntity(String name, Integer age, long contact, String email, ClassroomEntity classroomEntity, List<SubjectEntity> subjectsEntities) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.age = age;
+        this.contact = contact;
+        this.email = email;
+        this.classroomEntity = classroomEntity;
+        this.subjectsEntities = subjectsEntities;
     }
 
     public String getId() {
@@ -75,12 +84,12 @@ public class StudentEntity {
         this.email = email;
     }
 
-    public Classroom getClassroom() {
-        return classroom;
+    public ClassroomEntity getClassroom() {
+        return classroomEntity;
     }
 
-    public void setClassroom(Classroom classroom) {
-        this.classroom = classroom;
+    public void setClassroom(ClassroomEntity classroomEntity) {
+        this.classroomEntity = classroomEntity;
     }
 
     public List<SubjectEntity> getSubjectsEntities() {
@@ -92,7 +101,7 @@ public class StudentEntity {
     }
 
     public Student toStudent() {
-        return new Student(this.name, this.age, this.contact, this.email, this.classroom);
+        return new Student(this.name, this.age, this.contact, this.email, this.classroomEntity.toClassroom());
     }
 
     @Override

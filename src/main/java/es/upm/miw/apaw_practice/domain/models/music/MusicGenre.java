@@ -1,18 +1,7 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.music.entities;
+package es.upm.miw.apaw_practice.domain.models.music;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+public class MusicGenre {
 
-import java.util.Objects;
-
-@Document
-public class GenreEntity {
-
-    @Id
-    private String id;
-
-    @Indexed(unique = true)
     private String type;
 
     private String description;
@@ -21,23 +10,15 @@ public class GenreEntity {
 
     private String countryOrigin;
 
-    public GenreEntity() {
+    public MusicGenre() {
         //empty for framework
     }
 
-    public GenreEntity(String type, String description, Integer popularity, String countryOrigin) {
+    public MusicGenre(String type, String description, Integer popularity, String countryOrigin) {
         this.type = type;
         this.description = description;
         this.popularity = popularity;
         this.countryOrigin = countryOrigin;
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getType() {
@@ -73,23 +54,8 @@ public class GenreEntity {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        GenreEntity that = (GenreEntity) o;
-        return Objects.equals(this.type, that.type) && Objects.equals(this.description, that.description) &&
-                Objects.equals(this.popularity, that.popularity) &&
-                Objects.equals(this.countryOrigin, that.countryOrigin);
-    }
-
-    @Override
-    public int hashCode() {
-        return this.id.hashCode();
-    }
-
-    @Override
     public String toString() {
-        return "Genre{" +
+        return "Musicgenre{" +
                 "type='" + this.type + '\'' +
                 ", description='" + this.description + '\'' +
                 ", popularity=" + this.popularity +

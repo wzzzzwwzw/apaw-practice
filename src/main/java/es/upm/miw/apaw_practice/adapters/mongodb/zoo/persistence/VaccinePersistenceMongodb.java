@@ -2,11 +2,14 @@ package es.upm.miw.apaw_practice.adapters.mongodb.zoo.persistence;
 
 
 import es.upm.miw.apaw_practice.adapters.mongodb.zoo.daos.VaccineRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.zoo.entities.VaccineEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.zoo.Vaccine;
 import es.upm.miw.apaw_practice.domain.persistence_ports.zoo.VaccinePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.stream.Stream;
 
 @Repository("vaccinePersistence")
 public class VaccinePersistenceMongodb implements VaccinePersistence {
@@ -23,5 +26,11 @@ public class VaccinePersistenceMongodb implements VaccinePersistence {
                 .orElseThrow(() -> new NotFoundException("Vaccine Identifier Batch: " + identifierBatch))
                 .toVaccine()
                 ;
+    }
+
+    @Override
+    public Stream<Vaccine> readAll() {
+        return this.vaccineRepository.findAll().stream()
+                .map(VaccineEntity::toVaccine);
     }
 }

@@ -28,4 +28,10 @@ public class TaxonomicSpecieServiceIT {
 
     }
 
+    @Test
+    void testSearch() {
+        this.taxonomicSpecieService.findByVaccineName("Canis Flu 2023");
+
+    }
+
 }

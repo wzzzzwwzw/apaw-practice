@@ -33,7 +33,7 @@ public class FormulaOneSeederService {
         LogManager.getLogger(this.getClass()).warn("------- Formula One Initial Load -----------");
         EngineManufacturerEntity[] engineManufacturers = {
                 new EngineManufacturerEntity("Honda", "Japan", 6),
-                new EngineManufacturerEntity("Mercedes", "United Kingdom", 12),
+                new EngineManufacturerEntity("Mercedes", "United Kingdom", 12)
 
         };
         this.engineManufacturerRepository.saveAll(Arrays.asList(engineManufacturers));
@@ -52,6 +52,7 @@ public class FormulaOneSeederService {
                 new TeamEntity("Red Bull Racing", "Austria", Arrays.asList(drivers[0], drivers[1]), engineManufacturers[0]),
                 new TeamEntity("Aston Martin", "United Kingdom", Arrays.asList(drivers[2], drivers[3]), engineManufacturers[1]),
                 new TeamEntity("Mercedes", "Germany", Arrays.asList(drivers[4], drivers[5]), engineManufacturers[1]),
+                new TeamEntity("Alpine", "France", Arrays.asList(drivers[4], drivers[5]), engineManufacturers[1]),
         };
         this.teamRepository.saveAll(Arrays.asList(teams));
 

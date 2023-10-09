@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.formula_one.persistence;
+package es.upm.miw.apaw_practice.domain.services.formula_one;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.domain.models.formula_one.Race;
@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class RacePersistenceMongodbIT {
+public class RaceServiceIT {
 
     @Autowired
-    private RacePersistenceMongodb racePersistenceMongodb;
+    private RaceService raceService;
 
     @Test
     void testFindByCircuitName() {
-        Race race = this.racePersistenceMongodb.findByCircuitName("Albert Park");
+        Race race = this.raceService.findByCircuitName("Albert Park");
         assertEquals("Albert Park", race.getCircuitName());
         assertEquals("Australia", race.getHostCountry());
         assertEquals(LocalDate.of(2023, 4, 2), race.getDate());

@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.domain.services.formula_one;
 
+import es.upm.miw.apaw_practice.domain.models.formula_one.EngineManufacturer;
 import es.upm.miw.apaw_practice.domain.persistence_ports.formula_one.EngineManufacturerPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,5 +13,8 @@ public class EngineManufacturerService {
     @Autowired
     public EngineManufacturerService(EngineManufacturerPersistence engineManufacturerPersistence) {
         this.engineManufacturerPersistence = engineManufacturerPersistence;
+    }
+
+    public EngineManufacturer create(EngineManufacturer engineManufacturer) {
     }
 }

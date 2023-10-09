@@ -16,7 +16,7 @@ public class OBDFaultResource {
 
     static final String OBDFAULTS = "/car-workshop/obd-faults";
 
-    static final String ISNOTITVSAFE = "/cannot-pass-itv"
+    static final String ISNOTITVSAFE = "/cannot-pass-itv";
 
     private final OBDFaultService obdFaultService;
 

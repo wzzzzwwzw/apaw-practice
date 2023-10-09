@@ -10,8 +10,7 @@ public class ConferenceLocation {
         //empty for framework
     }
 
-    public ConferenceLocation(String id, String city, String building, String hall) {
-        this.id = id;
+    public ConferenceLocation(String city, String building, String hall) {
         this.city = city;
         this.building = building;
         this.hall = hall;
@@ -19,6 +18,10 @@ public class ConferenceLocation {
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCity() {

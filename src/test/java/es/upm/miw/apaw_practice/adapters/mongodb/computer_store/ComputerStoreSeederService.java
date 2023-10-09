@@ -45,7 +45,8 @@ public class ComputerStoreSeederService {
 
         ComputerEntity[] computers = {
                 new ComputerEntity("MSI Pro gaming PC", new BigDecimal("1400"), new BigDecimal("6"), Collections.singletonList(monitors[0])),
-                new ComputerEntity("Customized PC Bate Ye", new BigDecimal("1250"), new BigDecimal("8"), Collections.singletonList(monitors[1]))
+                new ComputerEntity("Customized PC Bate Ye", new BigDecimal("1250"), new BigDecimal("8"), Collections.singletonList(monitors[1])),
+                new ComputerEntity("Delete by rest computer", new BigDecimal("1340"), new BigDecimal("10"), Collections.singletonList(monitors[1]))
         };
         computerRepository.saveAll(Arrays.asList(computers));
 

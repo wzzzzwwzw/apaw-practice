@@ -13,4 +13,7 @@ public class TeamService {
     public TeamService(TeamPersistence teamPersistence) {
         this.teamPersistence = teamPersistence;
     }
+
+    public void delete(String teamName) {
+    }
 }

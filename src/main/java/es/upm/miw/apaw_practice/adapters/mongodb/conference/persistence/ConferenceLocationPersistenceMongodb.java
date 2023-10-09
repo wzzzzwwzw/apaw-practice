@@ -8,6 +8,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.conference.ConferenceLo
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("conferenceLocationPersistence")
 public class ConferenceLocationPersistenceMongodb implements ConferenceLocationPersistence {
     private final ConferenceLocationRepository conferenceLocationRepository;
@@ -25,6 +27,12 @@ public class ConferenceLocationPersistenceMongodb implements ConferenceLocationP
                 .orElseThrow(() -> new NotFoundException("ConferenceLocation id: " + id))
                 .toConferenceLocation();
 
+    }
+
+    @Override
+    public Stream<ConferenceLocation> readAll() {
+        return this.conferenceLocationRepository.findAll().stream()
+                .map(ConferenceLocationEntity::toConferenceLocation);
     }
 
     @Override

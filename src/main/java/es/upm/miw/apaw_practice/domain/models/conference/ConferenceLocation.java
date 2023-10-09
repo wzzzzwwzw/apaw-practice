@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.conference;
 
 public class ConferenceLocation {
+    private String id;
     private String city;
     private String building;
     private String hall;
@@ -9,10 +10,15 @@ public class ConferenceLocation {
         //empty for framework
     }
 
-    public ConferenceLocation(String city, String building, String hall) {
+    public ConferenceLocation(String id, String city, String building, String hall) {
+        this.id = id;
         this.city = city;
         this.building = building;
         this.hall = hall;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getCity() {
@@ -42,7 +48,8 @@ public class ConferenceLocation {
     @Override
     public String toString() {
         return "ConferenceLocation{" +
-                "city='" + city + '\'' +
+                "id='" + id + '\'' +
+                ", city='" + city + '\'' +
                 ", building='" + building + '\'' +
                 ", hall='" + hall + '\'' +
                 '}';

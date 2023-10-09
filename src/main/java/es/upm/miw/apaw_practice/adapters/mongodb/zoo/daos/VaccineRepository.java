@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface VaccineRepository extends MongoRepository<VaccineEntity, String> {
     Optional<VaccineEntity> findByIdentifierBatch(String identifierBatch);
+
 }

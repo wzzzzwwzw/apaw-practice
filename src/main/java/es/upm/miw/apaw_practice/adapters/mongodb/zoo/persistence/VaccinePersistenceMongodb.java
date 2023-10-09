@@ -24,4 +24,5 @@ public class VaccinePersistenceMongodb implements VaccinePersistence {
                 .toVaccine()
                 ;
     }
+
 }

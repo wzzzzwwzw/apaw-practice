@@ -3,9 +3,7 @@ package es.upm.miw.apaw_practice.domain.services.computer_store;
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.ComputerStoreSeederService;
 import es.upm.miw.apaw_practice.domain.models.computer_store.Monitor;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,8 +17,9 @@ class MonitorServiceIT {
     private MonitorService monitorService;
     @Autowired
     private ComputerStoreSeederService computerStoreSeederService;
+
     @AfterEach
-    void resetDataBase(){
+    void resetDataBase() {
         this.computerStoreSeederService.deleteAll();
         this.computerStoreSeederService.seedDatabase();
     }

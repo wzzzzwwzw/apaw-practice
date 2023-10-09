@@ -29,6 +29,11 @@ public class EngineManufacturerEntity {
         this.numberOfEnginesSupplied = numberOfEnginesSupplied;
     }
 
+    public EngineManufacturerEntity(EngineManufacturer engineManufacturer) {
+        BeanUtils.copyProperties(engineManufacturer, this);
+        this.id = UUID.randomUUID().toString();
+    }
+
     public String getId() {
         return id;
     }

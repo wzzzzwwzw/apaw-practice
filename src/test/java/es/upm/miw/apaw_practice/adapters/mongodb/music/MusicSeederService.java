@@ -2,10 +2,10 @@ package es.upm.miw.apaw_practice.adapters.mongodb.music;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.music.daos.AlbumRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.music.daos.ArtistRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.music.daos.GenreRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.music.daos.MusicGenreRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.AlbumEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.ArtistEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.GenreEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.MusicGenreEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.SongEntity;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +26,18 @@ public class MusicSeederService {
     private ArtistRepository artistRepository;
 
     @Autowired
-    private GenreRepository genreRepository;
+    private MusicGenreRepository musicGenreRepository;
 
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Music Initial Load -----------");
-        GenreEntity[] genres = {
-                new GenreEntity("reggaeton", "reggaeton music", 10, "Puerto Rico"),
-                new GenreEntity("pop", "pop music", 8, "United States"),
-                new GenreEntity("rock", "rock music", 9, "United Kingdom"),
-                new GenreEntity("rap", "rap music", 7, "United States"),
-                new GenreEntity("trap", "trap music", 6, "United States")
+        MusicGenreEntity[] musicGenres = {
+                new MusicGenreEntity("reggaeton", "reggaeton music", 10, "Puerto Rico"),
+                new MusicGenreEntity("pop", "pop music", 8, "United States"),
+                new MusicGenreEntity("rock", "rock music", 9, "United Kingdom"),
+                new MusicGenreEntity("rap", "rap music", 7, "United States"),
+                new MusicGenreEntity("trap", "trap music", 6, "United States")
         };
-        this.genreRepository.saveAll(Arrays.asList(genres));
+        this.musicGenreRepository.saveAll(Arrays.asList(musicGenres));
 
         ArtistEntity[] artists = {
                 new ArtistEntity("12345678A", "J Balvin", 123456789, LocalDate.of(1986, 3, 6)),
@@ -49,10 +49,10 @@ public class MusicSeederService {
         this.artistRepository.saveAll(Arrays.asList(artists));
 
         SongEntity[] songs = {
-                new SongEntity("Skake it off", 4, false, 4.5, genres[1], Collections.singletonList(artists[2])),
-                new SongEntity("Una Locura", 3, false, 4.0, genres[0], Arrays.asList(artists[0], artists[3], artists[4])),
-                new SongEntity("La Curiosidad", 7, true, 3.5, genres[0], Arrays.asList(artists[0], artists[3])),
-                new SongEntity("El Vals del Obrero", 5, false, 4.0, genres[2], Collections.singletonList(artists[1])),
+                new SongEntity("Skake it off", 4, false, 4.5, musicGenres[1], Collections.singletonList(artists[2])),
+                new SongEntity("Una Locura", 3, false, 4.0, musicGenres[0], Arrays.asList(artists[0], artists[3], artists[4])),
+                new SongEntity("La Curiosidad", 7, true, 3.5, musicGenres[0], Arrays.asList(artists[0], artists[3])),
+                new SongEntity("El Vals del Obrero", 5, false, 4.0, musicGenres[2], Collections.singletonList(artists[1])),
         };
 
         AlbumEntity[] albums = {
@@ -65,6 +65,6 @@ public class MusicSeederService {
     public void deleteAll() {
         this.albumRepository.deleteAll();
         this.artistRepository.deleteAll();
-        this.genreRepository.deleteAll();
+        this.musicGenreRepository.deleteAll();
     }
 }

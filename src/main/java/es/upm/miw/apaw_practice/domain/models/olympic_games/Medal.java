@@ -1,18 +1,18 @@
 package es.upm.miw.apaw_practice.domain.models.olympic_games;
 
 
-public class OlympicMedal {
+public class Medal {
 
     private String tier;
     private Boolean teamMedal;
     private String competition;
-    private OlympicCompetitor winner;
+    private Competitor winner;
 
 
-    public OlympicMedal() {
+    public Medal() {
     }
 
-    public OlympicMedal(String tier, Boolean teamMedal, String competition, OlympicCompetitor winner) {
+    public Medal(String tier, Boolean teamMedal, String competition, Competitor winner) {
         this.tier = tier;
         this.teamMedal = teamMedal;
         this.competition = competition;
@@ -27,7 +27,7 @@ public class OlympicMedal {
         this.tier = tier;
     }
 
-    public Boolean isTeamMedal() {
+    public Boolean getTeamMedal() {
         return teamMedal;
     }
 
@@ -43,17 +43,17 @@ public class OlympicMedal {
         this.competition = competition;
     }
 
-    public OlympicCompetitor getWinner() {
+    public Competitor getWinner() {
         return winner;
     }
 
-    public void setWinner(OlympicCompetitor winner) {
+    public void setWinner(Competitor winner) {
         this.winner = winner;
     }
 
     @Override
     public String toString() {
-        return "OlympicMedal{" +
+        return "Medal{" +
                 "tier='" + tier + '\'' +
                 ", teamMedal=" + teamMedal +
                 ", competition='" + competition + '\'' +

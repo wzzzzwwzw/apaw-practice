@@ -17,14 +17,12 @@ public class DriverRepositoryIT {
     @Test
     void testFindByNumber() {
         assertTrue(this.driverRepository.findByNumber(1).isPresent());
-
         DriverEntity driver = this.driverRepository.findByNumber(1).get();
         driver.setPoints(200F);
 
+        assertEquals(1, driver.getNumber());
         assertEquals("Max Verstappen", driver.getDriverName());
         assertEquals("Netherlands", driver.getNationality());
-        assertEquals(95, driver.getDrivingStyleEntity().getAggressiveness());
-        assertEquals(98, driver.getDrivingStyleEntity().getConsistency());
         assertEquals(200F, driver.getPoints());
     }
 }

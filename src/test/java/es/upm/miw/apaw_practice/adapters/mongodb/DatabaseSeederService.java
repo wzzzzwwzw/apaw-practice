@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.CarDealershipSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.car_workshop.CarWorkshopSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.climbing.ClimbingSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.ComputerStoreSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.conference.ConferenceSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.FootballCompetitionSeederService;
@@ -9,6 +10,8 @@ import es.upm.miw.apaw_practice.adapters.mongodb.film.FilmSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.FormulaOneSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.InfluencerAgencySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.museum.MuseumSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.music.MusicSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.padel_academy.PadelAcademySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.restaurant.RestaurantSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.shop.ShopSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.subway.SubwaySeederService;
@@ -38,6 +41,10 @@ public class DatabaseSeederService {
     private final InfluencerAgencySeederService influencerAgencySeederService;
     private final SubwaySeederService subwaySeederService;
     private final SchoolSeederService schoolSeederService;
+    private final ClimbingSeederService climbingSeederService;
+
+    private final MusicSeederService musicSeederService;
+    private final PadelAcademySeederService padelAcademySeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, ZooSeederService zooSeederService,
@@ -49,7 +56,10 @@ public class DatabaseSeederService {
                                  MuseumSeederService museumSeederService,
                                  FootballCompetitionSeederService footballCompetitionSeederService,
                                  FilmSeederService filmSeederService, InfluencerAgencySeederService influencerAgencySeederService,
-                                 SubwaySeederService subwaySeederService, SchoolSeederService schoolSeederService) {
+                                 SubwaySeederService subwaySeederService, SchoolSeederService schoolSeederService,
+                                 ClimbingSeederService climbingSeederService,
+                                 MusicSeederService musicSeederService,
+                                 PadelAcademySeederService padelAcademySeederService) {
         this.shopSeederService = shopSeederService;
         this.zooSeederService = zooSeederService;
         this.computerStoreSeederService = computerStoreSeederService;
@@ -66,6 +76,9 @@ public class DatabaseSeederService {
         this.influencerAgencySeederService = influencerAgencySeederService;
         this.subwaySeederService = subwaySeederService;
         this.schoolSeederService = schoolSeederService;
+        this.climbingSeederService = climbingSeederService;
+        this.musicSeederService = musicSeederService;
+        this.padelAcademySeederService = padelAcademySeederService;
         this.seedDatabase();
     }
 
@@ -86,6 +99,9 @@ public class DatabaseSeederService {
         this.influencerAgencySeederService.seedDatabase();
         this.subwaySeederService.seedDatabase();
         this.schoolSeederService.seedDatabase();
+        this.climbingSeederService.seedDatabase();
+        this.musicSeederService.seedDatabase();
+        this.padelAcademySeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -105,6 +121,9 @@ public class DatabaseSeederService {
         this.influencerAgencySeederService.deleteAll();
         this.subwaySeederService.deleteAll();
         this.schoolSeederService.deleteAll();
+        this.climbingSeederService.deleteAll();
+        this.musicSeederService.deleteAll();
+        this.padelAcademySeederService.deleteAll();
     }
 
     public void reSeedDatabase() {

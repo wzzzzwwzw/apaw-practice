@@ -21,11 +21,13 @@ class MonitorPersistenceMongodbIT {
     private MonitorPersistenceMongodb monitorPersistenceMongodb;
     @Autowired
     private ComputerStoreSeederService computerStoreSeederService;
+
     @AfterEach
-    void resetDataBase(){
+    void resetDataBase() {
         this.computerStoreSeederService.deleteAll();
         this.computerStoreSeederService.seedDatabase();
     }
+
     @Test
     void testReadBySerialNumber() {
         Monitor monitor = this.monitorPersistenceMongodb.readBySerialNumber(XIAOMI_SERIAL_NUMBER);

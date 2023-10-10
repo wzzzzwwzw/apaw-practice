@@ -1,0 +1,11 @@
+package es.upm.miw.apaw_practice.domain.persistence_ports.formula_one;
+
+import es.upm.miw.apaw_practice.domain.models.formula_one.EngineManufacturer;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface EngineManufacturerPersistence {
+    EngineManufacturer create(EngineManufacturer engineManufacturer);
+
+    boolean existEngineManufacturer(String manufacturerName);
+}

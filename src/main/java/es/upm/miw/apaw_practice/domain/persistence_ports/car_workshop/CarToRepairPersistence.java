@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 public interface CarToRepairPersistence {
     CarToRepair readByRegistrationNumber(String registrationNumber);
 
-    CarToRepair update(CarToRepair carToRepair);
+    CarToRepair updateModel(CarToRepair carToRepair);
 }

@@ -27,7 +27,7 @@ public class CarToRepairPersistenceMongodb implements CarToRepairPersistence {
     }
 
     @Override
-    public CarToRepair update(CarToRepair carToRepair) {
+    public CarToRepair updateModel(CarToRepair carToRepair) {
         CarToRepairEntity carToRepairEntity = this.carToRepairRepository
                 .findByRegistrationNumber(carToRepair.getRegistrationNumber())
                 .orElseThrow(() -> new NotFoundException("Not found car with registration number: " + carToRepair.getRegistrationNumber()));

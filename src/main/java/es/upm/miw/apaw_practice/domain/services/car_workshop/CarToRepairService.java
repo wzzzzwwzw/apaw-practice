@@ -8,17 +8,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class CarToRepairService {
 
-    private CarToRepairPersistence carToRepairPersistence;
+    private final CarToRepairPersistence carToRepairPersistence;
 
     @Autowired
     public CarToRepairService(CarToRepairPersistence carToRepairPersistence) {
         this.carToRepairPersistence = carToRepairPersistence;
     }
 
-
     public CarToRepair updateModel(String registrationNumber, String model) {
-        CarToRepair carToRepair = carToRepairPersistence.readByRegistrationNumber(registrationNumber);
+        CarToRepair carToRepair = this.carToRepairPersistence.readByRegistrationNumber(registrationNumber);
         carToRepair.setModel(model);
-        return carToRepairPersistence.update(carToRepair);
+        return this.carToRepairPersistence.updateModel(carToRepair);
     }
 }

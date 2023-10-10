@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.film.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.film.FilmSeederService;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.film.Director;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,9 @@ class DirectorPersistenceMongodbIT {
 
     @Autowired
     private DirectorPersistenceMongodb directorPersistenceMongodb;
+
+    @Autowired
+    private FilmSeederService filmSeederService;
 
     @Test
     void testReadNotFound() {
@@ -41,5 +45,16 @@ class DirectorPersistenceMongodbIT {
         assertEquals("Luis", directorBD.getName());
         assertEquals("Garcia", directorBD.getSurname());
         assertEquals(LocalDate.of(1999, 5, 29), directorBD.getDateOfBirth());
+    }
+
+    @Test
+    void testUpdateSurname() {
+        Director director = this.directorPersistenceMongodb.updateSurname("05645800X", "Martinez");
+        assertNotNull(director);
+        assertEquals("05645800X", director.getDni());
+        assertEquals("Martinez", director.getSurname());
+
+        this.filmSeederService.deleteAll();
+        this.filmSeederService.seedDatabase();
     }
 }

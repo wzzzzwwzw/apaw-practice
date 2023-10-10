@@ -25,4 +25,8 @@ public class DirectorService {
         if (this.directorPersistence.existsDirectorDni(dni))
             throw new ConflictException("Director dni already exists: " + dni);
     }
+
+    public Director updateSurname(String dni, String surname) {
+        return this.directorPersistence.updateSurname(dni, surname);
+    }
 }

@@ -12,6 +12,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 import java.time.LocalDate;
 
 import static es.upm.miw.apaw_practice.adapters.rest.film.DirectorResource.DIRECTORS;
+import static es.upm.miw.apaw_practice.adapters.rest.film.DirectorResource.DNI_ID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RestTestConfig
@@ -49,5 +50,32 @@ class DirectorResourceIT {
                 .body(BodyInserters.fromValue(director))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
+    }
+
+    @Test
+    void testUpdateSurname() {
+        String surname = "Ruiz";
+        this.webTestClient
+                .patch()
+                .uri(DIRECTORS + DNI_ID, "12258468Y")
+                .body(BodyInserters.fromValue(surname))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Director.class)
+                .value(Assertions::assertNotNull)
+                .value(director -> {
+                    assertEquals("Ruiz", director.getSurname());
+                });
+    }
+
+    @Test
+    void testUpdateSurnameNotFound() {
+        String surname = "Ruiz";
+        this.webTestClient
+                .patch()
+                .uri(DIRECTORS + DNI_ID, "00000000Z")
+                .body(BodyInserters.fromValue(surname))
+                .exchange()
+                .expectStatus().isNotFound();
     }
 }

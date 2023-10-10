@@ -3,11 +3,13 @@ package es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
+import es.upm.miw.apaw_practice.domain.models.food_delivery.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.math.BigDecimal;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 class OrderPersistenceMongodbIT {
@@ -21,10 +23,18 @@ class OrderPersistenceMongodbIT {
     }
 
     @Test
-    void testReadFound(){
+    void testReadFound() {
         assertNotNull(this.orderPersistence.read(1));
     }
 
+    @Test
+    void testUpdate() {
+        Order order = this.orderPersistence.read(2);
+        order.setPrice(new BigDecimal("45.0"));
+        this.orderPersistence.update(2, order);
+        order = this.orderPersistence.read(2);
+        assertEquals(new BigDecimal("45.0"), order.getPrice());
+    }
 
 
 }

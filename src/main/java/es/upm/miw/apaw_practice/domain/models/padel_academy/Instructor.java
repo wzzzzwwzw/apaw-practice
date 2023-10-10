@@ -6,6 +6,10 @@ public class Instructor {
     private String name;
     private Integer phoneNumber;
 
+    public Instructor() {
+        //empty for framework
+    }
+
     public Instructor(String dni, String name, Integer phoneNumber) {
         this.dni = dni;
         this.name = name;

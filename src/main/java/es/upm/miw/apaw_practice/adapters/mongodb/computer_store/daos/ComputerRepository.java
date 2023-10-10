@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface ComputerRepository extends MongoRepository<ComputerEntity, String> {
     Optional<ComputerEntity> findByName(String name);
+
+    int deleteByName(String name);
 }

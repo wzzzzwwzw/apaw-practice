@@ -7,7 +7,7 @@ public class Product {
     private String name;
     private String description;
     private BigDecimal price;
-    private boolean glutenFree;
+    private Boolean glutenFree;
     private LocalDate expirationDate;
     private ProductType productType;
 
@@ -15,7 +15,7 @@ public class Product {
         //empty for framework
     }
 
-    public Product(String name, String description, BigDecimal price, boolean glutenFree, LocalDate expirationDate, ProductType productType) {
+    public Product(String name, String description, BigDecimal price, Boolean glutenFree, LocalDate expirationDate, ProductType productType) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -48,15 +48,15 @@ public class Product {
         this.price = price;
     }
 
-    public boolean isGlutenFree() {
+    public Boolean isGlutenFree() {
         return this.glutenFree;
     }
 
-    public boolean getGlutenFree() {
+    public Boolean getGlutenFree() {
         return this.glutenFree;
     }
 
-    public void setGlutenFree(boolean glutenFree) {
+    public void setGlutenFree(Boolean glutenFree) {
         this.glutenFree = glutenFree;
     }
 

@@ -16,7 +16,7 @@ public class OBDFaultEntity {
     @Indexed(unique = true)
     private String code;
     private String description;
-    private Boolean canPassITV;
+    private Boolean isITVSafe;
     private String solution;
 
     public OBDFaultEntity() {
@@ -52,12 +52,12 @@ public class OBDFaultEntity {
         this.description = description;
     }
 
-    public Boolean getCanPassITV() {
-        return canPassITV;
+    public Boolean getIsITVSafe() {
+        return isITVSafe;
     }
 
-    public void setCanPassITV(Boolean canPassITV) {
-        this.canPassITV = canPassITV;
+    public void setIsITVSafe(Boolean isITVSafe) {
+        this.isITVSafe = isITVSafe;
     }
 
     public String getSolution() {
@@ -108,7 +108,7 @@ public class OBDFaultEntity {
     @Override
     public String toString() {
         return "OBDFaultEntity [id=" + id + ", code=" + code + ", description=" + description + ", canPassITV="
-                + canPassITV + ", solution=" + solution + "]";
+                + isITVSafe + ", solution=" + solution + "]";
     }
 
 }

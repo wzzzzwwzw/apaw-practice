@@ -76,7 +76,8 @@ public class ArtWorkEntity {
 
     public ArtWork toArtWork() {
         ArtWork artWork = new ArtWork();
-        BeanUtils.copyProperties(this, artWork);
+        BeanUtils.copyProperties(this, artWork, "room");
+        artWork.setRoom(this.getRoom().toRoom());
         return artWork;
     }
 

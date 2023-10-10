@@ -9,7 +9,6 @@ public class Keeper {
     private Integer age;
     private LocalDate hireDate;
     private Double salary;
-    private List<Horse> horses;
 
     public Keeper() {
     }
@@ -19,7 +18,6 @@ public class Keeper {
         this.age = age;
         this.hireDate = hireDate;
         this.salary = salary;
-        this.horses = new ArrayList<>();
     }
 
     public String getName() {
@@ -34,7 +32,7 @@ public class Keeper {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -50,25 +48,8 @@ public class Keeper {
         return salary;
     }
 
-
-    public void setSalary(double salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
-    }
-
-    public List<Horse> getHorses() {
-        return horses;
-    }
-
-    public void setHorses(List<Horse> horses) {
-        this.horses = horses;
-    }
-
-    public void addCareTask(Horse horse) {
-        horses.add(horse);
-    }
-
-    public void removeCareTask(Horse horse) {
-        horses.remove(horse);
     }
 
     @Override
@@ -78,7 +59,6 @@ public class Keeper {
                 ", age=" + age +
                 ", hireDate=" + hireDate +
                 ", salary=" + salary +
-                ", horses=" + horses +
                 '}';
     }
 }

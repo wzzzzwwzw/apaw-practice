@@ -7,5 +7,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface DisciplineRepository extends MongoRepository<DisciplineEntity, String> {
-    Optional<DisciplineRepository> findByName(String name);
+    Optional<DisciplineEntity> findByName(String name);
 }

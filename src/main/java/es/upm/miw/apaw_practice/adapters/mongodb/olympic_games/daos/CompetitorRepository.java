@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface CompetitorRepository extends MongoRepository<CompetitorEntity, String> {
-    Optional<CompetitorRepository> findByName(String name);
+    Optional<CompetitorEntity> findByName(String name);
 }

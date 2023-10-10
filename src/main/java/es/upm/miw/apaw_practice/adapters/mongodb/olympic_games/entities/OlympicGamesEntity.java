@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.olympic_games.entities;
 
 import es.upm.miw.apaw_practice.domain.models.olympic_games.Discipline;
 import es.upm.miw.apaw_practice.domain.models.olympic_games.OlympicGames;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -29,11 +28,14 @@ public class OlympicGamesEntity {
     public OlympicGamesEntity() {
     }
 
-    public OlympicGamesEntity(OlympicGames olympicGames) {
-        BeanUtils.copyProperties(olympicGames, this);
+    public OlympicGamesEntity(Integer edition, String hostingPlace, LocalDate startDate, Boolean summerGames, List<DisciplineEntity> disciplinesEntities) {
         this.id = UUID.randomUUID().toString();
+        this.edition = edition;
+        this.hostingPlace = hostingPlace;
+        this.startDate = startDate;
+        this.summerGames = summerGames;
+        this.disciplinesEntities = disciplinesEntities;
     }
-
 
     public String getId() {
         return id;
@@ -75,11 +77,11 @@ public class OlympicGamesEntity {
         this.summerGames = summerGames;
     }
 
-    public List<DisciplineEntity> getDisciplines() {
+    public List<DisciplineEntity> getDisciplinesEntities() {
         return disciplinesEntities;
     }
 
-    public void setDisciplines(List<DisciplineEntity> disciplinesEntities) {
+    public void setDisciplinesEntities(List<DisciplineEntity> disciplinesEntities) {
         this.disciplinesEntities = disciplinesEntities;
     }
 

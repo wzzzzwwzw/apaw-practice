@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface OlympicGamesRepository extends MongoRepository<OlympicGamesEntity, Integer> {
-    Optional<OlympicGamesRepository> findByEdition(Integer edition);
+    Optional<OlympicGamesEntity> findByEdition(Integer edition);
 }

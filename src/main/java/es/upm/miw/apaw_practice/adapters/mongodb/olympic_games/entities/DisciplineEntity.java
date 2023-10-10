@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.olympic_games.entities;
 
 import es.upm.miw.apaw_practice.domain.models.olympic_games.Competitor;
 import es.upm.miw.apaw_practice.domain.models.olympic_games.Discipline;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -28,9 +27,12 @@ public class DisciplineEntity {
     public DisciplineEntity() {
     }
 
-    public DisciplineEntity(Discipline discipline) {
-        BeanUtils.copyProperties(discipline, this);
+    public DisciplineEntity(String name, Integer numberOfCompetitions, LocalDate additionDate, List<CompetitorEntity> competitorEntities) {
         this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.numberOfCompetitions = numberOfCompetitions;
+        this.additionDate = additionDate;
+        this.competitorEntities = competitorEntities;
     }
 
     public String getId() {

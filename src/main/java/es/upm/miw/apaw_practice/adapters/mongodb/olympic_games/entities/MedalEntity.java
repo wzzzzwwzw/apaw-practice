@@ -21,9 +21,12 @@ public class MedalEntity {
     public MedalEntity() {
     }
 
-    public MedalEntity(Medal medal) {
-        BeanUtils.copyProperties(medal, this);
+    public MedalEntity(String tier, Boolean teamMedal, String competition, CompetitorEntity winner) {
         this.id = UUID.randomUUID().toString();
+        this.tier = tier;
+        this.teamMedal = teamMedal;
+        this.competition = competition;
+        this.winner = winner;
     }
 
     public String getId() {

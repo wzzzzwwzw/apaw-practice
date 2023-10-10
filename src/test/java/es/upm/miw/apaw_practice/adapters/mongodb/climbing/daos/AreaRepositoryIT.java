@@ -26,7 +26,11 @@ public class AreaRepositoryIT {
         assertTrue(this.areaRepository.findAll().stream()
                 .anyMatch(area ->
                         "Area 1".equals(area.getName()) &&
-                                "Location 1".equals(area.getLocation())
+                                "Location 1".equals(area.getLocation()) &&
+                                area.getEasyAccess() &&
+                                2 == area.getRouteEntities().size() &&
+                                "Route 1".equals(area.getRouteEntities().get(0).getName()) &&
+                                "Easy".equals(area.getRouteEntities().get(0).getDifficulty())
                 ));
     }
 }

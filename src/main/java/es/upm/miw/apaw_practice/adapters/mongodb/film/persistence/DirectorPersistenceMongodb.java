@@ -7,7 +7,7 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.film.DirectorPersistenc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository("directorRepository")
+@Repository("directorPersistence")
 public class DirectorPersistenceMongodb implements DirectorPersistence {
 
     private final DirectorRepository directorRepository;

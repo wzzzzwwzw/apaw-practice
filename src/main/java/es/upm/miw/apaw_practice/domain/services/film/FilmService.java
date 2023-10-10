@@ -25,10 +25,12 @@ public class FilmService {
     }
 
     public Film updateReviews(String title, List<Review> reviewList) {
-        Film film = this.filmPersistence.readByTitle(title)
-                .findFirst().orElseThrow(
-                        () -> new NotFoundException("Film title : " + title)
-                );
+        List<Film> films = this.filmPersistence.readAll()
+                .filter(film1 -> film1.getTitle().equals(title))
+                .toList();
+        if (films.isEmpty())
+            throw new NotFoundException("Film title : " + title);
+        Film film = films.get(0);
         film.setReviews(reviewList);
         return this.filmPersistence.update(film);
     }

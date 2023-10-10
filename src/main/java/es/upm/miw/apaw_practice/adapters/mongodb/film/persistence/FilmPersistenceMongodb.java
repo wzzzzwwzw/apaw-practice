@@ -42,4 +42,10 @@ public class FilmPersistenceMongodb implements FilmPersistence {
         filmEntity.setReviewEntities(reviewEntities);
         return this.filmRepository.save(filmEntity).toFilm();
     }
+
+    @Override
+    public Stream<Film> readAll() {
+        return this.filmRepository.findAll().stream()
+                .map(FilmEntity::toFilm);
+    }
 }

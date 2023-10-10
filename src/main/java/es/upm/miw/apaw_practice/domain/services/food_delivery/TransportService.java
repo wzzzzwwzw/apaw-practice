@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.domain.services.food_delivery;
 
 import es.upm.miw.apaw_practice.domain.models.food_delivery.Transport;
+import es.upm.miw.apaw_practice.domain.models.shop.ShoppingCart;
 import es.upm.miw.apaw_practice.domain.persistence_ports.food_delivery.TransportPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public class TransportService {
     }
 
     public Transport updateTransportAvalaible(String code, Boolean avalaible){
-        return null;
+        Transport transport = this.transportPersistence.readByCode(code);
+        transport.setAvalaible(avalaible);
+        return this.transportPersistence.updateTransportAvalaible(transport);
     }
 }

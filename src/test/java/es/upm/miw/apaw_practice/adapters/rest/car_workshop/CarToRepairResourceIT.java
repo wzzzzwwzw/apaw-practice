@@ -19,17 +19,19 @@ public class CarToRepairResourceIT {
 
     @Test
     void testUpdateModel() {
+        String registrationNumber = "7687FDR";
+        String newModel = "Duster";
         this.webTestClient
                 .put()
-                .uri(CarToRepairResource.CARSTOREPAIR + CarToRepairResource.REGISTRATIONNUMBER_ID + CarToRepairResource.MODEL, "7687FDR")
-                .body(BodyInserters.fromValue("Duster"))
+                .uri(CarToRepairResource.CARSTOREPAIR + CarToRepairResource.REGISTRATIONNUMBER_ID + CarToRepairResource.MODEL, registrationNumber)
+                .body(BodyInserters.fromValue(newModel))
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(CarToRepair.class)
                 .value(Assertions::assertNotNull)
                 .value(carToRepair -> {
-                    assertEquals(carToRepair.getRegistrationNumber(), "7687FDR");
-                    assertEquals(carToRepair.getModel(), "Duster");
+                    assertEquals(carToRepair.getRegistrationNumber(), registrationNumber);
+                    assertEquals(carToRepair.getModel(), newModel);
                 });
     }
 

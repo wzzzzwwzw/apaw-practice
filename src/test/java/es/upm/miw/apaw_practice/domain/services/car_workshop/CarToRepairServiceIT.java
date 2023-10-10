@@ -24,8 +24,6 @@ public class CarToRepairServiceIT {
 
     @Test
     void testUpdateWithNoExistingCar() {
-        assertThrows(NotFoundException.class, () -> {
-            this.carToRepairService.updateModel("notfoundlol", "Twingo");
-        });
+        assertThrows(NotFoundException.class, () -> this.carToRepairService.updateModel("notfoundlol", "Twingo"));
     }
 }

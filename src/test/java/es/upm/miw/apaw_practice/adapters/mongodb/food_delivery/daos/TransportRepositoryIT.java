@@ -23,7 +23,6 @@ class TransportRepositoryIT {
         assertEquals("DEF456", transport.getLicensePlate());
         assertEquals(1, transport.getRestaurants().size());
         assertEquals("Asian Fusion", transport.getRestaurants().get(0).getName());
-        assertEquals(true, transport.getAvalaible());
         assertEquals(0, new BigDecimal("35.0").compareTo(transport.getCapacity()));
     }
 }

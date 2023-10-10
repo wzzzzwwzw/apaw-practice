@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.rest.zoo;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.zoo.Animal;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,21 @@ public class AnimalResourceIT {
                     assertEquals(identificationChip, animal.getIdentificationChip());
                     assertEquals(age, animal.getAge());
                 });
+    }
+
+    @Test
+    void testFindByHabitat() {
+        this.webTestClient
+                .get()
+                .uri(AnimalResource.ANIMALS + AnimalResource.IDENTIFICATIONCHIP + AnimalResource.SEARCH_BY_SPECIES_HABITAT + "?q=habitat:human houses")
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(String.class)
+                .value(Assertions::assertNotNull)
+                .value(identificationChip -> {
+                    assertEquals("080CAT", identificationChip);
+                });
+
     }
 
     @Test

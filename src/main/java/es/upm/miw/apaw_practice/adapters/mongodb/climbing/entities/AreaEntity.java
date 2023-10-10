@@ -55,7 +55,7 @@ public class AreaEntity {
         this.location = location;
     }
 
-    public boolean isEasyAccess() {
+    public boolean getEasyAccess() {
         return easyAccess;
     }
 

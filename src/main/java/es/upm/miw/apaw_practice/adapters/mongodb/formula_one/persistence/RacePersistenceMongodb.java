@@ -30,7 +30,7 @@ public class RacePersistenceMongodb implements RacePersistence {
     public Race readByCircuitName(String circuitName) {
         return this.raceRepository
                 .findByCircuitName(circuitName)
-                .orElseThrow(() -> new NotFoundException("Reading race: " + circuitName))
+                .orElseThrow(() -> new NotFoundException("Race with circuit: " + circuitName))
                 .toRace();
 
     }
@@ -39,7 +39,7 @@ public class RacePersistenceMongodb implements RacePersistence {
     public Race update(Race race) {
         RaceEntity raceEntity = this.raceRepository
                 .findByCircuitName(race.getCircuitName())
-                .orElseThrow(() -> new NotFoundException("Updating race: " + race.getCircuitName()));
+                .orElseThrow(() -> new NotFoundException("Race with circuit: " + race.getCircuitName()));
         BeanUtils.copyProperties(race, raceEntity, "raceDrivers");
         List<DriverEntity> raceDriversEntities = race.getRaceDrivers().stream()
                 .map(driver -> {

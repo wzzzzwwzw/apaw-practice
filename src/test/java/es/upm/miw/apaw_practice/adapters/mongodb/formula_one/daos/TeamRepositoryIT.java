@@ -37,6 +37,11 @@ public class TeamRepositoryIT {
     }
 
     @Test
+    void testFindByTeamNameNotFound() {
+        assertTrue(this.teamRepository.findByTeamName("Alpha Tauri").isEmpty());
+    }
+
+    @Test
     void testDeleteByTeamName() {
         assertTrue(this.teamRepository.findByTeamName("Williams").isPresent());
         this.teamRepository.deleteByTeamName("Williams");

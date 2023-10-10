@@ -25,4 +25,9 @@ public class DriverRepositoryIT {
         assertEquals("Netherlands", driver.getNationality());
         assertEquals(200F, driver.getPoints());
     }
+
+    @Test
+    void testFindByNumberNotFound() {
+        assertTrue(this.driverRepository.findByNumber(0).isEmpty());
+    }
 }

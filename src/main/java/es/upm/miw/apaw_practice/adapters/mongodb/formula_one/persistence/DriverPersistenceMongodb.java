@@ -22,7 +22,7 @@ public class DriverPersistenceMongodb implements DriverPersistence {
     public Driver readByNumber(Integer number) {
         return this.driverRepository
                 .findByNumber(number)
-                .orElseThrow(() -> new NotFoundException("Reading driver number: " + number))
+                .orElseThrow(() -> new NotFoundException("Driver with number: " + number))
                 .toDriver();
     }
 
@@ -30,7 +30,7 @@ public class DriverPersistenceMongodb implements DriverPersistence {
     public Driver update(Driver driver) {
         DriverEntity driverEntity = this.driverRepository
                 .findByNumber(driver.getNumber())
-                .orElseThrow(() -> new NotFoundException("Updating driver number: " + driver.getNumber()));
+                .orElseThrow(() -> new NotFoundException("Driver with number: " + driver.getNumber()));
         driverEntity.fromDriver(driver);
         return this.driverRepository
                 .save(driverEntity)

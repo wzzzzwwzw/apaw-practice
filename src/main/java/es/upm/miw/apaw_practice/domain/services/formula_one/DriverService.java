@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.domain.services.formula_one;
 
+import es.upm.miw.apaw_practice.domain.models.formula_one.Driver;
 import es.upm.miw.apaw_practice.domain.persistence_ports.formula_one.DriverPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,5 +13,8 @@ public class DriverService {
     @Autowired
     public DriverService(DriverPersistence driverPersistence) {
         this.driverPersistence = driverPersistence;
+    }
+
+    public Driver updatePoints(Integer number, Integer points) {
     }
 }

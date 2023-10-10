@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(DriverResource.DRIVERS)
 public class DriverResource {
 
-    static final  String DRIVERS = "/formula-one/drivers";
+    static final String DRIVERS = "/formula-one/drivers";
     static final String NUMBER_ID = "/{number}";
 
     private final DriverService driverService;

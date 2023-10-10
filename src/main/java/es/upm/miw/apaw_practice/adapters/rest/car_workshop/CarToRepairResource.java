@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(CarToRepairResource.CARSTOREPAIR)
 public class CarToRepairResource {
-    static final String CARSTOREPAIR = "car-workshop/cars-to-repair";
+    static final String CARSTOREPAIR = "/car-workshop/cars-to-repair";
     static final String REGISTRATIONNUMBER_ID = "/{registrationNumber}";
     static final String MODEL = "/model";
 
@@ -20,7 +20,7 @@ public class CarToRepairResource {
     }
 
     @PutMapping(REGISTRATIONNUMBER_ID + MODEL)
-    public CarToRepair putModel(@PathVariable String registrationNumber, @RequestBody String model) {
+    public CarToRepair updateModel(@PathVariable String registrationNumber, @RequestBody String model) {
         return this.carToRepairService.updateModel(registrationNumber, model);
     }
 

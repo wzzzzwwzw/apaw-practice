@@ -21,8 +21,8 @@ public class RaceResource {
     }
 
     @GetMapping(CIRCUIT_NAME_ID)
-    public Race findByCircuitName(@PathVariable String circuitName) {
-        return this.raceService.findByCircuitName(circuitName);
+    public Race read(@PathVariable String circuitName) {
+        return this.raceService.read(circuitName);
     }
 
     @PutMapping(CIRCUIT_NAME_ID + LAPS)

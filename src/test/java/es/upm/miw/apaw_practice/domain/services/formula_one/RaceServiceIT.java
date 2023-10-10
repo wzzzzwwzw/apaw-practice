@@ -18,7 +18,7 @@ public class RaceServiceIT {
 
     @Test
     void testFindByCircuitName() {
-        Race race = this.raceService.findByCircuitName("Albert Park");
+        Race race = this.raceService.read("Albert Park");
         assertEquals("Albert Park", race.getCircuitName());
         assertEquals("Australia", race.getHostCountry());
         assertEquals(LocalDate.of(2023, 4, 2), race.getDate());

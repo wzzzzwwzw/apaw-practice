@@ -18,7 +18,7 @@ public class RacePersistenceMongodbIT {
 
     @Test
     void testFindByCircuitName() {
-        Race race = this.racePersistenceMongodb.findByCircuitName("Albert Park");
+        Race race = this.racePersistenceMongodb.readByCircuitName("Albert Park");
         assertEquals("Albert Park", race.getCircuitName());
         assertEquals("Australia", race.getHostCountry());
         assertEquals(LocalDate.of(2023, 4, 2), race.getDate());

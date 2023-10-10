@@ -18,7 +18,7 @@ public class RacePersistenceMongodb implements RacePersistence {
     }
 
     @Override
-    public Race findByCircuitName(String circuitName) {
+    public Race readByCircuitName(String circuitName) {
         return this.raceRepository.findByCircuitName(circuitName)
                 .orElseThrow(() -> new NotFoundException("Circuit name: " + circuitName))
                 .toRace();

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(CarComponentResource.CARCOMPONENTS)
 public class CarComponentResource {
-    static final String CARCOMPONENTS = "/car-components";
+    static final String CARCOMPONENTS = "/car-workshop/car-components";
 
     private final CarComponentService carComponentService;
 

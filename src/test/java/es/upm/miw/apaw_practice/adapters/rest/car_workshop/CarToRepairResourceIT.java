@@ -5,6 +5,7 @@ import es.upm.miw.apaw_practice.domain.models.car_workshop.CarToRepair;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
@@ -20,7 +21,7 @@ public class CarToRepairResourceIT {
     void testUpdateModel() {
         this.webTestClient
                 .put()
-                .uri(CarToRepairResource.CARSTOREPAIR + CarToRepairResource.REGISTRATION_NUMBER + CarToRepairResource.MODEL, "7687FDR")
+                .uri(CarToRepairResource.CARSTOREPAIR + CarToRepairResource.REGISTRATIONNUMBER_ID + CarToRepairResource.MODEL, "7687FDR")
                 .body(BodyInserters.fromValue("Duster"))
                 .exchange()
                 .expectStatus().isOk()
@@ -30,5 +31,15 @@ public class CarToRepairResourceIT {
                     assertEquals(carToRepair.getRegistrationNumber(), "7687FDR");
                     assertEquals(carToRepair.getModel(), "Duster");
                 });
+    }
+
+    @Test
+    void testUpdateWithNoExistingCar() {
+        this.webTestClient
+                .put()
+                .uri(CarToRepairResource.CARSTOREPAIR + CarToRepairResource.REGISTRATIONNUMBER_ID + CarToRepairResource.MODEL, "nonexistinglol")
+                .body(BodyInserters.fromValue("Duster"))
+                .exchange()
+                .expectStatus().isEqualTo(HttpStatus.NOT_FOUND);
     }
 }

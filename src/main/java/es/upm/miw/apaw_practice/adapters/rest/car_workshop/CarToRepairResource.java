@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(CarToRepairResource.CARSTOREPAIR)
 public class CarToRepairResource {
     static final String CARSTOREPAIR = "car-workshop/cars-to-repair";
-    static final String REGISTRATION_NUMBER = "/{registration-number}";
+    static final String REGISTRATIONNUMBER_ID = "/{registrationNumber}";
     static final String MODEL = "/model";
 
     private final CarToRepairService carToRepairService;
@@ -19,7 +19,7 @@ public class CarToRepairResource {
         this.carToRepairService = carToRepairService;
     }
 
-    @PutMapping(REGISTRATION_NUMBER + MODEL)
+    @PutMapping(REGISTRATIONNUMBER_ID + MODEL)
     public CarToRepair putModel(@PathVariable String registrationNumber, @RequestBody String model) {
         return this.carToRepairService.updateModel(registrationNumber, model);
     }

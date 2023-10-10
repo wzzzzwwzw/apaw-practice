@@ -25,4 +25,10 @@ public class InvoicePersistenceMongodb implements InvoicePersistence {
                 .filter(invoiceEntity -> invoiceEntity.getPaid().equals(paid))
                 .forEach(invoiceEntity -> this.invoiceRepository.delete(invoiceEntity));
     }
+
+    @Override
+    public Stream<Invoice> findAll() {
+        return this.invoiceRepository.findAll().stream()
+                .map(InvoiceEntity::toInvoice);
+    }
 }

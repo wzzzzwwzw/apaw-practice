@@ -19,4 +19,8 @@ public class InvoiceService {
     public void deleteByPaid(Boolean paid) {
         this.invoicePersistence.deleteByPaid(paid);
     }
+
+    public Stream<Invoice> readAll(){
+        return this.invoicePersistence.findAll();
+    }
 }

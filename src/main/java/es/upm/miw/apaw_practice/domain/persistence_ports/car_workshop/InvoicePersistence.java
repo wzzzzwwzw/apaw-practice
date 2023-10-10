@@ -6,4 +6,6 @@ import java.util.stream.Stream;
 
 public interface InvoicePersistence {
     void deleteByPaid(Boolean paid);
+
+    Stream<Invoice> findAll();
 }

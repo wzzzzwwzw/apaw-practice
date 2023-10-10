@@ -15,7 +15,13 @@ public class RaceService {
         this.racePersistence = racePersistence;
     }
 
-    public Race findByCircuitName(String circuitName) {
-        return this.racePersistence.findByCircuitName(circuitName);
+    public Race read(String circuitName) {
+        return this.racePersistence.readByCircuitName(circuitName);
+    }
+
+    public Race updateLaps(String circuitName, Integer laps) {
+        Race race = this.racePersistence.readByCircuitName(circuitName);
+        race.setLaps(laps);
+        return this.racePersistence.update(race);
     }
 }

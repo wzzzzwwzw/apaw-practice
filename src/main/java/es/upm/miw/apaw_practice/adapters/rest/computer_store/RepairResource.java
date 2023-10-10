@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping()
+@RequestMapping(RepairResource.REPAIRS)
 public class RepairResource {
     static final String REPAIRS = "/computer-store/repairs";
     static final String REPAIR_NUMBER_ID = "/{repairNumber}";

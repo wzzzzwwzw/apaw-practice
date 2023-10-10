@@ -21,10 +21,10 @@ public class RepairPersistenceMongodb implements RepairPersistence {
 
     @Override
     public Repair updateEndTimeByRepairNumber(String repairNumber) {
-        RepairEntity repair = this.repairRepository
+        RepairEntity repairEntity = this.repairRepository
                 .findByRepairNumber(repairNumber)
                 .orElseThrow(() -> new NotFoundException("Repair Number: " + repairNumber));
-        repair.setEndTime(LocalDateTime.now());
-        return this.repairRepository.save(repair).toRepair();
+        repairEntity.setEndTime(LocalDateTime.now());
+        return this.repairRepository.save(repairEntity).toRepair();
     }
 }

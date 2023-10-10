@@ -1,14 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.car_workshop.entities;
 
-import java.math.BigDecimal;
-import java.util.UUID;
-
+import es.upm.miw.apaw_practice.domain.models.car_workshop.CarComponent;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import es.upm.miw.apaw_practice.domain.models.car_workshop.CarComponent;
+import java.math.BigDecimal;
+import java.util.UUID;
 
 @Document
 public class CarComponentEntity {
@@ -86,11 +85,8 @@ public class CarComponentEntity {
             return false;
         CarComponentEntity other = (CarComponentEntity) obj;
         if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
+            return other.id == null;
+        } else return id.equals(other.id);
     }
 
     @Override

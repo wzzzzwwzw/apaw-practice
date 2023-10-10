@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.conference.persistence;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.conference.daos.ConferenceRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.conference.daos.PaperRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.conference.entities.PaperEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
@@ -12,9 +13,12 @@ import org.springframework.stereotype.Repository;
 public class PaperPersistenceMongodb implements PaperPersistence {
     private final PaperRepository paperRepository;
 
+    private  final ConferenceRepository conferenceRepository;
+
     @Autowired
-    public PaperPersistenceMongodb(PaperRepository paperRepository) {
+    public PaperPersistenceMongodb(PaperRepository paperRepository, ConferenceRepository conferenceRepository) {
         this.paperRepository = paperRepository;
+        this.conferenceRepository = conferenceRepository;
     }
 
     @Override
@@ -31,5 +35,14 @@ public class PaperPersistenceMongodb implements PaperPersistence {
                 .orElseThrow(() -> new NotFoundException("Paper digitalObjectIdentifier:" + paper.getDigitalObjectIdentifier()));
         paperEntity.setTitle(paper.getTitle());
         return this.paperRepository.save(paperEntity).toPaper();
+    }
+
+    @Override
+    public Integer findTotalLengthByConferenceLocationHall(String hall) {
+        return this.conferenceRepository.findAll().stream()
+                .filter(conferenceEntity -> hall.equals(conferenceEntity.getLocationEntity().getHall()))
+                .flatMap(conferenceEntity -> conferenceEntity.getPapersEntities().stream())
+                .map(PaperEntity::getLength)
+                .reduce(Integer::sum).orElse(0);
     }
 }

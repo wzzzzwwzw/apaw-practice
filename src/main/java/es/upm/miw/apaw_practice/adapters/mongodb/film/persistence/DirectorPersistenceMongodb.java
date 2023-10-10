@@ -39,4 +39,13 @@ public class DirectorPersistenceMongodb implements DirectorPersistence {
                 .orElseThrow(() -> new NotFoundException("Director dni: " + dni))
                 .toDirector();
     }
+
+    @Override
+    public Director updateSurname(String dni, String surname) {
+        DirectorEntity directorEntity = this.directorRepository
+                .findByDni(dni)
+                .orElseThrow(() -> new NotFoundException("Director dni: " + dni));
+        directorEntity.setSurname(surname);
+        return this.directorRepository.save(directorEntity).toDirector();
+    }
 }

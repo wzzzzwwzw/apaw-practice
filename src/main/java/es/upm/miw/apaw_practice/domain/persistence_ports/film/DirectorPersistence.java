@@ -11,4 +11,6 @@ public interface DirectorPersistence {
     boolean existsDirectorDni(String dni);
 
     Director read(String dni);
+
+    Director updateSurname(String dni, String surname);
 }

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.Optional;
 
 @TestConfig
@@ -30,5 +31,16 @@ class ConferenceLocationServiceIT {
         Assertions.assertTrue(this.conferenceLocationPersistence.readAll()
                 .anyMatch(conferenceLocation1 -> conferenceLocation.get().getId().equals(conferenceLocation1.getId())
                 && newHallName.equals(conferenceLocation1.getHall())));
+    }
+
+    @Test
+    void testFindCitiesByAuthorHonorific() {
+        String honorific = "Dr.";
+        List<String> cities = conferenceLocationService.findCitiesByAuthorHonorific(honorific).toList();
+
+        Assertions.assertEquals(2, cities.size());
+        Assertions.assertEquals("Toulouse", cities.get(0));
+        Assertions.assertEquals("San Antonio", cities.get(1));
+
     }
 }

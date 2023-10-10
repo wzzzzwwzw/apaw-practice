@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.conference.ConferenceLo
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Stream;
+
 @Service
 public class ConferenceLocationService {
 
@@ -19,5 +21,9 @@ public class ConferenceLocationService {
         ConferenceLocation conferenceLocation = conferenceLocationPersistence.read(id);
         conferenceLocation.setHall(hall);
         return conferenceLocationPersistence.update(id, conferenceLocation);
+    }
+
+    public Stream<String> findCitiesByAuthorHonorific(String honorific) {
+        return null;
     }
 }

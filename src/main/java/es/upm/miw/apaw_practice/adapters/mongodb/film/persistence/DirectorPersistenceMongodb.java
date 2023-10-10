@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.film.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.film.daos.DirectorRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.film.entities.DirectorEntity;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.film.Director;
 import es.upm.miw.apaw_practice.domain.persistence_ports.film.DirectorPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,13 @@ public class DirectorPersistenceMongodb implements DirectorPersistence {
         return this.directorRepository
                 .findByDni(dni)
                 .isPresent();
+    }
+
+    @Override
+    public Director read(String dni) {
+        return this.directorRepository
+                .findByDni(dni)
+                .orElseThrow(() -> new NotFoundException("Director dni: " + dni))
+                .toDirector();
     }
 }

@@ -9,4 +9,6 @@ public interface DirectorPersistence {
     Director create(Director director);
 
     boolean existsDirectorDni(String dni);
+
+    Director read(String dni);
 }

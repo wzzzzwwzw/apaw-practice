@@ -12,4 +12,6 @@ public interface FilmPersistence {
 
     Film update(Film film);
 
+    Stream<Film> readAll();
+
 }

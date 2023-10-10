@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import es.upm.miw.apaw_practice.domain.models.car_workshop.CarComponent;
@@ -14,6 +15,8 @@ public class CarComponentEntity {
 
     @Id
     private String id;
+
+    @Indexed(unique = true)
     private String name;
     private BigDecimal price;
     private Integer stock;

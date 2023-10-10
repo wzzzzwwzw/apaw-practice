@@ -21,7 +21,7 @@ public class CarToRepairResource {
 
     @PutMapping(REGISTRATION_NUMBER + MODEL)
     public CarToRepair putModel(@PathVariable String registrationNumber, @RequestBody String model) {
-        return this.carToRepairService.putModel(registrationNumber, model);
+        return this.carToRepairService.updateModel(registrationNumber, model);
     }
 
 }

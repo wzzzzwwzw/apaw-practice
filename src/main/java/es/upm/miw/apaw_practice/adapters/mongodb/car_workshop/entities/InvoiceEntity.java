@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -37,6 +38,11 @@ public class InvoiceEntity {
         this.paid = paid;
         this.carToRepairEntity = carToRepairEntity;
         this.carComponentEntities = carComponentEntities;
+    }
+
+    public InvoiceEntity(Invoice invoice) {
+        BeanUtils.copyProperties(invoice, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {

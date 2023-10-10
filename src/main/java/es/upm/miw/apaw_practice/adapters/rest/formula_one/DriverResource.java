@@ -20,7 +20,7 @@ public class DriverResource {
     }
 
     @PatchMapping(NUMBER_ID)
-    public Driver updatePoints(@PathVariable Integer number, @RequestBody Integer points) {
+    public Driver updatePoints(@PathVariable Integer number, @RequestBody Float points) {
         return this.driverService.updatePoints(number, points);
     }
 }

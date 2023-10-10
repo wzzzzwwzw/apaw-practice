@@ -24,4 +24,9 @@ public class OrderPersistenceMongodb implements OrderPersistence {
                 .orElseThrow(() -> new NotFoundException("Order number: " + number))
                 .toOrder();
     }
+
+    @Override
+    public Order update(Integer number, Order order) {
+        return null;
+    }
 }

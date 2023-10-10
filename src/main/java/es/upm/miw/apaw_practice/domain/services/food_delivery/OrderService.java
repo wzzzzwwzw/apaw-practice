@@ -23,7 +23,12 @@ public class OrderService {
     }
 
     public void updatePrices(Stream<OrderPriceUpdating> orderPriceUpdatingStream) {
-        //
+        orderPriceUpdatingStream.map(orderNewPrice -> {
+                    Order order = this.orderPersistence.read(orderNewPrice.getNumber());
+                    order.setPrice(orderNewPrice.getPrice());
+                    return order;
+                })
+                .forEach(order -> this.orderPersistence.update(order.getNumber(),order));
     }
 
 }

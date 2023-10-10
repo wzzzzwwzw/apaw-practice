@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(MonitorResource.MONITORS)
 public class MonitorResource {
-    static final String MONITORS = "/computer_store/monitors";
+    static final String MONITORS = "/computer-store/monitors";
     static final String SERIALNUMBER_ID = "/{serialNumber}";
     static final String REFRESH_RATE = "/refresh-rate";
     private final MonitorService monitorService;

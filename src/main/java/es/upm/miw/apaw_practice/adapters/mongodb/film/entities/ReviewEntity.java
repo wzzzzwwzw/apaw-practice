@@ -39,6 +39,12 @@ public class ReviewEntity {
         this.recommendation = recommendation;
     }
 
+    public Review toReview() {
+        Review review = new Review();
+        BeanUtils.copyProperties(this, review);
+        return review;
+    }
+
     @Override
     public String toString() {
         return "ReviewEntity{" +

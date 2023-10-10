@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class EngineManufacturerPersistenceMongodbIT {
 
     @Autowired
-    EngineManufacturerPersistenceMongodb engineManufacturerPersistenceMongodb;
+    private EngineManufacturerPersistenceMongodb engineManufacturerPersistenceMongodb;
 
     @Test
     void testCreate() {
@@ -24,7 +24,7 @@ public class EngineManufacturerPersistenceMongodbIT {
 
     @Test
     void testExistEngineManufacturer() {
-        assertTrue(this.engineManufacturerPersistenceMongodb.existEngineManufacturer("Mercedes"));
-        assertFalse(this.engineManufacturerPersistenceMongodb.existEngineManufacturer("Ferrari"));
+        assertTrue(this.engineManufacturerPersistenceMongodb.existEngineManufacturer("Honda"));
+        assertFalse(this.engineManufacturerPersistenceMongodb.existEngineManufacturer("Audi"));
     }
 }

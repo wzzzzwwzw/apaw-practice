@@ -17,7 +17,7 @@ public class EngineManufacturerResourceIT {
 
     @Test
     void testCreate() {
-        EngineManufacturer engineManufacturer = new EngineManufacturer("Renault", "France", 6);
+        EngineManufacturer engineManufacturer = new EngineManufacturer("Renault", "France", 0);
         this.webTestClient
                 .post()
                 .uri(EngineManufacturerResource.ENGINE_MANUFACTURERS)
@@ -30,7 +30,7 @@ public class EngineManufacturerResourceIT {
 
     @Test
     void testCreateConflict() {
-        EngineManufacturer engineManufacturer = new EngineManufacturer("Mercedes", "United Kingdom", 12);
+        EngineManufacturer engineManufacturer = new EngineManufacturer("Honda", "Japan", 6);
         this.webTestClient
                 .post()
                 .uri(EngineManufacturerResource.ENGINE_MANUFACTURERS)

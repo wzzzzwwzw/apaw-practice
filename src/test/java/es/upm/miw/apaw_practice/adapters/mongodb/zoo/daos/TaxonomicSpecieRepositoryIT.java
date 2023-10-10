@@ -13,7 +13,7 @@ public class TaxonomicSpecieRepositoryIT {
     private TaxonomicSpecieRepository taxonomicSpecieRepository;
 
     @Test
-    void testFindByBarcode() {
+    void testFindBySpeciesName() {
         assertTrue(this.taxonomicSpecieRepository.findBySpeciesName("familiaris").isPresent());
         TaxonomicSpecieEntity taxonomicSpecie = this.taxonomicSpecieRepository.findBySpeciesName("familiaris").get();
         assertEquals("familiaris", taxonomicSpecie.getSpeciesName());
@@ -21,4 +21,6 @@ public class TaxonomicSpecieRepositoryIT {
         assertFalse(taxonomicSpecie.getInDangerOfExtinction());
         assertEquals("human houses", taxonomicSpecie.getHabitat());
     }
+
+
 }

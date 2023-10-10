@@ -27,8 +27,12 @@ public class AnimalServiceIT {
         assertNotNull(animalChangeAge);
         assertEquals(identificationChip, animalChangeAge.getIdentificationChip());
         assertEquals(age, animalChangeAge.getAge());
+    }
 
-
+    @Test
+    void testFindByHabitat() {
+        assertEquals("080CAT", animalService.findByHabitat("human houses"));
+        assertEquals("065LYNX", animalService.findByHabitat("boreal forest of Canada"));
     }
 
 }

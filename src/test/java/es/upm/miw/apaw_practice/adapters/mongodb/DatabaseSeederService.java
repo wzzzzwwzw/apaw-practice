@@ -18,6 +18,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.subway.SubwaySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.zoo.ZooSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.FoodDeliverySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame_company.VideogameCompanySeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.school.SchoolSeederService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,11 +40,11 @@ public class DatabaseSeederService {
     private final FilmSeederService filmSeederService;
     private final InfluencerAgencySeederService influencerAgencySeederService;
     private final SubwaySeederService subwaySeederService;
+    private final SchoolSeederService schoolSeederService;
     private final ClimbingSeederService climbingSeederService;
 
     private final MusicSeederService musicSeederService;
     private final PadelAcademySeederService padelAcademySeederService;
-
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, ZooSeederService zooSeederService,
@@ -55,7 +56,8 @@ public class DatabaseSeederService {
                                  MuseumSeederService museumSeederService,
                                  FootballCompetitionSeederService footballCompetitionSeederService,
                                  FilmSeederService filmSeederService, InfluencerAgencySeederService influencerAgencySeederService,
-                                 SubwaySeederService subwaySeederService, ClimbingSeederService climbingSeederService,
+                                 SubwaySeederService subwaySeederService, SchoolSeederService schoolSeederService,
+                                 ClimbingSeederService climbingSeederService,
                                  MusicSeederService musicSeederService,
                                  PadelAcademySeederService padelAcademySeederService) {
         this.shopSeederService = shopSeederService;
@@ -73,6 +75,7 @@ public class DatabaseSeederService {
         this.filmSeederService = filmSeederService;
         this.influencerAgencySeederService = influencerAgencySeederService;
         this.subwaySeederService = subwaySeederService;
+        this.schoolSeederService = schoolSeederService;
         this.climbingSeederService = climbingSeederService;
         this.musicSeederService = musicSeederService;
         this.padelAcademySeederService = padelAcademySeederService;
@@ -95,6 +98,7 @@ public class DatabaseSeederService {
         this.filmSeederService.seedDatabase();
         this.influencerAgencySeederService.seedDatabase();
         this.subwaySeederService.seedDatabase();
+        this.schoolSeederService.seedDatabase();
         this.climbingSeederService.seedDatabase();
         this.musicSeederService.seedDatabase();
         this.padelAcademySeederService.seedDatabase();
@@ -116,6 +120,7 @@ public class DatabaseSeederService {
         this.filmSeederService.deleteAll();
         this.influencerAgencySeederService.deleteAll();
         this.subwaySeederService.deleteAll();
+        this.schoolSeederService.deleteAll();
         this.climbingSeederService.deleteAll();
         this.musicSeederService.deleteAll();
         this.padelAcademySeederService.deleteAll();

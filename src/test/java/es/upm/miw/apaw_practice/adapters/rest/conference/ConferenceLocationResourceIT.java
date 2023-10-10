@@ -40,4 +40,16 @@ class ConferenceLocationResourceIT {
                 .value(cities -> Assertions.assertTrue(cities.get(0).contains("Toulouse")))
                 .value(cities -> Assertions.assertTrue(cities.get(0).contains("San Antonio")));
     }
+
+    @Test
+    void testSearchFindCitiesByAuthorHonorificBadRequest() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(ConferenceLocationResource.CONFERENCE_LOCATIONS + ConferenceLocationResource.SEARCH)
+                                .queryParam("q", "honor:Dr.")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
 }

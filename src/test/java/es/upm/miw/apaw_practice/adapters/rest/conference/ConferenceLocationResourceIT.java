@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 @RestTestConfig
 class ConferenceLocationResourceIT {
     @Autowired
@@ -36,7 +33,7 @@ class ConferenceLocationResourceIT {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBodyList(String.class)
-                .value(cities -> assertFalse(cities.isEmpty()))
+                .value(cities -> Assertions.assertFalse(cities.isEmpty()))
                 .value(cities -> Assertions.assertTrue(cities.get(0).contains("Toulouse")))
                 .value(cities -> Assertions.assertTrue(cities.get(0).contains("San Antonio")));
     }

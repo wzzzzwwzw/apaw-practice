@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderPersistence {
     Order read(Integer number);
+
+    Order update(Integer number, Order order);
 }

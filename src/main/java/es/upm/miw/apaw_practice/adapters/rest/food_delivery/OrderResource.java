@@ -2,12 +2,12 @@ package es.upm.miw.apaw_practice.adapters.rest.food_delivery;
 
 
 import es.upm.miw.apaw_practice.domain.models.food_delivery.Order;
+import es.upm.miw.apaw_practice.domain.models.food_delivery.OrderPriceUpdating;
 import es.upm.miw.apaw_practice.domain.services.food_delivery.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(OrderResource.ORDERS)
@@ -27,4 +27,10 @@ public class OrderResource {
     public Order read(@PathVariable Integer number){
         return this.orderService.read(number);
     }
+
+    @PatchMapping
+    public void updatePrices(@RequestBody List<OrderPriceUpdating> orderPriceUpdatingList){
+        this.orderService.updatePrices(orderPriceUpdatingList.stream());
+    }
+
 }

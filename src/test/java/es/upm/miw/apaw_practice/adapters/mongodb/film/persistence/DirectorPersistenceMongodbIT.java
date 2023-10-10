@@ -42,4 +42,12 @@ class DirectorPersistenceMongodbIT {
         assertEquals("Garcia", directorBD.getSurname());
         assertEquals(LocalDate.of(1999, 5, 29), directorBD.getDateOfBirth());
     }
+
+    @Test
+    void testUpdateSurname() {
+        Director director = this.directorPersistenceMongodb.updateSurname("05645800X", "Martinez");
+        assertNotNull(director);
+        assertEquals("05645800X", director.getDni());
+        assertEquals("Martinez", director.getSurname());
+    }
 }

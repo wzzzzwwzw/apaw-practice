@@ -35,4 +35,11 @@ public class TeamRepositoryIT {
         assertEquals(12, team.getEngineManufacturerEntity().getNumberOfEnginesSupplied());
         assertEquals("Black", team.getMainColor());
     }
+
+    @Test
+    void testDeleteByTeamName() {
+        assertTrue(this.teamRepository.findByTeamName("Williams").isPresent());
+        this.teamRepository.deleteByTeamName("Williams");
+        assertTrue(this.teamRepository.findByTeamName("Williams").isEmpty());
+    }
 }

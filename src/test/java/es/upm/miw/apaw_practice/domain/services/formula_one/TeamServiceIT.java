@@ -12,6 +12,6 @@ public class TeamServiceIT {
 
     @Test
     void testDelete() {
-        this.teamService.delete("Alpine");
+        this.teamService.delete("Aston Martin");
     }
 }

@@ -21,7 +21,7 @@ public class RacePersistenceMongodb implements RacePersistence {
     @Override
     public Race readByCircuitName(String circuitName) {
         return this.raceRepository.findByCircuitName(circuitName)
-                .orElseThrow(() -> new NotFoundException("Circuit name: " + circuitName))
+                .orElseThrow(() -> new NotFoundException("Reading race: " + circuitName))
                 .toRace();
 
     }
@@ -30,7 +30,7 @@ public class RacePersistenceMongodb implements RacePersistence {
     public Race update(Race race) {
         RaceEntity raceEntity = this.raceRepository
                 .findByCircuitName(race.getCircuitName())
-                .orElseThrow(() -> new NotFoundException("Circuit name: " + race.getCircuitName()));
+                .orElseThrow(() -> new NotFoundException("Updating race: " + race.getCircuitName()));
         raceEntity.setLaps(race.getLaps());
         return this.raceRepository.save(raceEntity).toRace();
     }

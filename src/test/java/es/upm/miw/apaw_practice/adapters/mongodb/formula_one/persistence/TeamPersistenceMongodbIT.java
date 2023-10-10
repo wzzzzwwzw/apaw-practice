@@ -12,6 +12,6 @@ public class TeamPersistenceMongodbIT {
 
     @Test
     void testDelete() {
-        this.teamPersistenceMongodb.delete("Aston Martin");
+        this.teamPersistenceMongodb.delete("McLaren");
     }
 }

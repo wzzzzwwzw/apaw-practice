@@ -24,6 +24,6 @@ public class ConferenceLocationService {
     }
 
     public Stream<String> findCitiesByAuthorHonorific(String honorific) {
-        return null;
+        return this.conferenceLocationPersistence.findCitiesByAuthorHonorific(honorific);
     }
 }

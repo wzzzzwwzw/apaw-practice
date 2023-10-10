@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface WirePersistence {
     Wire read(String name);
+
+    boolean existsWireName(String name);
+
+    Wire create(Wire wire);
 }

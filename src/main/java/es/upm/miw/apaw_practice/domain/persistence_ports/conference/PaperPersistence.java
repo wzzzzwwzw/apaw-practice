@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PaperPersistence {
     Paper readByDigitalObjectIdentifier(String digitalObjectIdentifier);
+
+    Paper update(Paper paper);
+
+    Integer findTotalLengthByConferenceLocationHall(String hall);
 }

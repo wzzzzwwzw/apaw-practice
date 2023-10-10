@@ -54,11 +54,16 @@ public class FootballCompetitionSeederService {
         };
         this.footballGameRepository.saveAll(Arrays.asList(footballGames));
 
-        FootballCompetitionEntity footballCompetition = new FootballCompetitionEntity(new BigDecimal("1000000.00"), "RFEF");
-        footballCompetition.addSponsor("BBVA");
-        footballCompetition.addSponsor("Nike");
-        footballCompetition.setTeams(List.of(footballTeams));
-        this.footballCompetitionRepository.save(footballCompetition);
+        FootballCompetitionEntity[] footballCompetitions = {
+                new FootballCompetitionEntity(new BigDecimal("1000000.00"), "RFEF"),
+                new FootballCompetitionEntity(new BigDecimal("300000.00"), "FFF"),
+                new FootballCompetitionEntity(new BigDecimal("120000.00"), "DBF"),
+                new FootballCompetitionEntity(new BigDecimal("140000.00"), "PFF"),
+        };
+        footballCompetitions[0].addSponsor("BBVA");
+        footballCompetitions[0].addSponsor("Nike");
+        footballCompetitions[0].setTeams(List.of(footballTeams));
+        this.footballCompetitionRepository.saveAll(List.of(footballCompetitions));
     }
     public void deleteAll() {
         this.footballTeamRepository.deleteAll();

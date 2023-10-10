@@ -18,4 +18,7 @@ public class RaceService {
     public Race findByCircuitName(String circuitName) {
         return this.racePersistence.findByCircuitName(circuitName);
     }
+
+    public Race updateLaps(String circuitName, Integer laps) {
+    }
 }

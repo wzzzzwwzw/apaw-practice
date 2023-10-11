@@ -8,6 +8,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.conference.ConferenceSeederServ
 import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.FootballCompetitionSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.film.FilmSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.FormulaOneSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.furniture_store.FurnitureStoreSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.InfluencerAgencySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.museum.MuseumSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.music.MusicSeederService;
@@ -40,9 +41,9 @@ public class DatabaseSeederService {
     private final InfluencerAgencySeederService influencerAgencySeederService;
     private final SubwaySeederService subwaySeederService;
     private final ClimbingSeederService climbingSeederService;
-
     private final MusicSeederService musicSeederService;
     private final PadelAcademySeederService padelAcademySeederService;
+    private final FurnitureStoreSeederService furnitureStoreSeederService;
 
 
     @Autowired
@@ -57,7 +58,8 @@ public class DatabaseSeederService {
                                  FilmSeederService filmSeederService, InfluencerAgencySeederService influencerAgencySeederService,
                                  SubwaySeederService subwaySeederService, ClimbingSeederService climbingSeederService,
                                  MusicSeederService musicSeederService,
-                                 PadelAcademySeederService padelAcademySeederService) {
+                                 PadelAcademySeederService padelAcademySeederService,
+                                 FurnitureStoreSeederService furnitureStoreSeederService) {
         this.shopSeederService = shopSeederService;
         this.zooSeederService = zooSeederService;
         this.computerStoreSeederService = computerStoreSeederService;
@@ -76,6 +78,7 @@ public class DatabaseSeederService {
         this.climbingSeederService = climbingSeederService;
         this.musicSeederService = musicSeederService;
         this.padelAcademySeederService = padelAcademySeederService;
+        this.furnitureStoreSeederService = furnitureStoreSeederService;
         this.seedDatabase();
     }
 
@@ -98,6 +101,7 @@ public class DatabaseSeederService {
         this.climbingSeederService.seedDatabase();
         this.musicSeederService.seedDatabase();
         this.padelAcademySeederService.seedDatabase();
+        this.furnitureStoreSeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -119,6 +123,7 @@ public class DatabaseSeederService {
         this.climbingSeederService.deleteAll();
         this.musicSeederService.deleteAll();
         this.padelAcademySeederService.deleteAll();
+        this.furnitureStoreSeederService.deleteAll();
     }
 
     public void reSeedDatabase() {

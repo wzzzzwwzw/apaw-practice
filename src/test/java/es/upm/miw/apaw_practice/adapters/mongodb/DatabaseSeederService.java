@@ -9,7 +9,6 @@ import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.FootballCo
 import es.upm.miw.apaw_practice.adapters.mongodb.film.FilmSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.FormulaOneSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.furniture_store.FurnitureStoreSeederService;
-import es.upm.miw.apaw_practice.adapters.mongodb.hotel.HotelSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.InfluencerAgencySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.museum.MuseumSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.music.MusicSeederService;

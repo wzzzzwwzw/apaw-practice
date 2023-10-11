@@ -16,7 +16,7 @@ public class OBDFaultResource {
 
     static final String ISNOTITVSAFE = "/cannot-pass-itv";
 
-    static final String CODE = "/code";
+    static final String CODE = "/{code}";
 
     private final OBDFaultService obdFaultService;
 

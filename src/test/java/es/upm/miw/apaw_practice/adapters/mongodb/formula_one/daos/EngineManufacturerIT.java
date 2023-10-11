@@ -23,4 +23,9 @@ public class EngineManufacturerIT {
         assertEquals("Japan", engineManufacturer.getEngineBuiltIn());
         assertEquals(6, engineManufacturer.getNumberOfEnginesSupplied());
     }
+
+    @Test
+    void testFindByManufacturerNameNotFound() {
+        assertTrue(this.engineManufacturerRepository.findByManufacturerName("Toyota").isEmpty());
+    }
 }

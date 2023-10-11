@@ -12,11 +12,19 @@ public class TaxonomicSpecie {
         //empty for framework
     }
 
+    public TaxonomicSpecie(String speciesName) {
+        this.speciesName = speciesName;
+    }
+
     public TaxonomicSpecie(String genusName, String speciesName, Boolean inDangerOfExtinction, String habitat) {
         this.genusName = genusName;
         this.speciesName = speciesName;
         this.inDangerOfExtinction = inDangerOfExtinction;
         this.habitat = habitat;
+    }
+
+    public static Builder builder(String speciesName) {
+        return new Builder();
     }
 
     public String getGenusName() {
@@ -59,5 +67,42 @@ public class TaxonomicSpecie {
                 ", inDangerOfExtinction=" + inDangerOfExtinction +
                 ", habitat='" + habitat + '\'' +
                 '}';
+    }
+
+    public static class Builder implements TaxonomicSpecieBuilder.SpeciesName, TaxonomicSpecieBuilder.GenusName, TaxonomicSpecieBuilder.InDangerOfExtinction, TaxonomicSpecieBuilder.Habitat, TaxonomicSpecieBuilder.Build {
+        private final TaxonomicSpecie taxonomicSpecie;
+
+        public Builder() {
+            this.taxonomicSpecie = new TaxonomicSpecie();
+        }
+
+        @Override
+        public TaxonomicSpecieBuilder.SpeciesName genusName(String genusName) {
+            this.taxonomicSpecie.setGenusName(genusName);
+            return this;
+        }
+
+        @Override
+        public TaxonomicSpecieBuilder.InDangerOfExtinction speciesName(String speciesName) {
+            this.taxonomicSpecie.setSpeciesName(speciesName);
+            return this;
+        }
+
+        @Override
+        public TaxonomicSpecieBuilder.Habitat inDangerOfExtinction(Boolean inDangerOfExtinction) {
+            this.taxonomicSpecie.setInDangerOfExtinction(inDangerOfExtinction);
+            return this;
+        }
+
+        @Override
+        public TaxonomicSpecieBuilder.Build habitat(String habitat) {
+            this.taxonomicSpecie.setHabitat(habitat);
+            return this;
+        }
+
+        @Override
+        public TaxonomicSpecie build() {
+            return this.taxonomicSpecie;
+        }
     }
 }

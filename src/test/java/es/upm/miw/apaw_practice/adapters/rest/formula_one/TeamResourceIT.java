@@ -15,7 +15,7 @@ public class TeamResourceIT {
     void testDelete() {
         this.webTestClient
                 .delete()
-                .uri(TeamResource.TEAMS + TeamResource.TEAM_NAME_ID, "Alpine")
+                .uri(TeamResource.TEAMS + TeamResource.TEAM_NAME_ID, "Red Bull")
                 .exchange()
                 .expectStatus().isOk();
     }

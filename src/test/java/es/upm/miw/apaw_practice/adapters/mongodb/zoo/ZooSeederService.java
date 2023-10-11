@@ -62,7 +62,7 @@ public class ZooSeederService {
                 new AnimalEntity("009WOLF", "WILD", 4, taxonomicSpecies[1], Arrays.asList(vaccines[0], vaccines[1], vaccines[2])),
                 new AnimalEntity("001CAT", "BOLA", 6, taxonomicSpecies[2], Arrays.asList(vaccines[6], vaccines[7])),
                 new AnimalEntity("020CAT", "SOMBRA", 5, taxonomicSpecies[3], Arrays.asList(vaccines[3], vaccines[6])),
-                new AnimalEntity("080CAT", "SNOWBALL V", 6, taxonomicSpecies[3], Arrays.asList(vaccines[4], vaccines[7], vaccines[3])),
+                new AnimalEntity("080CAT", "SNOWBALL V", 80, taxonomicSpecies[3], Arrays.asList(vaccines[4], vaccines[7], vaccines[3])),
                 new AnimalEntity("074LYNX", "SNOWBALL V", 30, taxonomicSpecies[4], Arrays.asList(vaccines[3], vaccines[7])),
                 new AnimalEntity("050LYNX", "SNOWBALL IV", 5, taxonomicSpecies[4], Arrays.asList(vaccines[7], vaccines[5])),
                 new AnimalEntity("065LYNX", "SNOWBALL III", 38, taxonomicSpecies[5], Arrays.asList(vaccines[7], vaccines[4])),

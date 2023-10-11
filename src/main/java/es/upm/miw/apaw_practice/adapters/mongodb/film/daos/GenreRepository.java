@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface GenreRepository extends MongoRepository<GenreEntity, String> {
     Optional<GenreEntity> findByName(String name);
+
+    int deleteByName(String name);
 }

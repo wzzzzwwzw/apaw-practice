@@ -8,7 +8,10 @@ import java.util.stream.Stream;
 @Repository
 public interface FilmPersistence {
 
-    Film readById(String id);
+    Stream<Film> readByTitle(String title);
+
+    Film update(Film film);
 
     Stream<Film> readAll();
+
 }

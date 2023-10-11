@@ -35,7 +35,7 @@ public class Classroom {
         this.entryHour = entryHour;
     }
 
-    public Boolean hasSmartBoard() {
+    public Boolean getSmartBoard() {
         return smartBoard;
     }
 

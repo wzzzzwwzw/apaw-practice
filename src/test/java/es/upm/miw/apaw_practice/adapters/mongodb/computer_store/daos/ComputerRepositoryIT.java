@@ -1,20 +1,29 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.computer_store.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.ComputerStoreSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.entities.ComputerEntity;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 class ComputerRepositoryIT {
     private static final String CUSTOMIZED_COMPUTER_NAME = "Customized PC Bate Ye";
     @Autowired
     private ComputerRepository computerRepository;
+    @Autowired
+    private ComputerStoreSeederService computerStoreSeederService;
+
+    @AfterEach
+    void cleanUpDB() {
+        this.computerStoreSeederService.deleteAll();
+        this.computerStoreSeederService.seedDatabase();
+    }
 
     @Test
     void testComputerFindByName() {
@@ -30,5 +39,11 @@ class ComputerRepositoryIT {
                                         monitor.getSize().equals(new BigDecimal("34"))
                         )
         );
+    }
+
+    @Test
+    void testComputerDeleteByName() {
+        this.computerRepository.deleteByName(CUSTOMIZED_COMPUTER_NAME);
+        assertFalse(this.computerRepository.findByName(CUSTOMIZED_COMPUTER_NAME).isPresent());
     }
 }

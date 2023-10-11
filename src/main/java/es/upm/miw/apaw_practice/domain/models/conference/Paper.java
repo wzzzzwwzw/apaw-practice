@@ -73,7 +73,7 @@ public class Paper implements TreePapers{
 
     @Override
     public void add(TreePapers treePapers) {
-        throw new UnsupportedOperationException("Unsupported operation in leaf");
+        throw new UnsupportedOperationException("Unsupported operation in paper leaf");
     }
 
     @Override

@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.airport.daos;
+package es.upm.miw.apaw_practice.adapters.mongodb.airport;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.daos.AircraftRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.daos.AirLineRepository;
@@ -8,14 +8,11 @@ import es.upm.miw.apaw_practice.adapters.mongodb.airport.entities.AircraftEntity
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.entities.AirLineEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.entities.FlightEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.entities.PassengerEntity;
-import es.upm.miw.apaw_practice.domain.models.airport.AirLine;
 import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
 import es.upm.miw.apaw_practice.domain.models.airport.Aircraft;
-import es.upm.miw.apaw_practice.domain.models.airport.Flight;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -53,22 +50,23 @@ public class AirportSeederService {
         this.airLineRepository.saveAll(Arrays.asList(airLines));
 
         PassengerEntity[] passengers = {
-                new PassengerEntity(new Passenger("Juan Pérez", 24,678098123)),
-                new PassengerEntity(new Passenger("Marina Gómez", 73,678659023)),
-                new PassengerEntity(new Passenger("Alavaro Torres", 47,638068183)),
-                new PassengerEntity(new Passenger("Alba Cuenca", 14,610123180)),
-                new PassengerEntity(new Passenger("Carmen Moreno", 20,6280942123)),
-                new PassengerEntity(new Passenger("Raul Martín", 53,618649053)),
-                new PassengerEntity(new Passenger("Mario Paz", 17,708068103)),
-                new PassengerEntity(new Passenger("Ana Navarro", 33,690131308)),
+                new PassengerEntity(new Passenger("Juan Pérez", 24,"678098123")),
+                new PassengerEntity(new Passenger("Marina Gómez", 73,"678659023")),
+                new PassengerEntity(new Passenger("Alavaro Torres", 47,"638068183")),
+                new PassengerEntity(new Passenger("Alba Cuenca", 14,"610123180")),
+                new PassengerEntity(new Passenger("Carmen Moreno", 20,"6280942123")),
+                new PassengerEntity(new Passenger("Raul Martín", 53,"618649053")),
+                new PassengerEntity(new Passenger("Mario Paz", 17,"708068103")),
+                new PassengerEntity(new Passenger("Ana Navarro", 33,"690131308")),
         };
         this.passengerRepository.saveAll(Arrays.asList(passengers));
 
 
         FlightEntity[] flights = {
-                new FlightEntity("Iberia", LocalDate.of(1927, 6, 28),Arrays.asList(aircrafts[0],aircrafts[3],aircrafts[4])),
-                new FlightEntity("Ryanair", LocalDate.of(1984, 11, 28),Arrays.asList(aircrafts[1],aircrafts[2])),
-                new FlightEntity("Air Europa", LocalDate.of(1986, 11, 21),Arrays.asList(aircrafts[6],aircrafts[5]))
+                new FlightEntity(12345, LocalDate.of(2023, 6, 28),Arrays.asList(passengers[0],passengers[1],passengers[2]),airLines[0]),
+                new FlightEntity(12345, LocalDate.of(2023, 7, 5),Arrays.asList(passengers[0],passengers[1],passengers[2]),airLines[0]),
+                new FlightEntity(54321, LocalDate.of(2022, 11, 28),Arrays.asList(passengers[3],passengers[4]),airLines[1]),
+                new FlightEntity(34524, LocalDate.of(2023, 11, 21),Arrays.asList(passengers[5],passengers[7],passengers[6]),airLines[2])
         };
         this.flightRepository.saveAll(Arrays.asList(flights));
 

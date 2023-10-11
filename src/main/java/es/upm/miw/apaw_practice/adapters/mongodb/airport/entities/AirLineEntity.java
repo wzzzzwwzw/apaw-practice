@@ -25,8 +25,10 @@ public class AirLineEntity {
         //empty for framework
     }
 
-    public AirLineEntity(AirLine airLine) {
-        BeanUtils.copyProperties(airLine, this);
+    public AirLineEntity(String name, LocalDate dayOfFoundation, List<AircraftEntity> aircrafts) {
+        this.name = name;
+        this.dayOfFoundation = dayOfFoundation;
+        this.aircrafts = aircrafts;
         this.id = UUID.randomUUID().toString();
     }
 

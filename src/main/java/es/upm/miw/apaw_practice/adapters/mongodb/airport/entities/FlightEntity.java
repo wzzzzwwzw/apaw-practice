@@ -1,9 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.airport.entities;
 
-import es.upm.miw.apaw_practice.domain.models.airport.AirLine;
-import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
-import es.upm.miw.apaw_practice.domain.models.airport.Flight;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,14 +15,17 @@ public class FlightEntity {
     @Indexed(unique = true)
     private Integer numberOfFlight;
     private LocalDate dateOfFlight;
-    private List<Passenger> passengers;
-    private AirLine airLine;
+    private List<PassengerEntity> passengers;
+    private AirLineEntity airLine;
 
     public FlightEntity() {
         //empty for framework
     }
-    public FlightEntity(Flight flight) {
-        BeanUtils.copyProperties(flight, this);
+    public FlightEntity(Integer numberOfFlight, LocalDate dateOfFlight, List<PassengerEntity> passengers, AirLineEntity airLine) {
+        this.numberOfFlight = numberOfFlight;
+        this.dateOfFlight = dateOfFlight;
+        this.passengers = passengers;
+        this.airLine = airLine;
         this.id = UUID.randomUUID().toString();
     }
 
@@ -54,19 +53,19 @@ public class FlightEntity {
         this.dateOfFlight = dateOfFlight;
     }
 
-    public List<Passenger> getPassengers() {
+    public List<PassengerEntity> getPassengers() {
         return passengers;
     }
 
-    public void setPassengers(List<Passenger> passengers) {
+    public void setPassengers(List<PassengerEntity> passengers) {
         this.passengers = passengers;
     }
 
-    public AirLine getAirLine() {
+    public AirLineEntity getAirLine() {
         return airLine;
     }
 
-    public void setAirLine(AirLine airLine) {
+    public void setAirLine(AirLineEntity airLine) {
         this.airLine = airLine;
     }
 

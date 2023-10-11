@@ -25,7 +25,7 @@ public class SchoolEntity {
     private LocalDate openingDate;
     private BigDecimal registrationPrice;
     @DBRef
-    private List<Student> students;
+    private List<StudentEntity> studentEntities;
 
     public SchoolEntity() {
         //empty from framework
@@ -34,6 +34,15 @@ public class SchoolEntity {
     public SchoolEntity(School school) {
         BeanUtils.copyProperties(school, this);
         this.id = UUID.randomUUID().toString();
+    }
+
+    public SchoolEntity(String name, String address, LocalDate openingDate, BigDecimal registrationPrice, List<StudentEntity> studentEntities) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.address = address;
+        this.openingDate = openingDate;
+        this.registrationPrice = registrationPrice;
+        this.studentEntities = studentEntities;
     }
 
     public String getId() {
@@ -76,12 +85,12 @@ public class SchoolEntity {
         this.registrationPrice = registrationPrice;
     }
 
-    public List<Student> getStudents() {
-        return students;
+    public List<StudentEntity> getStudents() {
+        return studentEntities;
     }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
+    public void setStudents(List<StudentEntity> students) {
+        this.studentEntities = students;
     }
 
     @Override
@@ -97,7 +106,7 @@ public class SchoolEntity {
                 ", address='" + address + '\'' +
                 ", openingDate=" + openingDate +
                 ", registrationPrice=" + registrationPrice +
-                ", students=" + students +
+                ", students=" + studentEntities +
                 '}';
     }
 }

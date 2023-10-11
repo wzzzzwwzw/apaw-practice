@@ -23,4 +23,8 @@ public class PaperService {
         paper.setTitle(title);
         return this.paperPersistence.update(paper);
     }
+
+    public Integer findTotalLengthByConferenceLocationHall(String hall) {
+        return this.paperPersistence.findTotalLengthByConferenceLocationHall(hall);
+    }
 }

@@ -70,6 +70,10 @@ public class DriverEntity {
         this.points = points;
     }
 
+    public void fromDriver(Driver driver) {
+        BeanUtils.copyProperties(driver, this);
+    }
+
     public Driver toDriver() {
         Driver driver = new Driver();
         BeanUtils.copyProperties(this, driver);

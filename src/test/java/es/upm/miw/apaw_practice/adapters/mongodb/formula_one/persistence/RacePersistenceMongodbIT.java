@@ -33,11 +33,11 @@ public class RacePersistenceMongodbIT {
     }
 
     @Test
-    void testFindByCircuitNameNotFound() {
+    void testReadByCircuitNameNotFound() {
         RuntimeException exception = assertThrows(NotFoundException.class, () -> {
             this.racePersistenceMongodb.readByCircuitName("Emilia Romagna");
         });
-        assertTrue(exception.getMessage().contains("Reading race: Emilia Romagna"));
+        assertTrue(exception.getMessage().contains("Race with circuit: Emilia Romagna"));
     }
 
     @Test
@@ -55,6 +55,6 @@ public class RacePersistenceMongodbIT {
         RuntimeException exception = assertThrows(NotFoundException.class, () -> {
             this.racePersistenceMongodb.update(race);
         });
-        assertTrue(exception.getMessage().contains("Updating race: Gilles Villeneuve"));
+        assertTrue(exception.getMessage().contains("Race with circuit: Gilles Villeneuve"));
     }
 }

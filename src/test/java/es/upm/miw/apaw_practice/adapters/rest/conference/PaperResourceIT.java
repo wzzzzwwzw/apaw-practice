@@ -64,4 +64,44 @@ class PaperResourceIT {
                 .exchange()
                 .expectStatus().isNotFound();
     }
+
+    @Test
+    void testFindTotalLengthByConferenceLocationHall() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(PaperResource.PAPERS + PaperResource.SEARCH)
+                                .queryParam("q", "hall:Main hall")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Integer.class)
+                .value(length -> Assertions.assertEquals(26, length));
+    }
+
+    @Test
+    void testFindTotalLengthByConferenceLocationHallNotExistingHall() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(PaperResource.PAPERS + PaperResource.SEARCH)
+                                .queryParam("q", "hall:Bad hall")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Integer.class)
+                .value(length -> Assertions.assertEquals(0, length));
+    }
+
+    @Test
+    void testFindTotalLengthByConferenceLocationHallBadRequest() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(PaperResource.PAPERS + PaperResource.SEARCH)
+                                .queryParam("q", "hal:Main hall")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
 }

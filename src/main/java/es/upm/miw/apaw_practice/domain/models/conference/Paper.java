@@ -3,7 +3,7 @@ package es.upm.miw.apaw_practice.domain.models.conference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Paper {
+public class Paper implements TreePapers{
     private String title;
     private String digitalObjectIdentifier;
     private Integer length;
@@ -64,5 +64,20 @@ public class Paper {
                 ", length=" + length +
                 ", authors=" + authors +
                 '}';
+    }
+
+    @Override
+    public Boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(TreePapers treePapers) {
+        throw new UnsupportedOperationException("Unsupported operation in leaf");
+    }
+
+    @Override
+    public void remove(TreePapers treePapers) {
+        // cannot remove in leaf
     }
 }

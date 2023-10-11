@@ -52,11 +52,11 @@ public class FurnitureStoreSeederService {
         FurnitureStoreEntity[] furnitureStoreEntities = {
                 new FurnitureStoreEntity("ikia", LocalDateTime.of(LocalDateTime.now().toLocalDate(), LocalTime.of(9, 0)),
                         LocalDateTime.of(LocalDateTime.now().toLocalDate(), LocalTime.of(20, 30)), managers[1],
-                        Arrays.asList(furnitures[0], furnitures[2], furnitures[3])),
+                        Arrays.asList(furnitures[0], furnitures[1], furnitures[3])),
 
                 new FurnitureStoreEntity("muebles vintage", LocalDateTime.of(LocalDateTime.now().toLocalDate(), LocalTime.of(10, 0)),
                         LocalDateTime.of(LocalDateTime.now().toLocalDate(), LocalTime.of(21, 0)), managers[0],
-                        Arrays.asList(furnitures[0], furnitures[1])),
+                        Arrays.asList(furnitures[0], furnitures[2])),
         };
         this.furnitureStoreRepository.saveAll(Arrays.asList(furnitureStoreEntities));
     }

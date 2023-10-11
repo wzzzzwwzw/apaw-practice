@@ -48,9 +48,9 @@ public class FoodDeliverySeederService {
                 new OrderEntity(1,new BigDecimal("25.0"), false, new BigDecimal("2.5"), "Credit Card", restaurants[0], transports[0]),
                 new OrderEntity(2, new BigDecimal("30.0"), true, new BigDecimal("3.0"), "PayPal", restaurants[0], transports[0]),
                 new OrderEntity(3, new BigDecimal("40.0"), false, new BigDecimal("4.5"),"Cash", restaurants[0], transports[1]),
-                new OrderEntity(4, new BigDecimal("22.0"), true, new BigDecimal("2.0"), "Credit Card", restaurants[3], transports[1]),
+                new OrderEntity(4, new BigDecimal("22.0"), true, new BigDecimal("2.0"), "Credit Card", restaurants[3], transports[2]),
                 new OrderEntity(5, new BigDecimal("35.0"), false, new BigDecimal("3.8"), "PayPal", restaurants[3], transports[2]),
-                new OrderEntity(6, new BigDecimal("45.0"), false, new BigDecimal("4.8"), "PayPal", restaurants[5], transports[2])
+                new OrderEntity(6, new BigDecimal("45.0"), false, new BigDecimal("4.8"), "PayPal", restaurants[5], transports[0])
         };
         this.orderRepository.saveAll(Arrays.asList(orders));
         ClientEntity[] clients = {

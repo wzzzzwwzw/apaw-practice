@@ -22,9 +22,7 @@ public class OBDFaultService {
     }
 
     public OBDFault updatePartial(String code, OBDFault obdFault) {
-        OBDFault existingOBDFault = this.readByCode(code);
-        //TODO update existingOBDFault
-        return this.obdFaultPersistence.updatePartial(obdFault);
+        return this.obdFaultPersistence.updatePartial(code,obdFault);
     }
 
 }

@@ -27,6 +27,7 @@ class ConferenceLocationServiceIT {
                 .findFirst();
 
         Assertions.assertNotNull(conferenceLocation);
+        Assertions.assertTrue(conferenceLocation.isPresent());
         this.conferenceLocationService.updateHall(conferenceLocation.get().getId(), newHallName);
         Assertions.assertTrue(this.conferenceLocationPersistence.readAll()
                 .anyMatch(conferenceLocation1 -> conferenceLocation.get().getId().equals(conferenceLocation1.getId())

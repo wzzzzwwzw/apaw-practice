@@ -59,6 +59,10 @@ public class Conference {
         return papers;
     }
 
+    public void setPapers(List<Paper> papers) {
+        this.papers = papers;
+    }
+
     public void addPaper(Paper paper) {
         this.papers.add(paper);
     }

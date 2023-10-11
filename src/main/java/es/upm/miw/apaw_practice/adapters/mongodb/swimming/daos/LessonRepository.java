@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface LessonRepository extends MongoRepository<LessonEntity, String> {
 
-    Optional<LessonEntity> findByStyle(String style);
+    Optional<LessonEntity> findBySwimStyle(String swimStyle);
 }

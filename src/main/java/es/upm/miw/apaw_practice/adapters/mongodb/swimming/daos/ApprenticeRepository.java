@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface ApprenticeRepository extends MongoRepository <ApprenticeEntity, String>{
 
-    Optional<ApprenticeEntity> findByFullName(String fullName);
+    Optional<ApprenticeEntity> findByForeName(String foreName);
 }

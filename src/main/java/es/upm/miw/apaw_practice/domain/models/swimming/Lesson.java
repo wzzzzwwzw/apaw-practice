@@ -5,38 +5,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lesson {
-    private String style;
-    private String category;
+    private String swimStyle;
+    private String swimRange;
     private String description;
-    private LocalDateTime startDate;
+    private LocalDateTime lessonDay;
     private List<Inscription> inscriptions;
 
     public Lesson() {
         inscriptions = new ArrayList<>();
     }
 
-    public Lesson(String style, String category, String description, LocalDateTime startDate, List<Inscription> inscriptions) {
-        this.style = style;
-        this.category = category;
+    public Lesson(String swimStyle, String swimRange, String description, LocalDateTime lessonDay, List<Inscription> inscriptions) {
+        this.swimStyle = swimStyle;
+        this.swimRange = swimRange;
         this.description = description;
-        this.startDate = startDate;
+        this.lessonDay = lessonDay;
         this.inscriptions = inscriptions;
     }
 
-    public String getStyle() {
-        return style;
+    public String getSwimStyle() {
+        return swimStyle;
     }
 
-    public void setStyle(String style) {
-        this.style = style;
+    public void setSwimStyle(String swimStyle) {
+        this.swimStyle = swimStyle;
     }
 
-    public String getCategory() {
-        return category;
+    public String getSwimRange() {
+        return swimRange;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setSwimRange(String swimRange) {
+        this.swimRange = swimRange;
     }
 
     public String getDescription() {
@@ -47,12 +47,12 @@ public class Lesson {
         this.description = description;
     }
 
-    public LocalDateTime getStartDate() {
-        return startDate;
+    public LocalDateTime getLessonDay() {
+        return lessonDay;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
+    public void setLessonDay(LocalDateTime lessonDay) {
+        this.lessonDay = lessonDay;
     }
 
     public List<Inscription> getInscriptions() {
@@ -70,10 +70,10 @@ public class Lesson {
     @Override
     public String toString() {
         return "Lesson{" +
-                "style='" + style + '\'' +
-                ", category='" + category + '\'' +
+                "swimStyle='" + swimStyle + '\'' +
+                ", swimRange='" + swimRange + '\'' +
                 ", description='" + description + '\'' +
-                ", startDate='" + startDate + '\'' +
+                ", lessonDay='" + lessonDay + '\'' +
                 ", inscriptions='" + inscriptions +
                 '}';
     }

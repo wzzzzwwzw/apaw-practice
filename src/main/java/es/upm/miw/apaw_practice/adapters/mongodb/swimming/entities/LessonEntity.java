@@ -15,11 +15,11 @@ public class LessonEntity {
     @Id
     private String id;
     @Indexed(unique = true)
-    private String style;
+    private String swimStyle;
     @Indexed(unique = true)
-    private String category;
+    private String swimRange;
     private String description;
-    private LocalDateTime startDate;
+    private LocalDateTime lessonDay;
     @DBRef
     private List<InscriptionEntity> inscriptionEntities;
 
@@ -27,12 +27,12 @@ public class LessonEntity {
         // empty for framework
     }
 
-    public LessonEntity(String style, String category, String description, LocalDateTime startDate, List<InscriptionEntity> inscriptionEntities) {
+    public LessonEntity(String swimStyle, String swimRange, String description, LocalDateTime lessonDay, List<InscriptionEntity> inscriptionEntities) {
         this.id = UUID.randomUUID().toString();
-        this.style = style;
-        this.category = category;
+        this.swimStyle = swimStyle;
+        this.swimRange = swimRange;
         this.description = description;
-        this.startDate = startDate;
+        this.lessonDay = lessonDay;
         this.inscriptionEntities = inscriptionEntities;
     }
 
@@ -44,20 +44,20 @@ public class LessonEntity {
         this.id = id;
     }
 
-    public String getStyle() {
-        return style;
+    public String getSwimStyle() {
+        return swimStyle;
     }
 
-    public void setStyle(String style) {
-        this.style = style;
+    public void setSwimStyle(String swimStyle) {
+        this.swimStyle = swimStyle;
     }
 
-    public String getCategory() {
-        return category;
+    public String getSwimRange() {
+        return swimRange;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setSwimRange(String swimRange) {
+        this.swimRange = swimRange;
     }
 
     public String getDescription() {
@@ -68,12 +68,12 @@ public class LessonEntity {
         this.description = description;
     }
 
-    public LocalDateTime getStartDate() {
-        return startDate;
+    public LocalDateTime getLessonDay() {
+        return lessonDay;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
+    public void setLessonDay(LocalDateTime lessonDay) {
+        this.lessonDay = lessonDay;
     }
 
     public List<InscriptionEntity> getInscriptionEntities() {
@@ -100,10 +100,10 @@ public class LessonEntity {
     public String toString() {
         return "InscriptionEntity{" +
                 "id='" + id + '\'' +
-                ", style='" + style + '\'' +
-                ", category='" + category + '\'' +
+                ", swimStyle='" + swimStyle + '\'' +
+                ", swimRange='" + swimRange + '\'' +
                 ", description=" + description + '\'' +
-                ", description=" + startDate + '\'' +
+                ", lessonDay=" + lessonDay + '\'' +
                 ", inscriptionEntities=" + inscriptionEntities +
                 '}';
     }

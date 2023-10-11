@@ -14,17 +14,17 @@ public class InscriptionEntity {
     private String id;
     @Indexed(unique = true)
     private String inscriptionNumber;
-    private LocalDateTime registrationDate;
+    private LocalDateTime recordDate;
     private Boolean asset;
 
     public InscriptionEntity() {
         // empty for framework
     }
 
-    public InscriptionEntity(String inscriptionNumber, LocalDateTime registrationDate, Boolean asset) {
+    public InscriptionEntity(String inscriptionNumber, LocalDateTime recordDate, Boolean asset) {
         this.id = UUID.randomUUID().toString();
         this.inscriptionNumber = inscriptionNumber;
-        this.registrationDate = registrationDate;
+        this.recordDate = recordDate;
         this.asset = asset;
     }
 
@@ -44,12 +44,12 @@ public class InscriptionEntity {
         this.inscriptionNumber = inscriptionNumber;
     }
 
-    public LocalDateTime getRegistrationDate() {
-        return registrationDate;
+    public LocalDateTime getRecordDate() {
+        return recordDate;
     }
 
-    public void setRegistrationDate(LocalDateTime registrationDate) {
-        this.registrationDate = registrationDate;
+    public void setRecordDate(LocalDateTime recordDate) {
+        this.recordDate = recordDate;
     }
 
     public Boolean getAsset() {
@@ -77,7 +77,7 @@ public class InscriptionEntity {
         return "InscriptionEntity{" +
                 "id='" + id + '\'' +
                 ", inscriptionNumber='" + inscriptionNumber + '\'' +
-                ", registrationDate='" + registrationDate + '\'' +
+                ", recordDate='" + recordDate + '\'' +
                 ", asset=" + asset +
                 '}';
     }

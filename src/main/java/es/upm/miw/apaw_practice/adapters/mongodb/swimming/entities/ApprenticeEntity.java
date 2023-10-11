@@ -4,7 +4,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
-import java.util.List;
 import java.util.UUID;
 
 public class ApprenticeEntity {
@@ -12,10 +11,9 @@ public class ApprenticeEntity {
     @Id
     private String id;
     @Indexed(unique = true)
-    private String fullName;
+    private String foreName;
     private Integer age;
     private String address;
-    private List<LessonEntity> lessonEntities;
     @DBRef
     private InscriptionEntity inscriptionEntity;
 
@@ -23,12 +21,11 @@ public class ApprenticeEntity {
         // empty for framework
     }
 
-    public ApprenticeEntity(String fullName, Integer age, String address, List<LessonEntity> lessonEntities, InscriptionEntity inscriptionEntity) {
+    public ApprenticeEntity(String foreName, Integer age, String address, InscriptionEntity inscriptionEntity) {
         this.id = UUID.randomUUID().toString();
-        this.fullName = fullName;
+        this.foreName = foreName;
         this.age = age;
         this.address = address;
-        this.lessonEntities = lessonEntities;
         this.inscriptionEntity = inscriptionEntity;
     }
 
@@ -40,12 +37,12 @@ public class ApprenticeEntity {
         this.id = id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getForeName() {
+        return foreName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setForeName(String foreName) {
+        this.foreName = foreName;
     }
 
     public Integer getAge() {
@@ -64,14 +61,6 @@ public class ApprenticeEntity {
         this.address = address;
     }
 
-    public List<LessonEntity> getLessonEntities() {
-        return lessonEntities;
-    }
-
-    public void setLessonEntities(List<LessonEntity> lessonEntities) {
-        this.lessonEntities = lessonEntities;
-    }
-
     public InscriptionEntity getInscriptionEntity() {
         return inscriptionEntity;
     }
@@ -82,22 +71,21 @@ public class ApprenticeEntity {
 
     @Override
     public int hashCode() {
-        return this.fullName.hashCode();
+        return this.foreName.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (fullName.equals(((ApprenticeEntity) obj).fullName));
+        return this == obj || obj != null && getClass() == obj.getClass() && (foreName.equals(((ApprenticeEntity) obj).foreName));
     }
 
     @Override
     public String toString() {
         return "ApprenticeEntity{" +
                 "id='" + id + '\'' +
-                ", fullName='" + fullName + '\'' +
+                ", foreName='" + foreName + '\'' +
                 ", age='" + age + '\'' +
                 ", address=" + address + '\'' +
-                ", lessonEntities=" + lessonEntities + '\'' +
                 ", inscriptionEntity=" + inscriptionEntity +
                 '}';
     }

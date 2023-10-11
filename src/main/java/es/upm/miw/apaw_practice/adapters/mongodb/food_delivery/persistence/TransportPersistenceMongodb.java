@@ -1,9 +1,14 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.persistence;
 
 
+import es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.daos.ClientRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.daos.TransportRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.entities.ClientEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.entities.OrderEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.entities.TransportEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
+import es.upm.miw.apaw_practice.domain.models.food_delivery.Client;
+import es.upm.miw.apaw_practice.domain.models.food_delivery.Order;
 import es.upm.miw.apaw_practice.domain.models.food_delivery.Transport;
 import es.upm.miw.apaw_practice.domain.persistence_ports.food_delivery.TransportPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +21,12 @@ public class TransportPersistenceMongodb implements TransportPersistence {
 
     private final TransportRepository transportRepository;
 
+    private final ClientRepository clientRepository;
+
     @Autowired
-    public TransportPersistenceMongodb(TransportRepository transportRepository) {
+    public TransportPersistenceMongodb(TransportRepository transportRepository, ClientRepository clientRepository) {
         this.transportRepository = transportRepository;
+        this.clientRepository = clientRepository;
     }
 
     @Override
@@ -41,6 +49,11 @@ public class TransportPersistenceMongodb implements TransportPersistence {
 
     @Override
     public Stream<String> findByEmailClient(String email) {
-        return null;
+        return this.clientRepository.findAll().stream()
+                .filter(client -> client.getEmail().equals(email))
+                .flatMap(client -> client.getOrders().stream())
+                .map(OrderEntity::getTransport)
+                .map(TransportEntity::getLicensePlate);
+
     }
 }

@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class MonitorService {
@@ -30,7 +31,7 @@ public class MonitorService {
         return this.monitorPersistence.updateRefreshRate(monitor);
     }
 
-    public List<String> findSerialNumberByDateAndCost(LocalDateTime date, BigDecimal cost) {
+    public Stream<Monitor> findSerialNumberByDateAndCost(LocalDateTime date, BigDecimal cost) {
         List<Computer> computerList = this.repairPersistence.findComputersListByRepairDate(date);
         if (computerList.isEmpty()) {
             throw new NotFoundException(MessageFormat.format("No serial numbers was founded for date: {0} and computer cost greater than: {1}", date, cost));
@@ -43,7 +44,7 @@ public class MonitorService {
                 .flatMap(computer -> computer
                         .getMonitors()
                         .stream())
-                .map(Monitor::getSerialNumber)
-                .toList();
+                .distinct()
+                .map(Monitor::onlySerialNumber);
     }
 }

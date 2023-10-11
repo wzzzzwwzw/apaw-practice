@@ -50,8 +50,11 @@ public class ComputerStoreSeederService {
         };
         computerRepository.saveAll(Arrays.asList(computers));
 
-        RepairEntity repairEntity = new RepairEntity("1234", LocalDateTime.now(), LocalDateTime.now().plusDays(3), computers[0]);
-        repairRepository.save(repairEntity);
+        RepairEntity[] repairs = {
+                new RepairEntity("1234", LocalDateTime.now(), LocalDateTime.now().plusDays(3), computers[0]),
+                new RepairEntity("2234", LocalDateTime.now(), LocalDateTime.now().plusDays(2), computers[1]),
+        };
+        repairRepository.saveAll(Arrays.asList(repairs));
     }
 
     public void deleteAll() {

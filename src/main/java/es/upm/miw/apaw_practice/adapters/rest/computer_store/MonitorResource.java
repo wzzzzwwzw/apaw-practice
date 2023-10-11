@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping(MonitorResource.MONITORS)
@@ -31,8 +32,13 @@ public class MonitorResource {
     }
 
     @GetMapping(SEARCH)
-    public List<String> findSerialNumberByDateAndCost(@RequestParam String q) {
-        LocalDateTime date = new LexicalAnalyzer().extractWithAssure(q, "date", LocalDateTime::parse);
+    public Stream<Monitor> findSerialNumbersByDateAndCost(@RequestParam String q) {
+        LocalDateTime date = new LexicalAnalyzer().extractWithAssure(q, "date", dateString -> {
+            String[] splittedDate = dateString.split(" ");
+            String correctDateString = splittedDate[0] + " " + String.join(":", splittedDate[1], splittedDate[2], splittedDate[3]);
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            return LocalDateTime.parse(correctDateString, dateTimeFormatter);
+        });
         BigDecimal cost = new LexicalAnalyzer().extractWithAssure(q, "cost", BigDecimal::new);
         if (cost.compareTo(BigDecimal.ZERO) < 0) {
             throw new BadRequestException("Cost: " + cost + " should be greater than 0");

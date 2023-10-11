@@ -3,16 +3,20 @@ package es.upm.miw.apaw_practice.adapters.rest.computer_store;
 import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.ComputerStoreSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.computer_store.Monitor;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @RestTestConfig
 class MonitorResourceIT {
@@ -20,8 +24,9 @@ class MonitorResourceIT {
     private WebTestClient webTestClient;
     @Autowired
     private ComputerStoreSeederService computerStoreSeederService;
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH mm ss");
 
-    @AfterEach
+    @BeforeEach
     void resetDataBase() {
         this.computerStoreSeederService.deleteAll();
         this.computerStoreSeederService.seedDatabase();
@@ -49,6 +54,53 @@ class MonitorResourceIT {
                 .put()
                 .uri(MonitorResource.MONITORS + MonitorResource.SERIALNUMBER_ID + MonitorResource.REFRESH_RATE, "HOLA")
                 .body(BodyInserters.fromValue(240))
+                .exchange()
+                .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testSearchSerialNumberByDateAndCost() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(MonitorResource.MONITORS + MonitorResource.SEARCH)
+                                .queryParam("q", "date:" + this.dateTimeFormatter.format(LocalDateTime.now().plusHours(1)) + ";cost:1.00")
+                                .build()
+                )
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(Monitor.class)
+                .consumeWith(serialNumberResponse -> {
+                    assertNotNull(serialNumberResponse.getResponseBody());
+                    List<Monitor> monitorList = serialNumberResponse.getResponseBody()
+                            .stream()
+                            .toList();
+                    assertEquals(2, monitorList.size());
+                });
+    }
+
+    @Test
+    void testBadRequestExceptionSearchSerialNumberByDateAndCost() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(MonitorResource.MONITORS + MonitorResource.SEARCH)
+                                .queryParam("q", "date:" + this.dateTimeFormatter.format(LocalDateTime.now()) + ";cost:-1.00")
+                                .build()
+                )
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
+
+    @Test
+    void testNotFoundExceptionSearchSerialNumberByDateAndCost() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(MonitorResource.MONITORS + MonitorResource.SEARCH)
+                                .queryParam("q", "date:" + this.dateTimeFormatter.format(LocalDateTime.now().minusDays(3)) + ";cost:1.00")
+                                .build()
+                )
                 .exchange()
                 .expectStatus().isNotFound();
     }

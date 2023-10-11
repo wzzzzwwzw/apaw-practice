@@ -24,7 +24,11 @@ public class Monitor {
     public String getSerialNumber() {
         return serialNumber;
     }
-
+    public Monitor onlySerialNumber(){
+        Monitor monitor = new Monitor();
+        monitor.setSerialNumber(this.getSerialNumber());
+        return monitor;
+    }
     public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
     }

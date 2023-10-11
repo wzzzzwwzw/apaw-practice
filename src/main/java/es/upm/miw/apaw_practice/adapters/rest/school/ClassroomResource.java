@@ -21,7 +21,6 @@ public class ClassroomResource {
 
     @PostMapping
     public Classroom create(@RequestBody Classroom classroom) {
-        classroom.doDefault();
         return this.classroomService.create(classroom);
     }
 

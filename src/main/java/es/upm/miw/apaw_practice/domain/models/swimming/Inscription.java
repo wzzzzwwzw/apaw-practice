@@ -33,7 +33,7 @@ public class Inscription {
         this.registrationDate = registrationDate;
     }
 
-    public Boolean isAsset() {
+    public Boolean getAsset() {
         return this.asset;
     }
 
@@ -46,7 +46,7 @@ public class Inscription {
         return "Inscription{" +
                 "inscriptionNumber=" + inscriptionNumber + '\'' +
                 ", registrationDate=" + registrationDate + '\'' +
-                ", asset=" + asset + '\'' +
+                ", asset=" + asset +
                 '}';
     }
 }

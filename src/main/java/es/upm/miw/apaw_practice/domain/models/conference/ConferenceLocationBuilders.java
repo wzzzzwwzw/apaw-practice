@@ -1,6 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.conference;
 
-public interface ConferenceLocationBuilder {
+public interface ConferenceLocationBuilders {
     interface Id {
         City id(String id);
     }

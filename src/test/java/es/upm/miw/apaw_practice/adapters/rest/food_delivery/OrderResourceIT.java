@@ -67,4 +67,35 @@ class OrderResourceIT {
 
     }
 
+    @Test
+    void testByTypeRestaurant(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(OrderResource.ORDERS + OrderResource.SEARCH)
+                                .queryParam("q", "type:Mexican")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BigDecimal.class).
+                value(sum -> assertEquals(new BigDecimal("57.0"),sum));
+
+
+    }
+
+    @Test
+    void testByTypeRestaurantBadRequest(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(OrderResource.ORDERS + OrderResource.SEARCH)
+                                .queryParam("q", "name:Mexican")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
+
+
+    }
+
+
 }

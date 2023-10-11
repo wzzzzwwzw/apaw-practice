@@ -36,5 +36,11 @@ class OrderPersistenceMongodbIT {
         assertEquals(new BigDecimal("45.0"), order.getPrice());
     }
 
+    @Test
+    void testFindByTypeRestaurant(){
+        BigDecimal sum = this.orderPersistence.findByTypeRestaurant("Italian");
+        assertEquals(new BigDecimal("97.0"),sum);
+    }
+
 
 }

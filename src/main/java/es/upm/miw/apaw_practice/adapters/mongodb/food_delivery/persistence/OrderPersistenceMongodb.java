@@ -8,6 +8,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.food_delivery.OrderPers
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+
 
 @Repository("orderPersistence")
 public class OrderPersistenceMongodb implements OrderPersistence {
@@ -38,8 +40,10 @@ public class OrderPersistenceMongodb implements OrderPersistence {
     }
 
     @Override
-    public Integer findByTypeRestaurant(String type) {
+    public BigDecimal findByTypeRestaurant(String type) {
         return null;
+
     }
+
 
 }

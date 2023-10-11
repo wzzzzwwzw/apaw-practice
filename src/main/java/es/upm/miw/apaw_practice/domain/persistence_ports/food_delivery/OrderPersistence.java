@@ -5,11 +5,13 @@ import es.upm.miw.apaw_practice.domain.models.food_delivery.Order;
 import es.upm.miw.apaw_practice.domain.models.shop.Article;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+
 @Repository
 public interface OrderPersistence {
     Order read(Integer number);
 
     Order update(Integer number, Order order);
 
-    Integer findByTypeRestaurant(String type);
+    BigDecimal findByTypeRestaurant(String type);
 }

@@ -8,6 +8,7 @@ import es.upm.miw.apaw_practice.domain.services.food_delivery.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -35,8 +36,8 @@ public class OrderResource {
         this.orderService.updatePrices(orderPriceUpdatingList.stream());
     }
 
-    @GetMapping
-    public Integer findByTypeRestaurant(@RequestParam String q) {
+    @GetMapping(SEARCH)
+    public BigDecimal findByTypeRestaurant(@RequestParam String q) {
         String type = new LexicalAnalyzer().extractWithAssure(q, "type");
         return this.orderService.findByTypeRestaurant(type);
     }

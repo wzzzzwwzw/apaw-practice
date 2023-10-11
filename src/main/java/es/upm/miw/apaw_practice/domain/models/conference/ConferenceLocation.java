@@ -16,6 +16,10 @@ public class ConferenceLocation {
         this.hall = hall;
     }
 
+    public static ConferenceLocationBuilders.Id builder() {
+        return new Builder();
+    }
+
     public String getId() {
         return id;
     }
@@ -56,5 +60,43 @@ public class ConferenceLocation {
                 ", building='" + building + '\'' +
                 ", hall='" + hall + '\'' +
                 '}';
+    }
+
+    public static class Builder implements ConferenceLocationBuilders.Id, ConferenceLocationBuilders.City, ConferenceLocationBuilders.Building, ConferenceLocationBuilders.Hall, ConferenceLocationBuilders.Build {
+
+        private final ConferenceLocation conferenceLocation;
+
+        public Builder() {
+            this.conferenceLocation = new ConferenceLocation();
+        }
+
+        @Override
+        public ConferenceLocationBuilders.City id(String id) {
+            this.conferenceLocation.id = id;
+            return this;
+        }
+
+        @Override
+        public ConferenceLocationBuilders.Building city(String city) {
+            this.conferenceLocation.city = city;
+            return this;
+        }
+
+        @Override
+        public ConferenceLocationBuilders.Hall building(String building) {
+            this.conferenceLocation.building = building;
+            return this;
+        }
+
+        @Override
+        public ConferenceLocationBuilders.Build hall(String hall) {
+            this.conferenceLocation.hall = hall;
+            return this;
+        }
+
+        @Override
+        public ConferenceLocation build() {
+            return this.conferenceLocation;
+        }
     }
 }

@@ -12,10 +12,11 @@ import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
 import es.upm.miw.apaw_practice.domain.models.airport.Aircraft;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-
+@Service
 public class AirportSeederService {
     @Autowired
     private AircraftRepository aircraftRepository;
@@ -64,7 +65,7 @@ public class AirportSeederService {
 
         FlightEntity[] flights = {
                 new FlightEntity(12345, LocalDate.of(2023, 6, 28),Arrays.asList(passengers[0],passengers[1],passengers[2]),airLines[0]),
-                new FlightEntity(12345, LocalDate.of(2023, 7, 5),Arrays.asList(passengers[0],passengers[1],passengers[2]),airLines[0]),
+                new FlightEntity(14345, LocalDate.of(2023, 7, 5),Arrays.asList(passengers[0],passengers[1],passengers[2]),airLines[0]),
                 new FlightEntity(54321, LocalDate.of(2022, 11, 28),Arrays.asList(passengers[3],passengers[4]),airLines[1]),
                 new FlightEntity(34524, LocalDate.of(2023, 11, 21),Arrays.asList(passengers[5],passengers[7],passengers[6]),airLines[2])
         };

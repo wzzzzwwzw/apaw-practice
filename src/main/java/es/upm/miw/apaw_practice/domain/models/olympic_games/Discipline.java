@@ -3,17 +3,17 @@ package es.upm.miw.apaw_practice.domain.models.olympic_games;
 import java.time.LocalDate;
 import java.util.List;
 
-public class OlympicDiscipline {
+public class Discipline {
 
     private String name;
     private Integer numberOfCompetitions;
     private LocalDate additionDate;
-    private List<OlympicCompetitor> competitors;
+    private List<Competitor> competitors;
 
-    public OlympicDiscipline() {
+    public Discipline() {
     }
 
-    public OlympicDiscipline(String name, Integer numberOfCompetitions, LocalDate additionDate, List<OlympicCompetitor> competitors) {
+    public Discipline(String name, Integer numberOfCompetitions, LocalDate additionDate, List<Competitor> competitors) {
         this.name = name;
         this.numberOfCompetitions = numberOfCompetitions;
         this.additionDate = additionDate;
@@ -44,17 +44,17 @@ public class OlympicDiscipline {
         this.additionDate = additionDate;
     }
 
-    public List<OlympicCompetitor> getCompetitors() {
+    public List<Competitor> getCompetitors() {
         return competitors;
     }
 
-    public void setCompetitors(List<OlympicCompetitor> competitors) {
+    public void setCompetitors(List<Competitor> competitors) {
         this.competitors = competitors;
     }
 
     @Override
     public String toString() {
-        return "OlympicDiscipline{" +
+        return "Discipline{" +
                 "name='" + name + '\'' +
                 ", numberOfCompetitions=" + numberOfCompetitions +
                 ", additionDate=" + additionDate +

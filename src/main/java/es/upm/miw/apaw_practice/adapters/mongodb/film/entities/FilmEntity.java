@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.film.entities;
 
+import es.upm.miw.apaw_practice.domain.models.film.Film;
+import es.upm.miw.apaw_practice.domain.models.film.Genre;
+import es.upm.miw.apaw_practice.domain.models.film.Review;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -41,6 +44,10 @@ public class FilmEntity {
         return releaseDate;
     }
 
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -79,6 +86,20 @@ public class FilmEntity {
 
     public void setReviewEntities(List<ReviewEntity> reviewEntities) {
         this.reviewEntities = reviewEntities;
+    }
+
+    public Film toFilm() {
+        List<Genre> genres = this.genreEntities.stream()
+                .map(GenreEntity::toGenre)
+                .toList();
+        List<Review> reviews = this.reviewEntities.stream()
+                .map(ReviewEntity::toReview)
+                .toList();
+        Film film = new Film(id, title, synopsis, directorEntity.toDirector());
+        film.setGenres(genres);
+        film.setReviews(reviews);
+        film.setReleaseDate(this.releaseDate);
+        return film;
     }
 
     @Override

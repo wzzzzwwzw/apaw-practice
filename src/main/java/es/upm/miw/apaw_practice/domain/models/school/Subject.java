@@ -33,7 +33,7 @@ public class Subject {
         this.description = description;
     }
 
-    public Boolean isBilingual() {
+    public Boolean getBilingual() {
         return this.bilingual;
     }
 

@@ -1,15 +1,15 @@
 package es.upm.miw.apaw_practice.domain.models.olympic_games;
 
-public class OlympicCompetitor {
+public class Competitor {
     private String name;
     private String nationality;
     private Integer age;
 
-    public OlympicCompetitor() {
+    public Competitor() {
     }
 
 
-    public OlympicCompetitor(String name, String nationality, Integer age) {
+    public Competitor(String name, String nationality, Integer age) {
         this.name = name;
         this.nationality = nationality;
         this.age = age;
@@ -41,7 +41,7 @@ public class OlympicCompetitor {
 
     @Override
     public String toString() {
-        return "OlympicCompetitor{" +
+        return "Competitor{" +
                 "name='" + name + '\'' +
                 ", nationality='" + nationality + '\'' +
                 ", age=" + age +

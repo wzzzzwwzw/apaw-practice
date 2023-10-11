@@ -65,6 +65,12 @@ public class DirectorEntity {
         this.dateOfBirth = dateOfBirth;
     }
 
+    public Director toDirector() {
+        Director director = new Director();
+        BeanUtils.copyProperties(this, director);
+        return director;
+    }
+
     @Override
     public int hashCode() {
         return dni.hashCode();

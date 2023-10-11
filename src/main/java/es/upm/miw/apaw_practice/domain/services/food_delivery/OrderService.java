@@ -31,4 +31,7 @@ public class OrderService {
                 .forEach(order -> this.orderPersistence.update(order.getNumber(),order));
     }
 
+    public Integer findByTypeRestaurant(String type) {
+        return null;
+    }
 }

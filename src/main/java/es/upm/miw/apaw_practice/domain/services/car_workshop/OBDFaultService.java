@@ -20,4 +20,11 @@ public class OBDFaultService {
     public Stream<OBDFault> findByIsITVSafe(Boolean isITVSafe) {
         return this.obdFaultPersistence.findByIsITVSafe(isITVSafe);
     }
+
+    public OBDFault updatePartial(String code, OBDFault obdFault) {
+        OBDFault existingOBDFault = this.readByCode(code);
+        //TODO update existingOBDFault
+        return this.obdFaultPersistence.updatePartial(obdFault);
+    }
+
 }

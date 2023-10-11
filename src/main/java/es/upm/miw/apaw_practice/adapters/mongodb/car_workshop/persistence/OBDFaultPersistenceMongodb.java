@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.stream.Stream;
 
+import static org.springframework.util.ClassUtils.isPresent;
+
 @Repository("OBDFaultPersistence")
 public class OBDFaultPersistenceMongodb implements OBDFaultPersistence {
 
@@ -31,10 +33,18 @@ public class OBDFaultPersistenceMongodb implements OBDFaultPersistence {
                 .orElseThrow(() -> new NotFoundException("Code not found: " + code));
     }
 
+
     @Override
     public OBDFault updatePartial(String code, OBDFault obdFault) {
         OBDFaultEntity existingOBDFault = this.readByCode(code);
         BeanUtils.copyProperties(obdFault, existingOBDFault);
         return this.obdFaultRepository.save(existingOBDFault).toOBDFault();
+    }
+
+    @Override
+    public boolean existsCode(String code) {
+        return this.obdFaultRepository
+                .findByCode(code)
+                .isPresent();
     }
 }

@@ -10,4 +10,6 @@ public interface OBDFaultPersistence {
     Stream<OBDFault> findByIsITVSafe(Boolean isITVSafe);
 
     OBDFault updatePartial(String code, OBDFault obdFault);
+
+    boolean existsCode(String code);
 }

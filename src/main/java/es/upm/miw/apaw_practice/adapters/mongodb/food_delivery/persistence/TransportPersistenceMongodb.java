@@ -9,6 +9,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.food_delivery.Transport
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("transportPersistence")
 public class TransportPersistenceMongodb implements TransportPersistence {
 
@@ -35,5 +37,10 @@ public class TransportPersistenceMongodb implements TransportPersistence {
         transportEntity.setAvalaible(transport.getAvalaible());
         return this.transportRepository.save(transportEntity).toTransport();
 
+    }
+
+    @Override
+    public Stream<String> findByEmailClient(String email) {
+        return null;
     }
 }

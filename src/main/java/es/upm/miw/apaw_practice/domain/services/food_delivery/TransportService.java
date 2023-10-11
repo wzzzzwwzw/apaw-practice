@@ -25,6 +25,6 @@ public class TransportService {
     }
 
     public Stream<String> findByEmailClient(String email) {
-        return null;
+        return this.transportPersistence.findByEmailClient(email);
     }
 }

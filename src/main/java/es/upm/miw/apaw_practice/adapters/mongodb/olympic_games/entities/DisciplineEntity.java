@@ -78,7 +78,7 @@ public class DisciplineEntity {
     public Discipline toDiscipline() {
         List<Competitor> competitors = this.competitorEntities.stream()
                 .map(CompetitorEntity::toCompetitor)
-                .collect(Collectors.toList());
+                .toList();
         return new Discipline(name, numberOfCompetitions, additionDate, competitors);
     }
 

@@ -32,6 +32,6 @@ public class OrderService {
     }
 
     public Integer findByTypeRestaurant(String type) {
-        return null;
+        return this.orderPersistence.findByTypeRestaurant(type);
     }
 }

@@ -37,4 +37,9 @@ public class OrderPersistenceMongodb implements OrderPersistence {
                 .toOrder();
     }
 
+    @Override
+    public Integer findByTypeRestaurant(String type) {
+        return null;
+    }
+
 }

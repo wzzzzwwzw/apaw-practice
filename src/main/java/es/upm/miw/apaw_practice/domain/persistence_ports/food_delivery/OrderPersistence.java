@@ -10,4 +10,6 @@ public interface OrderPersistence {
     Order read(Integer number);
 
     Order update(Integer number, Order order);
+
+    Integer findByTypeRestaurant(String type);
 }

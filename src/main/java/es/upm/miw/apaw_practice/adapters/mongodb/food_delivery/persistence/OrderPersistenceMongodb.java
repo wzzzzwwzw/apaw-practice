@@ -41,7 +41,10 @@ public class OrderPersistenceMongodb implements OrderPersistence {
 
     @Override
     public BigDecimal findByTypeRestaurant(String type) {
-        return null;
+        return this.orderRepository.findAll().stream()
+                .filter(order -> type.equals(order.getRestaurant().getType()))
+                .map(OrderEntity::getPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
 
     }
 

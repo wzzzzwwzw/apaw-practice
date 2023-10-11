@@ -25,7 +25,7 @@ public class OrderRepositoryIT {
         assertEquals(false, order.getDelivered());
         assertEquals(0, new BigDecimal("40.0").compareTo(order.getPrice()));
         assertEquals(0, new BigDecimal("4.5").compareTo(order.getWeight()));
-        assertEquals("Burger Haven", order.getRestaurant().getName());
+        assertEquals("La Pizzeria", order.getRestaurant().getName());
         assertEquals("T002", order.getTransport().getCode());
 
     }

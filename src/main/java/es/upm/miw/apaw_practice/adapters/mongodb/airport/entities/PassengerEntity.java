@@ -63,6 +63,9 @@ public class PassengerEntity {
         return this.name.hashCode();
     }
 
+    public Passenger toPassenger(){
+        return new Passenger(this.name, this.age, this.numberOfPhone);
+    }
     @Override
     public boolean equals(Object obj) {
         return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((PassengerEntity) obj).name));

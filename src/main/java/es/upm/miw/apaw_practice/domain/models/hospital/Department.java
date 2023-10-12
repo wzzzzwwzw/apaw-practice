@@ -2,14 +2,14 @@ package es.upm.miw.apaw_practice.domain.models.hospital;
 
 public class Department {
     private String departmentName;
-    private int occupiedBeds;
-    private int floor;
+    private Integer occupiedBeds;
+    private Integer floor;
 
     public Department() {
         //empty for framework
     }
 
-    public Department(String departmentName, int occupiedBeds, int floor) {
+    public Department(String departmentName, Integer occupiedBeds, Integer floor) {
         this.departmentName = departmentName;
         this.occupiedBeds = occupiedBeds;
         this.floor=floor;
@@ -23,19 +23,19 @@ public class Department {
         this.departmentName = departmentName;
     }
 
-    public int getOccupiedBeds() {
+    public Integer getOccupiedBeds() {
         return occupiedBeds;
     }
 
-    public void setOccupiedBeds(int occupiedBeds) {
+    public void setOccupiedBeds(Integer occupiedBeds) {
         this.occupiedBeds = occupiedBeds;
     }
 
-    public int getFloor() {
+    public Integer getFloor() {
         return floor;
     }
 
-    public void setFloor(int floor) {
+    public void setFloor(Integer floor) {
         this.floor = floor;
     }
 

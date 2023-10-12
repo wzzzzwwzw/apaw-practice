@@ -26,4 +26,16 @@ public class DishResourceIT {
                 .expectStatus().isOk();
     }
 
+    @Test
+    void testIncreasePrices() {
+        Float increment = 2f;
+
+        this.webTestClient
+                .patch()
+                .uri(DishResource.DISHES)
+                .body(BodyInserters.fromValue(increment))
+                .exchange()
+                .expectStatus().isOk();
+    }
+
 }

@@ -16,7 +16,8 @@ public class RoomService {
     }
 
     public Room updatePopularity(String description, Double popularity) {
-        // TODO
-        return null;
+        Room roomDB = this.roomPersistence.findByDescription(description);
+        roomDB.setPopularity(popularity);
+        return this.roomPersistence.update(description, roomDB);
     }
 }

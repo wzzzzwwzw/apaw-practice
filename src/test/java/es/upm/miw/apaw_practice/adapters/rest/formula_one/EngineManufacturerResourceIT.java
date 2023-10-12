@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import static es.upm.miw.apaw_practice.adapters.rest.formula_one.EngineManufacturerResource.ENGINE_MANUFACTURERS;
+
 @RestTestConfig
 public class EngineManufacturerResourceIT {
 
@@ -20,7 +22,7 @@ public class EngineManufacturerResourceIT {
         EngineManufacturer engineManufacturer = new EngineManufacturer("Renault", "France", 0);
         this.webTestClient
                 .post()
-                .uri(EngineManufacturerResource.ENGINE_MANUFACTURERS)
+                .uri(ENGINE_MANUFACTURERS)
                 .body(BodyInserters.fromValue(engineManufacturer))
                 .exchange()
                 .expectStatus().isOk()
@@ -33,7 +35,7 @@ public class EngineManufacturerResourceIT {
         EngineManufacturer engineManufacturer = new EngineManufacturer("Honda", "Japan", 6);
         this.webTestClient
                 .post()
-                .uri(EngineManufacturerResource.ENGINE_MANUFACTURERS)
+                .uri(ENGINE_MANUFACTURERS)
                 .body(BodyInserters.fromValue(engineManufacturer))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);

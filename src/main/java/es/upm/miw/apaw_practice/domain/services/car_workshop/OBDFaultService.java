@@ -36,4 +36,8 @@ public class OBDFaultService {
             throw new ConflictException("New code exists: " + newCode);
         }
     }
+
+    public Stream<String> findByCarComponentName(String carComponentName) {
+        return this.obdFaultPersistence.findByCarComponentName(carComponentName);
+    }
 }

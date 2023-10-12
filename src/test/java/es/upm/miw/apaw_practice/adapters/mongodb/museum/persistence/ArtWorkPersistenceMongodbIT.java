@@ -27,12 +27,17 @@ class ArtWorkPersistenceMongodbIT {
 
     @Test
     void testReadFound() {
+        Room room = new Room().builder()
+                .description("Sala 012")
+                .floor(1)
+                .popularity(9.75)
+                .build();
         ArtWork artWork = new ArtWork().builder()
                 .inventoryNumber("P001174")
                 .title("Las Meninas")
                 .approximateYear(1656)
                 .exhibited(true)
-                .room(new Room("Sala 012", 1, 9.75))
+                .room(room)
                 .build();
 
         ArtWork foundArtWork = this.artWorkPersistence.findByInventoryNumber("P001174");
@@ -56,7 +61,11 @@ class ArtWorkPersistenceMongodbIT {
 
     @Test
     void testCreateAndRead() {
-        Room room = new Room("Sala 009", 1, 7.25);
+        Room room = new Room().builder()
+                .description("Sala 009")
+                .floor(1)
+                .popularity(7.25)
+                .build();
         ArtWork artWork = new ArtWork().builder()
                 .inventoryNumber("P001248")
                 .title("Hércules desvía el curso del río Alfeo")

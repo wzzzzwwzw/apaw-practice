@@ -33,12 +33,17 @@ class PainterResourceIT {
 
     @Test
     void testUpdate() {
+        Room room = new Room().builder()
+                .description("Sala 012")
+                .floor(1)
+                .popularity(9.75)
+                .build();
         ArtWork artWork = new ArtWork().builder()
                 .inventoryNumber("P001174")
                 .title("Las Meninas")
                 .approximateYear(1656)
                 .exhibited(true)
-                .room(new Room("Sala 012", 1, 9.75))
+                .room(room)
                 .build();
         Painter painter = new Painter("Diego", "Velázquez", LocalDate.of(1599, 6, 6), LocalDate.of(1660, 8, 6), List.of(artWork));
 
@@ -60,12 +65,17 @@ class PainterResourceIT {
 
     @Test
     void testBadUpdate() {
+        Room room = new Room().builder()
+                .description("Sala 012")
+                .floor(1)
+                .popularity(9.75)
+                .build();
         ArtWork artWork = new ArtWork().builder()
                 .inventoryNumber("P001174")
                 .title("Las Meninas")
                 .approximateYear(1656)
                 .exhibited(true)
-                .room(new Room("Sala 012", 1, 9.75))
+                .room(room)
                 .build();
         Painter painter = new Painter("Diego", "Velázquez (con otro apellido)", LocalDate.of(1599, 6, 6), LocalDate.of(1660, 8, 6), List.of(artWork));
 

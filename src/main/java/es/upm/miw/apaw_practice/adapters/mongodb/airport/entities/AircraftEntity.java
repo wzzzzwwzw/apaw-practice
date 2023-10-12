@@ -66,6 +66,9 @@ public class AircraftEntity {
     public boolean equals(Object obj) {
         return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((AircraftEntity) obj).id));
     }
+    public Aircraft toAircraft(){
+        return new Aircraft(dateOfLastRevision,capacity,model);
+    }
 
     @Override
     public String toString() {

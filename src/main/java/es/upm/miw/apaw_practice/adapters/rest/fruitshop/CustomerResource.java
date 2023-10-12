@@ -22,8 +22,8 @@ public class CustomerResource {
     }
 
    @GetMapping(ID_CUSTOMER)
-    public Customer findById(@PathVariable Integer idCustomer){
-        return this.customerService.findById(idCustomer);
+    public Customer findByIdCustomer(@PathVariable Integer idCustomer){
+        return this.customerService.findByIdCustomer(idCustomer);
    }
 
 }

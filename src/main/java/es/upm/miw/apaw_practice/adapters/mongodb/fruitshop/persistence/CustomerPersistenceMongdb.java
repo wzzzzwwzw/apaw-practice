@@ -18,8 +18,8 @@ public class CustomerPersistenceMongdb implements CustomerPersistence {
     }
 
 
-public Customer findById(Integer idCustomer){
-    return this.customerRepository.findById(idCustomer)
+public Customer findByIdCustomer(Integer idCustomer){
+    return this.customerRepository.findByIdCustomer(idCustomer)
             .orElseThrow(() -> new NotFoundException("Customer ID: " + idCustomer))
             .toCustomer();
     }

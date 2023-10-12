@@ -4,5 +4,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CustomerPersistence {
-    Customer findById(Integer idCustomer);
+    Customer findByIdCustomer(Integer idCustomer);
 }

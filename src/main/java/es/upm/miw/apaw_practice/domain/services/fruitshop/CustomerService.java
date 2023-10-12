@@ -14,8 +14,8 @@ public class CustomerService {
         this.customerPersistence = customerPersistence;
     }
 
-    public Customer findById(Integer idCustomer){
-        return this.customerPersistence.findById(idCustomer);
+    public Customer findByIdCustomer(Integer idCustomer){
+        return this.customerPersistence.findByIdCustomer(idCustomer);
     }
 
 }

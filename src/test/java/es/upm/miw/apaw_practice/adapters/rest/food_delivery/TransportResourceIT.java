@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @RestTestConfig
 class TransportResourceIT {
 
@@ -31,6 +33,23 @@ class TransportResourceIT {
                 .body(BodyInserters.fromValue(false))
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testFindByEmailClient(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(TransportResource.TRANSPORTS + TransportResource.SEARCH)
+                                .queryParam("q", "email:customer2@example.com")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(licencePlates -> assertFalse(licencePlates.isEmpty()))
+                .value(licencePlates -> assertTrue(licencePlates.get(0).contains("XYZ789")))
+                .value(licencePlates -> assertTrue(licencePlates.get(0).contains("DEF456")));
+
     }
 }
 

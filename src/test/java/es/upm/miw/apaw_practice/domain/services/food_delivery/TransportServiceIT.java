@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,6 +22,16 @@ public class TransportServiceIT {
         assertEquals(false, transport.getAvalaible());
         assertEquals(new BigDecimal("35.0"), transport.getCapacity());
         assertEquals("DEF456", transport.getLicensePlate());
+
+    }
+
+    @Test
+    void testFindByEmailClient() {
+        List<String> licencePlates = this.transportService.findByEmailClient("customer1@example.com").toList();
+        assertEquals(2, licencePlates.size());
+        assertEquals("ABC123", licencePlates.get(0));
+        assertEquals("ABC123", licencePlates.get(1));
+
 
     }
 

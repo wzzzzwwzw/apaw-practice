@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.music.entities;
 
+import es.upm.miw.apaw_practice.domain.models.music.Song;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.util.ArrayList;
@@ -87,6 +89,12 @@ public class SongEntity {
         this.musicGenreEntity = musicGenreEntity;
     }
 
+    public Song toSong() {
+        Song song = new Song();
+        BeanUtils.copyProperties(this, song);
+        return song;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -101,7 +109,7 @@ public class SongEntity {
     @Override
     public int hashCode() {
         return this.title.hashCode();
-    } // asi es??
+    }
 
     @Override
     public String toString() {

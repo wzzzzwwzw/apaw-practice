@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.computer_store.entities;
 
+import es.upm.miw.apaw_practice.domain.models.computer_store.Computer;
+import es.upm.miw.apaw_practice.domain.models.computer_store.Monitor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -69,6 +72,17 @@ public class ComputerEntity {
 
     public void setMonitorEntities(List<MonitorEntity> monitorEntities) {
         this.monitorEntities = monitorEntities;
+    }
+
+    public Computer toComputer() {
+        Computer computer = new Computer();
+        List<Monitor> monitors = this.monitorEntities
+                .stream()
+                .map(MonitorEntity::toMonitor)
+                .toList();
+        BeanUtils.copyProperties(this, computer);
+        computer.setMonitors(monitors);
+        return computer;
     }
 
     @Override

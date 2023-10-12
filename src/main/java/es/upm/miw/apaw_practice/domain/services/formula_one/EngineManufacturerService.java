@@ -30,5 +30,6 @@ public class EngineManufacturerService {
     }
 
     public Stream<String> findManufacturersNamesByHostCountry(String hostCountry) {
+        return this.engineManufacturerPersistence.findManufacturersNamesByHostCountry(hostCountry);
     }
 }

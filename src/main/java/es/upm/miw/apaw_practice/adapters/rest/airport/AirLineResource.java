@@ -25,7 +25,7 @@ public class AirLineResource {
         this.airLineService = airLineService;
     }
     @PutMapping(NAME + AIRCRAFTS)
-    public AirLine updateArticleItems(@PathVariable String id, @RequestBody List<Aircraft> aircraftList) {
-        return this.airLineService.updateAircrafts(id, aircraftList);
+    public AirLine updateArticleItems(@PathVariable String name, @RequestBody List<Aircraft> aircraftList) {
+        return this.airLineService.updateAircrafts(name, aircraftList);
     }
 }

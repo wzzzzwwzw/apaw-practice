@@ -44,7 +44,7 @@ public class AirLinePersistenceMongodbIT {
         RuntimeException exception = assertThrows(NotFoundException.class, () -> {
             this.airLinePersistenceMongodb.readByName("British Airways");
         });
-        assertTrue(exception.getMessage().contains("AirLine name: British Airways"));
+        assertTrue(exception.getMessage().contains("AirLine with name: British Airways"));
     }
 
 }

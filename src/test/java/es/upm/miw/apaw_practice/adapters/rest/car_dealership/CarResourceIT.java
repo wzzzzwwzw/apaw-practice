@@ -31,4 +31,13 @@ class CarResourceIT {
                     assertEquals("Camry", modelNameData);
                 });
     }
+
+    @Test
+    void testReadCarModelNameNotFound() {
+        this.webTestClient
+                .get()
+                .uri(CARS + CHASSIS_ID + CAR_MODEL + NAME, "0")
+                .exchange()
+                .expectStatus().isNotFound();
+    }
 }

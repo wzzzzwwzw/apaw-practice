@@ -5,6 +5,9 @@ public class Seller {
     private String surname;
     private Integer salary;
 
+    public Seller() {
+
+    }
     public Seller(String name, String surname, Integer salary) {
         this.name = name;
         this.surname = surname;

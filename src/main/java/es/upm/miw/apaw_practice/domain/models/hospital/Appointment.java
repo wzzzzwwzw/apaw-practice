@@ -5,14 +5,14 @@ import java.time.LocalDateTime;
 public class Appointment {
 
     private LocalDateTime appointmentHour;
-    private boolean urgent;
+    private Boolean urgent;
     private String appointmentRoom;
 
     public Appointment() {
         //empty for framework
     }
 
-    public Appointment(LocalDateTime appointmentHour, boolean urgent, String appointmentRoom) {
+    public Appointment(LocalDateTime appointmentHour, Boolean urgent, String appointmentRoom) {
         this.appointmentHour = appointmentHour;
         this.urgent = urgent;
         this.appointmentRoom = appointmentRoom;
@@ -26,11 +26,11 @@ public class Appointment {
         this.appointmentHour = appointmentHour;
     }
 
-    public boolean getUrgent() {
+    public Boolean getUrgent() {
         return urgent;
     }
 
-    public void setUrgent(boolean urgent) {
+    public void setUrgent(Boolean urgent) {
         this.urgent = urgent;
     }
 

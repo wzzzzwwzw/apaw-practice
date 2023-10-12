@@ -1,5 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.airport.entities;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities.DriverEntity;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
+import es.upm.miw.apaw_practice.domain.models.airport.AirLine;
+import es.upm.miw.apaw_practice.domain.models.airport.Flight;
+import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -7,6 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Document
 public class FlightEntity {
@@ -77,6 +83,17 @@ public class FlightEntity {
     @Override
     public boolean equals(Object obj) {
         return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((FlightEntity) obj).numberOfFlight));
+    }
+
+
+    public Flight toFlight(){
+        List<Passenger> passengersTransform = passengers.stream()
+                .map(pass -> {
+                    Passenger passenger = pass.toPassenger();
+                    return passenger;
+                })
+                .collect(Collectors.toList());
+        return new Flight(numberOfFlight,dateOfFlight,passengersTransform,airLine.toAirLine());
     }
 
     @Override

@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface AirLinePersistence {
     AirLine update(AirLine airLine);
+    AirLine readByName(String name);
 }

@@ -22,6 +22,11 @@ public class AirLinePersistenceMongodb implements AirLinePersistence {
     public AirLinePersistenceMongodb(AirLineRepository airLineRepository){
         this.airLineRepository = airLineRepository;
     }
+    public AirLine readByName(String name){
+        return this.airLineRepository.findByName(name)
+                .orElseThrow(() -> new NotFoundException("AirLine name: " + name))
+                .toAirLine();
+    }
     @Override
     public AirLine update(AirLine airLine) {
         AirLineEntity airLineEntity = this.airLineRepository

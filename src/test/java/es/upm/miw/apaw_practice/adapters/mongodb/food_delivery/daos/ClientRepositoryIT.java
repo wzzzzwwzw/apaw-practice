@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-class CoffeeCoffeeClientRepositoryIT {
+class ClientRepositoryIT {
 
     @Autowired
     private ClientRepository clientRepository;

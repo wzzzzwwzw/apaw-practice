@@ -22,6 +22,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.FoodDeliverySeede
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame_company.VideogameCompanySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.SchoolSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.aquarium.AquariumSeederService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +52,7 @@ public class DatabaseSeederService {
     private final OlympicGamesSeederService olympicGamesSeederService;
     private final FurnitureStoreSeederService furnitureStoreSeederService;
     private final AirportSeederService airportSeederService;
+    private final AquariumSeederService aquariumSeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, ZooSeederService zooSeederService,
@@ -68,7 +70,8 @@ public class DatabaseSeederService {
                                  PadelAcademySeederService padelAcademySeederService,
                                  OlympicGamesSeederService olympicGamesSeederService,
                                  FurnitureStoreSeederService furnitureStoreSeederService,
-                                 AirportSeederService airportSeederService) {
+                                 AirportSeederService airportSeederService,
+                                 AquariumSeederService aquariumSeederService) {
         this.shopSeederService = shopSeederService;
         this.zooSeederService = zooSeederService;
         this.computerStoreSeederService = computerStoreSeederService;
@@ -91,6 +94,7 @@ public class DatabaseSeederService {
         this.olympicGamesSeederService = olympicGamesSeederService;
         this.furnitureStoreSeederService = furnitureStoreSeederService;
         this.airportSeederService = airportSeederService;
+        this.aquariumSeederService = aquariumSeederService;
         this.seedDatabase();
     }
 
@@ -117,6 +121,7 @@ public class DatabaseSeederService {
         this.olympicGamesSeederService.seedDatabase();
         this.furnitureStoreSeederService.seedDatabase();
         this.airportSeederService.seedDatabase();
+        this.aquariumSeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -142,6 +147,7 @@ public class DatabaseSeederService {
         this.olympicGamesSeederService.deleteAll();
         this.furnitureStoreSeederService.deleteAll();
         //this.airportSeederService.deleteAll();
+        this.aquariumSeederService.deleteAll();
     }
 
     public void reSeedDatabase() {

@@ -4,4 +4,6 @@ import es.upm.miw.apaw_practice.domain.models.coffee_shop.Coffee;
 
 public interface CoffeePersistence {
     Coffee read(String name);
+
+
 }

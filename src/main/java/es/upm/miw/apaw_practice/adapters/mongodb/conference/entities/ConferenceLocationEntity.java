@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.conference.entities;
 
+import es.upm.miw.apaw_practice.domain.models.conference.ConferenceLocation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -78,5 +80,15 @@ public class ConferenceLocationEntity {
                 ", building='" + building + '\'' +
                 ", hall='" + hall + '\'' +
                 '}';
+    }
+
+    public ConferenceLocation toConferenceLocation() {
+        ConferenceLocation conferenceLocation = new ConferenceLocation();
+        BeanUtils.copyProperties(this, conferenceLocation);
+        return conferenceLocation;
+    }
+
+    public void fromConferenceLocation(ConferenceLocation conferenceLocation) {
+        BeanUtils.copyProperties(conferenceLocation, this);
     }
 }

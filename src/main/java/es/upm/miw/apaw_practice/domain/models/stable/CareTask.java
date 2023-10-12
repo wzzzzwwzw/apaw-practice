@@ -1,9 +1,11 @@
 package es.upm.miw.apaw_practice.domain.models.stable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CareTask {
     private String description;
     private Double durationHours;
-
     public CareTask() {
     }
 
@@ -20,11 +22,11 @@ public class CareTask {
         this.description = description;
     }
 
-    public double getDurationHours() {
+    public Double getDurationHours() {
         return durationHours;
     }
 
-    public void setDurationHours(double durationHours) {
+    public void setDurationHours(Double durationHours) {
         this.durationHours = durationHours;
     }
 

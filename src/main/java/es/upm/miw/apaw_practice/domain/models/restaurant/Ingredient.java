@@ -8,7 +8,7 @@ public class Ingredient {
     private Boolean spicy;
     private Boolean available;
 
-    Ingredient() {
+    public Ingredient() {
         //empty from framework
     }
 

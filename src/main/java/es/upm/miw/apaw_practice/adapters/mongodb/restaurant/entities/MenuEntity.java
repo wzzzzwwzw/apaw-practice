@@ -31,10 +31,6 @@ public class MenuEntity {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public List<DishEntity> getDishes() {
         return dishes;
     }

@@ -15,19 +15,20 @@ public class Song {
 
     private List<Artist> artistsList;
 
-    private Genre genre;
+    private MusicGenre musicGenre;
 
     public Song() {
         this.artistsList = new ArrayList<>();
     }
 
-    public Song(String title, Integer duration, Boolean remix, Double rating, Genre genre) {
+    public Song(String title, Integer duration, Boolean remix, Double rating, MusicGenre musicGenre, List<Artist> artistsList) {
         this();
         this.title = title;
         this.duration = duration;
         this.remix = remix;
         this.rating = rating;
-        this.genre = genre;
+        this.musicGenre = musicGenre;
+        this.artistsList = artistsList;
     }
 
     public String getTitle() {
@@ -74,12 +75,12 @@ public class Song {
         this.artistsList.add(artist);
     }
 
-    public Genre getGenre() {
-        return this.genre;
+    public MusicGenre getMusicGenre() {
+        return this.musicGenre;
     }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    public void setMusicGenre(MusicGenre musicGenre) {
+        this.musicGenre = musicGenre;
     }
 
     @Override
@@ -90,7 +91,7 @@ public class Song {
                 ", isRemix=" + this.remix +
                 ", rating=" + this.rating +
                 ", artistsList=" + this.artistsList +
-                ", genre=" + this.genre +
+                ", Musicgenre=" + this.musicGenre +
                 '}';
     }
 }

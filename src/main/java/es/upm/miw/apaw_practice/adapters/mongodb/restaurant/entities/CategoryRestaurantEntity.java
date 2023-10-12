@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.restaurant.entities;
 
+import es.upm.miw.apaw_practice.domain.models.restaurant.CategoryRestaurant;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -33,10 +35,6 @@ public class CategoryRestaurantEntity {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getTag() {
         return tag;
     }
@@ -55,6 +53,12 @@ public class CategoryRestaurantEntity {
 
     public LocalDateTime getCreationDate() {
         return creationDate;
+    }
+
+    public CategoryRestaurant toCategoryRestaurant() {
+        CategoryRestaurant categoryRestaurant = new CategoryRestaurant();
+        BeanUtils.copyProperties(this, categoryRestaurant);
+        return categoryRestaurant;
     }
 
     @Override

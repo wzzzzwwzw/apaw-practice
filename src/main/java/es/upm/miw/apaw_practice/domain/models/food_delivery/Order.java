@@ -14,7 +14,9 @@ public class Order {
     private Restaurant restaurant;
     private Transport transport;
 
+    public Order(){
 
+    }
     public Order(Integer number, BigDecimal price, Boolean delivered, BigDecimal weight,
                  LocalDate date, String paymentMethod, Restaurant restaurant, Transport transport) {
         this.number = number;

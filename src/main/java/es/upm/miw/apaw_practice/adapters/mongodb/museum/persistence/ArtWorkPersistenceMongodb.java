@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.museum.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.museum.daos.ArtWorkRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.museum.entities.ArtWorkEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.museum.ArtWork;
 import es.upm.miw.apaw_practice.domain.persistence_ports.museum.ArtWorkPersistence;
@@ -19,8 +20,8 @@ public class ArtWorkPersistenceMongodb implements ArtWorkPersistence {
 
     @Override
     public ArtWork create(ArtWork artWork) {
-        // TODO
-        return null;
+        ArtWorkEntity artWorkEntity = new ArtWorkEntity(artWork);
+        return this.artWorkRepository.save(artWorkEntity).toArtWork();
     }
 
     @Override
@@ -34,7 +35,7 @@ public class ArtWorkPersistenceMongodb implements ArtWorkPersistence {
 
     @Override
     public boolean existsInventoryNumber(String inventoryNumber) {
-        // TODO
-        return false;
+        return this.artWorkRepository.findById(inventoryNumber).isPresent();
     }
 }
+

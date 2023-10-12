@@ -30,14 +30,14 @@ public class OBDFaultService {
 
     public OBDFault updatePartial(String code, OBDFault obdFault) {
         this.assertCodeNotConflict(code, obdFault.getCode());
-        return this.obdFaultPersistence.updatePartial(code,obdFault);
+        return this.obdFaultPersistence.updatePartial(code, obdFault);
     }
 
     private void assertCodeNotConflict(String code, String newCode) {
-        if(!this.obdFaultPersistence.existsCode(code)){
+        if (!this.obdFaultPersistence.existsCode(code)) {
             throw new NotFoundException("Code not exits: " + code);
         }
-        if(!code.equals(newCode) && this.obdFaultPersistence.existsCode(newCode)){
+        if (!code.equals(newCode) && this.obdFaultPersistence.existsCode(newCode)) {
             throw new ConflictException("New code exists: " + newCode);
         }
     }
@@ -45,10 +45,10 @@ public class OBDFaultService {
     public Stream<String> findByCarComponentName(String carComponentName) {
         Stream<Invoice> invoicesWithCarComponent = this.invoicePersistence.findByCarComponent(carComponentName);
         return invoicesWithCarComponent.flatMap(invoice ->
-                invoice.getCarToRepair()
-                        .getObdFaults().stream()
-                        .map(OBDFault::getCode)
-        );
+                        invoice.getCarToRepair()
+                                .getObdFaults().stream()
+                                .map(OBDFault::getCode)
+                )
+                .distinct();
     }
-
 }

@@ -37,6 +37,7 @@ public class InvoicePersistenceMongodb implements InvoicePersistence {
         return this.invoiceRepository.findAll().stream()
                 .filter(invoiceEntity -> invoiceEntity.getCarComponentEntities().stream()
                         .anyMatch(carComponentEntity -> carComponentEntity.getName().equals(carComponentName)))
-                .map(InvoiceEntity::toInvoice);
+                .map(InvoiceEntity::toInvoice)
+                .distinct();
     }
 }

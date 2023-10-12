@@ -46,34 +46,34 @@ public class ZooSeederService {
                 new VaccineEntity(new Vaccine("202301A-FLU-CANIS", "Canis Flu 2023", LocalDate.of(2023, 1, 20))),
                 new VaccineEntity(new Vaccine("202301B-FLU-CANIS", "Canis Flu 2023", LocalDate.of(2023, 2, 20))),
                 new VaccineEntity(new Vaccine("202302A-FLU-CANIS", "Canis Flu 2023", LocalDate.of(2023, 2, 3))),
-                new VaccineEntity(new Vaccine("202301A-FLUE-FELIS", "Felis Flu 2023", LocalDate.of(2023, 1, 20))),
-                new VaccineEntity(new Vaccine("202301B-FLUE-FELIS", "Felis Flu 2023", LocalDate.of(2023, 1, 5))),
-                new VaccineEntity(new Vaccine("202202A-FLUE-FELIS", "Felis Flu 2022", LocalDate.of(2022, 2, 8))),
-                new VaccineEntity(new Vaccine("202302C-FLUE-FELIS", "Felis Flu 2022 Special", LocalDate.of(2022, 9, 7))),
-                new VaccineEntity(new Vaccine("202002C-FLUE-FELINAE", "Felinae General 2020", LocalDate.of(2020, 7, 9)))
+                new VaccineEntity(new Vaccine("202301A-FLU-FELIS", "Felis Flu 2023", LocalDate.of(2023, 1, 20))),
+                new VaccineEntity(new Vaccine("202301B-FLU-FELIS", "Felis Flu 2023", LocalDate.of(2023, 1, 5))),
+                new VaccineEntity(new Vaccine("202202A-FLU-FELIS", "Felis Flu 2022", LocalDate.of(2022, 2, 8))),
+                new VaccineEntity(new Vaccine("202302C-FLU-FELIS", "Felis Flu 2022 Special", LocalDate.of(2022, 9, 7))),
+                new VaccineEntity(new Vaccine("202002C-FLU-FELINAE", "Felinae General 2020", LocalDate.of(2020, 7, 9)))
 
         };
         this.vaccineRepository.saveAll(Arrays.asList(vaccines));
 
         AnimalEntity[] animals = {
                 new AnimalEntity("001DOG", "KIRA", 2, taxonomicSpecies[0], Collections.singletonList(vaccines[0])),
-                new AnimalEntity("005DOG", "WASON", 5, taxonomicSpecies[0], Arrays.asList(vaccines[0],vaccines[1])),
-                new AnimalEntity("005WOLF", "GOSH", 8, taxonomicSpecies[1], Arrays.asList(vaccines[2],vaccines[1])),
-                new AnimalEntity("009WOLF", "WILD", 4, taxonomicSpecies[1], Arrays.asList(vaccines[0],vaccines[1],vaccines[2])),
-                new AnimalEntity("001CAT", "BOLA", 6, taxonomicSpecies[2], Arrays.asList(vaccines[6],vaccines[7])),
-                new AnimalEntity("020CAT", "SOMBRA", 5, taxonomicSpecies[3], Arrays.asList(vaccines[3],vaccines[6])),
-                new AnimalEntity("080CAT", "SNOWBALL V", 6, taxonomicSpecies[3], Arrays.asList(vaccines[4],vaccines[7],vaccines[3])),
-                new AnimalEntity("074LYNX", "SNOWBALL V", 30, taxonomicSpecies[4], Arrays.asList(vaccines[3],vaccines[7])),
-                new AnimalEntity("050LYNX", "SNOWBALL IV", 5, taxonomicSpecies[4], Arrays.asList(vaccines[7],vaccines[5])),
-                new AnimalEntity("065LYNX", "SNOWBALL III", 38, taxonomicSpecies[5], Arrays.asList(vaccines[7],vaccines[4])),
+                new AnimalEntity("005DOG", "WASON", 5, taxonomicSpecies[0], Arrays.asList(vaccines[0], vaccines[1])),
+                new AnimalEntity("005WOLF", "GOSH", 8, taxonomicSpecies[1], Arrays.asList(vaccines[2], vaccines[1])),
+                new AnimalEntity("009WOLF", "WILD", 4, taxonomicSpecies[1], Arrays.asList(vaccines[0], vaccines[1], vaccines[2])),
+                new AnimalEntity("001CAT", "BOLA", 6, taxonomicSpecies[2], Arrays.asList(vaccines[6], vaccines[7])),
+                new AnimalEntity("020CAT", "SOMBRA", 5, taxonomicSpecies[3], Arrays.asList(vaccines[3], vaccines[6])),
+                new AnimalEntity("080CAT", "SNOWBALL V", 80, taxonomicSpecies[3], Arrays.asList(vaccines[4], vaccines[7], vaccines[3])),
+                new AnimalEntity("074LYNX", "SNOWBALL V", 30, taxonomicSpecies[4], Arrays.asList(vaccines[3], vaccines[7])),
+                new AnimalEntity("050LYNX", "SNOWBALL IV", 5, taxonomicSpecies[4], Arrays.asList(vaccines[7], vaccines[5])),
+                new AnimalEntity("065LYNX", "SNOWBALL III", 38, taxonomicSpecies[5], Arrays.asList(vaccines[7], vaccines[4])),
                 new AnimalEntity("081LYNX", "SNOWBALL V", 7, taxonomicSpecies[5], Collections.singletonList(vaccines[7]))
         };
         this.animalRepository.saveAll(Arrays.asList(animals));
 
         ZooEntity[] zoos = {
-                new ZooEntity("PROTECTORA CANINA","GETAFE",new BigDecimal("7.5"),Collections.singletonList(animals[0])),
-                new ZooEntity("ZOO MADRID","MADRID",new BigDecimal("10"),Arrays.asList(animals[1],animals[2],animals[3],animals[4],animals[5])),
-                new ZooEntity("FAUNIA","MADRID",new BigDecimal("20"),Arrays.asList(animals[6],animals[7],animals[8],animals[9],animals[10]))
+                new ZooEntity("PROTECTORA CANINA", "GETAFE", new BigDecimal("7.5"), Collections.singletonList(animals[0])),
+                new ZooEntity("ZOO MADRID", "MADRID", new BigDecimal("10"), Arrays.asList(animals[1], animals[2], animals[3], animals[4], animals[5])),
+                new ZooEntity("FAUNIA", "MADRID", new BigDecimal("20"), Arrays.asList(animals[6], animals[7], animals[8], animals[9], animals[10]))
         };
         this.zooRepository.saveAll(Arrays.asList(zoos));
     }

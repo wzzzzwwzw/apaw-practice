@@ -12,9 +12,9 @@ public class AirLine {
         //empty for framework
     }
 
-    public AirLine(String name, LocalDate dayOfFundation, List<Aircraft> aircrafts) {
+    public AirLine(String name, LocalDate dayOfFoundation, List<Aircraft> aircrafts) {
         this.name = name;
-        this.dayOfFoundation = dayOfFundation;
+        this.dayOfFoundation = dayOfFoundation;
         this.aircrafts = aircrafts;
     }
 

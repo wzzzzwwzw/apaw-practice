@@ -5,6 +5,10 @@ public class Court {
     private Boolean withRoof;
     private String surface;
 
+    public Court() {
+        //empty for framework
+    }
+
     public Court(Integer number, Boolean withRoof, String surface) {
         this.number = number;
         this.withRoof = withRoof;

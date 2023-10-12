@@ -1,37 +1,37 @@
 package es.upm.miw.apaw_practice.domain.models.climbing;
 
-import java.time.LocalDateTime;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class Expedition {
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private String identifier;
+    private LocalDate date;
     private BigDecimal totalExpense;
 
     public Expedition() {
 
     }
 
-    public Expedition(LocalDateTime startDate, LocalDateTime endDate, BigDecimal totalExpense) {
-        this.startDate = startDate;
-        this.endDate = endDate;
+    public Expedition(String identifier, LocalDate date, BigDecimal totalExpense) {
+        this.identifier = identifier;
+        this.date = date;
         this.totalExpense = totalExpense;
     }
 
-    public LocalDateTime getStartDate() {
-        return startDate;
+    public String getIdentifier() {
+        return identifier;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 
-    public LocalDateTime getEndDate() {
-        return endDate;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
-        this.endDate = endDate;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public BigDecimal getTotalExpense() {
@@ -45,8 +45,8 @@ public class Expedition {
     @Override
     public String toString() {
         return "Expedition{" +
-                "startDate=" + startDate +
-                ", endDate=" + endDate +
+                "identifier='" + identifier + '\'' +
+                ", date=" + date +
                 ", totalExpense=" + totalExpense +
                 '}';
     }

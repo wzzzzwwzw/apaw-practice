@@ -79,7 +79,7 @@ public class CarToRepairEntity {
         List<OBDFault> obdFaults = this.obdFaultEntities.stream()
                 .map(OBDFaultEntity::toOBDFault)
                 .toList();
-        return new CarToRepair(this.registrationNumber, this.brand, this.model, obdFaults);
+        return new CarToRepair(this.registrationNumber, this.model, this.brand, obdFaults);
     }
 
     @Override

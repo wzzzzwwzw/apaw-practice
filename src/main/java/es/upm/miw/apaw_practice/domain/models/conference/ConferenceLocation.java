@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.conference;
 
 public class ConferenceLocation {
+    private String id;
     private String city;
     private String building;
     private String hall;
@@ -13,6 +14,18 @@ public class ConferenceLocation {
         this.city = city;
         this.building = building;
         this.hall = hall;
+    }
+
+    public static ConferenceLocationBuilders.Id builder() {
+        return new Builder();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCity() {
@@ -42,9 +55,48 @@ public class ConferenceLocation {
     @Override
     public String toString() {
         return "ConferenceLocation{" +
-                "city='" + city + '\'' +
+                "id='" + id + '\'' +
+                ", city='" + city + '\'' +
                 ", building='" + building + '\'' +
                 ", hall='" + hall + '\'' +
                 '}';
+    }
+
+    public static class Builder implements ConferenceLocationBuilders.Id, ConferenceLocationBuilders.City, ConferenceLocationBuilders.Building, ConferenceLocationBuilders.Hall, ConferenceLocationBuilders.Build {
+
+        private final ConferenceLocation conferenceLocation;
+
+        public Builder() {
+            this.conferenceLocation = new ConferenceLocation();
+        }
+
+        @Override
+        public ConferenceLocationBuilders.City id(String id) {
+            this.conferenceLocation.id = id;
+            return this;
+        }
+
+        @Override
+        public ConferenceLocationBuilders.Building city(String city) {
+            this.conferenceLocation.city = city;
+            return this;
+        }
+
+        @Override
+        public ConferenceLocationBuilders.Hall building(String building) {
+            this.conferenceLocation.building = building;
+            return this;
+        }
+
+        @Override
+        public ConferenceLocationBuilders.Build hall(String hall) {
+            this.conferenceLocation.hall = hall;
+            return this;
+        }
+
+        @Override
+        public ConferenceLocation build() {
+            return this.conferenceLocation;
+        }
     }
 }

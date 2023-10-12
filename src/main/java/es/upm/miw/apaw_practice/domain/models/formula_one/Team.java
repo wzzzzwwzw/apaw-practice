@@ -7,13 +7,14 @@ public class Team {
     private String teamName;
     private String country;
     private List<Driver> drivers;
+    private EngineManufacturer engineManufacturer;
     private String mainColor;
 
     public Team() {
         // empty for framework;
     }
 
-    public Team(String teamName, String country, List<Driver> drivers) {
+    public Team(String teamName, String country, List<Driver> drivers, EngineManufacturer engineManufacturer) {
         this.teamName = teamName;
         this.country = country;
         this.drivers = drivers;
@@ -43,6 +44,14 @@ public class Team {
         this.drivers = drivers;
     }
 
+    public EngineManufacturer getEngineManufacturer() {
+        return engineManufacturer;
+    }
+
+    public void setEngineManufacturer(EngineManufacturer engineManufacturer) {
+        this.engineManufacturer = engineManufacturer;
+    }
+
     public String getMainColor() {
         return mainColor;
     }
@@ -57,6 +66,7 @@ public class Team {
                 "teamName='" + teamName + '\'' +
                 ", country='" + country + '\'' +
                 ", drivers=" + drivers +
+                ", engineManufacturer=" + engineManufacturer +
                 ", mainColor='" + mainColor + '\'' +
                 '}';
     }

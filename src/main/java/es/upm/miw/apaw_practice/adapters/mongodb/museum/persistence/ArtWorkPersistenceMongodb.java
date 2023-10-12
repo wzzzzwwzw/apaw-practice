@@ -18,11 +18,23 @@ public class ArtWorkPersistenceMongodb implements ArtWorkPersistence {
     }
 
     @Override
+    public ArtWork create(ArtWork artWork) {
+        // TODO
+        return null;
+    }
+
+    @Override
     public ArtWork findByInventoryNumber(String inventoryNumber) {
         return this.artWorkRepository.findAll().stream()
                 .filter(artWork -> inventoryNumber.equals(artWork.getInventoryNumber()))
                 .findFirst()
                 .orElseThrow(() -> new NotFoundException("Art work with inventory number: " + inventoryNumber))
                 .toArtWork();
+    }
+
+    @Override
+    public boolean existsInventoryNumber(String inventoryNumber) {
+        // TODO
+        return false;
     }
 }

@@ -21,7 +21,13 @@ public class ArtWorkService {
     }
 
     public ArtWork create(ArtWork artWork) {
-        // TODO
-        return null;
+        this.assertInventoryNumberNotExist(artWork.getInventoryNumber());
+        return this.artWorkPersistence.create(artWork);
+    }
+
+    private void assertInventoryNumberNotExist(String inventoryNumber) {
+        if (this.artWorkPersistence.existsInventoryNumber(inventoryNumber)) {
+            throw new ConflictException("Inventory number exists: " + inventoryNumber);
+        }
     }
 }

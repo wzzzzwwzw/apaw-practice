@@ -7,7 +7,7 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.furniture_store.Furnitu
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository("furnitureStoreRepository")
+@Repository("furnitureStorePersistence")
 public class FurnitureStorePersistenceMongodb implements FurnitureStorePersistence {
 
     private final FurnitureStoreRepository furnitureStoreRepository;
@@ -17,11 +17,13 @@ public class FurnitureStorePersistenceMongodb implements FurnitureStorePersisten
         this.furnitureStoreRepository = furnitureStoreRepository;
     }
 
+    @Override
     public FurnitureStore readByName(String name) {
         return this.furnitureStoreRepository
                 .findByName(name)
                 .orElseThrow(() -> new NotFoundException("Furniture store name: " + name))
                 .toFurnitureStore();
+
     }
 
 }

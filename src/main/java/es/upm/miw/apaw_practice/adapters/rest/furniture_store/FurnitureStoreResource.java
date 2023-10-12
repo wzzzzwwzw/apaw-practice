@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(FurnitureStoreResource.FURNITURE_STORE)
 public class FurnitureStoreResource {
 
-    static final String FURNITURE_STORE = "/furniture-store/furniture-store";
+    static final String FURNITURE_STORE = "/furniture-store/furniture-stores";
 
-    static final String NAME_ID = "{name}";
+    static final String NAME_ID = "/{name}";
     private final FurnitureStoreService furnitureStoreService;
 
     @Autowired

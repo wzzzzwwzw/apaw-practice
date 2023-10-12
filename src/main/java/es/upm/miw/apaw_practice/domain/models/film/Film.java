@@ -7,7 +7,7 @@ import java.util.List;
 public class Film {
 
     private String filmId;
-    private String name;
+    private String title;
     private String synopsis;
     private LocalDate releaseDate;
     private List<Genre> genres;
@@ -19,9 +19,9 @@ public class Film {
         this.reviews = new ArrayList<>();
     }
 
-    public Film(String filmId, String name, String synopsis, Director director) {
+    public Film(String filmId, String title, String synopsis, Director director) {
         this.filmId = filmId;
-        this.name = name;
+        this.title = title;
         this.synopsis = synopsis;
         this.director = director;
     }
@@ -35,12 +35,12 @@ public class Film {
         this.filmId = filmId;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getSynopsis() {
@@ -87,7 +87,7 @@ public class Film {
     public String toString() {
         return "Film{" +
                 "filmId='" + filmId + '\'' +
-                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
                 ", synopsis='" + synopsis + '\'' +
                 ", releaseDate=" + releaseDate +
                 ", genres=" + genres +

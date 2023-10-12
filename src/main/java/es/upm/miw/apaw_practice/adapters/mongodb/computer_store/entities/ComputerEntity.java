@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.computer_store.entities;
 
+import es.upm.miw.apaw_practice.domain.models.computer_store.Computer;
+import es.upm.miw.apaw_practice.domain.models.computer_store.Monitor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -17,18 +20,18 @@ public class ComputerEntity {
     private String name;
     private BigDecimal cost;
     private BigDecimal weight;
-    private List<MonitorEntity> monitors;
+    private List<MonitorEntity> monitorEntities;
 
     public ComputerEntity() {
         //empty for framework
     }
 
-    public ComputerEntity(String name, BigDecimal cost, BigDecimal weight, List<MonitorEntity> monitors) {
+    public ComputerEntity(String name, BigDecimal cost, BigDecimal weight, List<MonitorEntity> monitorEntities) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.cost = cost;
         this.weight = weight;
-        this.monitors = monitors;
+        this.monitorEntities = monitorEntities;
     }
 
     public String getId() {
@@ -63,12 +66,23 @@ public class ComputerEntity {
         this.weight = weight;
     }
 
-    public List<MonitorEntity> getMonitors() {
-        return monitors;
+    public List<MonitorEntity> getMonitorEntities() {
+        return monitorEntities;
     }
 
-    public void setMonitors(List<MonitorEntity> monitors) {
-        this.monitors = monitors;
+    public void setMonitorEntities(List<MonitorEntity> monitorEntities) {
+        this.monitorEntities = monitorEntities;
+    }
+
+    public Computer toComputer() {
+        Computer computer = new Computer();
+        List<Monitor> monitors = this.monitorEntities
+                .stream()
+                .map(MonitorEntity::toMonitor)
+                .toList();
+        BeanUtils.copyProperties(this, computer);
+        computer.setMonitors(monitors);
+        return computer;
     }
 
     @Override
@@ -76,7 +90,7 @@ public class ComputerEntity {
         if (this == o) return true;
         if (!(o instanceof ComputerEntity that)) return false;
         return (Objects.equals(getId(), that.getId()) || Objects.equals(getName(), that.getName()))
-                && Objects.equals(getMonitors(), that.getMonitors());
+                && Objects.equals(getMonitorEntities(), that.getMonitorEntities());
     }
 
     @Override
@@ -91,7 +105,7 @@ public class ComputerEntity {
                 ", name='" + name + '\'' +
                 ", cost=" + cost +
                 ", weight=" + weight +
-                ", monitors=" + monitors +
+                ", monitors=" + monitorEntities +
                 '}';
     }
 }

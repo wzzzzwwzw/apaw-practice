@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.conference.entities;
 
+import es.upm.miw.apaw_practice.domain.models.conference.Author;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -23,6 +25,11 @@ public class AuthorEntity {
         this.name = name;
         this.surname = surname;
         this.honorific = honorific;
+    }
+
+    public AuthorEntity(Author author) {
+        BeanUtils.copyProperties(author, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {
@@ -78,5 +85,11 @@ public class AuthorEntity {
                 ", surname='" + surname + '\'' +
                 ", honorific='" + honorific + '\'' +
                 '}';
+    }
+
+    public Author toAuthor() {
+        Author author = new Author();
+        BeanUtils.copyProperties(this, author);
+        return author;
     }
 }

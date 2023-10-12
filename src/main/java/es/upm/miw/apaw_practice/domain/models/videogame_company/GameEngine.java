@@ -27,7 +27,7 @@ public class GameEngine {
     }
 
     public void setProgrammingLanguage(String programmingLanguage) {
-        programmingLanguage = programmingLanguage;
+        this.programmingLanguage = programmingLanguage;
     }
 
     public String getLicense() {
@@ -35,7 +35,7 @@ public class GameEngine {
     }
 
     public void setLicense(String license) {
-        license = license;
+        this.license = license;
     }
 
     @Override

@@ -21,11 +21,13 @@ class MonitorPersistenceMongodbIT {
     private MonitorPersistenceMongodb monitorPersistenceMongodb;
     @Autowired
     private ComputerStoreSeederService computerStoreSeederService;
+
     @AfterEach
-    void resetDataBase(){
+    void resetDataBase() {
         this.computerStoreSeederService.deleteAll();
         this.computerStoreSeederService.seedDatabase();
     }
+
     @Test
     void testReadBySerialNumber() {
         Monitor monitor = this.monitorPersistenceMongodb.readBySerialNumber(XIAOMI_SERIAL_NUMBER);
@@ -50,7 +52,13 @@ class MonitorPersistenceMongodbIT {
 
     @Test
     void testUpdateRefreshRateNotFount() {
-        Monitor monitor = new Monitor("hola", new BigDecimal("12"), 111, new ArrayList<>());
+        Monitor monitor = new Monitor
+                .Builder()
+                .serialNumber("hola")
+                .refreshRate(1)
+                .size(BigDecimal.ONE)
+                .wires(new ArrayList<>())
+                .build();
         assertThrows(NotFoundException.class, () -> this.monitorPersistenceMongodb.updateRefreshRate(monitor));
     }
 }

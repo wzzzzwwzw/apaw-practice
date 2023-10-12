@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.computer_store.entities;
 
+import es.upm.miw.apaw_practice.domain.models.computer_store.Repair;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -68,6 +70,12 @@ public class RepairEntity {
 
     public void setComputerEntity(ComputerEntity computerEntity) {
         this.computerEntity = computerEntity;
+    }
+
+    public Repair toRepair() {
+        Repair repair = new Repair();
+        BeanUtils.copyProperties(this, repair);
+        return repair;
     }
 
     @Override

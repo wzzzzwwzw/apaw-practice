@@ -2,7 +2,7 @@ package es.upm.miw.apaw_practice.domain.models.zoo;
 
 import java.time.LocalDate;
 
-public class Vaccine {
+public class Vaccine implements TreeVaccines {
 
     private String identifierBatch;
     private String name;
@@ -49,5 +49,15 @@ public class Vaccine {
                 ", name='" + name + '\'' +
                 ", manufacturingDate=" + manufacturingDate +
                 '}';
+    }
+
+    @Override
+    public void add(TreeVaccines treeVaccines) {
+        throw new UnsupportedOperationException("Unsupported operation in leaf");
+    }
+
+    @Override
+    public void remove(TreeVaccines treeVaccines) {
+
     }
 }

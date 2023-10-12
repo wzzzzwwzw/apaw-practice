@@ -9,12 +9,12 @@ public class OlympicGames {
     private String hostingPlace;
     private LocalDate startDate;
     private Boolean summerGames;
-    private List<OlympicDiscipline> disciplines;
+    private List<Discipline> disciplines;
 
     public OlympicGames() {}
 
 
-    public OlympicGames(Integer edition, String hostingPlace, LocalDate startDate, Boolean summerGames, List<OlympicDiscipline> disciplines) {
+    public OlympicGames(Integer edition, String hostingPlace, LocalDate startDate, Boolean summerGames, List<Discipline> disciplines) {
         this.edition = edition;
         this.hostingPlace = hostingPlace;
         this.startDate = startDate;
@@ -46,7 +46,7 @@ public class OlympicGames {
         this.startDate = startDate;
     }
 
-    public Boolean isSummerGames() {
+    public Boolean getSummerGames() {
         return summerGames;
     }
 
@@ -54,11 +54,11 @@ public class OlympicGames {
         this.summerGames = summerGames;
     }
 
-    public List<OlympicDiscipline> getDisciplines() {
+    public List<Discipline> getDisciplines() {
         return disciplines;
     }
 
-    public void setDisciplines(List<OlympicDiscipline> disciplines) {
+    public void setDisciplines(List<Discipline> disciplines) {
         this.disciplines = disciplines;
     }
 

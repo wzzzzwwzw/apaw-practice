@@ -11,10 +11,11 @@ public class FootballTeam {
 
     public FootballTeam() {}
 
-    public FootballTeam(String city, Integer foundationYear, BigDecimal budget) {
+    public FootballTeam(String city, Integer foundationYear, BigDecimal budget, boolean removed) {
         this.city = city;
         this.foundationYear = foundationYear;
         this.budget = budget;
+        this.removed = removed;
     }
 
     public String getCity() {

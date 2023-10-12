@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.museum.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.museum.daos.PainterRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.museum.entities.ArtWorkEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.museum.entities.PainterEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.museum.Painter;
@@ -29,8 +30,14 @@ public class PainterPersistenceMongodb implements PainterPersistence {
 
     @Override
     public Painter update(Painter painter) {
-        this.painterRepository.findById(painter.getSurname())
+        PainterEntity painterDB = this.painterRepository.findById(painter.getSurname())
                 .orElseThrow(() -> new NotFoundException("Painter with surname: " + painter.getSurname()));
-        return this.painterRepository.save(new PainterEntity(painter)).toPainter();
+        painterDB.setName(painter.getName());
+        painterDB.setBirthDate(painter.getBirthDate());
+        painterDB.setDeathDate(painter.getDeathDate());
+        painterDB.setArtWorks(painter.getArtWorks().stream()
+                .map(ArtWorkEntity::new)
+                .toList());
+        return this.painterRepository.save(painterDB).toPainter();
     }
 }

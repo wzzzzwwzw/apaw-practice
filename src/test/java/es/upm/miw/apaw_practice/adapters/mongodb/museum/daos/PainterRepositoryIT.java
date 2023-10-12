@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @TestConfig
-public class PainterRepositoryIT {
+class PainterRepositoryIT {
 
     @Autowired
     private PainterRepository painterRepository;

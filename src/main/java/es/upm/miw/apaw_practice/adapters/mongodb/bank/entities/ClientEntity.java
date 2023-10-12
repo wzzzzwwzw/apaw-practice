@@ -1,6 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.bank.entities;
 
-import es.upm.miw.apaw_practice.domain.models.bank.BankAccount;
+
 import es.upm.miw.apaw_practice.domain.models.bank.Client;
 
 import org.springframework.beans.BeanUtils;
@@ -30,6 +30,7 @@ public class ClientEntity {
 
     public ClientEntity(String clientName, String dni, String lastName, Integer age, List<BankAccountEntity> listAccountsEntities) {
         this.id= UUID.randomUUID().toString();
+        this.dni=dni;
         this.clientName=clientName;
         this.lastName=lastName;
         this.age=age;

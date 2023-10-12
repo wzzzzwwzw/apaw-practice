@@ -55,11 +55,11 @@ public class DishPersistenceMongodb implements DishPersistence {
     @Override
     public void increasePrices(Float increment) {
         List<DishEntity> dishes = this.dishRepository.findAll();
-        dishes.forEach(dishEntity -> {
+        dishes.stream().map(dishEntity -> {
             BigDecimal newPrice = BigDecimal.valueOf(dishEntity.getPrice().floatValue() + increment);
             dishEntity.setPrice(newPrice);
-            this.dishRepository.save(dishEntity).toDish();
-        });
+            return dishEntity;
+        }).forEach(dish -> this.dishRepository.save(dish).toDish());
     }
 
 }

@@ -59,7 +59,13 @@ class ArtWorkResourceIT {
     @Test
     void testCreate() {
         Room room = new Room("Sala 009", 1, 7.25);
-        ArtWork artWork = new ArtWork("P001248", "Hércules desvía el curso del río Alfeo", 1634, true, room);
+        ArtWork artWork = new ArtWork().builder()
+                .inventoryNumber("P001248")
+                .title("Hércules desvía el curso del río Alfeo")
+                .approximateYear(1634)
+                .exhibited(true)
+                .room(room)
+                .build();
 
         this.webTestClient
                 .post()
@@ -81,7 +87,13 @@ class ArtWorkResourceIT {
     @Test
     void testCreateConflict() {
         Room room = new Room("Sala 012", 1, 9.75);
-        ArtWork artWork = new ArtWork("P001174", "Las Meninas (con conflicto)", 1656, true, room);
+        ArtWork artWork = new ArtWork().builder()
+                .inventoryNumber("P001174")
+                .title("Las Meninas (con conflicto)")
+                .approximateYear(1656)
+                .exhibited(true)
+                .room(room)
+                .build();
 
         this.webTestClient
                 .post()

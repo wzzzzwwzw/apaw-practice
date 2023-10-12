@@ -21,7 +21,7 @@ class ArtistPersistenceMongodbIT {
         Artist artist = this.artistPersistenceMongodb.readByDni("22222222D");
         assertEquals("22222222D", artist.getDni());
         assertEquals("Ozuna", artist.getFullName());
-        assertEquals(666666666, artist.getPhoneNumber());
+        assertEquals(222222222, artist.getPhoneNumber());
         assertEquals(LocalDate.of(1989, 12, 30), artist.getBirthDate());
     }
 }

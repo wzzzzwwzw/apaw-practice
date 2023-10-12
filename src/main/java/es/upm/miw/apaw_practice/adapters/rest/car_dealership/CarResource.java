@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.rest.car_dealership;
 
-import es.upm.miw.apaw_practice.domain.models.car_dealership.Car;
 import es.upm.miw.apaw_practice.domain.services.car_dealership.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +23,7 @@ public class CarResource {
     }
 
     @GetMapping(CHASSIS_ID + CAR_MODEL + NAME)
-    public String read(@PathVariable String chassis) {
+    public String readCarModelName(@PathVariable String chassis) {
         return this.carService.readCarModelName(chassis);
     }
 }

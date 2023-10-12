@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities;
 
+import es.upm.miw.apaw_practice.domain.models.car_dealership.CarModel;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
@@ -38,6 +40,12 @@ public class CarModelEntity {
 
     public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
+    }
+
+    public CarModel toCarModel() {
+        CarModel carModel = new CarModel();
+        BeanUtils.copyProperties(this, carModel);
+        return carModel;
     }
 
     @Override

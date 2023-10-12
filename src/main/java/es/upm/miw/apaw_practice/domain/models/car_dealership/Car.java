@@ -45,6 +45,8 @@ public class Car {
         return sold;
     }
 
+    public Boolean getSold() { return sold; }
+
     public void setSold(Boolean sold) {
         this.sold = sold;
     }

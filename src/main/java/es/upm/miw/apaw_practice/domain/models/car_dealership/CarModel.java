@@ -7,6 +7,10 @@ public class CarModel {
     private String brand;
     private LocalDate createDate;
 
+    public CarModel() {
+
+    }
+
     public CarModel(String name, String brand, LocalDate createDate) {
         this.name = name;
         this.brand = brand;

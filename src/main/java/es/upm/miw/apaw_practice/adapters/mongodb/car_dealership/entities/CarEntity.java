@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities;
 
 import es.upm.miw.apaw_practice.domain.models.car_dealership.Car;
+import es.upm.miw.apaw_practice.domain.models.car_dealership.Seller;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -63,6 +64,7 @@ public class CarEntity {
     public Boolean isSold() {
         return sold;
     }
+    public Boolean getSold() { return sold; }
 
     public void setSold(Boolean sold) {
         this.sold = sold;
@@ -121,6 +123,11 @@ public class CarEntity {
     public Car toCar() {
         Car car = new Car();
         BeanUtils.copyProperties(this, car);
+        List<Seller> sellers = this.sellerEntities.stream()
+                .map(SellerEntity::toSeller)
+                .toList();
+        car.setSellerList(sellers);
+        car.setCarModel(this.carModelEntity.toCarModel());
         return car;
     }
 }

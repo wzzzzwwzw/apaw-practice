@@ -15,6 +15,6 @@ public class ExhibitionService {
     }
 
     public void delete(String exhibitionName) {
-        // TODO
+        this.exhibitionPersistence.delete(exhibitionName);
     }
 }

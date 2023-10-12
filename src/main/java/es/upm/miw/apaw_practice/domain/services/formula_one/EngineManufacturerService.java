@@ -6,6 +6,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.formula_one.EngineManuf
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Stream;
+
 @Service
 public class EngineManufacturerService {
 
@@ -25,5 +27,8 @@ public class EngineManufacturerService {
         if (this.engineManufacturerPersistence.existEngineManufacturer(manufacturerName)) {
             throw new ConflictException("Engine manufacturer exist: " + manufacturerName);
         }
+    }
+
+    public Stream<String> findManufacturersNamesByHostCountry(String hostCountry) {
     }
 }

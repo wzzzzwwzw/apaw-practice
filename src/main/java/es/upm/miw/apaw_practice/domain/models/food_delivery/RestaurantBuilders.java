@@ -1,6 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.food_delivery;
 
-public interface RestaurantBuilder {
+public interface RestaurantBuilders {
 
 
     interface Name {

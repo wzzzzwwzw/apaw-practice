@@ -7,6 +7,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.car_dealership.SellerPe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("sellerPersistence")
 public class SellerPersistenceMongodb implements SellerPersistence {
 
@@ -22,5 +24,12 @@ public class SellerPersistenceMongodb implements SellerPersistence {
         return this.sellerRepository
                 .save(new SellerEntity(seller))
                 .toSeller();
+    }
+
+    @Override
+    public Stream<Seller> readAll() {
+        return this.sellerRepository.findAll()
+                .stream()
+                .map(SellerEntity::toSeller);
     }
 }

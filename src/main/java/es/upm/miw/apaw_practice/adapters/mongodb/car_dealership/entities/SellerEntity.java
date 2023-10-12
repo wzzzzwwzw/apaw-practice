@@ -23,6 +23,10 @@ public class SellerEntity {
         this.salary = salary;
     }
 
+    public SellerEntity(Seller seller) {
+        BeanUtils.copyProperties(seller, this);
+        this.id = UUID.randomUUID().toString();
+    }
     public String getId() {
         return id;
     }

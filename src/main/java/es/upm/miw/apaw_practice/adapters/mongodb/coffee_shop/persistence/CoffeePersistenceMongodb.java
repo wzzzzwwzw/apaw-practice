@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository("coffeePersistence")
-public class CoffeePersistenceMongo implements CoffeePersistence {
+public class CoffeePersistenceMongodb implements CoffeePersistence {
     private final CoffeeRepository coffeeRepository;
 
     @Autowired
-    public CoffeePersistenceMongo(CoffeeRepository coffeeRepository) {
+    public CoffeePersistenceMongodb(CoffeeRepository coffeeRepository) {
         this.coffeeRepository = coffeeRepository;
     }
 

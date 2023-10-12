@@ -42,6 +42,11 @@ class MonitorServiceIT {
         List<String> serialNumberList = this.monitorService.findSerialNumberByDateAndCost(LocalDateTime.now(), BigDecimal.ONE);
         assertEquals(2, serialNumberList.size());
     }
+    @Test
+    void testReallyBigCostSearchSerialNumberByDateAndCost() {
+        List<String> serialNumberList = this.monitorService.findSerialNumberByDateAndCost(LocalDateTime.now(), new BigDecimal("1000000"));
+        assertEquals(0, serialNumberList.size());
+    }
 
     @Test
     void testExceptionSearchSerialNumberByDateAndCost() {

@@ -22,7 +22,7 @@ public class CoffeeClientRepositoryIT {
         assertEquals("client1", client.getName());
         assertEquals("address1",client.getAddress());
         assertEquals("111111111", client.getPhoneNumber());
-        assertEquals("position1",client.getDiningEntity().getLocation());
+        assertEquals("location1",client.getDiningEntity().getLocation());
         assertTrue(
                 client.getCoffeesEntities().stream()
                         .anyMatch(coffee ->

@@ -8,6 +8,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.coffee_shop.entities.DiningEnti
 import es.upm.miw.apaw_practice.adapters.mongodb.coffee_shop.entities.CoffeeClientEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.coffee_shop.entities.TransactionEntity;
 import es.upm.miw.apaw_practice.domain.models.coffee_shop.Coffee;
+import es.upm.miw.apaw_practice.domain.models.coffee_shop.Dining;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,10 +38,10 @@ public class CoffeeShopSeederService {
         };
         this.coffeeRepository.saveAll(Arrays.asList(coffees));
         DiningEntity[] dinings = {
-                new DiningEntity("1","position1",6),
-                new DiningEntity("2","position2",6),
-                new DiningEntity("3","position3",4),
-                new DiningEntity("4","position4",2)
+                new DiningEntity(new Dining("1","location1",6)),
+                new DiningEntity(new Dining("2","location2",6)),
+                new DiningEntity(new Dining("3","location3",4)),
+                new DiningEntity(new Dining("4","location4",2))
         };
         this.diningRepository.saveAll(Arrays.asList(dinings));
 

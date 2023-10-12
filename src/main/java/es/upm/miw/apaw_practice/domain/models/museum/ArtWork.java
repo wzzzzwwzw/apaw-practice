@@ -76,16 +76,16 @@ public class ArtWork {
         }
 
         interface Exhibited {
-            RoomBuilder exhibited(Boolean exhibited);
+            RoomOptional exhibited(Boolean exhibited);
         }
 
-        interface RoomBuilder {
-            RoomBuilder room(Room room);
+        interface RoomOptional {
+            RoomOptional room(Room room);
             ArtWork build();
         }
     }
 
-    private static class Builder implements ArtWorkBuilder.InventoryNumber, ArtWorkBuilder.Title, ArtWorkBuilder.ApproximateYear, ArtWorkBuilder.Exhibited, ArtWorkBuilder.RoomBuilder {
+    private static class Builder implements ArtWorkBuilder.InventoryNumber, ArtWorkBuilder.Title, ArtWorkBuilder.ApproximateYear, ArtWorkBuilder.Exhibited, ArtWorkBuilder.RoomOptional {
         private final ArtWork artWork;
 
         public Builder() {
@@ -111,13 +111,13 @@ public class ArtWork {
         }
 
         @Override
-        public ArtWorkBuilder.RoomBuilder exhibited(Boolean exhibited) {
+        public ArtWorkBuilder.RoomOptional exhibited(Boolean exhibited) {
             this.artWork.setExhibited(exhibited);
             return this;
         }
 
         @Override
-        public ArtWorkBuilder.RoomBuilder room(Room room) {
+        public ArtWorkBuilder.RoomOptional room(Room room) {
             this.artWork.setRoom(room);
             return this;
         }

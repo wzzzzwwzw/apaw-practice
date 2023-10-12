@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.music.entities;
 
+import es.upm.miw.apaw_practice.domain.models.music.Artist;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -73,6 +75,12 @@ public class ArtistEntity {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public Artist toArtist() {
+        Artist artist = new Artist();
+        BeanUtils.copyProperties(this, artist);
+        return artist;
     }
 
     @Override

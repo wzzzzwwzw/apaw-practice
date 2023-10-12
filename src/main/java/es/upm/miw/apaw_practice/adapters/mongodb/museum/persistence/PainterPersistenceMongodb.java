@@ -29,8 +29,8 @@ public class PainterPersistenceMongodb implements PainterPersistence {
 
     @Override
     public Painter update(Painter painter) {
-        PainterEntity persisted = this.painterRepository.findById(painter.getSurname())
+        this.painterRepository.findById(painter.getSurname())
                 .orElseThrow(() -> new NotFoundException("Painter with surname: " + painter.getSurname()));
-        return this.painterRepository.save(persisted).toPainter();
+        return this.painterRepository.save(new PainterEntity(painter)).toPainter();
     }
 }

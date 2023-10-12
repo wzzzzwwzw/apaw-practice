@@ -24,6 +24,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.FoodDeliverySeede
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame_company.VideogameCompanySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.SchoolSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.fruitshop.FruitShopSeederService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +55,7 @@ public class DatabaseSeederService {
     private final FurnitureStoreSeederService furnitureStoreSeederService;
     private final AirportSeederService airportSeederService;
     private final HospitalSeederService hospitalSeederService;
+    private final FruitShopSeederService fruitShopSeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, ZooSeederService zooSeederService,
@@ -73,7 +75,7 @@ public class DatabaseSeederService {
                                  FurnitureStoreSeederService furnitureStoreSeederService,
                                  AirportSeederService airportSeederService,
                                  CoffeeShopSeederService coffeeShopSeederService,
-                                 HospitalSeederService hospitalSeederService) {
+                                 HospitalSeederService hospitalSeederService,FruitShopSeederService fruitShopSeederService) {
         this.shopSeederService = shopSeederService;
         this.zooSeederService = zooSeederService;
         this.computerStoreSeederService = computerStoreSeederService;
@@ -98,6 +100,7 @@ public class DatabaseSeederService {
         this.furnitureStoreSeederService = furnitureStoreSeederService;
         this.airportSeederService = airportSeederService;
         this.hospitalSeederService = hospitalSeederService;
+        this.fruitShopSeederService = fruitShopSeederService;
         this.seedDatabase();
     }
 
@@ -126,6 +129,7 @@ public class DatabaseSeederService {
         this.furnitureStoreSeederService.seedDatabase();
         this.airportSeederService.seedDatabase();
         this.hospitalSeederService.seedDatabase();
+        this.fruitShopSeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -153,6 +157,7 @@ public class DatabaseSeederService {
         this.furnitureStoreSeederService.deleteAll();
         //this.airportSeederService.deleteAll();
         this.hospitalSeederService.seedDatabase();
+        this.fruitShopSeederService.seedDatabase();
     }
 
     public void reSeedDatabase() {

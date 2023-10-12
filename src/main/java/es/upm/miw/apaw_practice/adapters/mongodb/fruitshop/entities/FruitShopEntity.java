@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Document
@@ -25,8 +26,8 @@ public class FruitShopEntity {
         //empty for framework
     }
 
-    public FruitShopEntity(String id, String name, String address, List<FruitEntity> fruitEntities) {
-        this.id = id;
+    public FruitShopEntity(String name, String address, List<FruitEntity> fruitEntities) {
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.address = address;
         this.fruitEntities = fruitEntities;

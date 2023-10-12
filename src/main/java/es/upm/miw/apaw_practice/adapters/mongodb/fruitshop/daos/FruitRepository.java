@@ -6,4 +6,5 @@ import java.util.Optional;
 
 public interface FruitRepository extends MongoRepository<FruitEntity, String>{
     Optional<FruitEntity> findByType(String type);
+
 }

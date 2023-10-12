@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Document
@@ -33,8 +34,8 @@ public class FruitEntity {
         //empty for framework
     }
 
-    public FruitEntity(String id, String type, BigDecimal unitPrice, Boolean tropical, LocalDate stockTime, FruitSpecieEntity fruitSpecieEntity, List<CustomerEntity> customerEntities) {
-        this.id = id;
+    public FruitEntity(String type, BigDecimal unitPrice, Boolean tropical, LocalDate stockTime, FruitSpecieEntity fruitSpecieEntity, List<CustomerEntity> customerEntities) {
+        this.id = UUID.randomUUID().toString();
         this.type = type;
         this.unitPrice = unitPrice;
         this.tropical = tropical;

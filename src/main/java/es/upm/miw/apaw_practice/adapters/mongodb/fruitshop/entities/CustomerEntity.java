@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.fruitshop.entities;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.fruitshop.entities.CustomerEntity;
 import es.upm.miw.apaw_practice.domain.models.fruitShop.Customer;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -13,7 +12,6 @@ import java.util.UUID;
 public class CustomerEntity {
     @Id
     private String id;
-
     @Indexed(unique = true)
     private Integer idCustomer;
 

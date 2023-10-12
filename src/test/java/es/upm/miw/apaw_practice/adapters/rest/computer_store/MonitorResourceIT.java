@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.rest.computer_store;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.ComputerStoreSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
+import es.upm.miw.apaw_practice.adapters.rest.computer_store.dtos.SerialNumberCollectionDTO;
 import es.upm.miw.apaw_practice.domain.models.computer_store.Monitor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +14,6 @@ import org.springframework.web.reactive.function.BodyInserters;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -69,13 +69,11 @@ class MonitorResourceIT {
                 )
                 .exchange()
                 .expectStatus().isOk()
-                .expectBodyList(Monitor.class)
-                .consumeWith(serialNumberResponse -> {
-                    assertNotNull(serialNumberResponse.getResponseBody());
-                    List<Monitor> monitorList = serialNumberResponse.getResponseBody()
-                            .stream()
-                            .toList();
-                    assertEquals(2, monitorList.size());
+                .expectBody(SerialNumberCollectionDTO.class)
+                .value(Assertions::assertNotNull)
+                .value(serialNumberCollectionDTO -> {
+                    assertNotNull(serialNumberCollectionDTO.getSerialNumbers());
+                    assertEquals(2, serialNumberCollectionDTO.getSerialNumbers().size());
                 });
     }
 

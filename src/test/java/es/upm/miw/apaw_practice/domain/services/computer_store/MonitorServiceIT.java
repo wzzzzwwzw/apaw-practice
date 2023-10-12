@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.stream.Stream;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -39,8 +39,8 @@ class MonitorServiceIT {
 
     @Test
     void testSearchSerialNumberByDateAndCost() {
-        Stream<Monitor> serialNumberList = this.monitorService.findSerialNumberByDateAndCost(LocalDateTime.now(), BigDecimal.ONE);
-        assertEquals(2, serialNumberList.count());
+        List<String> serialNumberList = this.monitorService.findSerialNumberByDateAndCost(LocalDateTime.now(), BigDecimal.ONE);
+        assertEquals(2, serialNumberList.size());
     }
 
     @Test

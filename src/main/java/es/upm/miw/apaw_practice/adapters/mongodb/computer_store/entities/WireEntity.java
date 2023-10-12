@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.computer_store.entities;
 
+import es.upm.miw.apaw_practice.domain.models.computer_store.Wire;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -26,6 +28,11 @@ public class WireEntity {
         this.name = name;
         this.length = length;
         this.jacketMaterial = jacketMaterial;
+    }
+
+    public WireEntity(Wire wire) {
+        BeanUtils.copyProperties(wire, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {
@@ -58,6 +65,12 @@ public class WireEntity {
 
     public void setJacketMaterial(String jacketMaterial) {
         this.jacketMaterial = jacketMaterial;
+    }
+
+    public Wire toWire() {
+        Wire wire = new Wire();
+        BeanUtils.copyProperties(this, wire);
+        return wire;
     }
 
     @Override

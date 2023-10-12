@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Document
 public class ZooEntity {
@@ -77,13 +76,22 @@ public class ZooEntity {
     public Zoo toZoo() {
         List<Animal> animals = this.animalEntities.stream()
                 .map(AnimalEntity::toAnimal)
-                .collect(Collectors.toList());
+                .toList();
         return new Zoo(this.name, this.location, this.ticketPrice, animals);
     }
 
+    @Override
     public boolean equals(Object obj) {
+        if (this != obj) {
+            return false;
+        }
         ZooEntity objAux = (ZooEntity) obj;
-        return this == obj || obj != null && getClass() == obj.getClass() && (this.name.equals(objAux.getName()));
+        return this.name.equals(objAux.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.name.hashCode();
     }
 
     @Override

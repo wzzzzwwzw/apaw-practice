@@ -8,6 +8,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.conference.ConferenceSeederServ
 import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.FootballCompetitionSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.film.FilmSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.FormulaOneSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.fruitshop.FruitShopSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.furniture_store.FurnitureStoreSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.InfluencerAgencySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.museum.MuseumSeederService;
@@ -40,6 +41,7 @@ public class DatabaseSeederService {
     private final FormulaOneSeederService formulaOneSeederService;
     private final VideogameCompanySeederService videogameCompanySeederService;
     private final MuseumSeederService museumSeederService;
+    private final FruitShopSeederService fruitShopSeederService;
     private final CoffeeShopSeederService coffeeShopSeederService;
     private final FootballCompetitionSeederService footballCompetitionSeederService;
     private final FilmSeederService filmSeederService;
@@ -53,6 +55,7 @@ public class DatabaseSeederService {
     private final FurnitureStoreSeederService furnitureStoreSeederService;
     private final AirportSeederService airportSeederService;
 
+
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, ZooSeederService zooSeederService,
                                  ComputerStoreSeederService computerStoreSeederService, ConferenceSeederService conferenceSeederService,
@@ -60,7 +63,7 @@ public class DatabaseSeederService {
                                  FoodDeliverySeederService foodDeliverySeederService,
                                  CarDealershipSeederService carDealershipSeederService, FormulaOneSeederService formulaOneSeederService,
                                  VideogameCompanySeederService videogameCompanySeederService,
-                                 MuseumSeederService museumSeederService,
+                                 MuseumSeederService museumSeederService, FruitShopSeederService fruitShopSeederService,
                                  FootballCompetitionSeederService footballCompetitionSeederService,
                                  FilmSeederService filmSeederService, InfluencerAgencySeederService influencerAgencySeederService,
                                  SubwaySeederService subwaySeederService, SchoolSeederService schoolSeederService,
@@ -71,6 +74,7 @@ public class DatabaseSeederService {
                                  FurnitureStoreSeederService furnitureStoreSeederService,
                                  AirportSeederService airportSeederService,
                                  CoffeeShopSeederService coffeeShopSeederService) {
+
         this.shopSeederService = shopSeederService;
         this.zooSeederService = zooSeederService;
         this.computerStoreSeederService = computerStoreSeederService;
@@ -82,6 +86,7 @@ public class DatabaseSeederService {
         this.formulaOneSeederService = formulaOneSeederService;
         this.videogameCompanySeederService = videogameCompanySeederService;
         this.museumSeederService = museumSeederService;
+        this.fruitShopSeederService = fruitShopSeederService;
         this.coffeeShopSeederService = coffeeShopSeederService;
         this.footballCompetitionSeederService = footballCompetitionSeederService;
         this.filmSeederService = filmSeederService;
@@ -109,6 +114,7 @@ public class DatabaseSeederService {
         this.formulaOneSeederService.seedDatabase();
         this.videogameCompanySeederService.seedDatabase();
         this.museumSeederService.seedDatabase();
+        this.fruitShopSeederService.seedDatabase();
         this.coffeeShopSeederService.seedDatabase();
         this.footballCompetitionSeederService.seedDatabase();
         this.filmSeederService.seedDatabase();
@@ -134,6 +140,7 @@ public class DatabaseSeederService {
         this.carDealershipSeederService.deleteAll();
         this.formulaOneSeederService.deleteAll();
         this.videogameCompanySeederService.deleteAll();
+        this.fruitShopSeederService.deleteAll();
         this.coffeeShopSeederService.deleteAll();
         // this.museumSeederService.deleteAll();
         this.footballCompetitionSeederService.deleteAll();

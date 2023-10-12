@@ -35,7 +35,6 @@ public class FormulaOneSeederService {
         EngineManufacturerEntity[] engineManufacturers = {
                 new EngineManufacturerEntity("Honda", "Japan", 6),
                 new EngineManufacturerEntity("Mercedes", "United Kingdom", 12)
-
         };
         this.engineManufacturerRepository.saveAll(Arrays.asList(engineManufacturers));
 
@@ -50,6 +49,8 @@ public class FormulaOneSeederService {
                 new DriverEntity(81, "Oscar Piastri", "Australia"),
                 new DriverEntity(23, "Alexander Albon", "Thailand")
         };
+        drivers[0].setPoints(224.5F);
+        drivers[1].setPoints(108.0F);
         this.driverRepository.saveAll(Arrays.asList(drivers));
 
         TeamEntity[] teams = {

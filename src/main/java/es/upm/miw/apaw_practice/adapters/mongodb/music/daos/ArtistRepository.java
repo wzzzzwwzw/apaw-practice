@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface ArtistRepository extends MongoRepository<ArtistEntity, String> {
 
     Optional<ArtistEntity> findByDni(String dni);
+
+
 }

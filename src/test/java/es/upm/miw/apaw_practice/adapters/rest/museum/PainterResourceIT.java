@@ -1,10 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.rest.museum;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.museum.MuseumSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.museum.ArtWork;
 import es.upm.miw.apaw_practice.domain.models.museum.Painter;
 import es.upm.miw.apaw_practice.domain.models.museum.Room;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -20,6 +22,14 @@ class PainterResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
+    @Autowired
+    private MuseumSeederService museumSeederService;
+
+    @BeforeEach
+    void resetDataBase() {
+        this.museumSeederService.deleteAll();
+        this.museumSeederService.seedDatabase();
+    }
 
     @Test
     void testUpdate() {

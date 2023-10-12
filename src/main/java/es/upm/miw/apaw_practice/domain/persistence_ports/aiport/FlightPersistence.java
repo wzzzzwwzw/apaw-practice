@@ -8,4 +8,5 @@ import java.time.LocalDate;
 @Repository
 public interface FlightPersistence {
     Flight create(Flight flight);
+    boolean existFlight(Integer numberOfFlight);
 }

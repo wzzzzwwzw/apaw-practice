@@ -9,6 +9,7 @@ import es.upm.miw.apaw_practice.domain.models.airport.Aircraft;
 import es.upm.miw.apaw_practice.domain.models.airport.Flight;
 import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
 import es.upm.miw.apaw_practice.domain.persistence_ports.aiport.FlightPersistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 public class FlightPersistenceMongodb implements FlightPersistence {
 
     private final FlightRepository flightRepository;
-
+    @Autowired
     public FlightPersistenceMongodb(FlightRepository flightRepository){
         this.flightRepository = flightRepository;
     }
@@ -42,5 +43,11 @@ public class FlightPersistenceMongodb implements FlightPersistence {
         return this.flightRepository
                 .save(new FlightEntity(flight.getNumberOfFlight(),flight.getDateOfFlight(),passengerEntityList,airLineEntity))
                 .toFlight();
+    }
+
+    @Override
+    public boolean existFlight(Integer numberOfFlight) {
+        return this.flightRepository.findByNumberOfFlight(numberOfFlight)
+                .isPresent();
     }
 }

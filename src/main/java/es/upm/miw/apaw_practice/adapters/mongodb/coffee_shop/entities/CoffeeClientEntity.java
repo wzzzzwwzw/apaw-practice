@@ -1,6 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.coffee_shop.entities;
 
-import es.upm.miw.apaw_practice.domain.models.coffee_shop.Client;
+import es.upm.miw.apaw_practice.domain.models.coffee_shop.CoffeeClient;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 @Document
-public class ClientEntity {
+public class CoffeeClientEntity {
     @Id
     private String id;
     @Indexed(unique = true)
@@ -24,11 +24,11 @@ public class ClientEntity {
     @DBRef
     private DiningEntity diningEntity;
 
-    public ClientEntity() {
+    public CoffeeClientEntity() {
         //empty from framework
     }
 
-    public ClientEntity(String id, String name, String address, String phoneNumber, List<TransactionEntity> transactionsEntities, List<CoffeeEntity> coffeesEntities, DiningEntity diningEntity) {
+    public CoffeeClientEntity(String name, String address, String phoneNumber, List<TransactionEntity> transactionsEntities, List<CoffeeEntity> coffeesEntities, DiningEntity diningEntity) {
         this.id = UUID.randomUUID().toString();;
         this.name = name;
         this.address = address;
@@ -94,21 +94,21 @@ public class ClientEntity {
         this.diningEntity = diningEntity;
     }
 
-    public void fromClient(Client client) {
-        BeanUtils.copyProperties(client, this);
+    public void fromClient(CoffeeClient coffeeClient) {
+        BeanUtils.copyProperties(coffeeClient, this);
     }
 
-    public Client toClient() {
-        Client client = new Client();
-        BeanUtils.copyProperties(this, client);
-        return client;
+    public CoffeeClient toClient() {
+        CoffeeClient coffeeClient = new CoffeeClient();
+        BeanUtils.copyProperties(this, coffeeClient);
+        return coffeeClient;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ClientEntity that = (ClientEntity) o;
+        CoffeeClientEntity that = (CoffeeClientEntity) o;
         return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(address, that.address) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(transactionsEntities, that.transactionsEntities) && Objects.equals(coffeesEntities, that.coffeesEntities) && Objects.equals(diningEntity, that.diningEntity);
     }
 

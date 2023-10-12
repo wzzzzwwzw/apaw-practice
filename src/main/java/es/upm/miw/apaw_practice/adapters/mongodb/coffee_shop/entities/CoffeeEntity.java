@@ -22,11 +22,9 @@ public class CoffeeEntity {
         //empty from framework
     }
 
-    public CoffeeEntity(String coffee, String category, BigDecimal price) {
+    public CoffeeEntity(Coffee coffee) {
         this.id = UUID.randomUUID().toString();
-        this.coffee = coffee;
-        this.category = category;
-        this.price = price;
+        BeanUtils.copyProperties(coffee, this);
     }
 
     public String getId() {

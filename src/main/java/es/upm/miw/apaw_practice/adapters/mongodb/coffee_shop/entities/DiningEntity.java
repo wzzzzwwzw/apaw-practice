@@ -22,7 +22,7 @@ public class DiningEntity {
         //empty from framework
     }
 
-    public DiningEntity(String id, String diningNumber, String location, Integer capacity) {
+    public DiningEntity(String diningNumber, String location, Integer capacity) {
         this.id = UUID.randomUUID().toString();
         this.diningNumber = diningNumber;
         this.location = location;

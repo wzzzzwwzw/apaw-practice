@@ -2,19 +2,12 @@ package es.upm.miw.apaw_practice.adapters.mongodb.coffee_shop.entities;
 
 import es.upm.miw.apaw_practice.domain.models.coffee_shop.Transaction;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Objects;
-import java.util.UUID;
 @Document
 public class TransactionEntity {
-    @Id
-    private String id;
-    @Indexed(unique = true)
     private String order;
     private BigDecimal totalPrice;
     private LocalDateTime payDate;
@@ -23,10 +16,33 @@ public class TransactionEntity {
         //empty for framework
     }
 
-    public TransactionEntity(String id, String order, BigDecimal totalPrice, LocalDateTime payDate) {
-        this.id = UUID.randomUUID().toString();
+    public TransactionEntity(String order, BigDecimal totalPrice, LocalDateTime payDate) {
         this.order = order;
         this.totalPrice = totalPrice;
+        this.payDate = payDate;
+    }
+
+    public String getOrder() {
+        return order;
+    }
+
+    public void setOrder(String order) {
+        this.order = order;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public LocalDateTime getPayDate() {
+        return payDate;
+    }
+
+    public void setPayDate(LocalDateTime payDate) {
         this.payDate = payDate;
     }
 
@@ -39,16 +55,13 @@ public class TransactionEntity {
         BeanUtils.copyProperties(this, transaction);
         return transaction;
     }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TransactionEntity that = (TransactionEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(order, that.order) && Objects.equals(totalPrice, that.totalPrice) && Objects.equals(payDate, that.payDate);
-    }
 
     @Override
-    public int hashCode() {
-        return this.id.hashCode();
+    public String toString() {
+        return "TransactionEntity{" +
+                "order='" + order + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", payDate=" + payDate +
+                '}';
     }
 }

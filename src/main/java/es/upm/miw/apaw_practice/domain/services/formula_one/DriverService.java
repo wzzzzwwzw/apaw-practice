@@ -22,5 +22,6 @@ public class DriverService {
     }
 
     public Float findTotalPointsByEnginesBuiltIn(String enginesBuiltIn) {
+        return this.driverPersistence.findTotalPointsByEnginesBuiltIn(enginesBuiltIn);
     }
 }

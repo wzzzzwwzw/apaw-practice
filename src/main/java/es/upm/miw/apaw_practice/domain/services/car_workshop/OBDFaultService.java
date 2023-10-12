@@ -2,7 +2,9 @@ package es.upm.miw.apaw_practice.domain.services.car_workshop;
 
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
+import es.upm.miw.apaw_practice.domain.models.car_workshop.Invoice;
 import es.upm.miw.apaw_practice.domain.models.car_workshop.OBDFault;
+import es.upm.miw.apaw_practice.domain.persistence_ports.car_workshop.InvoicePersistence;
 import es.upm.miw.apaw_practice.domain.persistence_ports.car_workshop.OBDFaultPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +16,12 @@ public class OBDFaultService {
 
     private final OBDFaultPersistence obdFaultPersistence;
 
+    private final InvoicePersistence invoicePersistence;
+
     @Autowired
-    public OBDFaultService(OBDFaultPersistence obdFaultPersistence) {
+    public OBDFaultService(OBDFaultPersistence obdFaultPersistence, InvoicePersistence invoicePersistence) {
         this.obdFaultPersistence = obdFaultPersistence;
+        this.invoicePersistence = invoicePersistence;
     }
 
     public Stream<OBDFault> findByIsITVSafe(Boolean isITVSafe) {
@@ -38,6 +43,12 @@ public class OBDFaultService {
     }
 
     public Stream<String> findByCarComponentName(String carComponentName) {
-        return this.obdFaultPersistence.findByCarComponentName(carComponentName);
+        Stream<Invoice> invoicesWithCarComponent = this.invoicePersistence.findByCarComponent(carComponentName);
+        return invoicesWithCarComponent.flatMap(invoice ->
+                invoice.getCarToRepair()
+                        .getObdFaults().stream()
+                        .map(OBDFault::getCode)
+        );
     }
+
 }

@@ -13,6 +13,10 @@ public class Room {
         this.popularity = popularity;
     }
 
+    public RoomBuilder.Description builder() {
+        return new Room.Builder();
+    }
+
     public String getDescription() {
         return description;
     }
@@ -35,5 +39,52 @@ public class Room {
 
     public void setPopularity(Double popularity) {
         this.popularity = popularity;
+    }
+
+
+    private interface RoomBuilder {
+        interface Description {
+            Floor description(String description);
+        }
+
+        interface Floor {
+            Popularity floor(Integer floor);
+        }
+
+        interface Popularity {
+            Popularity popularity(Double popularity);
+            Room build();
+        }
+    }
+
+    private static class Builder implements RoomBuilder.Description, RoomBuilder.Floor, RoomBuilder.Popularity {
+        private final Room room;
+
+        public Builder() {
+            this.room = new Room();
+        }
+
+        @Override
+        public RoomBuilder.Floor description(String description) {
+            this.room.setDescription(description);
+            return this;
+        }
+
+        @Override
+        public RoomBuilder.Popularity floor(Integer floor) {
+            this.room.setFloor(floor);
+            return this;
+        }
+
+        @Override
+        public RoomBuilder.Popularity popularity(Double popularity) {
+            this.room.setPopularity(popularity);
+            return this;
+        }
+
+        @Override
+        public Room build() {
+            return this.room;
+        }
     }
 }

@@ -9,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 public class DishPersistenceMongodbIT {
@@ -36,6 +35,29 @@ public class DishPersistenceMongodbIT {
         assertTrue(updatedDish.isPresent());
         BigDecimal updatedPrice = updatedDish.get().getPrice();
         assertNotEquals(price, updatedPrice);
+        restaurantSeederService.deleteAll();
+        restaurantSeederService.seedDatabase();
+    }
+
+    @Test
+    void testIncreasePrices() {
+        Float incrementPrice = 2f;
+
+        Optional<Dish> dish = this.dishPersistence.readAll()
+                .filter(dishItem -> "Pollo_con_patatas".equals(dishItem.getTitle()))
+                .findFirst();
+        assertTrue(dish.isPresent());
+        BigDecimal price = dish.get().getPrice();
+        assertEquals(new BigDecimal("13.5"), price);
+
+        dishPersistence.increasePrices(incrementPrice);
+        Optional<Dish> updatedDish = this.dishPersistence.readAll()
+                .filter(dishItem -> "Pollo_con_patatas".equals(dishItem.getTitle()))
+                .findFirst();
+        assertTrue(updatedDish.isPresent());
+        BigDecimal updatedPrice = updatedDish.get().getPrice();
+        assertEquals(new BigDecimal("15.5"), updatedPrice);
+
         restaurantSeederService.deleteAll();
         restaurantSeederService.seedDatabase();
     }

@@ -2,8 +2,8 @@ package es.upm.miw.apaw_practice.adapters.rest.computer_store;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.ComputerStoreSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -20,7 +20,7 @@ class ComputerResourceIT {
     @Autowired
     private ComputerStoreSeederService computerStoreSeederService;
 
-    @AfterEach
+    @BeforeEach
     void cleanUpDb() {
         this.computerStoreSeederService.deleteAll();
         this.computerStoreSeederService.seedDatabase();
@@ -36,7 +36,7 @@ class ComputerResourceIT {
     }
 
     @Test
-    void testFindSumOfComputerCostByJacketMaterial() {
+    void testSearchSumOfComputerCostByJacketMaterial() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
@@ -51,7 +51,7 @@ class ComputerResourceIT {
     }
 
     @Test
-    void testBadRequestFindSumOfComputerCostByJacketMaterial() {
+    void testBadRequestSearchSumOfComputerCostByJacketMaterial() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
@@ -63,7 +63,7 @@ class ComputerResourceIT {
     }
 
     @Test
-    void testZeroFindSumOfComputerCostByJacketMaterial() {
+    void testZeroSearchSumOfComputerCostByJacketMaterial() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->

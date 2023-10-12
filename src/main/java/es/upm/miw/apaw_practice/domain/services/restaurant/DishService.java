@@ -23,4 +23,7 @@ public class DishService {
         return this.dishPersistence.update(dish);
     }
 
+    public void increasePrices(Float increment) {
+        this.dishPersistence.increasePrices(increment);
+    }
 }

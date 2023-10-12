@@ -13,4 +13,6 @@ public interface DishPersistence {
     Dish update(Dish dish);
 
     Dish readByTitle(String title);
+
+    void increasePrices(Float increment);
 }

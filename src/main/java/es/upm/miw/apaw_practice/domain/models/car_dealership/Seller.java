@@ -5,6 +5,9 @@ public class Seller {
     private String surname;
     private Integer salary;
 
+    public Seller() {
+        //empty for framework
+    }
     public Seller(String name, String surname, Integer salary) {
         this.name = name;
         this.surname = surname;

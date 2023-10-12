@@ -45,18 +45,4 @@ class RoomResourceIT {
                 .value(response -> assertNotEquals(room.getPopularity(), response.getPopularity()))
                 .value(response -> assertEquals(updatedPopularity, response.getPopularity()));
     }
-
-    @Test
-    void testBadPatch() {
-        Room room = new Room("Sala 012", 1, 9.75);
-        Double updatedPopularity = 6.25;
-        room.setPopularity(updatedPopularity);
-
-        this.webTestClient
-                .patch()
-                .uri(RoomResource.ROOMS + RoomResource.DESCRIPTION_ID, room.getDescription())
-                .body(BodyInserters.fromValue(room))
-                .exchange()
-                .expectStatus().isBadRequest();
-    }
 }

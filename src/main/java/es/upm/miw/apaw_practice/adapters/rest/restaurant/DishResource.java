@@ -28,4 +28,9 @@ public class DishResource {
         return this.dishService.updatePrice(title, price);
     }
 
+    @PatchMapping()
+    public void increasePrices(@RequestBody Float increment) {
+        this.dishService.increasePrices(increment);
+    }
+
 }

@@ -23,7 +23,7 @@ class CarRepositoryIT {
         assertTrue(this.carRepository.findByChassisNumber("HV30-0169266692781").isPresent());
         CarEntity car = this.carRepository.findByChassisNumber("HV30-0169266692781").get();
         assertEquals(0, BigDecimal.valueOf(44000).compareTo(car.getPrice()));
-        assertTrue(car.isSold());
+        assertTrue(car.getSold());
         assertNotNull(car.getFabricationDate());
         assertTrue(car.getFabricationDate().isBefore(LocalDate.now()));
 

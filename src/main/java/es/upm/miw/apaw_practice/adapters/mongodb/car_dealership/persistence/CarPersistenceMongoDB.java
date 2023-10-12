@@ -1,13 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.daos.CarRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities.CarEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.car_dealership.Car;
 import es.upm.miw.apaw_practice.domain.persistence_ports.car_dealership.CarPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.w3c.dom.UserDataHandler;
 
 @Repository("carPersistence")
 public class CarPersistenceMongoDB implements CarPersistence {
@@ -21,9 +19,9 @@ public class CarPersistenceMongoDB implements CarPersistence {
 
     @Override
     public Car readByChassis(String chassis) {
-        CarEntity carEntity = this.carRepository
+        return this.carRepository
                 .findByChassisNumber(chassis)
-                .orElseThrow(() -> new NotFoundException("Car chassis: " + chassis));
-        return carEntity.toCar();
+                .orElseThrow(() -> new NotFoundException("Car chassis: " + chassis))
+                .toCar();
     }
 }

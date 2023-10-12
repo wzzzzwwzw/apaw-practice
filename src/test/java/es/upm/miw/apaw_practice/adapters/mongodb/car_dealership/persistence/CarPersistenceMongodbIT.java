@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,7 +26,7 @@ class CarPersistenceMongodbIT {
         Car car = this.carPersistence.readByChassis("HV30-0169266692781");
         assertNotNull(car);
         assertEquals(0, BigDecimal.valueOf(44000).compareTo(car.getPrice()));
-        assertTrue(car.isSold());
+        assertTrue(car.getSold());
 
         assertTrue(car.getFabricationDate().isBefore(LocalDate.now()));
 

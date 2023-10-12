@@ -1,9 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.rest.school;
 
 import es.upm.miw.apaw_practice.domain.models.school.Classroom;
+import es.upm.miw.apaw_practice.domain.models.shop.ArticlePriceUpdating;
 import es.upm.miw.apaw_practice.domain.services.school.ClassroomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(ClassroomResource.CLASSROOMS)
@@ -27,5 +30,10 @@ public class ClassroomResource {
     @GetMapping(LOCATION_ID)
     public Classroom read(@PathVariable String location) {
         return this.classroomService.read(location);
+    }
+
+    @PatchMapping
+    public void updateLockers(@RequestBody List<Classroom> classrooms) {
+        this.classroomService.updateLockers(classrooms.stream());
     }
 }

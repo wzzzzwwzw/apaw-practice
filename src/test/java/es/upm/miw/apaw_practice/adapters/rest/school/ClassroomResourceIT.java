@@ -50,6 +50,7 @@ public class ClassroomResourceIT {
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
     }
+
     @Test
     void testReadByLocation() {
         this.webTestClient
@@ -65,5 +66,28 @@ public class ClassroomResourceIT {
                     assertEquals(25, classroomData.getLockers());
                     assertFalse(classroomData.getSmartBoard());
                 });
+    }
+
+    @Test
+    void testReadNotFound() {
+        this.webTestClient
+                .get()
+                .uri(ClassroomResource.CLASSROOMS + ClassroomResource.LOCATION_ID, "foo")
+                .exchange()
+                .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testUpdateLockers() {
+        List<Classroom> classrooms = Arrays.asList(
+                new Classroom("classroom3", LocalDateTime.of(2000, 1, 1, 1, 1), false, 50),
+                new Classroom("classroom4", LocalDateTime.of(2000, 1, 1, 1, 1), false, 80)
+        );
+        this.webTestClient
+                .patch()
+                .uri(ClassroomResource.CLASSROOMS)
+                .body(BodyInserters.fromValue(classrooms))
+                .exchange()
+                .expectStatus().isOk();
     }
 }

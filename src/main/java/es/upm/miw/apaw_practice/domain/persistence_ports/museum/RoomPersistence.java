@@ -5,5 +5,5 @@ import es.upm.miw.apaw_practice.domain.models.museum.Room;
 public interface RoomPersistence {
     Room findByDescription(String description);
 
-    Room update(String description, Room room);
+    Room update(Room room);
 }

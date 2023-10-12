@@ -28,9 +28,9 @@ public class RoomPersistenceMongodb implements RoomPersistence {
     }
 
     @Override
-    public Room update(String description, Room room) {
-        RoomEntity roomDB = this.roomRepository.findById(description)
-                .orElseThrow(() -> new NotFoundException("Room with description: " + description));
+    public Room update(Room room) {
+        RoomEntity roomDB = this.roomRepository.findById(room.getDescription())
+                .orElseThrow(() -> new NotFoundException("Room with description: " + room.getDescription()));
         roomDB.setFloor(room.getFloor());
         roomDB.setPopularity(room.getPopularity());
         return this.roomRepository.save(roomDB).toRoom();

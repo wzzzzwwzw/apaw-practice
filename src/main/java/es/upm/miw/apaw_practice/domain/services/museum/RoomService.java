@@ -18,6 +18,6 @@ public class RoomService {
     public Room updatePopularity(String description, Double popularity) {
         Room roomDB = this.roomPersistence.findByDescription(description);
         roomDB.setPopularity(popularity);
-        return this.roomPersistence.update(description, roomDB);
+        return this.roomPersistence.update(roomDB);
     }
 }

@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.rest.museum;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.museum.MuseumSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,14 @@ class ExhibitionResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
+    @Autowired
+    private MuseumSeederService museumSeederService;
+
+    @BeforeEach
+    void resetDataBase() {
+        this.museumSeederService.deleteAll();
+        this.museumSeederService.seedDatabase();
+    }
 
     @Test
     void testDelete() {

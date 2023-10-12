@@ -18,7 +18,7 @@ public class DiningRepositoryIT {
         assertTrue(this.diningRepository.findByDiningNumber("1").isPresent());
         DiningEntity dining = this.diningRepository.findByDiningNumber("1").get();
         assertEquals("1", dining.getDiningNumber());
-        assertEquals("position1", dining.getLocation());
+        assertEquals("location1", dining.getLocation());
         assertEquals(6, dining.getCapacity());
     }
 }

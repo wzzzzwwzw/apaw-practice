@@ -22,11 +22,13 @@ public class DiningEntity {
         //empty from framework
     }
 
-    public DiningEntity(String diningNumber, String location, Integer capacity) {
+    public DiningEntity(Dining dining) {
         this.id = UUID.randomUUID().toString();
-        this.diningNumber = diningNumber;
+        /*this.diningNumber = diningNumber;
         this.location = location;
-        this.capacity = capacity;
+        this.capacity = capacity;*/
+        this.id = UUID.randomUUID().toString();
+        BeanUtils.copyProperties(dining, this);
     }
 
     public String getId() {
@@ -65,7 +67,7 @@ public class DiningEntity {
         BeanUtils.copyProperties(dining, this);
     }
 
-    public Dining toTransaction() {
+    public Dining toDining() {
         Dining dining = new Dining();
         BeanUtils.copyProperties(this, dining);
         return dining;

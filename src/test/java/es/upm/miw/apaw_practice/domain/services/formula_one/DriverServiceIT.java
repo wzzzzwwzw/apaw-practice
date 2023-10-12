@@ -34,4 +34,16 @@ public class DriverServiceIT {
         });
         assertTrue(exception.getMessage().contains("Driver with number: 0"));
     }
+
+    @Test
+    void testFindTotalPointsByEnginesBuiltIn() {
+        Float points = this.driverService.findTotalPointsByEnginesBuiltIn("Japan");
+        assertEquals(332.5F, points);
+    }
+
+    @Test
+    void testFindTotalPointsByEnginesBuiltInNotExistEnginesBuiltIn() {
+        Float points = this.driverService.findTotalPointsByEnginesBuiltIn("Australia");
+        assertEquals(0F, points);
+    }
 }

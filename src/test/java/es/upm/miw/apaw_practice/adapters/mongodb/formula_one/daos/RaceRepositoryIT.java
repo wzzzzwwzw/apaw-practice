@@ -37,5 +37,10 @@ public class RaceRepositoryIT {
         assertEquals(false, race.isNightRace());
         assertEquals(58, race.getLaps());
     }
+
+    @Test
+    void testFindByCircuitNameNotFound() {
+        assertTrue(this.raceRepository.findByCircuitName("Monaco").isEmpty());
+    }
 }
 

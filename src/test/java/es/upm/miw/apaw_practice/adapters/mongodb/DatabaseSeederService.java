@@ -8,16 +8,21 @@ import es.upm.miw.apaw_practice.adapters.mongodb.conference.ConferenceSeederServ
 import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.FootballCompetitionSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.film.FilmSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.FormulaOneSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.furniture_store.FurnitureStoreSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.InfluencerAgencySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.museum.MuseumSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.music.MusicSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.olympic_games.OlympicGamesSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.padel_academy.PadelAcademySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.restaurant.RestaurantSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.shop.ShopSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.coffee_shop.CoffeeShopSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.subway.SubwaySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.zoo.ZooSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.food_delivery.FoodDeliverySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame_company.VideogameCompanySeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.school.SchoolSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,15 +40,18 @@ public class DatabaseSeederService {
     private final FormulaOneSeederService formulaOneSeederService;
     private final VideogameCompanySeederService videogameCompanySeederService;
     private final MuseumSeederService museumSeederService;
+    private final CoffeeShopSeederService coffeeShopSeederService;
     private final FootballCompetitionSeederService footballCompetitionSeederService;
     private final FilmSeederService filmSeederService;
     private final InfluencerAgencySeederService influencerAgencySeederService;
     private final SubwaySeederService subwaySeederService;
+    private final SchoolSeederService schoolSeederService;
     private final ClimbingSeederService climbingSeederService;
-
     private final MusicSeederService musicSeederService;
     private final PadelAcademySeederService padelAcademySeederService;
-
+    private final OlympicGamesSeederService olympicGamesSeederService;
+    private final FurnitureStoreSeederService furnitureStoreSeederService;
+    private final AirportSeederService airportSeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, ZooSeederService zooSeederService,
@@ -55,9 +63,14 @@ public class DatabaseSeederService {
                                  MuseumSeederService museumSeederService,
                                  FootballCompetitionSeederService footballCompetitionSeederService,
                                  FilmSeederService filmSeederService, InfluencerAgencySeederService influencerAgencySeederService,
-                                 SubwaySeederService subwaySeederService, ClimbingSeederService climbingSeederService,
+                                 SubwaySeederService subwaySeederService, SchoolSeederService schoolSeederService,
+                                 ClimbingSeederService climbingSeederService,
                                  MusicSeederService musicSeederService,
-                                 PadelAcademySeederService padelAcademySeederService) {
+                                 PadelAcademySeederService padelAcademySeederService,
+                                 OlympicGamesSeederService olympicGamesSeederService,
+                                 FurnitureStoreSeederService furnitureStoreSeederService,
+                                 AirportSeederService airportSeederService,
+                                 CoffeeShopSeederService coffeeShopSeederService) {
         this.shopSeederService = shopSeederService;
         this.zooSeederService = zooSeederService;
         this.computerStoreSeederService = computerStoreSeederService;
@@ -69,13 +82,18 @@ public class DatabaseSeederService {
         this.formulaOneSeederService = formulaOneSeederService;
         this.videogameCompanySeederService = videogameCompanySeederService;
         this.museumSeederService = museumSeederService;
+        this.coffeeShopSeederService = coffeeShopSeederService;
         this.footballCompetitionSeederService = footballCompetitionSeederService;
         this.filmSeederService = filmSeederService;
         this.influencerAgencySeederService = influencerAgencySeederService;
         this.subwaySeederService = subwaySeederService;
+        this.schoolSeederService = schoolSeederService;
         this.climbingSeederService = climbingSeederService;
         this.musicSeederService = musicSeederService;
         this.padelAcademySeederService = padelAcademySeederService;
+        this.olympicGamesSeederService = olympicGamesSeederService;
+        this.furnitureStoreSeederService = furnitureStoreSeederService;
+        this.airportSeederService = airportSeederService;
         this.seedDatabase();
     }
 
@@ -91,13 +109,18 @@ public class DatabaseSeederService {
         this.formulaOneSeederService.seedDatabase();
         this.videogameCompanySeederService.seedDatabase();
         this.museumSeederService.seedDatabase();
+        this.coffeeShopSeederService.seedDatabase();
         this.footballCompetitionSeederService.seedDatabase();
         this.filmSeederService.seedDatabase();
         this.influencerAgencySeederService.seedDatabase();
         this.subwaySeederService.seedDatabase();
+        this.schoolSeederService.seedDatabase();
         this.climbingSeederService.seedDatabase();
         this.musicSeederService.seedDatabase();
         this.padelAcademySeederService.seedDatabase();
+        this.olympicGamesSeederService.seedDatabase();
+        this.furnitureStoreSeederService.seedDatabase();
+        this.airportSeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -111,14 +134,19 @@ public class DatabaseSeederService {
         this.carDealershipSeederService.deleteAll();
         this.formulaOneSeederService.deleteAll();
         this.videogameCompanySeederService.deleteAll();
+        this.coffeeShopSeederService.deleteAll();
         // this.museumSeederService.deleteAll();
         this.footballCompetitionSeederService.deleteAll();
         this.filmSeederService.deleteAll();
         this.influencerAgencySeederService.deleteAll();
         this.subwaySeederService.deleteAll();
+        this.schoolSeederService.deleteAll();
         this.climbingSeederService.deleteAll();
         this.musicSeederService.deleteAll();
         this.padelAcademySeederService.deleteAll();
+        this.olympicGamesSeederService.deleteAll();
+        this.furnitureStoreSeederService.deleteAll();
+        //this.airportSeederService.deleteAll();
     }
 
     public void reSeedDatabase() {

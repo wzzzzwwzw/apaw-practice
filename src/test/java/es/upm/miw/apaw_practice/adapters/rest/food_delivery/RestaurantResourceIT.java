@@ -42,4 +42,22 @@ class RestaurantResourceIT {
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
     }
 
+    @Test
+    void testCreateWithBuilder(){
+        Restaurant restaurant = Restaurant.builder().name("Restaurant B")
+                .type("Mexican")
+                .description("Spicy Mexican dishes")
+                .adress("456 Salsa Street")
+                .maximumOrders(75)
+                .build();
+        this.webTestClient
+                .post()
+                .uri(RestaurantResource.RESTAURANTS)
+                .body(BodyInserters.fromValue(restaurant))
+                .exchange()
+                .expectStatus().isEqualTo(HttpStatus.OK)
+                .expectBody(Restaurant.class)
+                .value(Assertions::assertNotNull);
+    }
+
 }

@@ -74,6 +74,10 @@ public class ClassroomEntity {
         return classroom;
     }
 
+    public void fromClassroom(Classroom classroom) {
+        BeanUtils.copyProperties(classroom, this);
+    }
+
     @Override
     public int hashCode() {
         return location.hashCode();

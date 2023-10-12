@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.football_competition.entities;
 
+import es.upm.miw.apaw_practice.domain.models.football_competition.FootballGame;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -79,6 +81,14 @@ public class FootballGameEntity {
         }
 
         this.players.add(player);
+    }
+
+    public FootballGame toFootballGame() {
+        FootballGame game = new FootballGame();
+        BeanUtils.copyProperties(this, game);
+        List<FootballPlayerEntity> playerEntities = this.getPlayers();
+        game.setPlayers(playerEntities.stream().map(FootballPlayerEntity::toFootballPlayer).toList());
+        return game;
     }
 
     @Override

@@ -1,14 +1,14 @@
 package es.upm.miw.apaw_practice.domain.services.formula_one;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.formula_one.Race;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 public class RaceServiceIT {
@@ -33,6 +33,14 @@ public class RaceServiceIT {
     }
 
     @Test
+    void testReadNotFound() {
+        RuntimeException exception = assertThrows(NotFoundException.class, () -> {
+            this.raceService.read("Baku");
+        });
+        assertTrue(exception.getMessage().contains("Race with circuit: Baku"));
+    }
+
+    @Test
     void testUpdateLaps() {
         Race race = this.raceService.updateLaps("Hermanos Rodríguez", 70);
         assertEquals("Hermanos Rodríguez", race.getCircuitName());
@@ -47,5 +55,13 @@ public class RaceServiceIT {
                         )
         );
         assertEquals(70, race.getLaps());
+    }
+
+    @Test
+    void testUpdateLapsNotFound() {
+        RuntimeException exception = assertThrows(NotFoundException.class, () -> {
+            this.raceService.updateLaps("Suzuka", 40);
+        });
+        assertTrue(exception.getMessage().contains("Race with circuit: Suzuka"));
     }
 }

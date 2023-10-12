@@ -3,7 +3,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.conference.persistence;
 import es.upm.miw.apaw_practice.adapters.mongodb.conference.daos.ConferenceLocationRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.conference.daos.ConferenceRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.conference.entities.ConferenceLocationEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.conference.entities.PaperEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.conference.ConferenceLocation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.conference.ConferenceLocationPersistence;

@@ -51,6 +51,13 @@ public class Classroom {
         this.lockers = lockers;
     }
 
+    public void doDefault() {
+        this.location = "default";
+        this.entryHour = LocalDateTime.of(2001, 1, 1, 1, 1);
+        this.smartBoard = true;
+        this.lockers = 0;
+    }
+
     @Override
     public String toString() {
         return "Classroom{" +

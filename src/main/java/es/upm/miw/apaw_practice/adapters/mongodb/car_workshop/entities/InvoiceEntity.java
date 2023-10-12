@@ -1,17 +1,16 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.car_workshop.entities;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.UUID;
-
+import es.upm.miw.apaw_practice.domain.models.car_workshop.CarComponent;
+import es.upm.miw.apaw_practice.domain.models.car_workshop.Invoice;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import es.upm.miw.apaw_practice.domain.models.car_workshop.CarComponent;
-import es.upm.miw.apaw_practice.domain.models.car_workshop.Invoice;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
 
 @Document
 public class InvoiceEntity {
@@ -30,8 +29,8 @@ public class InvoiceEntity {
     }
 
     public InvoiceEntity(LocalDateTime invoiceDate, BigDecimal totalPrice, Boolean paid,
-            CarToRepairEntity carToRepairEntity,
-            List<CarComponentEntity> carComponentEntities) {
+                         CarToRepairEntity carToRepairEntity,
+                         List<CarComponentEntity> carComponentEntities) {
         this.id = UUID.randomUUID().toString();
         this.invoiceDate = invoiceDate;
         this.totalPrice = totalPrice;
@@ -119,11 +118,8 @@ public class InvoiceEntity {
             return false;
         InvoiceEntity other = (InvoiceEntity) obj;
         if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
+            return other.id == null;
+        } else return id.equals(other.id);
     }
 
     @Override

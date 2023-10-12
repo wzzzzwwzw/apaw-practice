@@ -20,13 +20,17 @@ public class PainterPersistenceMongodb implements PainterPersistence {
 
     @Override
     public Painter findBySurname(String surname) {
-        // TODO
-        return null;
+        return this.painterRepository.findAll().stream()
+                .filter(painter -> surname.equals(painter.getSurname()))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException("Painter with surname: " + surname))
+                .toPainter();
     }
 
     @Override
     public Painter update(Painter painter) {
-        // TODO
-        return null;
+        PainterEntity persisted = this.painterRepository.findById(painter.getSurname())
+                .orElseThrow(() -> new NotFoundException("Painter with surname: " + painter.getSurname()));
+        return this.painterRepository.save(persisted).toPainter();
     }
 }

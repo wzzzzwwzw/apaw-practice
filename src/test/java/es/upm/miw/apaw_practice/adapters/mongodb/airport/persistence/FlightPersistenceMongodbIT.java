@@ -5,16 +5,13 @@ import es.upm.miw.apaw_practice.domain.models.airport.AirLine;
 import es.upm.miw.apaw_practice.domain.models.airport.Aircraft;
 import es.upm.miw.apaw_practice.domain.models.airport.Flight;
 import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
-import es.upm.miw.apaw_practice.domain.models.shop.Article;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 public class FlightPersistenceMongodbIT {
@@ -23,7 +20,7 @@ public class FlightPersistenceMongodbIT {
     private FlightPersistenceMongodb flightPersistenceMongodb;
 
     @Test
-    void testCreateAndRead() {
+    void testCreate() {
         List<Passenger> passengerList = new ArrayList<>();
         List<Aircraft> aircraftList = new ArrayList<>();
         Integer numberOfFlight = 875858;
@@ -34,5 +31,11 @@ public class FlightPersistenceMongodbIT {
         assertEquals(875858, flight.getNumberOfFlight());
         assertEquals(LocalDate.of(2023,10,10),flight.getDateOfFlight());
         assertEquals("Iberia", flight.getAirLine().getName());
+    }
+
+    @Test
+    void testExistFlight(){
+        assertTrue(this.flightPersistenceMongodb.existFlight(12345));
+        assertFalse(this.flightPersistenceMongodb.existFlight(545476));
     }
 }

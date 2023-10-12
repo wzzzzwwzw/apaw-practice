@@ -10,7 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 @RestTestConfig
@@ -94,5 +97,25 @@ public class OBDFaultResourceIT {
                 .body(BodyInserters.fromValue(updatedOBDFault))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
+    }
+
+    @Test
+    void testFindByCarComponentName() {
+        this.webTestClient
+                .get()
+                .uri(OBDFaultResource.OBDFAULTS + OBDFaultResource.CODES + OBDFaultResource.SEARCHBYCARCOMPONENTNAME + "?q=name:Universal Belt")
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(list -> assertTrue(list.get(0).contains("P0001")))
+                .value(list -> assertTrue(list.get(0).contains("P0002")));
+
+        this.webTestClient
+                .get()
+                .uri(OBDFaultResource.OBDFAULTS + OBDFaultResource.CODES + OBDFaultResource.SEARCHBYCARCOMPONENTNAME + "?q=name:NOTFOUND")
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(List.class)
+                .value(list -> assertTrue(list.isEmpty()));
     }
 }

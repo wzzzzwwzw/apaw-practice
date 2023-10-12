@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RestTestConfig
-public class ArtWorkResourceIT {
+class ArtWorkResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;

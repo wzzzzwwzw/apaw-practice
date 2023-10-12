@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
-public class ArtWorkPersistenceMongodbIT {
+class ArtWorkPersistenceMongodbIT {
 
     @Autowired
     private ArtWorkPersistenceMongodb artWorkPersistence;

@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
-public class PainterPersistenceMongodbIT {
+class PainterPersistenceMongodbIT {
 
     @Autowired
     private PainterPersistenceMongodb painterPersistenceMongodb;

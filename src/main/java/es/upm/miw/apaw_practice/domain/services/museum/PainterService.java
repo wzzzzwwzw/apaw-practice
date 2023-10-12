@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.domain.services.museum;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.museum.entities.PainterEntity;
 import es.upm.miw.apaw_practice.domain.models.museum.Painter;
 import es.upm.miw.apaw_practice.domain.persistence_ports.museum.PainterPersistence;
 import org.springframework.beans.factory.annotation.Autowired;

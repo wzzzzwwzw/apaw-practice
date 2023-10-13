@@ -3,10 +3,7 @@ package es.upm.miw.apaw_practice.adapters.rest.music;
 import es.upm.miw.apaw_practice.domain.models.music.Song;
 import es.upm.miw.apaw_practice.domain.services.music.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Stream;
 
@@ -30,5 +27,10 @@ public class AlbumResource {
     @GetMapping(DENOMINATION_ID + SONGS)
     public Stream<Song> readSongsByAlbumDenomination(@PathVariable String denomination) {
         return this.albumService.readSongsByAlbumDenomination(denomination);
+    }
+
+    @DeleteMapping(DENOMINATION_ID)
+    public void delete(@PathVariable String denomination) {
+        this.albumService.delete(denomination);
     }
 }

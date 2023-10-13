@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.stream.Stream;
 
 @Service
@@ -33,5 +34,14 @@ public class FilmService {
         Film film = films.get(0);
         film.setReviews(reviewList);
         return this.filmPersistence.update(film);
+    }
+
+    public Double findRatingAverageByDirectorDni(String dni) {
+        return this.filmPersistence
+                .findFilmsByDirectorDni(dni)
+                .flatMap(film -> film.getReviews().stream())
+                        .mapToDouble(Review::getRating)
+                        .average()
+                        .orElse(0.0);
     }
 }

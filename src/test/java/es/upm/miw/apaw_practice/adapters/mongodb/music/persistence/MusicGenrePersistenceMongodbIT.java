@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.music.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.music.MusicSeederService;
 import es.upm.miw.apaw_practice.domain.models.music.MusicGenre;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,6 +14,15 @@ class MusicGenrePersistenceMongodbIT {
 
     @Autowired
     private MusicGenrePersistenceMongodb musicGenrePersistenceMongodb;
+
+    @Autowired
+    private MusicSeederService musicSeederService;
+
+    @AfterEach
+    void resetDB() {
+        this.musicSeederService.deleteAll();
+        this.musicSeederService.seedDatabase();
+    }
 
     @Test
     void testCreateMusicGenre() {

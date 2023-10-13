@@ -2,16 +2,16 @@ package es.upm.miw.apaw_practice.adapters.rest.museum;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.museum.MuseumSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.springframework.web.reactive.function.BodyInserters;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
 class ExhibitionResourceIT {
@@ -25,6 +25,32 @@ class ExhibitionResourceIT {
     void resetDataBase() {
         this.museumSeederService.deleteAll();
         this.museumSeederService.seedDatabase();
+    }
+
+    @Test
+    void testFindLocationsByArtWorkExhibitedOfPainterBySurname() {
+        Map<String, List<String>> expectedResults = new HashMap<>() {{
+            put("Velázquez", List.of("Museo Nacional del Prado (Madrid, España)"));
+            put("Goya y Lucientes", List.of("CaixaForum (Barcelona, España)"));
+            put("Bosco", List.of());
+            put("Rubens", List.of("Museo Nacional del Prado (Madrid, España)"));
+            put("Angelico", List.of("Museo Nacional del Prado (Madrid, España)"));
+        }};
+
+        expectedResults.forEach((key, value) ->
+            this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(ExhibitionResource.EXHIBITIONS + ExhibitionResource.SEARCH)
+                        .queryParam("q", "surname:" + key)
+                        .build())
+                .exchange()
+                .expectBody(List.class)
+                .consumeWith(entityList -> {
+                    assertNotNull(entityList.getResponseBody());
+                    assertEquals(value, entityList.getResponseBody());
+                })
+        );
     }
 
     @Test

@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 @Repository("invoicePersistence")
 public class InvoicePersistenceMongodb implements InvoicePersistence {
 
-    private InvoiceRepository invoiceRepository;
+    private final InvoiceRepository invoiceRepository;
 
     @Autowired
     public InvoicePersistenceMongodb(InvoiceRepository invoiceRepository) {
@@ -30,5 +30,14 @@ public class InvoicePersistenceMongodb implements InvoicePersistence {
     public Stream<Invoice> findAll() {
         return this.invoiceRepository.findAll().stream()
                 .map(InvoiceEntity::toInvoice);
+    }
+
+    @Override
+    public Stream<Invoice> findByCarComponent(String carComponentName) {
+        return this.invoiceRepository.findAll().stream()
+                .filter(invoiceEntity -> invoiceEntity.getCarComponentEntities().stream()
+                        .anyMatch(carComponentEntity -> carComponentEntity.getName().equals(carComponentName)))
+                .map(InvoiceEntity::toInvoice)
+                .distinct();
     }
 }

@@ -51,6 +51,12 @@ public class MaterialEntity {
         this.durability = durability;
     }
 
+    public Material toMaterial() {
+        Material material = new Material();
+        BeanUtils.copyProperties(this, material);
+        return material;
+    }
+
     @Override
     public int hashCode() {
         return this.name.hashCode();

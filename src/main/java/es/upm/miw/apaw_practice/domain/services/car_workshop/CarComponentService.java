@@ -36,5 +36,9 @@ public class CarComponentService {
 
     public Integer findTotalStockByIsITVSafe(Boolean isITVSafe) {
         Stream<Invoice> invoicesWithCarComponent = this.invoicePersistence.findByIsITVSafe(isITVSafe);
+        return invoicesWithCarComponent
+                .flatMap(invoice -> invoice.getCarComponents().stream())
+                .mapToInt(CarComponent::getStock)
+                .sum();
     }
 }

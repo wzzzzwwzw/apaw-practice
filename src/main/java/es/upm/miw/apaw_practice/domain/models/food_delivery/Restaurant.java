@@ -2,7 +2,7 @@ package es.upm.miw.apaw_practice.domain.models.food_delivery;
 
 import org.apache.commons.lang3.builder.Builder;
 
-public class Restaurant {
+public class Restaurant implements TreeRestaurants {
 
     private String name;
     private String type;
@@ -10,7 +10,8 @@ public class Restaurant {
     private String adress;
     private Integer maximumOrders;
 
-    public Restaurant(){}
+    public Restaurant() {
+    }
 
     public Restaurant(String name, String type, String description, String adress, Integer maximumOrders) {
         this.name = name;
@@ -21,7 +22,7 @@ public class Restaurant {
     }
 
 
-    public static RestaurantBuilders.Name builder(){
+    public static RestaurantBuilders.Name builder() {
         return new Builder();
     }
 
@@ -77,15 +78,31 @@ public class Restaurant {
                 '}';
     }
 
+    @Override
+    public boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(TreeRestaurants treeRestaurants) {
+        // Do nothing because it is a leaf
+    }
+
+    @Override
+    public void remove(TreeRestaurants treeRestaurants) {
+        // Do nothing because it is a leaf
+    }
+
     public static class Builder implements RestaurantBuilders.Name, RestaurantBuilders.Type,
             RestaurantBuilders.Description, RestaurantBuilders.Adress, RestaurantBuilders.MaximumOrders,
             RestaurantBuilders.Build {
 
         private final Restaurant restaurant;
 
-        public Builder(){
+        public Builder() {
             this.restaurant = new Restaurant();
         }
+
         @Override
         public RestaurantBuilders.Type name(String name) {
             this.restaurant.name = name;

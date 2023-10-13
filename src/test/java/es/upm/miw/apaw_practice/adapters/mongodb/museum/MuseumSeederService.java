@@ -38,6 +38,7 @@ public class MuseumSeederService {
                 new RoomEntity("Sala 015", 1, 7.5),
                 new RoomEntity("Sala 029", 1, 7.25),
                 new RoomEntity("Sala 009", 1, 7.25),
+                new RoomEntity("ALMACÉN", -1, 0.0),
         };
         roomRepository.saveAll(Arrays.asList(rooms));
 
@@ -48,7 +49,7 @@ public class MuseumSeederService {
                 new ArtWorkEntity("P000742", "La maja desnuda", 1797, true, rooms[2]),
                 new ArtWorkEntity("P001173", "Las hilanderas", 1658, true, rooms[3]),
                 new ArtWorkEntity("P001670", "Las tres Gracias", 1633, true, rooms[3]),
-                new ArtWorkEntity("P000796", "El albañil herido", 1787, false, null),
+                new ArtWorkEntity("P000796", "El albañil herido", 1787, false, rooms[6]),
                 new ArtWorkEntity("P000015", "La Anunciación", 1787, true, rooms[1]),
                 new ArtWorkEntity("P001172", "La rendición de Breda", 1635, true, rooms[5]),
         };

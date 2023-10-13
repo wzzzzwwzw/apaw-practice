@@ -9,6 +9,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.museum.PainterPersisten
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("painterPersistence")
 public class PainterPersistenceMongodb implements PainterPersistence {
 
@@ -17,6 +19,12 @@ public class PainterPersistenceMongodb implements PainterPersistence {
     @Autowired
     public PainterPersistenceMongodb(PainterRepository painterRepository) {
         this.painterRepository = painterRepository;
+    }
+
+    @Override
+    public Stream<Painter> findAll() {
+        return this.painterRepository.findAll().stream()
+                .map(PainterEntity::toPainter);
     }
 
     @Override

@@ -17,9 +17,9 @@ public class EngineManufacturerServiceIT {
     @Test
     void testCreate() {
         EngineManufacturer engineManufacturer =
-                this.engineManufacturerService.create(new EngineManufacturer("Ford", "EEUU", 0));
+                this.engineManufacturerService.create(new EngineManufacturer("Ford", "USA", 0));
         assertEquals("Ford", engineManufacturer.getManufacturerName());
-        assertEquals("EEUU", engineManufacturer.getEngineBuiltIn());
+        assertEquals("USA", engineManufacturer.getEngineBuiltIn());
         assertEquals(0, engineManufacturer.getNumberOfEnginesSupplied());
     }
 

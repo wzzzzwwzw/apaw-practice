@@ -27,7 +27,7 @@ public class RestaurantComposite implements TreeRestaurants {
 
     @Override
     public void remove(TreeRestaurants treeRestaurants) {
-        treeRestaurantsList.remove(treeRestaurants)
+        treeRestaurantsList.remove(treeRestaurants);
 
     }
 

@@ -1,8 +1,10 @@
 package es.upm.miw.apaw_practice.domain.services.car_workshop;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.car_workshop.CarWorkshopSeederService;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.car_workshop.CarToRepair;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,6 +15,14 @@ public class CarToRepairServiceIT {
     @Autowired
     private CarToRepairService carToRepairService;
 
+    @Autowired
+    private CarWorkshopSeederService carWorkshopSeederService;
+
+    @AfterEach
+    void resetDataBase() {
+        this.carWorkshopSeederService.deleteAll();
+        this.carWorkshopSeederService.seedDatabase();
+    }
 
     @Test
     void testUpdate() {

@@ -66,7 +66,10 @@ public class FormulaOneSeederService {
         RaceEntity[] races = {
                 new RaceEntity("Albert Park", "Australia", LocalDate.of(2023, 4, 2), List.of(drivers)),
                 new RaceEntity("Hermanos Rodríguez", "Mexico", LocalDate.of(2023, 10, 29), List.of(drivers)),
-                new RaceEntity("Silverstone", "United Kingdom", LocalDate.of(2023, 7, 16), List.of(drivers))
+                new RaceEntity("Silverstone", "United Kingdom", LocalDate.of(2023, 7, 16), List.of(drivers)),
+                new RaceEntity("Las Vegas", "USA", LocalDate.of(2023, 10, 8), Arrays.asList(drivers[0], drivers[1])),
+                new RaceEntity("Miami", "USA", LocalDate.of(2023, 5, 14), Arrays.asList(drivers[0], drivers[2], drivers[6])),
+                new RaceEntity("Red Bull Ring", "Austria", LocalDate.of(2023, 5, 14), Collections.singletonList(drivers[0]))
         };
         this.raceRepository.saveAll(Arrays.asList(races));
     }

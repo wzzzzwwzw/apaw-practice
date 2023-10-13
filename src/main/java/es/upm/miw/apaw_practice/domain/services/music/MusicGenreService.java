@@ -26,4 +26,8 @@ public class MusicGenreService {
             throw new ConflictException("MusicGenre type already exists: " + type);
         }
     }
+
+    public MusicGenre updatePopularityByType(String type) {
+        return this.musicGenrePersistence.updatePopularityByType(type);
+    }
 }

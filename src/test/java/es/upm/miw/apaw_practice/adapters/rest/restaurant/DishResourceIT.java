@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.rest.restaurant;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.restaurant.RestaurantSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -16,6 +18,14 @@ public class DishResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
+    @Autowired
+    private RestaurantSeederService restaurantSeederService;
+
+    @BeforeEach
+    void cleanUpDb() {
+        this.restaurantSeederService.deleteAll();
+        this.restaurantSeederService.seedDatabase();
+    }
 
     @Test
     void testUpdate() {

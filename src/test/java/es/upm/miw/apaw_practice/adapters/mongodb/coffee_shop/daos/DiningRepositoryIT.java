@@ -15,10 +15,10 @@ public class DiningRepositoryIT {
 
     @Test
     void testFindByName() {
-        assertTrue(this.diningRepository.findByDiningNumber("1").isPresent());
-        DiningEntity dining = this.diningRepository.findByDiningNumber("1").get();
-        assertEquals("1", dining.getDiningNumber());
-        assertEquals("location1", dining.getLocation());
+        assertTrue(this.diningRepository.findByDiningNumber("2").isPresent());
+        DiningEntity dining = this.diningRepository.findByDiningNumber("2").get();
+        assertEquals("2", dining.getDiningNumber());
+        assertEquals("location2", dining.getLocation());
         assertEquals(6, dining.getCapacity());
     }
 }

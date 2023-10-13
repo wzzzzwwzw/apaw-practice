@@ -33,10 +33,19 @@ class PainterResourceIT {
 
     @Test
     void testUpdate() {
-        ArtWork[] artWorks = {
-                new ArtWork("P001174", "Las Meninas", 1656, true, new Room("Sala 012", 1, 9.75))
-        };
-        Painter painter = new Painter("Diego", "Velázquez", LocalDate.of(1599, 6, 6), LocalDate.of(1660, 8, 6), List.of(artWorks));
+        Room room = new Room().builder()
+                .description("Sala 012")
+                .floor(1)
+                .popularity(9.75)
+                .build();
+        ArtWork artWork = new ArtWork().builder()
+                .inventoryNumber("P001174")
+                .title("Las Meninas")
+                .approximateYear(1656)
+                .exhibited(true)
+                .room(room)
+                .build();
+        Painter painter = new Painter("Diego", "Velázquez", LocalDate.of(1599, 6, 6), LocalDate.of(1660, 8, 6), List.of(artWork));
 
         this.webTestClient
                 .put()
@@ -56,10 +65,19 @@ class PainterResourceIT {
 
     @Test
     void testBadUpdate() {
-        ArtWork[] artWorks = {
-                new ArtWork("P001174", "Las Meninas", 1656, true, new Room("Sala 012", 1, 9.75))
-        };
-        Painter painter = new Painter("Diego", "Velázquez (con otro apellido)", LocalDate.of(1599, 6, 6), LocalDate.of(1660, 8, 6), List.of(artWorks));
+        Room room = new Room().builder()
+                .description("Sala 012")
+                .floor(1)
+                .popularity(9.75)
+                .build();
+        ArtWork artWork = new ArtWork().builder()
+                .inventoryNumber("P001174")
+                .title("Las Meninas")
+                .approximateYear(1656)
+                .exhibited(true)
+                .room(room)
+                .build();
+        Painter painter = new Painter("Diego", "Velázquez (con otro apellido)", LocalDate.of(1599, 6, 6), LocalDate.of(1660, 8, 6), List.of(artWork));
 
         this.webTestClient
                 .put()

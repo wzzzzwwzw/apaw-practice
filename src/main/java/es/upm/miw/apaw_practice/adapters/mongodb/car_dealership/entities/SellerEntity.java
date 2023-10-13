@@ -16,6 +16,10 @@ public class SellerEntity {
     private String surname;
     private Integer salary;
 
+    public SellerEntity() {
+        //empty for framework
+    }
+
     public SellerEntity(String name, String surname, Integer salary) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
@@ -23,6 +27,10 @@ public class SellerEntity {
         this.salary = salary;
     }
 
+    public SellerEntity(Seller seller) {
+        BeanUtils.copyProperties(seller, this);
+        this.id = UUID.randomUUID().toString();
+    }
     public String getId() {
         return id;
     }

@@ -51,6 +51,12 @@ public class ManagerEntity {
         this.promotionCandidate = promotionCandidate;
     }
 
+    public Manager toManager() {
+        Manager manager = new Manager();
+        BeanUtils.copyProperties(this, manager);
+        return manager;
+    }
+
     @Override
     public int hashCode() {
         return this.affiliationNumber.hashCode();

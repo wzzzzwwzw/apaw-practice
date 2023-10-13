@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.car_workshop.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.car_workshop.daos.InvoiceRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.car_workshop.entities.InvoiceEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.car_workshop.entities.OBDFaultEntity;
 import es.upm.miw.apaw_practice.domain.models.car_workshop.Invoice;
 import es.upm.miw.apaw_practice.domain.persistence_ports.car_workshop.InvoicePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,14 @@ public class InvoicePersistenceMongodb implements InvoicePersistence {
                         .anyMatch(carComponentEntity -> carComponentEntity.getName().equals(carComponentName)))
                 .map(InvoiceEntity::toInvoice)
                 .distinct();
+    }
+
+    @Override
+    public Stream<Invoice> findByIsITVSafe(Boolean isITVSafe) {
+        return this.invoiceRepository.findAll().stream()
+                .filter(invoiceEntity -> invoiceEntity.getCarToRepairEntity()
+                        .getObdFaultEntities().stream()
+                        .anyMatch(OBDFaultEntity::getIsITVSafe))
+                .map(InvoiceEntity::toInvoice);
     }
 }

@@ -43,4 +43,31 @@ public class CarComponentResourceIT {
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
     }
+
+    @Test
+    void testGetTotalStock() {
+        this.webTestClient
+                .get()
+                .uri(CarComponentResource.CARCOMPONENTS + CarComponentResource.SEARCHSTOCK + "?q=isITVSafe:true")
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Integer.class)
+                .value(stock -> assertEquals(stock, 11300));
+
+        this.webTestClient
+                .get()
+                .uri(CarComponentResource.CARCOMPONENTS + CarComponentResource.SEARCHSTOCK + "?q=isITVSafe:false")
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Integer.class)
+                .value(stock -> assertEquals(stock, 1300));
+    }
+    @Test
+    void testGetTotalStockMalformed() {
+        this.webTestClient
+                .get()
+                .uri(CarComponentResource.CARCOMPONENTS + CarComponentResource.SEARCHSTOCK + "?q=isITVSafe:HAHAHA")
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
 }

@@ -32,4 +32,12 @@ public class CarComponentServiceIT {
         });
     }
 
+    @Test
+    void testGetTotalStock() {
+        Integer stockTrue = this.carComponentService.findTotalStockByIsITVSafe(true);
+        assertEquals(11300, stockTrue);
+        Integer stockFalse = this.carComponentService.findTotalStockByIsITVSafe(false);
+        assertEquals(1300, stockFalse);
+    }
+
 }

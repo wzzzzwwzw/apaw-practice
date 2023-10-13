@@ -17,7 +17,7 @@ public class DiningResourceIT {
 
     @Test
     void testPostWire() {
-        Dining diningCreated = new Dining("1", "location1", 6);
+        Dining diningCreated = new Dining("5", "location5", 6);
         this.webTestClient
                 .post()
                 .uri(DiningResource.DINING)

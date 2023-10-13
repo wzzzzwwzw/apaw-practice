@@ -87,10 +87,10 @@ public class PainterEntity {
     public Painter toPainter() {
         Painter painter = new Painter();
         BeanUtils.copyProperties(this, painter, "artWorks");
-        List<ArtWork> artWorks = this.artWorks.stream()
+        List<ArtWork> artWorksList = this.artWorks.stream()
                 .map(ArtWorkEntity::toArtWork)
                 .toList();
-        painter.setArtWorks(artWorks);
+        painter.setArtWorks(artWorksList);
         return painter;
     }
 

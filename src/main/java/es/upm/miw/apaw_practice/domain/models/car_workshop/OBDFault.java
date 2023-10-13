@@ -58,4 +58,42 @@ public class OBDFault {
                 ", solution='" + solution + '\'' +
                 '}';
     }
+
+    public static class Builder implements OBDFaultsBuilders.Code, OBDFaultsBuilders.Optionals {
+
+        private final OBDFault obdFault;
+
+        public Builder() {
+            obdFault = new OBDFault();
+        }
+
+        @Override
+        public OBDFaultsBuilders.Optionals code(String code) {
+            this.obdFault.code = code;
+            return this;
+        }
+
+        @Override
+        public OBDFaultsBuilders.Optionals description(String description) {
+            this.obdFault.description = description;
+            return this;
+        }
+
+        @Override
+        public OBDFaultsBuilders.Optionals isITVSafe(Boolean isITVSafe) {
+            this.obdFault.isITVSafe = isITVSafe;
+            return this;
+        }
+
+        @Override
+        public OBDFaultsBuilders.Optionals solution(String solution) {
+            this.obdFault.solution = solution;
+            return this;
+        }
+
+        @Override
+        public OBDFault build() {
+            return this.obdFault;
+        }
+    }
 }

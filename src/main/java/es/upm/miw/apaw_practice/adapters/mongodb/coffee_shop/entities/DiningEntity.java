@@ -24,10 +24,6 @@ public class DiningEntity {
 
     public DiningEntity(Dining dining) {
         this.id = UUID.randomUUID().toString();
-        /*this.diningNumber = diningNumber;
-        this.location = location;
-        this.capacity = capacity;*/
-        this.id = UUID.randomUUID().toString();
         BeanUtils.copyProperties(dining, this);
     }
 

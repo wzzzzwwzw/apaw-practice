@@ -6,14 +6,14 @@ import java.util.List;
 
 public class Fishpond {
     private String direction;
-    private Integer id;
+    private Integer fishId;
     private LocalDate openTime;
     private List<Fish> fishes;
 
 
     public Fishpond(String direction, Integer id, LocalDate openTime, List<Fish> fishes) {
         this.direction = direction;
-        this.id = id;
+        this.fishId = fishId;
         this.openTime = openTime;
         this.fishes = fishes;
     }
@@ -29,11 +29,11 @@ public class Fishpond {
     }
 
     public Integer getId() {
-        return id;
+        return fishId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer fishId) {
+        this.fishId = fishId;
     }
 
     public LocalDate getOpenTime() {
@@ -56,7 +56,7 @@ public class Fishpond {
     public String toString() {
         return "Fishpond{" +
                 "direction='" + direction + '\'' +
-                ", id=" + id +
+                ", fishId=" + fishId +
                 ", openTime=" + openTime +
                 ", fishes=" + fishes +
                 '}';

@@ -42,7 +42,7 @@ public class DriverServiceIT {
     }
 
     @Test
-    void testFindTotalPointsByEnginesBuiltInNotExistEnginesBuiltIn() {
+    void testNotFindTotalPointsByEnginesBuiltIn() {
         Float points = this.driverService.findTotalPointsByEnginesBuiltIn("Australia");
         assertEquals(0F, points);
     }

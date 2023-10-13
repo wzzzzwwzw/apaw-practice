@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.restaurant.entities;
 
+import es.upm.miw.apaw_practice.domain.models.restaurant.Dish;
+import es.upm.miw.apaw_practice.domain.models.restaurant.Menu;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -22,9 +24,10 @@ public class MenuEntity {
         //empty from framework
     }
 
-    public MenuEntity(List<DishEntity> dishes) {
+    public MenuEntity(List<DishEntity> dishes, LocalDateTime lastModification) {
         this.id = UUID.randomUUID().toString();
         this.dishes = dishes;
+        this.lastModification = lastModification;
     }
 
     public String getId() {
@@ -41,6 +44,13 @@ public class MenuEntity {
 
     public LocalDateTime getLastModification() {
         return lastModification;
+    }
+
+    public Menu toMenu() {
+        List<Dish> dishes = this.dishes.stream()
+                .map(DishEntity::toDish).toList();
+        return new Menu(dishes, lastModification);
+
     }
 
     @Override

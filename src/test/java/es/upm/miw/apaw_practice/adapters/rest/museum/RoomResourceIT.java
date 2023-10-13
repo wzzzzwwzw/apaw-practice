@@ -29,7 +29,11 @@ class RoomResourceIT {
 
     @Test
     void testPatch() {
-        Room room = new Room("Sala 012", 1, 9.75);
+        Room room = new Room().builder()
+                .description("Sala 012")
+                .floor(1)
+                .popularity(9.75)
+                .build();
         Double updatedPopularity = 6.25;
 
         this.webTestClient

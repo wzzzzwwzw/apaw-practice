@@ -10,4 +10,6 @@ public interface InvoicePersistence {
     Stream<Invoice> findAll();
 
     Stream<Invoice> findByCarComponent(String carComponentName);
+
+    Stream<Invoice> findByIsITVSafe(Boolean isITVSafe);
 }

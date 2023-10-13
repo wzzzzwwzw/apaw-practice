@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -33,14 +32,13 @@ public class DishService {
         this.dishPersistence.increasePrices(increment);
     }
 
-    public BigDecimal findSumOfPriceByAvailableAndLastModification(Boolean available, LocalDateTime lastModification) {
-        List<Menu> menus = this.menuPersistence.findAllMenusByLastModificationBeforeXDays(30);
+    public BigDecimal findSumOfPriceByAvailableAndLastModificationThisMonth(Boolean available) {
+        List<Menu> menus = this.menuPersistence.findAllMenusByLastModificationThisMonth();
 
         return menus.stream()
-                .filter(menu -> menu.getDishes().stream()
-                        .anyMatch(dish -> dish.getIngredients().stream()
-                                .anyMatch(ingredient -> ingredient.isAvailable() == available)))
                 .map(menu -> menu.getDishes().stream()
+                        .filter(dish -> dish.getIngredients().stream()
+                                .allMatch(ingredient -> ingredient.isAvailable() == available))
                         .map(Dish::getPrice)
                         .reduce(BigDecimal.ZERO, BigDecimal::add))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);

@@ -10,5 +10,5 @@ public interface MenuPersistence {
 
     void delete(String id);
 
-    List<Menu> findAllMenusByLastModificationBeforeXDays(Integer days);
+    List<Menu> findAllMenusByLastModificationThisMonth();
 }

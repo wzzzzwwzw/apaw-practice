@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping(DishResource.DISHES)
@@ -37,10 +36,9 @@ public class DishResource {
     }
 
     @GetMapping(SEARCH)
-    public BigDecimal findSumOfPriceByAvailableAndLastModification(@RequestParam String q) {
+    public BigDecimal findSumOfPriceByAvailableAndLastModificationThisMonth(@RequestParam String q) {
         String available = new LexicalAnalyzer().extractWithAssure(q, "available");
-        String lastModification = new LexicalAnalyzer().extractWithAssure(q, "last-modification");
-        return this.dishService.findSumOfPriceByAvailableAndLastModification(Boolean.getBoolean(available), LocalDateTime.parse(lastModification));
+        return this.dishService.findSumOfPriceByAvailableAndLastModificationThisMonth(Boolean.parseBoolean(available));
     }
 
 }

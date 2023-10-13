@@ -27,17 +27,17 @@ public class MenuPersistenceMongodb implements MenuPersistence {
     }
 
     @Override
-    public List<Menu> findAllMenusByLastModificationBeforeXDays(Integer days) {
+    public List<Menu> findAllMenusByLastModificationThisMonth() {
         List<Menu> menus = menuRepository.findAll()
                 .stream()
                 .map(MenuEntity::toMenu)
                 .toList();
 
-        LocalDateTime currentTime = LocalDateTime.now(); // Obtiene la fecha y hora actual
-        LocalDateTime thresholdTime = currentTime.minusDays(days); // Resta el número de días especificado
+        LocalDateTime currentTime = LocalDateTime.now();
+        LocalDateTime thresholdTime = currentTime.minusDays(30);
 
         return menus.stream()
-                .filter(menu -> menu.getLastModification().isBefore(thresholdTime))
+                .filter(menu -> menu.getLastModification().isAfter(thresholdTime))
                 .collect(Collectors.toList());
     }
 

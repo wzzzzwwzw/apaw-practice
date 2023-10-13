@@ -9,7 +9,7 @@ public class Aquarium {
     public Aquarium(String description, Double size, Integer maximumFishCapacity) {
         this.description = description;
         this.size = size;
-        maximumFishCapacity = maximumFishCapacity;
+        this.maximumFishCapacity = maximumFishCapacity;
     }
     public Aquarium(){
         //empty for framework

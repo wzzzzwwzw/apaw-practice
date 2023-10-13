@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 @Service
@@ -53,12 +54,13 @@ public class RestaurantSeederService {
                 new DishEntity("Pollo_con_patatas", new BigDecimal("13.5"), categories[0], Arrays.asList(ingredients[0], ingredients[2])),
                 new DishEntity("Lubina_con_arroz", new BigDecimal("18"), categories[1], Arrays.asList(ingredients[1], ingredients[4])),
                 new DishEntity("Ternera_banhada_en_setas", new BigDecimal("23"), categories[4], Arrays.asList(ingredients[5], ingredients[6])),
-
         };
         dishRepository.saveAll(Arrays.asList(dishes));
 
-        MenuEntity menu = new MenuEntity(Arrays.asList(dishes));
+        MenuEntity menu = new MenuEntity(Arrays.asList(dishes), LocalDateTime.now().minusDays(20));
         menuRepository.save(menu);
+        MenuEntity oldMenu = new MenuEntity(Arrays.asList(dishes), LocalDateTime.now().minusDays(80));
+        menuRepository.save(oldMenu);
     }
 
     public void deleteAll() {

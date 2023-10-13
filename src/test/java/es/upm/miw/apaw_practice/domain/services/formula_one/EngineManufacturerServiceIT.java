@@ -6,6 +6,8 @@ import es.upm.miw.apaw_practice.domain.models.formula_one.EngineManufacturer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
@@ -32,4 +34,14 @@ public class EngineManufacturerServiceIT {
         assertTrue(exception.getMessage().contains("Engine manufacturer exist: Honda"));
     }
 
+    @Test
+    void testFindManufacturersNamesByHostCountry() {
+        assertEquals(List.of("Honda", "Mercedes"),
+                this.engineManufacturerService.findManufacturersNamesByHostCountry("Australia").toList());
+    }
+
+    @Test
+    void testNotFindManufacturersNamesByHostCountry() {
+        assertTrue(this.engineManufacturerService.findManufacturersNamesByHostCountry("Argentina").toList().isEmpty());
+    }
 }

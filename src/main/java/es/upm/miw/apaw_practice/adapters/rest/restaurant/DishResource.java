@@ -1,12 +1,14 @@
 package es.upm.miw.apaw_practice.adapters.rest.restaurant;
 
 
+import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.restaurant.Dish;
 import es.upm.miw.apaw_practice.domain.services.restaurant.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping(DishResource.DISHES)
@@ -15,6 +17,7 @@ public class DishResource {
     static final String DISHES = "/restaurant/dishes";
     static final String TITLE_ID = "/{title}";
     static final String PRICE = "/price";
+    static final String SEARCH = "/search";
 
     private final DishService dishService;
 
@@ -31,6 +34,13 @@ public class DishResource {
     @PatchMapping()
     public void increasePrices(@RequestBody Float increment) {
         this.dishService.increasePrices(increment);
+    }
+
+    @GetMapping(SEARCH)
+    public BigDecimal findSumOfPriceByAvailableAndLastModification(@RequestParam String q) {
+        String available = new LexicalAnalyzer().extractWithAssure(q, "available");
+        String lastModification = new LexicalAnalyzer().extractWithAssure(q, "last-modification");
+        return this.dishService.findSumOfPriceByAvailableAndLastModification(Boolean.getBoolean(available), LocalDateTime.parse(lastModification));
     }
 
 }

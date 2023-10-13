@@ -43,6 +43,12 @@ class OrderServiceIT {
         );
         this.orderService.updatePrices(orderPriceUpdatingList.stream());
         assertEquals(new BigDecimal("27.0"), this.orderPersistence.read(1).getPrice());
+
+        orderPriceUpdatingList = Arrays.asList(
+                new OrderPriceUpdating(1, new BigDecimal("25.0"))
+        );
+        this.orderService.updatePrices(orderPriceUpdatingList.stream());
+
     }
 
     @Test

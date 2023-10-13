@@ -45,5 +45,15 @@ class MusicGenrePersistenceMongodbIT {
         assertFalse(this.musicGenrePersistenceMongodb.existsMusicGenreType("APAW"));
     }
 
+    @Test
+    void testUpdateMusicGenrePopularity() {
+        MusicGenre musicGenre = this.musicGenrePersistenceMongodb.updatePopularityByType("trap");
+        assertNotNull(musicGenre);
+        assertEquals("trap", musicGenre.getType());
+        assertEquals("trap music", musicGenre.getDescription());
+        assertEquals(7, musicGenre.getPopularity());
+        assertEquals("United States", musicGenre.getCountryOrigin());
+    }
+
 
 }

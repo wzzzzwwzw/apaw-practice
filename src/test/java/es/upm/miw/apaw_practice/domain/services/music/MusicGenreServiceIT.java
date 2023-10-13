@@ -36,7 +36,7 @@ class MusicGenreServiceIT {
     }
 
     @Test
-void testCreateAlreadyExistsMusicGenre() {
+    void testCreateAlreadyExistsMusicGenre() {
         MusicGenre musicGenre = new MusicGenre("rock", "rock music", 8, "EEUU");
         assertThrows(ConflictException.class, () -> this.musicGenreService.create(musicGenre));
     }

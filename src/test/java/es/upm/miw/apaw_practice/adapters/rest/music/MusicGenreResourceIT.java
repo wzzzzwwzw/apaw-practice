@@ -57,4 +57,21 @@ class MusicGenreResourceIT {
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
     }
+
+    @Test
+    void testPatchMusicGenre() {
+        this.webTestClient
+                .patch()
+                .uri(MusicGenreResource.MUSIC_GENRES + MusicGenreResource.TYPE_ID, "trap")
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(MusicGenre.class)
+                .value(Assertions::assertNotNull)
+                .value(musicGenre -> {
+                    assertEquals("trap", musicGenre.getType());
+                    assertEquals("trap music", musicGenre.getDescription());
+                    assertEquals(7, musicGenre.getPopularity());
+                    assertEquals("United States", musicGenre.getCountryOrigin());
+                });
+    }
 }

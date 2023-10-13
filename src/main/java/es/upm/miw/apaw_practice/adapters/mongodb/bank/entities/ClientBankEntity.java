@@ -1,7 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.bank.entities;
 
 
-import es.upm.miw.apaw_practice.domain.models.bank.Client;
+import es.upm.miw.apaw_practice.domain.models.bank.ClientBank;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
@@ -13,7 +13,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Document
-public class ClientEntity {
+public class ClientBankEntity {
 
     @Id
     private String id;
@@ -24,11 +24,11 @@ public class ClientEntity {
     private Integer age;
     private List<BankAccountEntity> listAccountsEntities;
 
-    public ClientEntity() {
+    public ClientBankEntity() {
 
     }
 
-    public ClientEntity(String clientName, String dni, String lastName, Integer age, List<BankAccountEntity> listAccountsEntities) {
+    public ClientBankEntity(String clientName, String dni, String lastName, Integer age, List<BankAccountEntity> listAccountsEntities) {
         this.id= UUID.randomUUID().toString();
         this.dni=dni;
         this.clientName=clientName;
@@ -81,22 +81,22 @@ public class ClientEntity {
         this.listAccountsEntities = listAccountsEntities;
     }
 
-    public Client toClient(){
-        Client client=new Client();
-        BeanUtils.copyProperties(this,client);
-        client.setListAccounts(
+    public ClientBank toClientBank(){
+        ClientBank clientBank =new ClientBank();
+        BeanUtils.copyProperties(this, clientBank);
+        clientBank.setListAccounts(
                 listAccountsEntities.stream()
                         .map(BankAccountEntity::toBankAccount)
                         .toList()
         );
-        return client;
+        return clientBank;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ClientEntity that = (ClientEntity) o;
+        ClientBankEntity that = (ClientBankEntity) o;
         return Objects.equals(id, that.id) && Objects.equals(dni, that.dni);
     }
 

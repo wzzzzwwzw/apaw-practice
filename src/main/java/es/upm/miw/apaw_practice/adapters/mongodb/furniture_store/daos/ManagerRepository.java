@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface ManagerRepository extends MongoRepository<ManagerEntity, String> {
     Optional<ManagerEntity> findByAffiliationNumber(String affiliationNumber);
+    void deleteByName(String name);
 }

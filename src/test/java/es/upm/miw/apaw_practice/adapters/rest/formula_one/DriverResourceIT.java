@@ -50,7 +50,7 @@ public class DriverResourceIT {
     }
 
     @Test
-    void testFindTotalPointsByEnginesBuiltInNotExistEnginesBuiltIn() {
+    void testNotFindTotalPointsByEnginesBuiltIn() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->

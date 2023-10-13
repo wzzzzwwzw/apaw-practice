@@ -47,7 +47,7 @@ public class InvoicePersistenceMongodb implements InvoicePersistence {
         return this.invoiceRepository.findAll().stream()
                 .filter(invoiceEntity -> invoiceEntity.getCarToRepairEntity()
                         .getObdFaultEntities().stream()
-                        .anyMatch(OBDFaultEntity::getIsITVSafe))
+                        .anyMatch(obdFaultEntity -> obdFaultEntity.getIsITVSafe().equals(isITVSafe)))
                 .map(InvoiceEntity::toInvoice);
     }
 }

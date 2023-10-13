@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.rest.film;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
+import es.upm.miw.apaw_practice.adapters.rest.computer_store.ComputerResource;
 import es.upm.miw.apaw_practice.domain.models.film.Film;
 import es.upm.miw.apaw_practice.domain.models.film.Review;
 import org.junit.jupiter.api.Assertions;
@@ -75,5 +76,47 @@ class FilmResourceIT {
                 .body(BodyInserters.fromValue(reviews))
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testFindAverageRatingByDirectorDni() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FILMS + SEARCH)
+                                .queryParam("q", "dni:05645800X")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Double.class)
+                .value(Assertions::assertNotNull)
+                .value(average -> assertEquals(8.0, average));
+    }
+
+    @Test
+    void testBadRequestFindAverageRatingByDirectorDni() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FILMS + SEARCH)
+                                .queryParam("q", "id:05645800X")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
+
+    @Test
+    void testZeroFindAverageRatingByDirectorDni() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FILMS + SEARCH)
+                                .queryParam("q", "dni:00")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Double.class)
+                .value(Assertions::assertNotNull)
+                .value(average -> assertEquals(0.0, average));
     }
 }

@@ -1,9 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.bakery.entities;
 
 import es.upm.miw.apaw_practice.domain.models.bakery.Ticket;
-import es.upm.miw.apaw_practice.domain.models.bakery.Product;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
@@ -18,15 +18,20 @@ public class TicketEntity {
     private LocalDateTime createdAt;
     private BigDecimal totalPrice;
     private Integer totalProducts;
-    private List<Product> products;
+    @DBRef
+    private List<ProductEntity> products;
 
     public TicketEntity() {
-        //empty for framework
+        // empty for framework
     }
 
-    public TicketEntity(Ticket ticket) {
-        BeanUtils.copyProperties(ticket, this);
+    public TicketEntity(LocalDateTime createdAt, BigDecimal totalPrice, Integer totalProducts,
+            List<ProductEntity> products) {
         this.id = UUID.randomUUID().toString();
+        this.createdAt = createdAt;
+        this.totalPrice = totalPrice;
+        this.totalProducts = totalProducts;
+        this.products = products;
     }
 
     public String getId() {
@@ -61,12 +66,22 @@ public class TicketEntity {
         this.totalProducts = totalProducts;
     }
 
-    public List<Product> getProducts() {
+    public List<ProductEntity> getProducts() {
         return this.products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(List<ProductEntity> products) {
         this.products = products;
+    }
+
+    public void fromTicket(Ticket ticket) {
+        BeanUtils.copyProperties(ticket, this);
+    }
+
+    public Ticket toTicket() {
+        Ticket ticket = new Ticket();
+        BeanUtils.copyProperties(this, ticket);
+        return ticket;
     }
 
     @Override
@@ -82,11 +97,11 @@ public class TicketEntity {
     @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
-            ", createdAt='" + getCreatedAt() + "'" +
-            ", totalPrice='" + getTotalPrice() + "'" +
-            ", totalProducts='" + getTotalProducts() + "'" +
-            ", products='" + getProducts() + "'" +
-            "}";
+                " id='" + getId() + "'" +
+                ", createdAt='" + getCreatedAt() + "'" +
+                ", totalPrice='" + getTotalPrice() + "'" +
+                ", totalProducts='" + getTotalProducts() + "'" +
+                ", products='" + getProducts() + "'" +
+                "}";
     }
 }

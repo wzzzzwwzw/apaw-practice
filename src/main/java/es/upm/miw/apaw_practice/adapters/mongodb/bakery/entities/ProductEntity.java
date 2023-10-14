@@ -1,9 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.bakery.entities;
 
 import es.upm.miw.apaw_practice.domain.models.bakery.Product;
-import es.upm.miw.apaw_practice.domain.models.bakery.ProductType;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
@@ -19,15 +19,22 @@ public class ProductEntity {
     private BigDecimal price;
     private Boolean glutenFree;
     private LocalDate expirationDate;
-    private ProductType productType;
-    
+    @DBRef
+    private ProductTypeEntity productType;
+
     public ProductEntity() {
-        //empty for framework
+        // empty for framework
     }
 
-    public ProductEntity(Product product) {
-        BeanUtils.copyProperties(product, this);
+    public ProductEntity(String name, String description, BigDecimal price, Boolean glutenFree,
+            LocalDate expirationDate, ProductTypeEntity productType) {
         this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.glutenFree = glutenFree;
+        this.expirationDate = expirationDate;
+        this.productType = productType;
     }
 
     public String getId() {
@@ -82,11 +89,11 @@ public class ProductEntity {
         this.expirationDate = expirationDate;
     }
 
-    public ProductType getProductType() {
+    public ProductTypeEntity getProductType() {
         return this.productType;
     }
 
-    public void setProductType(ProductType productType) {
+    public void setProductType(ProductTypeEntity productType) {
         this.productType = productType;
     }
 
@@ -113,13 +120,13 @@ public class ProductEntity {
     @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", price='" + getPrice() + "'" +
-            ", glutenFree='" + isGlutenFree() + "'" +
-            ", expirationDate='" + getExpirationDate() + "'" +
-            ", productType='" + getProductType() + "'" +
-            "}";
+                " id='" + getId() + "'" +
+                ", name='" + getName() + "'" +
+                ", description='" + getDescription() + "'" +
+                ", price='" + getPrice() + "'" +
+                ", glutenFree='" + isGlutenFree() + "'" +
+                ", expirationDate='" + getExpirationDate() + "'" +
+                ", productType='" + getProductType() + "'" +
+                "}";
     }
 }

@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.bakery.entities;
 
 import es.upm.miw.apaw_practice.domain.models.bakery.ProductType;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -17,7 +16,7 @@ public class ProductTypeEntity {
     private String code;
 
     public ProductTypeEntity() {
-        //empty for framework
+        // empty for framework
     }
 
     public ProductTypeEntity(ProductType productType) {
@@ -80,10 +79,10 @@ public class ProductTypeEntity {
     @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", code='" + getCode() + "'" +
-            "}";
+                " id='" + getId() + "'" +
+                ", name='" + getName() + "'" +
+                ", description='" + getDescription() + "'" +
+                ", code='" + getCode() + "'" +
+                "}";
     }
 }

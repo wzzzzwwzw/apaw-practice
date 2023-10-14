@@ -1,9 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.bakery.entities;
 
 import es.upm.miw.apaw_practice.domain.models.bakery.Shelf;
-import es.upm.miw.apaw_practice.domain.models.bakery.Product;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -17,15 +17,21 @@ public class ShelfEntity {
     private Integer maxCapacity;
     private Integer shelves;
     private String location;
-    private List<Product> products;
+    @DBRef
+    private List<ProductEntity> products;
 
     public ShelfEntity() {
-        //empty for framework
+        // empty for framework
     }
 
-    public ShelfEntity(Shelf shelf) {
-        BeanUtils.copyProperties(shelf, this);
+    public ShelfEntity(String name, Integer maxCapacity, Integer shelves, String location,
+            List<ProductEntity> products) {
         this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.maxCapacity = maxCapacity;
+        this.shelves = shelves;
+        this.location = location;
+        this.products = products;
     }
 
     public String getId() {
@@ -68,12 +74,22 @@ public class ShelfEntity {
         this.location = location;
     }
 
-    public List<Product> getProducts() {
+    public List<ProductEntity> getProducts() {
         return this.products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(List<ProductEntity> products) {
         this.products = products;
+    }
+
+    public void fromShelf(Shelf shelf) {
+        BeanUtils.copyProperties(shelf, this);
+    }
+
+    public Shelf toShelf() {
+        Shelf shelf = new Shelf();
+        BeanUtils.copyProperties(this, shelf);
+        return shelf;
     }
 
     @Override
@@ -89,12 +105,12 @@ public class ShelfEntity {
     @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
-            ", name='" + getName() + "'" +
-            ", maxCapacity='" + getMaxCapacity() + "'" +
-            ", shelves='" + getShelves() + "'" +
-            ", location='" + getLocation() + "'" +
-            ", products='" + getProducts() + "'" +
-            "}";
+                " id='" + getId() + "'" +
+                ", name='" + getName() + "'" +
+                ", maxCapacity='" + getMaxCapacity() + "'" +
+                ", shelves='" + getShelves() + "'" +
+                ", location='" + getLocation() + "'" +
+                ", products='" + getProducts() + "'" +
+                "}";
     }
 }

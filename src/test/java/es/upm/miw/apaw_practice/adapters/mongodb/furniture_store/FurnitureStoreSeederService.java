@@ -31,10 +31,10 @@ public class FurnitureStoreSeederService {
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Furniture store Initial Load -----------");
         MaterialEntity[] materials = {
-                new MaterialEntity(new Material("madera", "roble", 8)),
-                new MaterialEntity(new Material("plástico", "polipropileno", 5)),
-                new MaterialEntity(new Material("metal", "aluminio", 7)),
-                new MaterialEntity(new Material("vidrio", "laminado", 4)),
+                new MaterialEntity(new Material("roble", "madera", 8)),
+                new MaterialEntity(new Material("polipropileno", "plástico", 5)),
+                new MaterialEntity(new Material("aluminio", "metal", 7)),
+                new MaterialEntity(new Material("laminado", "vidrio", 4)),
         };
         this.materialRepository.saveAll(Arrays.asList(materials));
         ManagerEntity[] managers = {

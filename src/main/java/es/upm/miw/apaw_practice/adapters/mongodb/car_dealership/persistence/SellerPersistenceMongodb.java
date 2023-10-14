@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.daos.SellerRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities.SellerEntity;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.car_dealership.Seller;
 import es.upm.miw.apaw_practice.domain.persistence_ports.car_dealership.SellerPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,22 @@ public class SellerPersistenceMongodb implements SellerPersistence {
         return this.sellerRepository.findAll()
                 .stream()
                 .map(SellerEntity::toSeller);
+    }
+
+    @Override
+    public Seller readById(String id) {
+        return this.sellerRepository.
+                findById(id)
+                .orElseThrow(() -> new NotFoundException("Seller id: " + id))
+                .toSeller();
+    }
+
+    @Override
+    public Seller update(Seller seller) {
+        SellerEntity sellerEntity = this.sellerRepository
+                .findById(seller.getId())
+                .orElseThrow(() -> new NotFoundException("Seller id: " + seller.getId()));
+        sellerEntity.setName(seller.getName());
+        return this.sellerRepository.save(sellerEntity).toSeller();
     }
 }

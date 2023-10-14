@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.stable;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 
@@ -20,7 +19,7 @@ public class Horse {
 
     }
 
-    public Horse(String name, Integer age, LocalDate birthDate, String race, Double health, BigDecimal purchasePrice, Boolean sold, CareTask careTask) {
+    public Horse(String name, Integer age, LocalDate birthDate, String race, Double health, BigDecimal purchasePrice, Boolean sold, List<Keeper> keepers, CareTask careTask) {
         this.name = name;
         this.age = age;
         this.birthDate = birthDate;
@@ -28,7 +27,7 @@ public class Horse {
         this.health = health;
         this.purchasePrice = purchasePrice;
         this.sold = sold;
-        this.keepers = new ArrayList<>();
+        this.keepers = keepers;
         this.careTask = careTask;
     }
 

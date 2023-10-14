@@ -4,14 +4,16 @@ package es.upm.miw.apaw_practice.domain.models.aquarium;
 public class Aquarium {
     private String description;
     private Double size;
-    private Integer MaximumFishCapacity;
+    private Integer maximumFishCapacity;
 
     public Aquarium(String description, Double size, Integer maximumFishCapacity) {
         this.description = description;
         this.size = size;
-        MaximumFishCapacity = maximumFishCapacity;
+        this.maximumFishCapacity = maximumFishCapacity;
     }
-
+    public Aquarium(){
+        //empty for framework
+    }
     public String getDescription() {
         return description;
     }
@@ -29,11 +31,11 @@ public class Aquarium {
     }
 
     public Integer getMaximumFishCapacity() {
-        return MaximumFishCapacity;
+        return maximumFishCapacity;
     }
 
     public void setMaximumFishCapacity(Integer maximumFishCapacity) {
-        MaximumFishCapacity = maximumFishCapacity;
+        maximumFishCapacity = maximumFishCapacity;
     }
 
     @Override
@@ -41,7 +43,7 @@ public class Aquarium {
         return "Aquaruim{" +
                 "description='" + description + '\'' +
                 ", size=" + size +
-                ", MaximumFishCapacity=" + MaximumFishCapacity +
+                ", MaximumFishCapacity=" + maximumFishCapacity +
                 '}';
     }
 }

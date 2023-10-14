@@ -3,17 +3,17 @@ package es.upm.miw.apaw_practice.domain.models.car_workshop;
 public class OBDFault {
     private String code;
     private String description;
-    private Boolean canPassITV;
+    private Boolean isITVSafe;
     private String solution;
 
     public OBDFault() {
         // empty for framework
     }
 
-    public OBDFault(String code, String description, Boolean canPassITV, String solution) {
+    public OBDFault(String code, String description, Boolean isITVSafe, String solution) {
         this.code = code;
         this.description = description;
-        this.canPassITV = canPassITV;
+        this.isITVSafe = isITVSafe;
         this.solution = solution;
     }
 
@@ -33,12 +33,12 @@ public class OBDFault {
         this.description = description;
     }
 
-    public Boolean isCanPassITV() {
-        return canPassITV;
+    public Boolean getIsITVSafe() {
+        return isITVSafe;
     }
 
-    public void setCanPassITV(Boolean canPassITV) {
-        this.canPassITV = canPassITV;
+    public void setIsITVSafe(Boolean isITVSafe) {
+        this.isITVSafe = isITVSafe;
     }
 
     public String getSolution() {
@@ -49,4 +49,51 @@ public class OBDFault {
         this.solution = solution;
     }
 
+    @Override
+    public String toString() {
+        return "OBDFault{" +
+                "code='" + code + '\'' +
+                ", description='" + description + '\'' +
+                ", isITVSafe=" + isITVSafe +
+                ", solution='" + solution + '\'' +
+                '}';
+    }
+
+    public static class Builder implements OBDFaultsBuilders.Code, OBDFaultsBuilders.Optionals {
+
+        private final OBDFault obdFault;
+
+        public Builder() {
+            obdFault = new OBDFault();
+        }
+
+        @Override
+        public OBDFaultsBuilders.Optionals code(String code) {
+            this.obdFault.code = code;
+            return this;
+        }
+
+        @Override
+        public OBDFaultsBuilders.Optionals description(String description) {
+            this.obdFault.description = description;
+            return this;
+        }
+
+        @Override
+        public OBDFaultsBuilders.Optionals isITVSafe(Boolean isITVSafe) {
+            this.obdFault.isITVSafe = isITVSafe;
+            return this;
+        }
+
+        @Override
+        public OBDFaultsBuilders.Optionals solution(String solution) {
+            this.obdFault.solution = solution;
+            return this;
+        }
+
+        @Override
+        public OBDFault build() {
+            return this.obdFault;
+        }
+    }
 }

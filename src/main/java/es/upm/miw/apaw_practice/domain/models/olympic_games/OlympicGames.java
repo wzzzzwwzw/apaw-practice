@@ -9,19 +9,17 @@ public class OlympicGames {
     private String hostingPlace;
     private LocalDate startDate;
     private Boolean summerGames;
-    private List<OlympicDiscipline> disciplines;
-    private List<OlympicCompetitor> competitors;
+    private List<Discipline> disciplines;
 
     public OlympicGames() {}
 
 
-    public OlympicGames(Integer edition, String hostingPlace, LocalDate startDate, Boolean summerGames, List<OlympicDiscipline> disciplines, List<OlympicCompetitor> competitors) {
+    public OlympicGames(Integer edition, String hostingPlace, LocalDate startDate, Boolean summerGames, List<Discipline> disciplines) {
         this.edition = edition;
         this.hostingPlace = hostingPlace;
         this.startDate = startDate;
         this.summerGames = summerGames;
         this.disciplines = disciplines;
-        this.competitors = competitors;
     }
 
     public Integer getEdition() {
@@ -48,7 +46,7 @@ public class OlympicGames {
         this.startDate = startDate;
     }
 
-    public Boolean isSummerGames() {
+    public Boolean getSummerGames() {
         return summerGames;
     }
 
@@ -56,21 +54,14 @@ public class OlympicGames {
         this.summerGames = summerGames;
     }
 
-    public List<OlympicDiscipline> getDisciplines() {
+    public List<Discipline> getDisciplines() {
         return disciplines;
     }
 
-    public void setDisciplines(List<OlympicDiscipline> disciplines) {
+    public void setDisciplines(List<Discipline> disciplines) {
         this.disciplines = disciplines;
     }
 
-    public List<OlympicCompetitor> getCompetitors() {
-        return competitors;
-    }
-
-    public void setCompetitors(List<OlympicCompetitor> competitors) {
-        this.competitors = competitors;
-    }
 
     @Override
     public String toString() {
@@ -80,7 +71,6 @@ public class OlympicGames {
                 ", startDate=" + startDate +
                 ", summerGames=" + summerGames +
                 ", disciplines=" + disciplines +
-                ", competitors=" + competitors +
                 '}';
     }
 }

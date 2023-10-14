@@ -45,12 +45,16 @@ public class ComputerStoreSeederService {
 
         ComputerEntity[] computers = {
                 new ComputerEntity("MSI Pro gaming PC", new BigDecimal("1400"), new BigDecimal("6"), Collections.singletonList(monitors[0])),
-                new ComputerEntity("Customized PC Bate Ye", new BigDecimal("1250"), new BigDecimal("8"), Collections.singletonList(monitors[1]))
+                new ComputerEntity("Customized PC Bate Ye", new BigDecimal("1250"), new BigDecimal("8"), Collections.singletonList(monitors[1])),
+                new ComputerEntity("Delete by rest computer", new BigDecimal("1340"), new BigDecimal("10"), Collections.singletonList(monitors[1]))
         };
         computerRepository.saveAll(Arrays.asList(computers));
 
-        RepairEntity repairEntity = new RepairEntity("1234", LocalDateTime.now(), LocalDateTime.now().plusDays(3), computers[0]);
-        repairRepository.save(repairEntity);
+        RepairEntity[] repairs = {
+                new RepairEntity("1234", LocalDateTime.now(), LocalDateTime.now().plusDays(3), computers[0]),
+                new RepairEntity("2234", LocalDateTime.now(), LocalDateTime.now().plusDays(2), computers[1]),
+        };
+        repairRepository.saveAll(Arrays.asList(repairs));
     }
 
     public void deleteAll() {

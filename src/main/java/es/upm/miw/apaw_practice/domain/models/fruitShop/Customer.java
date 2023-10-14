@@ -2,7 +2,7 @@ package es.upm.miw.apaw_practice.domain.models.fruitShop;
 
 public class Customer {
 
-    private Integer id;
+    private Integer idCustomer;
 
     private String phone;
 
@@ -13,18 +13,18 @@ public class Customer {
     }
 
 
-    public Customer(Integer id, String phone, String email) {
-        this.id = id;
+    public Customer(Integer idCustomer, String phone, String email) {
+        this.idCustomer = idCustomer;
         this.phone = phone;
         this.email = email;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getIdCustomer() {
+        return idCustomer;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdCustomer(Integer idCustomer) {
+        this.idCustomer = idCustomer;
     }
 
     public String getPhone() {
@@ -46,7 +46,7 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "id=" + id +
+                "idCustomer=" + idCustomer +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 '}';

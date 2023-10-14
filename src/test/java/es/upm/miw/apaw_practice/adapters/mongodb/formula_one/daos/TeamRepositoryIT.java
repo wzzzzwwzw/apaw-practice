@@ -17,10 +17,10 @@ public class TeamRepositoryIT {
     @Test
     void testFindByTeamName() {
         assertTrue(this.teamRepository.findByTeamName("Mercedes").isPresent());
-
         TeamEntity team = this.teamRepository.findByTeamName("Mercedes").get();
         team.setMainColor("Black");
 
+        assertEquals("Mercedes", team.getTeamName());
         assertEquals("Germany", team.getCountry());
         assertTrue(
                 team.getDriverEntities().stream()
@@ -30,6 +30,21 @@ public class TeamRepositoryIT {
                                         driver.getNationality().equals("United Kingdom")
                         )
         );
+        assertEquals("Mercedes", team.getEngineManufacturerEntity().getManufacturerName());
+        assertEquals("United Kingdom", team.getEngineManufacturerEntity().getEngineBuiltIn());
+        assertEquals(12, team.getEngineManufacturerEntity().getNumberOfEnginesSupplied());
         assertEquals("Black", team.getMainColor());
+    }
+
+    @Test
+    void testFindByTeamNameNotFound() {
+        assertTrue(this.teamRepository.findByTeamName("Alpha Tauri").isEmpty());
+    }
+
+    @Test
+    void testDeleteByTeamName() {
+        assertTrue(this.teamRepository.findByTeamName("Williams").isPresent());
+        this.teamRepository.deleteByTeamName("Williams");
+        assertTrue(this.teamRepository.findByTeamName("Williams").isEmpty());
     }
 }

@@ -27,7 +27,7 @@ class FurnitureStoreResourceIT {
                 .value(Assertions::assertNotNull)
                 .value(furnitureStoreData -> {;
                     assertEquals(3, furnitureStoreData.getFurnitures().size());
-                    assertEquals("María", furnitureStoreData.getManager().getName());
+                    assertEquals("456745674567", furnitureStoreData.getManager().getAffiliationNumber());
                 });
     }
 

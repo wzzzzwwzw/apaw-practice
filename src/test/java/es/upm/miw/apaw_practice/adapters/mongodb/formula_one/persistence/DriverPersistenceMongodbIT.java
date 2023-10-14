@@ -59,7 +59,7 @@ public class DriverPersistenceMongodbIT {
     }
 
     @Test
-    void testFindTotalPointsByEnginesBuiltInNotExistEnginesBuiltIn() {
+    void testNotFindTotalPointsByEnginesBuiltIn() {
         Float points = this.driverPersistenceMongodb.findTotalPointsByEnginesBuiltIn("Spain");
         assertEquals(0F, points);
     }

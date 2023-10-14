@@ -14,8 +14,9 @@ public class Menu {
         //empty from framework
     }
 
-    public Menu(List<Dish> dishes) {
+    public Menu(List<Dish> dishes, LocalDateTime lastModification) {
         this.dishes = dishes;
+        this.lastModification = lastModification;
     }
 
     public String getId() {

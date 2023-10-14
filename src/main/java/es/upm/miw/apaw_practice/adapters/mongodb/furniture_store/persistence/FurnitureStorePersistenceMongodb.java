@@ -23,7 +23,6 @@ public class FurnitureStorePersistenceMongodb implements FurnitureStorePersisten
                 .findByName(name)
                 .orElseThrow(() -> new NotFoundException("Furniture store name: " + name))
                 .toFurnitureStore();
-
     }
 
 }

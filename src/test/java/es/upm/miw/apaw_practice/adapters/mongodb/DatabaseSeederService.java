@@ -179,7 +179,7 @@ public class DatabaseSeederService {
                 this.aquariumSeederService.deleteAll();
                 this.hospitalSeederService.seedDatabase();
                 this.fruitShopSeederService.seedDatabase();
-                this.bakerySeederService.seedDatabase();
+                this.bakerySeederService.deleteAll();
                 this.stableSeederService.deleteAll();
         }
 

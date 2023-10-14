@@ -4,4 +4,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CoffeeClientPersistence {
+    void delete(String name);
 }

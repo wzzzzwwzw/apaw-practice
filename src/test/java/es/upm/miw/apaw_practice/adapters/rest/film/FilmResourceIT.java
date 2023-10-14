@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.film;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.adapters.rest.computer_store.ComputerResource;
 import es.upm.miw.apaw_practice.domain.models.film.Film;
 import es.upm.miw.apaw_practice.domain.models.film.Review;
 import org.junit.jupiter.api.Assertions;

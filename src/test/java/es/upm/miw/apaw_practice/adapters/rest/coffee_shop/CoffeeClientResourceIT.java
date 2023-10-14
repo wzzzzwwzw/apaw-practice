@@ -14,7 +14,7 @@ public class CoffeeClientResourceIT {
     void testDeleteEndpoint() {
         this.webTestClient
                 .delete()
-                .uri(CoffeeClientResource.COFFEES + CoffeeClientResource.NAME, "caffé americano")
+                .uri(CoffeeClientResource.COFFEES + CoffeeClientResource.NAME, "client1")
                 .exchange()
                 .expectStatus().isOk();
     }

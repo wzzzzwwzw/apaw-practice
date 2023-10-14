@@ -60,7 +60,7 @@ public class CoffeeClientRepositoryIT {
 
     @Test
     void testDeleteByName() {
-        this.coffeeClientRepository.deleteByName("caffé americano");
-        assertFalse(this.coffeeClientRepository.findByName("caffé americano").isPresent());
+        this.coffeeClientRepository.deleteByName("client1");
+        assertFalse(this.coffeeClientRepository.findByName("client1").isPresent());
     }
 }

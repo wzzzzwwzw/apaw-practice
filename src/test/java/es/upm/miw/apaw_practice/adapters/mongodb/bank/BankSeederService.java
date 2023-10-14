@@ -97,4 +97,11 @@ public class BankSeederService {
         };
         this.bankRepository.saveAll(Arrays.asList(banks));
     }
+
+    public void deleteAll(){
+        this.bankRepository.deleteAll();
+        this.bankTypeRepository.deleteAll();
+        this.clientBankRepository.deleteAll();
+        this.bankAccountRepository.deleteAll();
+    }
 }

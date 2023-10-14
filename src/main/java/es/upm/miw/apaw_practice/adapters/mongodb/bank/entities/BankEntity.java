@@ -86,7 +86,13 @@ public class BankEntity {
     public void setBankAccountEntityList(List<BankAccountEntity> bankAccountEntityList) {
         this.bankAccountEntityList = bankAccountEntityList;
     }
+    public void addAccountBankFromList(BankAccountEntity account){
+        this.bankAccountEntityList.add(account);
+    }
 
+    public void removeAccountBankFromList(BankAccountEntity account){
+        this.bankAccountEntityList.remove(account);
+    }
     public Bank toBank(){
         Bank bank=new Bank();
         BeanUtils.copyProperties(this,bank);

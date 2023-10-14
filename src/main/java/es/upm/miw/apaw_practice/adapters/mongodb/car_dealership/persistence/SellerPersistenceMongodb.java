@@ -47,6 +47,7 @@ public class SellerPersistenceMongodb implements SellerPersistence {
         SellerEntity sellerEntity = this.sellerRepository
                 .findById(seller.getId())
                 .orElseThrow(() -> new NotFoundException("Seller id: " + seller.getId()));
+        sellerEntity.setName(seller.getName());
         return this.sellerRepository.save(sellerEntity).toSeller();
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -32,5 +33,19 @@ public class FootballGameResourceIT {
                 .body(BodyInserters.fromValue(gameDateUpdatings))
                 .exchange()
                 .expectStatus().isOk();
+    }
+
+    @Test
+    public void testGetTotalBudgetByLocation() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FootballGameResource.GAMES + FootballGameResource.SEARCH)
+                                .queryParam("location", "Barcelona")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BigDecimal.class)
+                .isEqualTo(new BigDecimal("20499779.34"));
     }
 }

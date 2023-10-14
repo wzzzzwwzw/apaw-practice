@@ -1,10 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.car_dealership.Seller;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.lang.reflect.Executable;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,6 +16,21 @@ class SellerPersistenceMongodbIT {
 
     @Autowired
     private SellerPersistenceMongodb sellerPersistence;
+
+    @Test
+    void testReadById() {
+        Optional<Seller> seller = this.sellerPersistence.readAll()
+                .filter(seller1 -> "Asier".equals(seller1.getName()))
+                .findFirst();
+        assertTrue(seller.isPresent());
+        assertNotNull(seller.get().getId());
+        assertNotNull(seller.get().getSurname());
+    }
+
+    @Test
+    void testReadByIdNotFound() {
+        assertThrowsExactly(NotFoundException.class, () -> this.sellerPersistence.readById(""));
+    }
 
     @Test
     void testCreateAndRead() {
@@ -28,4 +45,19 @@ class SellerPersistenceMongodbIT {
         assertEquals(1000, sellerDB.get().getSalary());
     }
 
+    @Test
+    void testUpdate() {
+        Optional<Seller> seller = this.sellerPersistence.readAll()
+                .filter(seller1 -> "Gonzalez".equals(seller1.getSurname()))
+                .findFirst();
+        assertTrue(seller.isPresent());
+        seller.get().setName("Igor");
+        this.sellerPersistence.update(seller.get());
+        Optional<Seller> newSeller = this.sellerPersistence.readAll()
+                .filter(seller1 -> "Gonzalez".equals(seller1.getSurname()))
+                .findFirst();
+        assertTrue(newSeller.isPresent());
+        assertEquals(seller.get().getSalary(), newSeller.get().getSalary());
+        assertEquals("Igor", newSeller.get().getName());
+    }
 }

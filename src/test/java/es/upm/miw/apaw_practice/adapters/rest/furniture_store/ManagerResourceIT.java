@@ -19,7 +19,7 @@ class ManagerResourceIT {
     void testDelete() {
         this.webTestClient
                 .delete()
-                .uri(MANAGER + NAME_ID, "María")
+                .uri(MANAGER + NAME_ID, "No existe")
                 .exchange()
                 .expectStatus().isOk();
     }

@@ -34,4 +34,13 @@ public class FilmService {
         film.setReviews(reviewList);
         return this.filmPersistence.update(film);
     }
+
+    public Double findRatingAverageByDirectorDni(String dni) {
+        return this.filmPersistence
+                .findFilmsByDirectorDni(dni)
+                .flatMap(film -> film.getReviews().stream())
+                        .mapToDouble(Review::getRating)
+                        .average()
+                        .orElse(0.0);
+    }
 }

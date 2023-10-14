@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 public interface MaterialPersistence {
 
     Material create(Material material);
+    Material read(String name);
     boolean existName(String barcode);
 
 }

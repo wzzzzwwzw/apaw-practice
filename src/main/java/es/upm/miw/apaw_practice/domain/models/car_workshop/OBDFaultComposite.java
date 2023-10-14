@@ -26,7 +26,7 @@ public class OBDFaultComposite implements TreeOBDFaults {
 
     @Override
     public boolean isComposite() {
-        return false;
+        return true;
     }
 
     @Override

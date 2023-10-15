@@ -1,7 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.aquarium.entities;
 import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.entities.ComputerEntity;
-import es.upm.miw.apaw_practice.domain.models.aquarium.Aquarium;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -20,11 +18,6 @@ public class AquariumEntity {
     private Double size;
     private Integer maximumFishCapacity;
 
-    public Aquarium toAquarium(){
-        Aquarium aquarium = new Aquarium();
-        BeanUtils.copyProperties(this,aquarium);
-        return aquarium;
-    }
     public AquariumEntity() {
         //empty for framework
     }
@@ -68,18 +61,19 @@ public class AquariumEntity {
         this.maximumFishCapacity = maximumFishCapacity;
     }
 
-    @Override
-    public int hashCode() {
-        return this.id.hashCode();
-    }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof AquariumEntity that)) return false;
-        return (Objects.equals(getId(), that.getId()) || Objects.equals(getDescription(), that.getDescription()))
-                && Objects.equals(size, that.size)
-                && Objects.equals(maximumFishCapacity, that.maximumFishCapacity);
+        if (o == null || getClass() != o.getClass()) return false;
+        AquariumEntity that = (AquariumEntity) o;
+        return Objects.equals(id, that.id) && Objects.equals(description, that.description) && Objects.equals(size, that.size) && Objects.equals(maximumFishCapacity, that.maximumFishCapacity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, description, size, maximumFishCapacity);
     }
 
     @Override

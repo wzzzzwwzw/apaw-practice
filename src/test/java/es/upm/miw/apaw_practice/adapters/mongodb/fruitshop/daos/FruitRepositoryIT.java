@@ -4,6 +4,7 @@ import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.fruitshop.FruitShopSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.fruitshop.entities.FruitEntity;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,7 +22,7 @@ public class FruitRepositoryIT {
     @Autowired
     private FruitShopSeederService fruitShopSeederService;
 
-    @AfterEach
+    @BeforeEach
     void CleanUpDB() {
         this.fruitShopSeederService.deleteAll();
         this.fruitShopSeederService.seedDatabase();

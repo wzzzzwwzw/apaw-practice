@@ -1,15 +1,15 @@
 package es.upm.miw.apaw_practice.domain.models.library;
 
-public class Author {
+public class BookWriter {
     private String name;
     private String nickname;
     private Integer numberOfBook;
 
-    public Author() {
+    public BookWriter() {
         //empty for framework
     }
 
-    public Author(String name, String nickname, Integer numberOfBook) {
+    public BookWriter(String name, String nickname, Integer numberOfBook) {
         this.name= name;
         this.nickname = nickname;
         this.numberOfBook = numberOfBook;
@@ -29,7 +29,7 @@ public class Author {
 
     @Override
     public String toString() {
-        return "Author{" +
+        return "BookWriter{" +
                 "name='" + name + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", numberOfBook=" + numberOfBook +

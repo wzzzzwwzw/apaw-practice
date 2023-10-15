@@ -7,5 +7,6 @@ import java.util.Optional;
 
 public interface DoctorRepository extends MongoRepository<DoctorEntity, String> {
     Optional<DoctorEntity> findByMedicalLicenseCode(String medicalLicenseCode);
+    void deleteByMedicalLicenseCode(String medicalLicenseCode);
 
 }

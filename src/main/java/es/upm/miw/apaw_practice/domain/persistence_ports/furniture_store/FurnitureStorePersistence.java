@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 public interface FurnitureStorePersistence {
 
     FurnitureStore readByName(String name);
+    FurnitureStore update(FurnitureStore furnitureStore);
 
 }

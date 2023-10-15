@@ -5,5 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DiningPersistence {
+    boolean existDiningNumber(String dining);
     Dining create(Dining dining);
 }

@@ -59,10 +59,6 @@ public class DiningEntity {
         this.capacity = capacity;
     }
 
-    public void fromDining(Dining dining) {
-        BeanUtils.copyProperties(dining, this);
-    }
-
     public Dining toDining() {
         Dining dining = new Dining();
         BeanUtils.copyProperties(this, dining);

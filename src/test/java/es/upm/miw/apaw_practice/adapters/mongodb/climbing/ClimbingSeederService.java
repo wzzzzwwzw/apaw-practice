@@ -37,8 +37,8 @@ public class ClimbingSeederService {
         };
 
         ExpeditionEntity[] expeditions = {
-                new ExpeditionEntity(LocalDate.now(), new BigDecimal("1500.00")),
-                new ExpeditionEntity(LocalDate.now().minusDays(5), new BigDecimal("500.00"))
+                new ExpeditionEntity("1", LocalDate.now(), new BigDecimal("1500.00")),
+                new ExpeditionEntity("2", LocalDate.now().minusDays(5), new BigDecimal("500.00"))
         };
         this.expeditionRepository.saveAll(Arrays.asList(expeditions));
 

@@ -3,8 +3,8 @@ package es.upm.miw.apaw_practice.domain.models.basketball;
 import java.time.LocalDateTime;
 
 class Basket {
+    private String identifier;
     private Integer value;
-    private String description;
     private LocalDateTime basketTime;
     private Player player;
 
@@ -13,9 +13,9 @@ class Basket {
     }
 
 
-    public Basket(Integer value, String description, LocalDateTime basketTime, Player player) {
+    public Basket(Integer value, String identifier, LocalDateTime basketTime, Player player) {
         this.value = value;
-        this.description = description;
+        this.identifier = identifier;
         this.basketTime = basketTime;
         this.player=player;
     }
@@ -28,12 +28,12 @@ class Basket {
         this.value = value;
     }
 
-    public String getDescription() {
-        return description;
+    public String getIdentifier() {
+        return identifier;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 
     public LocalDateTime getBasketTime() {
@@ -54,7 +54,7 @@ class Basket {
     public String toString() {
         return "Basket{" +
                 "value='" + value + '\'' +
-                ", description='" + description + '\'' +
+                ", identifier='" + identifier + '\'' +
                 ", basketTime=" + basketTime +
                 '}';
     }

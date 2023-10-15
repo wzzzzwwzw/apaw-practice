@@ -124,14 +124,14 @@ public class HorseEntity {
     public void setCareTaskEntity(CareTaskEntity careTaskEntity) {
         this.careTaskEntity = careTaskEntity;
     }
-
+/*
     public Horse toHorse() {
         List<Keeper> keepers = this.keeperEntities.stream()
                 .map(KeeperEntity::toKeeper)
                 .collect(Collectors.toList());
         return new Horse(this.name, this.age, this.birthDate, this.race, this.health, this.purchasePrice, this.sold, keepers, this.careTaskEntity.toCareTask());
     }
-
+*/
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

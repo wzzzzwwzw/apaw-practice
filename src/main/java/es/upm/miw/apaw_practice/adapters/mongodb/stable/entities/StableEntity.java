@@ -80,7 +80,7 @@ public class StableEntity {
     public void setHorseEntities(List<HorseEntity> horseEntities) {
         this.horseEntities = horseEntities;
     }
-
+/*
     public Stable toStable() {
         Stable stable = new Stable();
         BeanUtils.copyProperties(this, stable);
@@ -90,7 +90,7 @@ public class StableEntity {
         stable.setHorses(horses);
         return stable;
     }
-
+*/
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

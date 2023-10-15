@@ -6,24 +6,22 @@ import java.util.List;
 public class AquariumCurator {
     private String name;
     private String position;
-    private boolean vacationState;
+    private Boolean vacationState;
     private List<Fishpond> fishponds;
-    private List<Aquarium> aquariums;
+    private Aquarium aquarium;
 
 
-    public AquariumCurator(String name, String position, boolean vacationState, List<Fishpond> fishponds, List<Aquarium> aquariums) {
+    public AquariumCurator(String name, String position, Boolean vacationState, List<Fishpond> fishponds, Aquarium aquarium) {
         this.name = name;
         this.position = position;
         this.vacationState = vacationState;
         this.fishponds = fishponds;
-        this.aquariums = aquariums;
-
+        this.aquarium = aquarium;
     }
 
     public AquariumCurator()
-    {aquariums = new ArrayList<>();
+    {aquarium = new Aquarium();
         fishponds = new ArrayList<>();}
-
 
     public String getName() {
         return name;
@@ -41,11 +39,11 @@ public class AquariumCurator {
         this.position = position;
     }
 
-    public boolean isVacationState() {
+    public Boolean isVacationState() {
         return vacationState;
     }
 
-    public void setVacationState(boolean vacationState) {
+    public void setVacationState(Boolean vacationState) {
         this.vacationState = vacationState;
     }
 
@@ -57,12 +55,12 @@ public class AquariumCurator {
         this.fishponds = fishponds;
     }
 
-    public List<Aquarium> getAquariums() {
-        return aquariums;
+    public Aquarium getAquarium() {
+        return aquarium;
     }
 
-    public void setAquariums(List<Aquarium> aquariums) {
-        this.aquariums = aquariums;
+    public void setAquarium(Aquarium aquarium) {
+        this.aquarium = aquarium;
     }
 
     @Override
@@ -72,7 +70,7 @@ public class AquariumCurator {
                 ", position='" + position + '\'' +
                 ", vacationState=" + vacationState +
                 ", fishponds=" + fishponds +
-                ", aquariums=" + aquariums +
+                ", aquariums=" + aquarium +
                 '}';
     }
 }

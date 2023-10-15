@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.conference.entities;
 
+import es.upm.miw.apaw_practice.domain.models.conference.Author;
+import es.upm.miw.apaw_practice.domain.models.conference.Paper;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -94,5 +96,13 @@ public class PaperEntity {
                 ", length=" + length +
                 ", authorEntities=" + authorEntities +
                 '}';
+    }
+
+    public Paper toPaper() {
+        List<Author> authors = this.authorEntities.stream()
+                .map(AuthorEntity::toAuthor).toList();
+        Paper paper = new Paper(title, digitalObjectIdentifier, length);
+        paper.setAuthors(authors);
+        return paper;
     }
 }

@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.restaurant.entities;
 
+import es.upm.miw.apaw_practice.domain.models.restaurant.CategoryRestaurant;
+import es.upm.miw.apaw_practice.domain.models.restaurant.Dish;
+import es.upm.miw.apaw_practice.domain.models.restaurant.Ingredient;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -69,6 +72,13 @@ public class DishEntity {
 
     public void setIngredients(List<IngredientEntity> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public Dish toDish() {
+        CategoryRestaurant category = this.category.toCategoryRestaurant();
+        List<Ingredient> ingredients = this.ingredients.stream()
+                .map(IngredientEntity::toIngredient).toList();
+        return new Dish(title, price, category, ingredients);
     }
 
     @Override

@@ -30,6 +30,11 @@ public class WireEntity {
         this.jacketMaterial = jacketMaterial;
     }
 
+    public WireEntity(Wire wire) {
+        BeanUtils.copyProperties(wire, this);
+        this.id = UUID.randomUUID().toString();
+    }
+
     public String getId() {
         return id;
     }
@@ -61,11 +66,13 @@ public class WireEntity {
     public void setJacketMaterial(String jacketMaterial) {
         this.jacketMaterial = jacketMaterial;
     }
-    public Wire toWire(){
+
+    public Wire toWire() {
         Wire wire = new Wire();
-        BeanUtils.copyProperties(this,wire);
+        BeanUtils.copyProperties(this, wire);
         return wire;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

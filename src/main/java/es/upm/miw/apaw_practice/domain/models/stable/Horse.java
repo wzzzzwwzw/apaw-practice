@@ -1,34 +1,25 @@
 package es.upm.miw.apaw_practice.domain.models.stable;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import java.math.BigDecimal;
 
 public class Horse {
     private String name;
-    private Integer age;
-    private LocalDate birthDate;
-    private String race;
-    private Double health;
-    private Double purchasePrice;
+    private BigDecimal purchasePrice;
     private Boolean sold;
     private List<Keeper> keepers;
-    private List<CareTask> careTasks;
+    private CareTask careTask;
 
     public Horse() {
 
     }
 
-    public Horse(String name, Integer age, LocalDate birthDate, String race, Double health, Double purchasePrice, Boolean sold) {
+    public Horse(String name, BigDecimal purchasePrice, Boolean sold, List<Keeper> keepers, CareTask careTask) {
         this.name = name;
-        this.age = age;
-        this.birthDate = birthDate;
-        this.race = race;
-        this.health = health;
         this.purchasePrice = purchasePrice;
         this.sold = sold;
-        this.keepers = new ArrayList<>();
-        this.careTasks = new ArrayList<>();
+        this.keepers = keepers;
+        this.careTask = careTask;
     }
 
     public String getName() {
@@ -39,68 +30,35 @@ public class Horse {
         this.name = name;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getRace() {
-        return race;
-    }
-
-    public void setRace(String race) {
-        this.race = race;
-    }
-
-    public Double getHealth() {
-        return health;
-    }
-
-    public void setHealth(double health) {
-        this.health = health;
-    }
-
-    public Double getPurchasePrice() {
+    public BigDecimal getPurchasePrice() {
         return purchasePrice;
     }
 
-    public void setPurchasePrice(double purchasePrice) {
+    public void setPurchasePrice(BigDecimal purchasePrice) {
         this.purchasePrice = purchasePrice;
     }
 
-    public Boolean isSold() {
+    public Boolean getSold() {
         return sold;
     }
 
-    public void setSold(boolean sold) {
+    public void setSold(Boolean sold) {
         this.sold = sold;
     }
 
     public List<Keeper> getKeepers() {
         return keepers;
     }
-
-    public void setHorses(List<Keeper> keepers) {
+    public void setKeepers(List<Keeper> keepers) {
         this.keepers = keepers;
     }
 
-    public List<CareTask> getCareTasks() {
-        return careTasks;
+    public CareTask getCareTask() {
+        return careTask;
     }
 
-    public void setCareTasks(List<CareTask> careTasks) {
-        this.careTasks = careTasks;
+    public void setCareTask(CareTask careTask) {
+        this.careTask = careTask;
     }
 
     public void addKeeper(Keeper keeper) {
@@ -111,26 +69,14 @@ public class Horse {
         keepers.remove(keeper);
     }
 
-    public void addCareTask(CareTask careTask) {
-        careTasks.add(careTask);
-    }
-
-    public void removeCareTask(CareTask careTask) {
-        careTasks.remove(careTask);
-    }
-
     @Override
     public String toString() {
         return "Horse{" +
                 "name='" + name + '\'' +
-                ", age=" + age +
-                ", birthDate=" + birthDate +
-                ", race='" + race + '\'' +
-                ", health=" + health +
                 ", purchasePrice=" + purchasePrice +
                 ", sold=" + sold +
                 ", keepers=" + keepers +
-                ", careTasks=" + careTasks +
+                ", careTask=" + careTask +
                 '}';
     }
 }

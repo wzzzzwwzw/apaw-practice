@@ -1,26 +1,34 @@
 package es.upm.miw.apaw_practice.domain.models.climbing;
 
 public class Route {
-    private String description;
+    private String key;
+    private String name;
     private String difficulty;
-    private String type;
 
     public Route() {
 
     }
 
-    public Route(String description, String difficulty, String type) {
-        this.description = description;
+    public Route(String key, String name, String difficulty) {
+        this.key = key;
+        this.name = name;
         this.difficulty = difficulty;
-        this.type = type;
     }
 
-    public String getDescription() {
-        return description;
+    public String getKey() {
+        return key;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDifficulty() {
@@ -31,20 +39,12 @@ public class Route {
         this.difficulty = difficulty;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     @Override
     public String toString() {
         return "Route{" +
-                "description='" + description + '\'' +
+                "key='" + key + '\'' +
+                ", name='" + name + '\'' +
                 ", difficulty='" + difficulty + '\'' +
-                ", type='" + type + '\'' +
                 '}';
     }
 }

@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.conference.entities;
 
+import es.upm.miw.apaw_practice.domain.models.conference.Conference;
+import es.upm.miw.apaw_practice.domain.models.conference.Paper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -105,5 +108,16 @@ public class ConferenceEntity {
                 ", locationEntity=" + locationEntity +
                 ", papersEntities=" + papersEntities +
                 '}';
+    }
+
+    public Conference toConference() {
+        Conference conference = new Conference();
+        BeanUtils.copyProperties(this, conference);
+        conference.setLocation(locationEntity.toConferenceLocation());
+        List<Paper> papers = this.papersEntities.stream()
+                .map(PaperEntity::toPaper)
+                .toList();
+        conference.setPapers(papers);
+        return conference;
     }
 }

@@ -32,7 +32,7 @@ class DoctorPersistenceMongodbIT {
         assertNotNull(createDoctor);
         assertEquals(doctor.getMedicalLicenseCode(), createDoctor.getMedicalLicenseCode());
         assertEquals(doctor.getOffice(), createDoctor.getOffice());
-        assertEquals(doctor.getDepartment(), createDoctor.getDepartment());
+        assertEquals(doctor.getDepartment().getDepartmentName(),doctor.getDepartment().getDepartmentName());
     }
 
     @Test

@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.fruitshop.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.fruitshop.FruitShopSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.fruitshop.entities.FruitShopEntity;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,6 +18,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class FruitShopRepositoryIT {
     @Autowired
     private FruitShopRepository fruitShopRepository;
+    @Autowired
+    private FruitShopSeederService fruitShopSeederService;
+
+    @AfterEach
+    void CleanUpDB() {
+        this.fruitShopSeederService.deleteAll();
+        this.fruitShopSeederService.seedDatabase();
+    }
 
     @Test
     void testFruitFindByName() {

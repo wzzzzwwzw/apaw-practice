@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.bakery.BakerySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.CarDealershipSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.car_workshop.CarWorkshopSeederService;
@@ -65,6 +66,7 @@ public class DatabaseSeederService {
         private final StableSeederService stableSeederService;
         private final LibrarySeederService librarySeederService;
 
+        private final BankSeederService bankSeederService;
         @Autowired
         public DatabaseSeederService(ShopSeederService shopSeederService, ZooSeederService zooSeederService,
                         ComputerStoreSeederService computerStoreSeederService,
@@ -91,7 +93,7 @@ public class DatabaseSeederService {
                         HospitalSeederService hospitalSeederService, FruitShopSeederService fruitShopSeederService,
                         BakerySeederService bakerySeederService,
                         StableSeederService stableSeederService,
-                        LibrarySeederService librarySeederService) {
+                        LibrarySeederService librarySeederService,BankSeederService bankSeederService) {
 
                 this.shopSeederService = shopSeederService;
                 this.zooSeederService = zooSeederService;
@@ -122,6 +124,7 @@ public class DatabaseSeederService {
                 this.bakerySeederService = bakerySeederService;
                 this.stableSeederService = stableSeederService;
                 this.librarySeederService = librarySeederService;
+                this.bankSeederService=bankSeederService;
                 this.seedDatabase();
         }
 
@@ -155,6 +158,7 @@ public class DatabaseSeederService {
                 this.bakerySeederService.seedDatabase();
                 this.stableSeederService.seedDatabase();
                 this.librarySeederService.seedDatabase();
+                this.bankSeederService.seedDatabase();
         }
 
         public void deleteAll() {
@@ -187,6 +191,7 @@ public class DatabaseSeederService {
                 this.bakerySeederService.deleteAll();
                 this.stableSeederService.deleteAll();
                 this.librarySeederService.deleteAll();
+                this.bankSeederService.deleteAll();
         }
 
         public void reSeedDatabase() {

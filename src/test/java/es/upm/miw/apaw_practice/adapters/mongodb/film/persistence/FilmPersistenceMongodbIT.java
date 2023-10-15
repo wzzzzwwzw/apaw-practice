@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -49,5 +50,19 @@ class FilmPersistenceMongodbIT {
 
         filmSeederService.deleteAll();
         filmSeederService.seedDatabase();
+    }
+
+    @Test
+    void testFindAverageRatingByDirectorDni() {
+        Stream<Film> filmStream = this.filmPersistenceMongodb.findFilmsByDirectorDni("05645800X");
+        assertNotNull(filmStream);
+        assertEquals(1, filmStream.count());
+    }
+
+    @Test
+    void testNotFindAverageRatingByDirectorDni() {
+        Stream<Film> filmStream = this.filmPersistenceMongodb.findFilmsByDirectorDni("00X");
+        assertNotNull(filmStream);
+        assertEquals(0, filmStream.count());
     }
 }

@@ -20,4 +20,8 @@ public class DriverService {
         driver.setPoints(points);
         return this.driverPersistence.update(driver);
     }
+
+    public Float findTotalPointsByEnginesBuiltIn(String enginesBuiltIn) {
+        return this.driverPersistence.findTotalPointsByEnginesBuiltIn(enginesBuiltIn);
+    }
 }

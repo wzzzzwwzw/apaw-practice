@@ -8,4 +8,6 @@ public interface DriverPersistence {
     Driver readByNumber(Integer number);
 
     Driver update(Driver driver);
+
+    Float findTotalPointsByEnginesBuiltIn(String enginesBuiltIn);
 }

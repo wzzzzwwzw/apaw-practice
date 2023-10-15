@@ -27,14 +27,14 @@ public class FruitShopResourceIT {
     void testPatchEndPoint(){
         this.webTestClient
                 .patch()
-                .uri(FruitShopResource.FRUITSHOP + FruitShopResource.ID_NAME, "Frutas Frescas")
+                .uri(FruitShopResource.FRUITSHOP + FruitShopResource.ID_NAME, "Fruit Test")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(FruitShop.class)
                 .value(Assertions::assertNotNull)
                 .value(fruitShop -> {
 
-                assertEquals("Frutas Frescas", fruitShop.getName());
+                assertEquals("Fruit Test", fruitShop.getName());
                 assertEquals("New Address", fruitShop.getAddress());
 
                 });

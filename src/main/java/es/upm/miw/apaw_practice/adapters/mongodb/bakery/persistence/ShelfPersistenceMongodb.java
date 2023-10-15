@@ -21,7 +21,7 @@ public class ShelfPersistenceMongodb implements ShelfPersistence {
     @Override
     public Shelf update(String name, Shelf shelf) {
         ShelfEntity shelfEntity = this.shelfRepository
-                .findByName(shelf.getName())
+                .findByName(name)
                 .orElseThrow(() -> new NotFoundException("Shelf with name: " + shelf.getName()));
         shelfEntity.fromShelf(shelf);
         return this.shelfRepository

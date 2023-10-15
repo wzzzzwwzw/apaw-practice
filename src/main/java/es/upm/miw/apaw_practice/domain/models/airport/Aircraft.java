@@ -40,6 +40,7 @@ public class Aircraft {
     public void setModel(String model) {
         this.model = model;
     }
+
     @Override
     public String toString() {
         return "Aircraft{" +

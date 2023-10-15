@@ -8,7 +8,7 @@ public class AquariumCurator {
     private String position;
     private Boolean vacationState;
     private List<Fishpond> fishponds;
-    private  Aquarium aquarium;
+    private Aquarium aquarium;
 
 
     public AquariumCurator(String name, String position, Boolean vacationState, List<Fishpond> fishponds, Aquarium aquarium) {

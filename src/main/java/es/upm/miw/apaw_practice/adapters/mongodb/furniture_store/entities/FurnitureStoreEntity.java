@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.furniture_store.entities;
 
+import es.upm.miw.apaw_practice.domain.models.furniture_store.Furniture;
+import es.upm.miw.apaw_practice.domain.models.furniture_store.FurnitureStore;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -82,6 +85,17 @@ public class FurnitureStoreEntity {
 
     public void setFurnitureEntities(List<FurnitureEntity> furnitureEntities) {
         this.furnitureEntities = furnitureEntities;
+    }
+
+    public FurnitureStore toFurnitureStore() {
+        FurnitureStore furnitureStore = new FurnitureStore();
+        BeanUtils.copyProperties(this, furnitureStore, "managerEntity", "furnitureEntities");
+        List<Furniture> furnitures = this.furnitureEntities.stream()
+                .map(FurnitureEntity::toFurniture)
+                .toList();
+        furnitureStore.setFurnitures(furnitures);
+        furnitureStore.setManager(this.managerEntity.toManager());
+        return furnitureStore;
     }
 
     @Override

@@ -7,5 +7,8 @@ import org.springframework.stereotype.Repository;
 public interface MusicGenrePersistence {
 
     MusicGenre create(MusicGenre musicGenre);
+
+    MusicGenre updatePopularityByType(String type);
+
     boolean existsMusicGenreType(String type);
 }

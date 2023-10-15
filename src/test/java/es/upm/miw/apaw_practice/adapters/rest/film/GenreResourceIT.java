@@ -18,7 +18,7 @@ class GenreResourceIT {
     void testDelete() {
         this.webTestClient
                 .delete()
-                .uri(GENRES + NAME_ID, "Action")
+                .uri(GENRES + NAME_ID, "nn")
                 .exchange()
                 .expectStatus().isOk();
     }

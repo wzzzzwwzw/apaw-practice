@@ -1,8 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.museum.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.museum.MuseumSeederService;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.museum.Painter;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,6 +18,14 @@ class PainterPersistenceMongodbIT {
 
     @Autowired
     private PainterPersistenceMongodb painterPersistenceMongodb;
+    @Autowired
+    private MuseumSeederService museumSeederService;
+
+    @BeforeEach
+    void resetDataBase() {
+        this.museumSeederService.deleteAll();
+        this.museumSeederService.seedDatabase();
+    }
 
     @Test
     void testReadFound() {

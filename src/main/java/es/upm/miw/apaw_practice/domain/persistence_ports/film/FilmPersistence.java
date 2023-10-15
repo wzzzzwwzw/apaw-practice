@@ -14,4 +14,6 @@ public interface FilmPersistence {
 
     Stream<Film> readAll();
 
+    Stream<Film> findFilmsByDirectorDni(String dni);
+
 }

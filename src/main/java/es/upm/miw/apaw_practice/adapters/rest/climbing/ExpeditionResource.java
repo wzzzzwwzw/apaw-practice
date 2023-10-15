@@ -1,0 +1,28 @@
+package es.upm.miw.apaw_practice.adapters.rest.climbing;
+
+import es.upm.miw.apaw_practice.domain.models.climbing.Expedition;
+import es.upm.miw.apaw_practice.domain.services.climbing.ExpeditionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(ExpeditionResource.EXPEDITIONS)
+public class ExpeditionResource {
+    static final String EXPEDITIONS = "/climbing/expeditions";
+
+    private final ExpeditionService expeditionService;
+
+    @Autowired
+    public ExpeditionResource(ExpeditionService expeditionService) {
+        this.expeditionService = expeditionService;
+    }
+
+    @PostMapping
+    public Expedition create(@RequestBody Expedition expedition) {
+        expedition.doDefault();
+        return this.expeditionService.create(expedition);
+    }
+}

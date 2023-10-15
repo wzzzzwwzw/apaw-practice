@@ -5,8 +5,6 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.bakery.TicketPersistenc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
 public class TicketService {
 
@@ -18,7 +16,6 @@ public class TicketService {
     }
 
     public Ticket create(Ticket ticket) {
-        ticket.setCreatedAt(LocalDateTime.now());
         return this.ticketPersistence.create(ticket);
     }
 }

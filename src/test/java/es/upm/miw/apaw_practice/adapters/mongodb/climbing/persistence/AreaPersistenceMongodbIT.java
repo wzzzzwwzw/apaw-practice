@@ -31,4 +31,15 @@ public class AreaPersistenceMongodbIT {
         assertEquals(LocalDate.now(), expedition.getDate());
         assertEquals(0, new BigDecimal("1500.00").compareTo(expedition.getTotalExpense()));
     }
+
+    @Test
+    void testUpdate() {
+        Area area = this.areaPersistenceMongodb.readByName("Area 2");
+        area.getRoutes().get(0).setName("Route 3 updated");
+        area.getRoutes().get(0).setDifficulty("Easy");
+        this.areaPersistenceMongodb.update(area);
+        area = this.areaPersistenceMongodb.readByName("Area 2");
+        assertEquals("Route 3 updated", area.getRoutes().get(0).getName());
+        assertEquals("Easy", area.getRoutes().get(0).getDifficulty());
+    }
 }

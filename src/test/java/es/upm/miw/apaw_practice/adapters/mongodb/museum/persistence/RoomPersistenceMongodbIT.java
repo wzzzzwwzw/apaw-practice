@@ -27,7 +27,11 @@ class RoomPersistenceMongodbIT {
 
     @Test
     void testReadFound() {
-        Room room = new Room("Sala 012", 1, 9.75);
+        Room room = new Room().builder()
+                .description("Sala 012")
+                .floor(1)
+                .popularity(9.75)
+                .build();
         Room foundRoom = this.roomPersistenceMongodb.findByDescription(room.getDescription());
         assertEquals(room.getDescription(), foundRoom.getDescription());
         assertEquals(room.getFloor(), foundRoom.getFloor());

@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+import java.util.List;
+
 import static es.upm.miw.apaw_practice.adapters.rest.restaurant.IngredientResource.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -39,6 +41,21 @@ public class IngredientResourceIT {
                 .uri(INGREDIENTS + NAME_ID, "unknown ingredient")
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testSearchIngredientsNameByCategoryColor() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(INGREDIENTS + SEARCH)
+                                .queryParam("q", "color:Azul")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(List.class)
+                .value(Assertions::assertNotNull)
+                .value(names -> assertEquals(List.of("Arroz", "Lubina"), names));
     }
 
 }

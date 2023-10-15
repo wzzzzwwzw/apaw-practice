@@ -20,4 +20,8 @@ public class AlbumService {
     public Stream<Song> readSongsByAlbumDenomination(String denomination) {
         return this.albumPersistence.readSongsByAlbumDenomination(denomination);
     }
+
+    public void delete(String denomination) {
+        this.albumPersistence.delete(denomination);
+    }
 }

@@ -164,7 +164,7 @@ public class DatabaseSeederService {
                 this.formulaOneSeederService.deleteAll();
                 this.videogameCompanySeederService.deleteAll();
                 this.coffeeShopSeederService.deleteAll();
-                // this.museumSeederService.deleteAll();
+                this.museumSeederService.deleteAll();
                 this.footballCompetitionSeederService.deleteAll();
                 this.filmSeederService.deleteAll();
                 this.influencerAgencySeederService.deleteAll();

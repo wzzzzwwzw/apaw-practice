@@ -53,26 +53,27 @@ public class AquariumEntity {
         this.size = size;
     }
 
-    public Integer getmaximumFishCapacity() {
+    public Integer getMaximumFishCapacity() {
         return maximumFishCapacity;
     }
 
-    public void setmaximumFishCapacity(Integer maximumFishCapacity) {
-        maximumFishCapacity = maximumFishCapacity;
+    public void setMaximumFishCapacity(Integer maximumFishCapacity) {
+        this.maximumFishCapacity = maximumFishCapacity;
     }
 
-    @Override
-    public int hashCode() {
-        return this.id.hashCode();
-    }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof AquariumEntity that)) return false;
-        return (Objects.equals(getId(), that.getId()) || Objects.equals(getDescription(), that.getDescription()))
-                && Objects.equals(size, that.size)
-                && Objects.equals(maximumFishCapacity, that.maximumFishCapacity);
+        if (o == null || getClass() != o.getClass()) return false;
+        AquariumEntity that = (AquariumEntity) o;
+        return Objects.equals(id, that.id) && Objects.equals(description, that.description) && Objects.equals(size, that.size) && Objects.equals(maximumFishCapacity, that.maximumFishCapacity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, description, size, maximumFishCapacity);
     }
 
     @Override

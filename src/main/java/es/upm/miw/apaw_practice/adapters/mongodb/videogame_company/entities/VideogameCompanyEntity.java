@@ -2,16 +2,16 @@ package es.upm.miw.apaw_practice.adapters.mongodb.videogame_company.entities;
 
 import es.upm.miw.apaw_practice.domain.models.videogame_company.Videogame;
 import es.upm.miw.apaw_practice.domain.models.videogame_company.VideogameCompany;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Document
 public class VideogameCompanyEntity{
@@ -25,7 +25,7 @@ public class VideogameCompanyEntity{
     private List<VideogameEntity> videogames;
 
     public VideogameCompanyEntity(){
-
+        videogames = new ArrayList<>();
     }
 
     public VideogameCompanyEntity(String name, String country, LocalDate registrationDate,
@@ -35,6 +35,12 @@ public class VideogameCompanyEntity{
         this.country = country;
         this.registrationDate = registrationDate;
         this.videogames = videogames;
+    }
+
+    public VideogameCompanyEntity(VideogameCompany videogameCompany){
+        this();
+        BeanUtils.copyProperties(videogameCompany, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {
@@ -78,10 +84,11 @@ public class VideogameCompanyEntity{
     }
 
     public VideogameCompany toVideogameCompany(){
+        VideogameCompany videogameCompany = new VideogameCompany();
+        BeanUtils.copyProperties(this, videogameCompany);
         List<Videogame> videogameList = this.videogames.stream()
                 .map(VideogameEntity::toVideogame)
-                .collect(Collectors.toList());
-        VideogameCompany videogameCompany = new VideogameCompany(this.name, this.country, this.registrationDate);
+                .toList();
         videogameCompany.setVideogames(videogameList);
         return videogameCompany;
     }

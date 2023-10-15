@@ -35,7 +35,7 @@ public class Aquarium {
     }
 
     public void setMaximumFishCapacity(Integer maximumFishCapacity) {
-        maximumFishCapacity = maximumFishCapacity;
+        this.maximumFishCapacity = maximumFishCapacity;
     }
 
     @Override

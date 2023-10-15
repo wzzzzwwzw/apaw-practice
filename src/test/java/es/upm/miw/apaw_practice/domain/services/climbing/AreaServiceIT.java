@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestConfig
-public class AreaServiceIT {
+class AreaServiceIT {
 
     @Autowired
     private AreaService areaService;

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(GameEngineResource.GAME_ENGINES)
 public class GameEngineResource {
-    static final String GAME_ENGINES = "/game-engines";
+    static final String GAME_ENGINES = "/videogame-company/game-engines";
     static final String NAME_ID = "/{name}";
     private final GameEngineService gameEngineService;
 

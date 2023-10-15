@@ -5,5 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface FruitShopRepository extends MongoRepository<FruitShopEntity, String> {
+
+    void deleteByName(String name);
     Optional<FruitShopEntity> findByName(String name);
 }

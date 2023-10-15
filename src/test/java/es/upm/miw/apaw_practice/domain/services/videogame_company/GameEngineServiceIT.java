@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @TestConfig
-public class VideoGameCompanyServiceIT {
+public class GameEngineServiceIT {
     @Autowired
     private GameEngineService gameEngineService;
 
@@ -21,4 +21,6 @@ public class VideoGameCompanyServiceIT {
         assertEquals("Free", gameEngine.getLicense());
 
     }
+
+
 }

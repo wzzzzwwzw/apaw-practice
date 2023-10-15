@@ -23,10 +23,15 @@ public class DoctorEntity {
     }
 
     public DoctorEntity(String medicalLicenseCode, String office, DepartmentEntity departmentEntity) {
-        this.id = UUID.randomUUID().toString();
+        //this.id = UUID.randomUUID().toString();
         this.medicalLicenseCode = medicalLicenseCode;
         this.office = office;
         this.departmentEntity = departmentEntity;
+    }
+
+    public DoctorEntity(Doctor doctor) {
+        BeanUtils.copyProperties(doctor, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {
@@ -61,10 +66,9 @@ public class DoctorEntity {
         this.departmentEntity = departmentEntity;
     }
 
-    public Doctor toDoctor() {
-        Doctor doctor = new Doctor();
-        BeanUtils.copyProperties(this, doctor);
-        return doctor;
+    public Doctor toDoctor(){
+
+        return new Doctor(medicalLicenseCode,office,departmentEntity.toDepartment());
     }
 
     @Override

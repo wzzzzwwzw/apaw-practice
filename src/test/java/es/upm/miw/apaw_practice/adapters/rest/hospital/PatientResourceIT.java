@@ -20,7 +20,7 @@ class PatientResourceIT {
     void testGetByName() {
         this.webTestClient
                 .get()
-                .uri(PatientResource.PATIENTS + PatientResource.NAME_ID, "000000000")
+                .uri(PatientResource.PATIENTS + PatientResource.SOCIAL_INSURANCE_NUMBER, "000000000")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Patient.class)

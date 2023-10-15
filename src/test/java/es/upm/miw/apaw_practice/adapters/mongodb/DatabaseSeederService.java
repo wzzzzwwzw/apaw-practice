@@ -172,9 +172,9 @@ public class DatabaseSeederService {
                 this.furnitureStoreSeederService.deleteAll();
                 // this.airportSeederService.deleteAll();
                 this.aquariumSeederService.deleteAll();
-                this.hospitalSeederService.seedDatabase();
-                this.fruitShopSeederService.seedDatabase();
-                this.bakerySeederService.seedDatabase();
+                this.hospitalSeederService.deleteAll();
+                this.fruitShopSeederService.deleteAll();
+                this.bakerySeederService.deleteAll();
         }
 
         public void reSeedDatabase() {

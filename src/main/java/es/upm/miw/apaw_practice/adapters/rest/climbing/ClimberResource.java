@@ -25,4 +25,9 @@ public class ClimberResource {
         return this.climberService.read(email);
     }
 
+    @DeleteMapping(EMAIL_ID)
+    public void delete(@PathVariable String email) {
+        this.climberService.delete(email);
+    }
+
 }

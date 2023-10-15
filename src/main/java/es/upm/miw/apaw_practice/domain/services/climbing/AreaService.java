@@ -25,7 +25,7 @@ public class AreaService {
 
     public Area updateRoute(String areaName, String routeKey, Route route) {
         Area area = this.areaPersistence.readByName(areaName);
-        List<Route> routes = new ArrayList<>(area.getRoutes());  // Create a mutable copy
+        List<Route> routes = new ArrayList<>(area.getRoutes());
 
         for (int i = 0; i < routes.size(); i++) {
             if (routes.get(i).getKey().equals(routeKey)) {

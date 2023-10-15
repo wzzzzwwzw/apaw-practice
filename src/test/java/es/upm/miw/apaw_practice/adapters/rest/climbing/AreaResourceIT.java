@@ -1,8 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.rest.climbing;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.climbing.ClimbingSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.climbing.Area;
 import es.upm.miw.apaw_practice.domain.models.climbing.Route;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,14 @@ class AreaResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
+    @Autowired
+    private ClimbingSeederService climbingSeederService;
+
+    @AfterEach
+    void resetDataBase() {
+        this.climbingSeederService.deleteAll();
+        this.climbingSeederService.seedDatabase();
+    }
 
     @Test
     void testRead() {

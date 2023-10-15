@@ -17,4 +17,9 @@ public class FruitShopService {
     public void delete(String name){
         this.fruitShopPersistence.delete(name);
     }
+
+    public void updateAddress(String name){
+        this.fruitShopPersistence.update(name);
+    }
+
 }

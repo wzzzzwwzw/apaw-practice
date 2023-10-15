@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class HorseRepositoryIT {
+class HorseRepositoryIT {
     @Autowired
     private HorseRepository horseRepository;
     @Test

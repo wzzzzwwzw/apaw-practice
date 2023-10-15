@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class KeeperRepositoryIT {
+class KeeperRepositoryIT {
     @Autowired
     private KeeperRepository keeperRepository;
     @Test

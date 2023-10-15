@@ -23,8 +23,8 @@ public class Library {
 
     public String getName(){ return name; }
     public void setName(String name){ this.name = name; }
-    public String getAdress(){ return address; }
-    public void setAdress(String address){ this.address=address; }
+    public String getAddress(){ return address; }
+    public void setAddress(String address){ this.address=address; }
     public LocalDate getFoundationDate(){ return foundationDate; }
     public void setFoundationDate(LocalDate foundationDate){ this.foundationDate=foundationDate; }
     public List<Book> getBooks(){ return this.books; }

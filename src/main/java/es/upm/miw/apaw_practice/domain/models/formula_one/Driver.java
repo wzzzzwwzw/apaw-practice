@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.formula_one;
 
+import es.upm.miw.apaw_practice.domain.models.formula_one.builders.DriverBuilders;
+
 public class Driver {
 
     private Integer number;
@@ -57,5 +59,44 @@ public class Driver {
                 ", nationality='" + nationality + '\'' +
                 ", points=" + points +
                 '}';
+    }
+
+    public static class Builder implements DriverBuilders.Number, DriverBuilders.DriverName,
+            DriverBuilders.Nationality, DriverBuilders.Optionals {
+
+        private final Driver driver;
+
+        public Builder() {
+            this.driver = new Driver();
+        }
+
+        @Override
+        public DriverBuilders.DriverName number(Integer number) {
+            this.driver.number = number;
+            return this;
+        }
+
+        @Override
+        public DriverBuilders.Nationality driverName(String driverName) {
+            this.driver.driverName = driverName;
+            return this;
+        }
+
+        @Override
+        public DriverBuilders.Optionals nationality(String nationality) {
+            this.driver.nationality = nationality;
+            return this;
+        }
+
+        @Override
+        public DriverBuilders.Optionals points(Float points) {
+            this.driver.points = points;
+            return this;
+        }
+
+        @Override
+        public Driver build() {
+            return this.driver;
+        }
     }
 }

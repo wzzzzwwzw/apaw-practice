@@ -32,4 +32,10 @@ class DoctorRepositoryIT {
         assertEquals(1, doctor.getDepartmentEntity().getFloor());
     }
 
+    @Test
+    void testDoctorDeleteByName() {
+        this.doctorRepository.deleteByMedicalLicenseCode("M999");
+        assertFalse(this.doctorRepository.findByMedicalLicenseCode("M999").isPresent());
+    }
+
 }

@@ -23,4 +23,23 @@ public class ExpeditionPersistenceMongodb implements ExpeditionPersistence {
                 .save(new ExpeditionEntity(expedition))
                 .toExpedition();
     }
+
+    @Override
+    public Expedition readByIdentifier(String identifier) {
+        return this.expeditionRepository
+                .findByIdentifier(identifier)
+                .orElseThrow()
+                .toExpedition();
+    }
+
+    @Override
+    public Expedition update(Expedition expedition) {
+        ExpeditionEntity expeditionEntity = this.expeditionRepository
+                .findByIdentifier(expedition.getIdentifier())
+                .orElseThrow();
+        expeditionEntity.fromExpedition(expedition);
+        return this.expeditionRepository
+                .save(expeditionEntity)
+                .toExpedition();
+    }
 }

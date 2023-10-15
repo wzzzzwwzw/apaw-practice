@@ -177,8 +177,8 @@ public class DatabaseSeederService {
                 this.furnitureStoreSeederService.deleteAll();
                 // this.airportSeederService.deleteAll();
                 this.aquariumSeederService.deleteAll();
-                this.hospitalSeederService.seedDatabase();
-                this.fruitShopSeederService.seedDatabase();
+                this.hospitalSeederService.deleteAll();
+                this.fruitShopSeederService.deleteAll();
                 this.bakerySeederService.deleteAll();
                 this.stableSeederService.deleteAll();
         }

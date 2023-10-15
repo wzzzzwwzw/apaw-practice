@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 public interface ClimberPersistence {
     Climber readByEmail(String email);
 
+    void delete(String email);
 }

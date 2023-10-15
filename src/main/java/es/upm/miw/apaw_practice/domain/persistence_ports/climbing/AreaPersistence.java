@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AreaPersistence {
     Area readByName(String name);
+
+    Area update(Area area);
 }

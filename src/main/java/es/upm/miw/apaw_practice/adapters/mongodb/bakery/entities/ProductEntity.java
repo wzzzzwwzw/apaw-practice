@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.bakery.entities;
 import es.upm.miw.apaw_practice.domain.models.bakery.Product;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,6 +15,7 @@ import java.util.UUID;
 public class ProductEntity {
     @Id
     private String id;
+    @Indexed(unique = true)
     private String name;
     private String description;
     private BigDecimal price;

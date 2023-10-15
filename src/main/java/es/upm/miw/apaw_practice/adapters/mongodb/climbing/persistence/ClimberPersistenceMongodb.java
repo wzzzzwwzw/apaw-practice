@@ -24,4 +24,9 @@ public class ClimberPersistenceMongodb implements ClimberPersistence {
                 .toClimber();
     }
 
+    @Override
+    public void delete(String email) {
+        this.climberRepository.deleteByEmail(email);
+    }
+
 }

@@ -40,10 +40,11 @@ public class HospitalSeederService {
 
         DoctorEntity[] doctors = {
                 new DoctorEntity("M001","E01", departments[0]),
-                new DoctorEntity("M002","E02", departments[0]),
+                new DoctorEntity("M002","D02", departments[2]),
                 new DoctorEntity("M003","P01", departments[1]),
                 new DoctorEntity("M004","R01", departments[3]),
-                new DoctorEntity("M005","D01", departments[2])
+                new DoctorEntity("M005","D01", departments[4]),
+                new DoctorEntity("M999","R99", departments[5])
         };
         this.doctorRepository.saveAll(Arrays.asList(doctors));
 
@@ -53,14 +54,15 @@ public class HospitalSeederService {
                 new AppointmentEntity(LocalDateTime.of(2023,4,11,11,11), Boolean.FALSE, "001"),
                 new AppointmentEntity(LocalDateTime.of(2023,6,22,8,30), Boolean.FALSE, "120"),
                 new AppointmentEntity(LocalDateTime.of(2023,11,11,10,30), Boolean.TRUE, "203"),
-                new AppointmentEntity(LocalDateTime.of(2023,2,1,9,20), Boolean.FALSE, "005")
+                new AppointmentEntity(LocalDateTime.of(2023,2,1,9,20), Boolean.FALSE, "005"),
+                new AppointmentEntity(LocalDateTime.of(2023,1,1,1,1), Boolean.FALSE, "005")
         };
 
         PatientEntity[] patients = {
-                new PatientEntity("000000000", "Female", LocalDate.of(1999,1,1),  Arrays.asList(doctors[0], doctors[2]), Arrays.asList(appointments[0], appointments[1])),
-                new PatientEntity("111111111", "Male", LocalDate.of(2000,2,2), Collections.singletonList(doctors[0]), List.of(appointments[2])),
-                new PatientEntity("222222222", "Female", LocalDate.of(1967,11,21), Collections.singletonList(doctors[1]), List.of(appointments[3])),
-                new PatientEntity("333333333", "Male", LocalDate.of(1987,5,11), Arrays.asList(doctors[4], doctors[3]), Arrays.asList(appointments[4], appointments[5]))
+                new PatientEntity("000000000", "NONE", LocalDate.of(1999,1,1),  Arrays.asList(doctors[0], doctors[2]), Arrays.asList(appointments[0], appointments[1])),
+                new PatientEntity("111111111", "NONE", LocalDate.of(2000,2,2), Collections.singletonList(doctors[0]), List.of(appointments[2])),
+                new PatientEntity("222222222", "NONE", LocalDate.of(1967,11,21), Collections.singletonList(doctors[1]), List.of(appointments[3])),
+                new PatientEntity("333333333", "NONE", LocalDate.of(1987,5,11), Arrays.asList(doctors[4], doctors[3]), Arrays.asList(appointments[4], appointments[5],appointments[6]))
         };
         this.patientRepository.saveAll(Arrays.asList(patients));
     }

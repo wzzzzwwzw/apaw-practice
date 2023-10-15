@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.aquarium.persistence;
 import es.upm.miw.apaw_practice.domain.models.aquarium.Aquarium;
 import es.upm.miw.apaw_practice.adapters.mongodb.aquarium.daos.AquariumRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.aquarium.entities.AquariumEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,6 +19,21 @@ public class AquariumPersistenceMongodb implements AquariumPersistence {
         return this.aquariumRepository
                 .findByDescription(description)
                 .orElseThrow(()-> new NotFoundException("Aquarium description not found:" +description))
+                .toAquarium();
+    }
+
+
+    @Override
+    public boolean existsAquariumDescription(String description) {
+        return this.aquariumRepository
+                .findByDescription(description)
+                .isPresent();
+    }
+
+    @Override
+    public Aquarium create(Aquarium aquarium) {
+        return this.aquariumRepository
+                .save(new AquariumEntity(aquarium))
                 .toAquarium();
     }
 }

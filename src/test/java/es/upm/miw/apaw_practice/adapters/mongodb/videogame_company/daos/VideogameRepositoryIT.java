@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.videogame_company.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.videogame_company.VideogameCompanySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame_company.entities.VideogameEntity;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,11 +12,21 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 @TestConfig
 class VideogameRepositoryIT{
     @Autowired
     private VideogameRepository videogameRepository;
     private static final String CUSTOMIZED_VIDEOGAME = "Shin Megami Tensei V";
+
+    @Autowired
+    private VideogameCompanySeederService videogameCompanySeederService;
+
+    @AfterEach
+    void resetDatabase(){
+        this.videogameCompanySeederService.deleteAll();
+        this.videogameCompanySeederService.seedDatabase();
+    }
 
     @Test
     void testFindByName(){
@@ -32,5 +44,11 @@ class VideogameRepositoryIT{
         assertTrue(videogame.getFeatures()
                 .stream()
                 .anyMatch(feature -> feature.getGenre().equals(featureGenre)));
+    }
+
+    @Test
+    void testDeleteByName(){
+        this.videogameRepository.deleteByName(CUSTOMIZED_VIDEOGAME);
+        assertFalse(this.videogameRepository.findByName(CUSTOMIZED_VIDEOGAME).isPresent());
     }
 }

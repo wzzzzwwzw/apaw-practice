@@ -7,5 +7,5 @@ public interface DoctorPersistence {
     Doctor read(String medicalLicenseCode);
     boolean existsDoctor(String medicalLicenseCode);
     Doctor create(Doctor doctor);
-
+    void delete(String name);
 }

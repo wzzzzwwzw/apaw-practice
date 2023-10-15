@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.climbing.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.climbing.daos.ExpeditionRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.climbing.entities.ExpeditionEntity;
-import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.climbing.Expedition;
 import es.upm.miw.apaw_practice.domain.persistence_ports.climbing.ExpeditionPersistence;
 import org.springframework.beans.factory.annotation.Autowired;

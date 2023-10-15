@@ -8,7 +8,6 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import static es.upm.miw.apaw_practice.adapters.rest.furniture_store.ManagerResource.MANAGER;
 import static es.upm.miw.apaw_practice.adapters.rest.furniture_store.ManagerResource.NAME_ID;
 
-
 @RestTestConfig
 class ManagerResourceIT {
 

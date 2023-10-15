@@ -40,10 +40,11 @@ public class HospitalSeederService {
 
         DoctorEntity[] doctors = {
                 new DoctorEntity("M001","E01", departments[0]),
-                new DoctorEntity("M002","E02", departments[0]),
+                new DoctorEntity("M002","D02", departments[2]),
                 new DoctorEntity("M003","P01", departments[1]),
                 new DoctorEntity("M004","R01", departments[3]),
-                new DoctorEntity("M005","D01", departments[2])
+                new DoctorEntity("M005","D01", departments[4]),
+                new DoctorEntity("M999","R99", departments[5])
         };
         this.doctorRepository.saveAll(Arrays.asList(doctors));
 

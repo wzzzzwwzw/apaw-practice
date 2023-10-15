@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Document
 public class HorseEntity {
@@ -87,7 +86,7 @@ public class HorseEntity {
     public Horse toHorse() {
         List<Keeper> keepers = this.keeperEntities.stream()
                 .map(KeeperEntity::toKeeper)
-                .collect(Collectors.toList());
+                .toList();
         return new Horse(this.name, this.purchasePrice, this.sold, keepers, this.careTaskEntity.toCareTask());
     }
 

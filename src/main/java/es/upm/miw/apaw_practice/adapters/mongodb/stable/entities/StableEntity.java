@@ -86,7 +86,7 @@ public class StableEntity {
         BeanUtils.copyProperties(this, stable);
         List<Horse> horses = this.horseEntities.stream()
                 .map(HorseEntity::toHorse)
-                .collect(Collectors.toList());
+                .toList();
         stable.setHorses(horses);
         return stable;
     }

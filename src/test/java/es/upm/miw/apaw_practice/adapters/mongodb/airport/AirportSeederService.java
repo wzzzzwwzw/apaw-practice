@@ -33,13 +33,13 @@ public class AirportSeederService {
         LogManager.getLogger(this.getClass()).warn("------- Airport Initial Load -----------");
 
         AircraftEntity[] aircrafts = {
-                new AircraftEntity(new Aircraft(LocalDate.of(2022, 12, 23), 520, "Airbus A320")),
-                new AircraftEntity(new Aircraft(LocalDate.of(2023, 8, 7), 420, "Boeing 747")),
-                new AircraftEntity(new Aircraft(LocalDate.of(2021, 11, 23), 600, "Boeing 737")),
-                new AircraftEntity(new Aircraft(LocalDate.of(2020, 6, 19), 380, "Airbus A340")),
-                new AircraftEntity(new Aircraft(LocalDate.of(2023, 3, 5), 520, "Airbus A320")),
-                new AircraftEntity(new Aircraft(LocalDate.of(2022, 7, 25), 605, "Boeing 787")),
-                new AircraftEntity(new Aircraft(LocalDate.of(2021, 9, 12), 380, "Airbus A340"))
+                new AircraftEntity(new Aircraft(LocalDate.of(2022, 12, 23), 520, "Airbus A320", "320POY")),
+                new AircraftEntity(new Aircraft(LocalDate.of(2023, 8, 7), 420, "Boeing 747", "576TRT")),
+                new AircraftEntity(new Aircraft(LocalDate.of(2021, 11, 23), 600, "Boeing 737","234POY")),
+                new AircraftEntity(new Aircraft(LocalDate.of(2020, 6, 19), 380, "Airbus A340","764QVP")),
+                new AircraftEntity(new Aircraft(LocalDate.of(2023, 3, 5), 520, "Airbus A320","875PRT")),
+                new AircraftEntity(new Aircraft(LocalDate.of(2022, 7, 25), 605, "Boeing 787","209NGF")),
+                new AircraftEntity(new Aircraft(LocalDate.of(2021, 9, 12), 380, "Airbus A340","901LMN"))
         };
         this.aircraftRepository.saveAll(Arrays.asList(aircrafts));
 

@@ -75,7 +75,7 @@ public class BookEntity {
     public Book toBook() {
         List<BookWriter> bookWriters = this.bookWriterEntities.stream()
                 .map(BookWriterEntity::toBookWriter)
-                .collect(Collectors.toList());
+                .toList();
         return new Book(this.title, this.isbn, this.publicationDate, bookWriters);
     }
 

@@ -81,7 +81,7 @@ public class LibraryEntity {
         BeanUtils.copyProperties(this, library, "bookEntities");
         List<Book> books = this.bookEntities.stream()
                 .map(BookEntity::toBook)
-                .collect(Collectors.toList());
+                .toList();
         library.setBooks(books);
         return library;
     }

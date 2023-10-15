@@ -29,4 +29,8 @@ public class DoctorService {
             throw new ConflictException("Doctor already exists: " + medicalLicenseCode);
         }
     }
+
+    public void delete(String medicalLicenseCode) {
+        this.doctorPersistence.delete(medicalLicenseCode);
+    }
 }

@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.rest.hospital;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
+import es.upm.miw.apaw_practice.adapters.rest.computer_store.ComputerResource;
 import es.upm.miw.apaw_practice.domain.models.hospital.Department;
 import es.upm.miw.apaw_practice.domain.models.hospital.Doctor;
 import org.junit.jupiter.api.Assertions;
@@ -41,6 +42,15 @@ class DoctorResourceIT {
                 .body(BodyInserters.fromValue(doctor))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
+    }
+
+    @Test
+    void testDeleteEndpoint() {
+        this.webTestClient
+                .delete()
+                .uri(DoctorResource.DOCTORS + DoctorResource.MEDICAL_LICENSE_CODE, "M999")
+                .exchange()
+                .expectStatus().isOk();
     }
 
 

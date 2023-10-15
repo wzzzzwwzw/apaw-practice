@@ -38,4 +38,9 @@ public class DoctorPersistenceMongodb implements DoctorPersistence {
                 .toDoctor();
     }
 
+    @Override
+    public void delete(String medicalLicenseCode) {
+        this.doctorRepository.deleteByMedicalLicenseCode(medicalLicenseCode);
+    }
+
 }

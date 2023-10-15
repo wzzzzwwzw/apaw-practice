@@ -66,8 +66,8 @@ public class BakerySeederService {
                 new TicketEntity(LocalDateTime.of(2023, 1, 1, 10, 50, 51), new BigDecimal("2.00"), 2, List.of(products[0], products[1])),
                 new TicketEntity(LocalDateTime.of(2023, 2, 20, 20, 54, 30), new BigDecimal("0.50"), 1, List.of(products[2])),
                 new TicketEntity(LocalDateTime.of(2023, 3, 15, 15, 58, 34), new BigDecimal("0.70"), 2, List.of(products[3], products[4])),
-                new TicketEntity(LocalDateTime.of(2023, 4, 10, 9, 12, 55), new BigDecimal("2.70"), 2, List.of(products[5], products[6]))
-
+                new TicketEntity(LocalDateTime.of(2023, 4, 10, 9, 12, 55), new BigDecimal("2.70"), 2, List.of(products[5], products[6])),
+                new TicketEntity(LocalDateTime.of(2024, 4, 10, 9, 12, 59), new BigDecimal("100.0"), 1, null)
         };
         this.ticketRepository.saveAll(Arrays.asList(tickets));
     }

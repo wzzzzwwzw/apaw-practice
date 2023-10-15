@@ -64,14 +64,14 @@ public class BankSeederService {
         this.bankAccountRepository.saveAll(Arrays.asList(bankAccounts));
 
         ClientBankEntity[] clientsBank = {
-                new ClientBankEntity("12345678A", "Juan", "Pérez", 30, new ArrayList<>(Arrays.asList(bankAccounts[0], bankAccounts[1]))),
-                new ClientBankEntity("87654321B", "Ana", "García", 28, new ArrayList<>(Arrays.asList(bankAccounts[2], bankAccounts[3]))),
-                new ClientBankEntity("98765432C", "Carlos", "López", 35, new ArrayList<>(Arrays.asList(bankAccounts[4]))),
-                new ClientBankEntity("23456789D", "María", "Martínez", 42, new ArrayList<>(Arrays.asList(bankAccounts[5], bankAccounts[10]))),
-                new ClientBankEntity("34567890E", "Luis", "Hernández", 29, new ArrayList<>(Arrays.asList(bankAccounts[6], bankAccounts[11]))),
-                new ClientBankEntity("45678901F", "Elena", "Sánchez", 33, new ArrayList<>(Arrays.asList(bankAccounts[7], bankAccounts[12]))),
-                new ClientBankEntity("56789012G", "Sergio", "Gómez", 31, new ArrayList<>(Arrays.asList(bankAccounts[8]))),
-                new ClientBankEntity("67890123H", "Laura", "Pérez", 27, new ArrayList<>(Arrays.asList(bankAccounts[9])))
+                new ClientBankEntity("Juan", "12345678A", "Pérez", 30, new ArrayList<>(Arrays.asList(bankAccounts[0], bankAccounts[1]))),
+                new ClientBankEntity("Ana", "87654321B", "García", 28, new ArrayList<>(Arrays.asList(bankAccounts[2], bankAccounts[3]))),
+                new ClientBankEntity("Carlos", "98765432C", "López", 35, new ArrayList<>(Arrays.asList(bankAccounts[4]))),
+                new ClientBankEntity("María", "23456789D", "Martínez", 42, new ArrayList<>(Arrays.asList(bankAccounts[5], bankAccounts[10]))),
+                new ClientBankEntity("Luis", "34567890E", "Hernández", 29, new ArrayList<>(Arrays.asList(bankAccounts[6], bankAccounts[11]))),
+                new ClientBankEntity("Elena", "45678901F", "Sánchez", 33, new ArrayList<>(Arrays.asList(bankAccounts[7], bankAccounts[12]))),
+                new ClientBankEntity("Sergio", "56789012G", "Gómez", 31, new ArrayList<>(Arrays.asList(bankAccounts[8]))),
+                new ClientBankEntity("Laura", "67890123H", "Pérez", 27, new ArrayList<>(Arrays.asList(bankAccounts[9])))
         };
         this.clientBankRepository.saveAll(Arrays.asList(clientsBank));
 

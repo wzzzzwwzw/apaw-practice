@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Team {
-    private String city;
+    private String alias;
     private Integer numPlayers;
     private String coach;
     private List<Player> players;
@@ -14,18 +14,18 @@ class Team {
         this.players = new ArrayList<>();
     }
 
-    public Team(String city, Integer numPlayers, String coach) {
-        this.city = city;
+    public Team(String alias, Integer numPlayers, String coach) {
+        this.alias = alias;
         this.numPlayers = numPlayers;
         this.coach = coach;
     }
 
-    public String getCity() {
-        return city;
+    public String getAlias() {
+        return alias;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 
     public int getNumPlayers() {
@@ -62,7 +62,7 @@ class Team {
         return "Team{" +
                 "numPlayers='" + numPlayers + '\'' +
                 ", coach=" + coach +
-                ", city='" + city + '\'' +
+                ", alias='" + alias + '\'' +
                 '}';
     }
 }

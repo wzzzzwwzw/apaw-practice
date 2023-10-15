@@ -18,4 +18,10 @@ public class PatientService {
         return this.patientPersistence.read(socialInsuranceNumber);
     }
 
+    public Patient updateAllergicMedicineBySocialInsuranceNumber(String socialInsuranceNumber, String newAllergicMedicine) {
+        return this.patientPersistence.updateAllergicMedicine(socialInsuranceNumber,newAllergicMedicine);
+    }
+
+
+
 }

@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.aquarium.entities;
 import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.entities.ComputerEntity;
+import es.upm.miw.apaw_practice.domain.models.aquarium.Aquarium;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,6 +20,11 @@ public class AquariumEntity {
     private Double size;
     private Integer maximumFishCapacity;
 
+    public Aquarium toAquarium(){
+        Aquarium aquarium = new Aquarium();
+        BeanUtils.copyProperties(this,aquarium);
+        return aquarium;
+    }
     public AquariumEntity() {
         //empty for framework
     }
@@ -53,12 +60,12 @@ public class AquariumEntity {
         this.size = size;
     }
 
-    public Integer getmaximumFishCapacity() {
+    public Integer getMaximumFishCapacity() {
         return maximumFishCapacity;
     }
 
-    public void setmaximumFishCapacity(Integer maximumFishCapacity) {
-        maximumFishCapacity = maximumFishCapacity;
+    public void setMaximumFishCapacity(Integer maximumFishCapacity) {
+        this.maximumFishCapacity = maximumFishCapacity;
     }
 
     @Override

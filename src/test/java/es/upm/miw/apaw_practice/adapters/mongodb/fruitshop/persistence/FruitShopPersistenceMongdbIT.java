@@ -16,9 +16,9 @@ public class FruitShopPersistenceMongdbIT {
 
     @Test
     void testUpdateFruitShopAddress() {
-        FruitShop fruitShop = this.fruitShopPersistenceMongdb.updateAddress("Frutas Frescas");
+        FruitShop fruitShop = this.fruitShopPersistenceMongdb.updateAddress("Fruit Test");
         assertNotNull(fruitShop);
-        assertEquals("Frutas Frescas", fruitShop.getName());
+        assertEquals("Fruit Test", fruitShop.getName());
         assertEquals("New Address", fruitShop.getAddress());
     }
 

@@ -41,7 +41,7 @@ public class LibraryEntity {
     }
 
     public void setId(String id) {
-        id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -81,7 +81,7 @@ public class LibraryEntity {
         BeanUtils.copyProperties(this, library, "bookEntities");
         List<Book> books = this.bookEntities.stream()
                 .map(BookEntity::toBook)
-                .collect(Collectors.toList());
+                .toList();
         library.setBooks(books);
         return library;
     }

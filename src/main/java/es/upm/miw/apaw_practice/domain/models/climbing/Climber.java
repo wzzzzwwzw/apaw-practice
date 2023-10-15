@@ -20,12 +20,6 @@ public class Climber {
         this.expeditions = expeditions;
     }
 
-    public static Climber ofClimberEmail(Climber climber) {
-        Climber climberDto = new Climber();
-        climberDto.setEmail(climber.getEmail());
-        return climberDto;
-    }
-
     public String getEmail() {
         return email;
     }

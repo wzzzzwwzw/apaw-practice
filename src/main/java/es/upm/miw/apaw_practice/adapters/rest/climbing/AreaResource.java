@@ -25,7 +25,7 @@ public class AreaResource {
 
     @GetMapping(NAME_ID)
     public Area read(@PathVariable String name) {
-        return Area.ofAreaName(this.areaService.read(name));
+        return this.areaService.read(name);
     }
 
 }

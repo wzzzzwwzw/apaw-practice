@@ -8,17 +8,17 @@ public class Book {
     private String title;
     private String isbn;
     private LocalDate publicationDate;
-    private List<Author> authors;
+    private List<BookWriter> bookWriters;
 
     public Book(){
-        authors = new ArrayList<>();
+        bookWriters = new ArrayList<>();
     }
 
-    public Book(String title, String isbn, LocalDate publicationDate, List<Author> authors) {
+    public Book(String title, String isbn, LocalDate publicationDate, List<BookWriter> bookWriters) {
         this.title = title;
         this.isbn = isbn;
         this.publicationDate = publicationDate;
-        this.authors = authors;
+        this.bookWriters = bookWriters;
     }
 
     public String getTitle() { return title;}
@@ -27,9 +27,9 @@ public class Book {
     public void setIsbn(String isbn){ this.isbn=isbn;}
     public LocalDate getPublicationDate(){ return publicationDate;}
     public void setPublicationDate(LocalDate publicationDate){ this.publicationDate=publicationDate;}
-    public List<Author> getAuthors() { return authors; }
-    public void setAuthors(List<Author> authors) { this.authors = authors; }
-    public void addAuthor(Author author) { this.authors.add(author);}
+    public List<BookWriter> getBookWriters() { return bookWriters; }
+    public void setBookWriters(List<BookWriter> bookWriters) { this.bookWriters = bookWriters; }
+    public void addBookWriter(BookWriter bookWriter) { this.bookWriters.add(bookWriter);}
 
     @Override
     public String toString() {
@@ -37,7 +37,7 @@ public class Book {
                 "title='" + title + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", publicationDate=" + publicationDate +
-                ", authors=" + authors +
+                ", bookWriters=" + bookWriters +
                 '}';
     }
 }

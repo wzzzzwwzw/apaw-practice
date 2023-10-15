@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class DepartmentResource {
     static final String DEPARTMENTS = "/hospital/departments";
     static final String AVAILABLE_BEDS = "/available_beds";
-    static final String DEPARTMENT_NAME = "/{department_name}";
+    static final String NAME = "/{name}";
     private final DepartmentService departmentService;
 
     @Autowired
@@ -18,9 +18,9 @@ public class DepartmentResource {
         this.departmentService = departmentService;
     }
 
-    @PutMapping(DEPARTMENT_NAME + AVAILABLE_BEDS)
-    public Department updateDepartmentAvailableBeds(@PathVariable String departmentName, @RequestBody Integer availableBeds) {
-        return this.departmentService.updateAvailableBeds(departmentName, availableBeds);
+    @PutMapping(NAME + AVAILABLE_BEDS)
+    public Department updateDepartmentAvailableBeds(@PathVariable String name, @RequestBody Integer availableBeds) {
+        return this.departmentService.updateAvailableBeds(name, availableBeds);
     }
 
 

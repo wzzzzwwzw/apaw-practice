@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.library.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.library.daos.BookWriterRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.library.entities.BookWriterEntity;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.library.BookWriter;
 import es.upm.miw.apaw_practice.domain.persistence_ports.library.BookWriterPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,15 @@ public class BookWriterPersistenceMongodb implements BookWriterPersistence {
     public BookWriterPersistenceMongodb(BookWriterRepository bookWriterRepository){
         this.bookWriterRepository = bookWriterRepository;
     }
+
+    @Override
+    public BookWriter read(String nickname){
+        return this.bookWriterRepository
+                .findByNickname(nickname)
+                .orElseThrow(() -> new NotFoundException("BookWriter nickname: " + nickname))
+                .toBookWriter();
+    }
+
     @Override
     public boolean existsNickname(String nickname){
         return this.bookWriterRepository

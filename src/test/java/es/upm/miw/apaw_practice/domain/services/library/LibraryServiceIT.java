@@ -16,7 +16,7 @@ public class LibraryServiceIT {
     private LibraryService libraryService;
     @Test
     void testReadService(){
-        Library library = libraryService.read("Biblioteca Nacional");
+        Library library = this.libraryService.read("Biblioteca Nacional");
         assertNotNull(library);
         assertEquals("Calle atocha 10", library.getAddress());
         assertEquals(LocalDate.of(1996, 10, 1), library.getFoundationDate());

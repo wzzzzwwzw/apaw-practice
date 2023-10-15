@@ -11,6 +11,6 @@ public class FruitShopServiceIT {
 
     @Test
     void testDelete() {
-        fruitShopService.delete("Fruit Haven");
+        fruitShopService.delete("Fruitful Delights");
     }
 }

@@ -9,4 +9,6 @@ import java.util.stream.Stream;
 public interface AlbumPersistence {
 
     Stream<Song> readSongsByAlbumDenomination(String denomination);
+
+    void delete(String denomination);
 }

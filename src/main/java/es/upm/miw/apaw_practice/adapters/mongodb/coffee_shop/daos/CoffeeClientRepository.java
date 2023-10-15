@@ -7,5 +7,7 @@ import java.util.Optional;
 
 public interface CoffeeClientRepository extends MongoRepository<CoffeeClientEntity, String> {
     Optional<CoffeeClientEntity> findByName(String name);
+    int deleteByName(String name);
+
 }
 

@@ -18,4 +18,10 @@ public class SellerService {
     public Seller create(Seller seller) {
         return this.sellerPersistence.create(seller);
     }
+
+    public Seller updateSellerName(String id, String name) {
+        Seller seller = this.sellerPersistence.readById(id);
+        seller.setName(name);
+        return this.sellerPersistence.update(seller);
+    }
 }

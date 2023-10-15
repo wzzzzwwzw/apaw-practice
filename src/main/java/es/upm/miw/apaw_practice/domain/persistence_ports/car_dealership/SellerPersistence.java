@@ -10,4 +10,8 @@ public interface SellerPersistence {
     Seller create (Seller seller);
 
     Stream<Seller> readAll();
+
+    Seller readById(String id);
+
+    Seller update(Seller seller);
 }

@@ -20,7 +20,7 @@ public class CoffeeClientPersistenceMongodbIT {
     }
 
     @Test
-    void testUpdateRepairTimeException() {
+    void testUpdateAddressException() {
         assertThrows(NotFoundException.class, () -> this.coffeeClientPersistenceMongodb.updateAddressByName("test"));
     }
 

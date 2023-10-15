@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class StableRepositoryIT {
+class StableRepositoryIT {
     @Autowired
     private StableRepository stableRepository;
     @Test

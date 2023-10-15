@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @TestConfig
-public class ExpeditionPersistenceMongodbIT {
+class ExpeditionPersistenceMongodbIT {
     @Autowired
     private ExpeditionPersistenceMongodb expeditionPersistenceMongodb;
 

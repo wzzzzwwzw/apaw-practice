@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @RestTestConfig
-public class ExpeditionResourceIT {
+class ExpeditionResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;

@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,15 +20,13 @@ public class HorseRepositoryIT {
     void testFindByName() {
         assertTrue(this.horseRepository.findByName("name1").isPresent());
         HorseEntity horseEntity = this.horseRepository.findByName("name1").get();
-        assertEquals(25, horseEntity.getAge());
-        assertEquals(LocalDate.of(2001, 1, 1), horseEntity.getBirthDate());
-        assertEquals("race1", horseEntity.getRace());
-        assertEquals(5.0, horseEntity.getHealth());
         assertEquals(new BigDecimal("11000.0"), horseEntity.getPurchasePrice());
         assertEquals(false, horseEntity.getSold());
         assertTrue(horseEntity.getKeeperEntities().stream()
                 .map(KeeperEntity::getName)
                 .toList()
                 .containsAll(Arrays.asList("Keeper1", "Keeper2")));
+        assertEquals("Description1", horseEntity.getCareTaskEntity().getDescription());
+        assertEquals(1.0, horseEntity.getCareTaskEntity().getDurationHours() );
     }
 }

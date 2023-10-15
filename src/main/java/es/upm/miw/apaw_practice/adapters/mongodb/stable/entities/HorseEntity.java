@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -19,10 +18,6 @@ public class HorseEntity {
     private String id;
     @Indexed(unique = true)
     private String name;
-    private Integer age;
-    private LocalDate birthDate;
-    private String race;
-    private Double health;
     private BigDecimal purchasePrice;
     private Boolean sold;
     private List<KeeperEntity> keeperEntities;
@@ -32,13 +27,9 @@ public class HorseEntity {
         //Empty for framework
     }
 
-    public HorseEntity(String name, Integer age, LocalDate birthDate, String race, Double health, BigDecimal purchasePrice, Boolean sold, List<KeeperEntity> keeperEntities, CareTaskEntity careTaskEntity) {
+    public HorseEntity(String name, BigDecimal purchasePrice, Boolean sold, List<KeeperEntity> keeperEntities, CareTaskEntity careTaskEntity) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
-        this.age = age;
-        this.birthDate = birthDate;
-        this.race = race;
-        this.health = health;
         this.purchasePrice = purchasePrice;
         this.sold = sold;
         this.keeperEntities = keeperEntities;
@@ -59,38 +50,6 @@ public class HorseEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getRace() {
-        return race;
-    }
-
-    public void setRace(String race) {
-        this.race = race;
-    }
-
-    public Double getHealth() {
-        return health;
-    }
-
-    public void setHealth(Double health) {
-        this.health = health;
     }
 
     public BigDecimal getPurchasePrice() {
@@ -124,14 +83,14 @@ public class HorseEntity {
     public void setCareTaskEntity(CareTaskEntity careTaskEntity) {
         this.careTaskEntity = careTaskEntity;
     }
-/*
+
     public Horse toHorse() {
         List<Keeper> keepers = this.keeperEntities.stream()
                 .map(KeeperEntity::toKeeper)
                 .collect(Collectors.toList());
-        return new Horse(this.name, this.age, this.birthDate, this.race, this.health, this.purchasePrice, this.sold, keepers, this.careTaskEntity.toCareTask());
+        return new Horse(this.name, this.purchasePrice, this.sold, keepers, this.careTaskEntity.toCareTask());
     }
-*/
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -150,10 +109,6 @@ public class HorseEntity {
         return "HorseEntity{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", age=" + age +
-                ", birthDate=" + birthDate +
-                ", race='" + race + '\'' +
-                ", health=" + health +
                 ", purchasePrice=" + purchasePrice +
                 ", sold=" + sold +
                 ", keeperEntities=" + keeperEntities +

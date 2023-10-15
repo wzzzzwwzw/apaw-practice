@@ -51,10 +51,10 @@ public class StableSeederService {
         };
         this.careTaskRepository.saveAll(Arrays.asList(careTaskEntities));
         HorseEntity[] horseEntities = {
-                new HorseEntity("name1", 25, LocalDate.of(2001, 1, 1), "race1", 5.0, new BigDecimal("11000.0"), false, List.of(keeperEntities[0], keeperEntities[1]), careTaskEntities[0]),
-                new HorseEntity("name2",26, LocalDate.of(2002, 2, 2), "race2", 6.0, new BigDecimal("12000.0"), true, List.of(keeperEntities[2], keeperEntities[3]), careTaskEntities[1]),
-                new HorseEntity("name3", 27, LocalDate.of(2003, 3, 3), "race3",  7.0, new BigDecimal("14000.0"), false, List.of(keeperEntities[4], keeperEntities[5]), careTaskEntities[2]),
-                new HorseEntity("name4", 28, LocalDate.of(2004, 4, 4), "race4", 8.0, new BigDecimal("15000.0"), true, List.of(keeperEntities[6], keeperEntities[7]), careTaskEntities[3])
+                new HorseEntity("name1", new BigDecimal("11000.0"), false, List.of(keeperEntities[0], keeperEntities[1]), careTaskEntities[0]),
+                new HorseEntity("name2", new BigDecimal("12000.0"), true, List.of(keeperEntities[2], keeperEntities[3]), careTaskEntities[1]),
+                new HorseEntity("name3", new BigDecimal("14000.0"), false, List.of(keeperEntities[4], keeperEntities[5]), careTaskEntities[2]),
+                new HorseEntity("name4", new BigDecimal("15000.0"), true, List.of(keeperEntities[6], keeperEntities[7]), careTaskEntities[3])
         };
         this.horseRepository.saveAll(Arrays.asList(horseEntities));
         StableEntity[] stables = {

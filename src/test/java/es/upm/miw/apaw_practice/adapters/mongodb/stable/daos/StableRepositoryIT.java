@@ -24,10 +24,6 @@ public class StableRepositoryIT {
                         50 == stable.getMaxCapacity() &&
                         LocalDate.of(1999, 1, 1).equals(stable.getFoundationDate()) &&
                         "name1".equals(stable.getHorseEntities().get(0).getName()) &&
-                        25 == stable.getHorseEntities().get(0).getAge() &&
-                        LocalDate.of(2001, 1, 1).equals(stable.getHorseEntities().get(0).getBirthDate()) &&
-                        "race1".equals(stable.getHorseEntities().get(0).getRace()) &&
-                        5.0 == stable.getHorseEntities().get(0).getHealth() &&
                         new BigDecimal("11000.0").equals(stable.getHorseEntities().get(0).getPurchasePrice())
                 ));
     }

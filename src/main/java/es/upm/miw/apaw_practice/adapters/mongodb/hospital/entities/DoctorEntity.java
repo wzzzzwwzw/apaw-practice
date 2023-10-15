@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities;
 
 import es.upm.miw.apaw_practice.domain.models.hospital.Doctor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -23,15 +22,10 @@ public class DoctorEntity {
     }
 
     public DoctorEntity(String medicalLicenseCode, String office, DepartmentEntity departmentEntity) {
-        //this.id = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString();
         this.medicalLicenseCode = medicalLicenseCode;
         this.office = office;
         this.departmentEntity = departmentEntity;
-    }
-
-    public DoctorEntity(Doctor doctor) {
-        BeanUtils.copyProperties(doctor, this);
-        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {

@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.bakery.BakerySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.CarDealershipSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.car_workshop.CarWorkshopSeederService;
@@ -12,6 +13,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.FormulaOneSeederSer
 import es.upm.miw.apaw_practice.adapters.mongodb.furniture_store.FurnitureStoreSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.HospitalSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.InfluencerAgencySeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.library.LibrarySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.museum.MuseumSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.music.MusicSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.olympic_games.OlympicGamesSeederService;
@@ -62,7 +64,9 @@ public class DatabaseSeederService {
         private final FruitShopSeederService fruitShopSeederService;
         private final BakerySeederService bakerySeederService;
         private final StableSeederService stableSeederService;
+        private final LibrarySeederService librarySeederService;
 
+        private final BankSeederService bankSeederService;
         @Autowired
         public DatabaseSeederService(ShopSeederService shopSeederService, ZooSeederService zooSeederService,
                         ComputerStoreSeederService computerStoreSeederService,
@@ -88,7 +92,8 @@ public class DatabaseSeederService {
                         CoffeeShopSeederService coffeeShopSeederService,
                         HospitalSeederService hospitalSeederService, FruitShopSeederService fruitShopSeederService,
                         BakerySeederService bakerySeederService,
-                        StableSeederService stableSeederService) {
+                        StableSeederService stableSeederService,
+                        LibrarySeederService librarySeederService,BankSeederService bankSeederService) {
 
                 this.shopSeederService = shopSeederService;
                 this.zooSeederService = zooSeederService;
@@ -118,6 +123,8 @@ public class DatabaseSeederService {
                 this.fruitShopSeederService = fruitShopSeederService;
                 this.bakerySeederService = bakerySeederService;
                 this.stableSeederService = stableSeederService;
+                this.librarySeederService = librarySeederService;
+                this.bankSeederService=bankSeederService;
                 this.seedDatabase();
         }
 
@@ -150,6 +157,8 @@ public class DatabaseSeederService {
                 this.fruitShopSeederService.seedDatabase();
                 this.bakerySeederService.seedDatabase();
                 this.stableSeederService.seedDatabase();
+                this.librarySeederService.seedDatabase();
+                this.bankSeederService.seedDatabase();
         }
 
         public void deleteAll() {
@@ -181,6 +190,8 @@ public class DatabaseSeederService {
                 this.fruitShopSeederService.deleteAll();
                 this.bakerySeederService.deleteAll();
                 this.stableSeederService.deleteAll();
+                this.librarySeederService.deleteAll();
+                this.bankSeederService.deleteAll();
         }
 
         public void reSeedDatabase() {

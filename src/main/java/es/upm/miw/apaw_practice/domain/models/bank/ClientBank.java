@@ -2,17 +2,17 @@ package es.upm.miw.apaw_practice.domain.models.bank;
 
 import java.util.List;
 
-public class Client {
+public class ClientBank {
     private String clientName;
     private String dni;
     private String lastName;
     private Integer age;
 
     private List<BankAccount> listAccounts;
-    public Client(){
+    public ClientBank(){
         //empty for framework
     }
-    public Client(String clientName,String dni,String lastName,Integer age,List<BankAccount> listAccounts){
+    public ClientBank(String clientName, String dni, String lastName, Integer age, List<BankAccount> listAccounts){
         this.clientName=clientName;
         this.dni=dni;
         this.lastName=lastName;

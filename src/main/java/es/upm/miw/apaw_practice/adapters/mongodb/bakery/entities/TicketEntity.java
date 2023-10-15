@@ -25,6 +25,11 @@ public class TicketEntity {
         // empty for framework
     }
 
+    public TicketEntity(Ticket ticket) {
+        this.id = UUID.randomUUID().toString();
+        BeanUtils.copyProperties(ticket, this);
+    }
+
     public TicketEntity(LocalDateTime createdAt, BigDecimal totalPrice, Integer totalProducts,
             List<ProductEntity> products) {
         this.id = UUID.randomUUID().toString();

@@ -22,7 +22,7 @@ public class ClimberResource {
 
     @GetMapping(EMAIL_ID)
     public Climber read(@PathVariable String email) {
-        return Climber.ofClimberEmail(this.climberService.read(email));
+        return this.climberService.read(email);
     }
 
 }

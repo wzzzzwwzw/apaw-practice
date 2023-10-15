@@ -23,6 +23,12 @@ public class ExpeditionEntity {
 
     }
 
+    public ExpeditionEntity(Expedition expedition) {
+        BeanUtils.copyProperties(expedition, this);
+        this.id = UUID.randomUUID().toString();
+        this.identifier = UUID.randomUUID().toString();
+    }
+
     public ExpeditionEntity(LocalDate date, BigDecimal totalExpense) {
         this.id = UUID.randomUUID().toString();
         this.identifier = UUID.randomUUID().toString();

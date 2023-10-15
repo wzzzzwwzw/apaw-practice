@@ -21,15 +21,5 @@ class PatientPersistenceMongodbIT {
     void testReadFound() {
         assertNotNull(this.patientPersistence.read("000000000"));
     }
-
-    @Test
-    void testExistPatientSocialInsuranceNumber() {
-        assertTrue(this.patientPersistence.existsPatientSocialInsuranceNumber("000000000"));
-    }
-
-    @Test
-    void testNotExistPatientSocialInsuranceNumber() {
-        assertFalse(this.patientPersistence.existsPatientSocialInsuranceNumber("000000001"));
-    }
 }
 

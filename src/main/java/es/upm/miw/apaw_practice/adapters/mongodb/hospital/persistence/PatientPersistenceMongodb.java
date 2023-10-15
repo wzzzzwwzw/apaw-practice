@@ -21,21 +21,7 @@ public class PatientPersistenceMongodb implements PatientPersistence {
     public Patient read(String socialInsuranceNumber) {
         return this.patientRepository
                 .findBySocialInsuranceNumber(socialInsuranceNumber)
-                .orElseThrow(() -> new NotFoundException("Patient name: " + socialInsuranceNumber))
-                .toPatient();
-    }
-
-    @Override
-    public boolean existsPatientSocialInsuranceNumber(String socialInsuranceNumber) {
-        return this.patientRepository
-                .findBySocialInsuranceNumber(socialInsuranceNumber)
-                .isPresent();
-    }
-
-    @Override
-    public Patient create(Patient patient) {
-        return this.patientRepository
-                .save(new PatientEntity())
+                .orElseThrow(() -> new NotFoundException("Patient socialInsuranceNumber: " + socialInsuranceNumber))
                 .toPatient();
     }
 }

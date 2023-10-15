@@ -49,7 +49,7 @@ public class RacePersistenceMongodb implements RacePersistence {
                     driverEntity.fromDriver(driver);
                     return driverEntity;
                 })
-                .collect(Collectors.toList());
+                .toList();
         raceEntity.setRaceDriverEntities(raceDriversEntities);
         return this.raceRepository
                 .save(raceEntity)

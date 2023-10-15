@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Document
 public class BookEntity {
@@ -75,7 +74,7 @@ public class BookEntity {
     public Book toBook() {
         List<BookWriter> bookWriters = this.bookWriterEntities.stream()
                 .map(BookWriterEntity::toBookWriter)
-                .collect(Collectors.toList());
+                .toList();
         return new Book(this.title, this.isbn, this.publicationDate, bookWriters);
     }
 

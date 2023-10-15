@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.adapters.rest.coffee_shop;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.coffee_shop.Dining;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -31,5 +32,16 @@ public class DiningResourceIT {
                     assertEquals(diningCreated.getLocation(), dining.getLocation());
                     assertEquals(diningCreated.getCapacity(), dining.getCapacity());
                 });
+    }
+
+    @Test
+    void testPostAlreadyExistDining() {
+        Dining dining = new Dining("1", "location1", 6);
+        this.webTestClient
+                .post()
+                .uri(DiningResource.DINING)
+                .body(BodyInserters.fromValue(dining))
+                .exchange()
+                .expectStatus().isEqualTo(HttpStatus.CONFLICT);
     }
 }

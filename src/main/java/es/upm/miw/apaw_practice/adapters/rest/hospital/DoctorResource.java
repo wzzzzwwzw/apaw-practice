@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(DoctorResource.DOCTORS)
 public class DoctorResource {
     static final String DOCTORS = "/hospital/doctors";
+    static final String MEDICAL_LICENSE_CODE = "/{medicalLicenseCode}";
     private final DoctorService doctorService;
 
     @Autowired
@@ -25,5 +26,11 @@ public class DoctorResource {
     public Doctor create(@RequestBody Doctor doctor) {
         return this.doctorService.create(doctor);
     }
+
+    @DeleteMapping(MEDICAL_LICENSE_CODE)
+    public void delete(@PathVariable String medicalLicenseCode) {
+        this.doctorService.delete(medicalLicenseCode);
+    }
+
 
 }

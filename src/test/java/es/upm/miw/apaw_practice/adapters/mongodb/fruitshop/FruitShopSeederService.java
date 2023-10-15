@@ -65,6 +65,7 @@ public class FruitShopSeederService {
                 new FruitShopEntity("Frutas Frescas", "Madrid", Arrays.asList(fruits[0],fruits[1])),
                 new FruitShopEntity("Fruit Haven", "Barcelona", Arrays.asList(fruits[0])),
                 new FruitShopEntity("Fruitful Delights", "Malaga", Arrays.asList(fruits[0],fruits[1],fruits[2],fruits[3])),
+                new FruitShopEntity("Fruit Test", "Barcelona", Arrays.asList(fruits[0])),
 
         };
        this.fruitShopRepository.saveAll(Arrays.asList(fruitShops));

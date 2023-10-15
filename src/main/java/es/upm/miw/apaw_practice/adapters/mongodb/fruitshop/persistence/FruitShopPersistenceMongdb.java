@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.fruitshop.persistence;
 import es.upm.miw.apaw_practice.adapters.mongodb.fruitshop.daos.FruitShopRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.fruitshop.entities.FruitShopEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
+import es.upm.miw.apaw_practice.domain.models.fruitShop.FruitShop;
 import es.upm.miw.apaw_practice.domain.persistence_ports.fruitshop.FruitShopPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,14 +23,13 @@ public class FruitShopPersistenceMongdb implements FruitShopPersistence {
     }
 
     @Override
-    public void update(String name){
+    public FruitShop updateAddress(String name){
         FruitShopEntity fruitShopEntity = this.fruitShopRepository
                 .findByName(name)
                 .orElseThrow(() -> new NotFoundException("FruitShop Name:" + name));
 
-        fruitShopEntity.setAddress("China");
-        this.fruitShopRepository
-                .save(fruitShopEntity);
+        fruitShopEntity.setAddress("New Address");
+        return this.fruitShopRepository.save(fruitShopEntity).toFruitShop();
 
     }
 

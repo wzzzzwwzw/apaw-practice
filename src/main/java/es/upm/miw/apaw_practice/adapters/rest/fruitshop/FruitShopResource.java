@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.fruitshop;
 
+import es.upm.miw.apaw_practice.domain.models.fruitShop.FruitShop;
 import es.upm.miw.apaw_practice.domain.services.fruitshop.FruitShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class FruitShopResource {
     }
 
     @PatchMapping(ID_NAME)
-    public void updateAddress(@PathVariable String fruitShopName){
-        this.fruitShopService.updateAddress(fruitShopName);
+    public FruitShop updateAddress(@PathVariable String name) {
+        return this.fruitShopService.updateAddress(name);
     }
 }

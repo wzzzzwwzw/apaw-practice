@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FruitShopPersistence {
     void delete(String name);
-    void update(String name);
+    FruitShop updateAddress(String name);
 }

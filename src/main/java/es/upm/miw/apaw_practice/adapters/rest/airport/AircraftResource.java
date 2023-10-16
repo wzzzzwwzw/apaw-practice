@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(AircraftResource.AIRCRAFTS)
 public class AircraftResource {
-    static final String AIRCRAFTS = "/airport/aircraft";
-    public final String NUMBER_PLATE = "/number-plate";
+    static final String AIRCRAFTS = "/airport/aircrafts";
+    static final String NUMBER_PLATE = "/{numberplate}";
     private final AircraftService aircraftService;
 
     @Autowired
@@ -19,7 +19,7 @@ public class AircraftResource {
         this.aircraftService = aircraftService;
     }
     @DeleteMapping(NUMBER_PLATE)
-    public void delete(@PathVariable String numberPlate){
-        this.aircraftService.delete(numberPlate);
+    public void delete(@PathVariable String numberplate){
+        this.aircraftService.delete(numberplate);
     }
 }

@@ -1,10 +1,12 @@
 package es.upm.miw.apaw_practice.domain.services.airport;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.airport.AirLine;
 import es.upm.miw.apaw_practice.domain.models.airport.Aircraft;
 import es.upm.miw.apaw_practice.domain.persistence_ports.aiport.AirLinePersistence;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,15 +22,21 @@ public class AirLineServiceIT {
     private AirLineService airLineService;
     @Autowired
     private AirLinePersistence airLinePersistence;
+    @Autowired
+    private AirportSeederService airportSeederService;
+    @AfterEach
+    void resetDataBase() {
+        this.airportSeederService.deleteAll();
+        this.airportSeederService.seedDatabase();
+    }
     @Test
     void testUpdate(){
         List<Aircraft> aircraftList = new ArrayList<>();
         Aircraft aircraft = new Aircraft(LocalDate.of(2023, 10, 10), 420, "Boeing 747","431GBN");
         aircraftList.add(aircraft);
-        List<Aircraft> aircraftListOriginal = airLinePersistence.readByName("Iberia").getAircrafts();
         AirLine airLine = this.airLineService.updateAircrafts("Iberia",aircraftList);
         assertEquals(aircraft.toString(), airLine.getAircrafts().get(0).toString());
-        this.airLineService.updateAircrafts("Iberia",aircraftListOriginal);
+
     }
 
     @Test

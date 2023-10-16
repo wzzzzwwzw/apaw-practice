@@ -43,7 +43,10 @@ public class CoffeeClientResourceIT {
     void testGetTotalPriceByCategory() {
         this.webTestClient
                 .get()
-                .uri(CoffeeClientResource.COFFEES + CoffeeClientResource.CATEGORY + CoffeeClientResource.TOTAL_PRICE, "Tea")
+                .uri(uriBuilder ->
+                        uriBuilder.path(CoffeeClientResource.COFFEES + CoffeeClientResource.TOTAL_PRICE)
+                .queryParam("q", "category:Tea")
+                .build())
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(BigDecimal.class)

@@ -63,6 +63,7 @@ public class FootballCompetitionSeederService {
                 new FootballCompetitionEntity(new BigDecimal("300000.00"), "FFF"),
                 new FootballCompetitionEntity(new BigDecimal("120000.00"), "DBF"),
                 new FootballCompetitionEntity(new BigDecimal("140000.00"), "PFF"),
+                new FootballCompetitionEntity(new BigDecimal("890000.00"), "PDK"),
         };
         footballCompetitions[0].addSponsor("BBVA");
         footballCompetitions[0].addSponsor("Nike");

@@ -1,8 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.rest.football_competition;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.FootballCompetitionSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.persistence.FootballGamePersistenceMongodb;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.football_competition.FootballGameDateUpdating;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -19,6 +21,14 @@ public class FootballGameResourceIT {
 
     @Autowired
     private FootballGamePersistenceMongodb footballGamePersistence;
+    @Autowired
+    private FootballCompetitionSeederService footballCompetitionSeederService;
+
+    @AfterEach
+    void after() {
+        this.footballCompetitionSeederService.deleteAll();
+        this.footballCompetitionSeederService.seedDatabase();
+    }
 
     @Test
     public void testPatch() {

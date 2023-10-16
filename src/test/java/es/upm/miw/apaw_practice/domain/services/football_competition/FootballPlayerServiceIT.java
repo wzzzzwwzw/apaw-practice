@@ -1,19 +1,21 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.football_competition.persistence;
+package es.upm.miw.apaw_practice.domain.services.football_competition;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.FootballCompetitionSeederService;
 import es.upm.miw.apaw_practice.domain.models.football_competition.FootballPlayer;
+import es.upm.miw.apaw_practice.domain.persistence_ports.football_competition.FootballPlayerPersistence;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @TestConfig
-public class FootballPlayerPersistenceMongodbIT {
+public class FootballPlayerServiceIT {
     @Autowired
-    private FootballPlayerPersistenceMongodb footballPlayerPersistence;
+    private FootballPlayerService footballPlayerService;
+    @Autowired
+    FootballPlayerPersistence footballPlayerPersistence;
     @Autowired
     private FootballCompetitionSeederService footballCompetitionSeederService;
 
@@ -27,10 +29,9 @@ public class FootballPlayerPersistenceMongodbIT {
     public void testUpdateGoals() {
         String playerName = "Lionel Messi";
         FootballPlayer player = this.footballPlayerPersistence.readByName(playerName);
-        assertNotNull(player);
         assertEquals(25, player.getGoals());
-        FootballPlayer updatedPlayer = this.footballPlayerPersistence.updateGoals(playerName, 30);
-        assertNotNull(updatedPlayer);
-        assertEquals(30, updatedPlayer.getGoals());
+        this.footballPlayerService.updateGoals(player.getName(), 35);
+        FootballPlayer updatedPlayer = this.footballPlayerPersistence.readByName(playerName);
+        assertEquals(35, updatedPlayer.getGoals());
     }
 }

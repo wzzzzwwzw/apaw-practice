@@ -38,4 +38,20 @@ class SellerServiceIT {
         carDealershipSeederService.deleteAll();
         carDealershipSeederService.seedDatabase();
     }
+
+    @Test
+    void testUpdateSellerSurname() {
+        String newSurname = "New Surname";
+        Optional<Seller> seller = this.sellerPersistence.readAll()
+                .filter(seller1 -> "Gonzalez".equals(seller1.getSurname()))
+                .findFirst();
+        assertTrue(seller.isPresent());
+
+        this.sellerService.updateSellerSurname(seller.get().getId(), newSurname);
+        assertTrue(this.sellerPersistence.readAll()
+                .anyMatch(seller1 -> seller.get().getId().equals(seller1.getId())
+                        && newSurname.equals(seller1.getSurname())));
+        carDealershipSeederService.deleteAll();
+        carDealershipSeederService.seedDatabase();
+    }
 }

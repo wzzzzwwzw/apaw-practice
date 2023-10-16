@@ -31,4 +31,9 @@ public class StationResource {
         return this.stationService.readByName(name);
     }
 
+    @DeleteMapping(NAME_ID)
+    public void delete(@PathVariable String name) {
+        this.stationService.delete(name);
+    }
+
 }

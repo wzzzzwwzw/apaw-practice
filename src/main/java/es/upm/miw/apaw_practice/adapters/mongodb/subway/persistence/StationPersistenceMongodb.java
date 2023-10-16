@@ -40,4 +40,9 @@ public class StationPersistenceMongodb implements StationPersistence {
                 .toStation();
     }
 
+    @Override
+    public void delete(String name) {
+        this.stationRepository.deleteByName(name);
+    }
+
 }

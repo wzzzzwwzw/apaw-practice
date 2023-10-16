@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.CarDealershipSeederService;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.car_dealership.Seller;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,9 @@ class SellerPersistenceMongodbIT {
 
     @Autowired
     private SellerPersistenceMongodb sellerPersistence;
+
+    @Autowired
+    private CarDealershipSeederService carDealershipSeederService;
 
     @Test
     void testReadById() {
@@ -59,5 +63,7 @@ class SellerPersistenceMongodbIT {
         assertTrue(newSeller.isPresent());
         assertEquals(seller.get().getSalary(), newSeller.get().getSalary());
         assertEquals("Igor", newSeller.get().getName());
+        carDealershipSeederService.deleteAll();
+        carDealershipSeederService.seedDatabase();
     }
 }

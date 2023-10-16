@@ -19,8 +19,8 @@ public class AirLineResourceIT {
     @Test
     void testUpdate() {
         List<Aircraft> aircraftList = Arrays.asList(
-                new Aircraft(LocalDate.of(2023,1,12), 520, "Boeing 474"),
-                new Aircraft(LocalDate.of(2023,3,23), 300, "Airbus 420")
+                new Aircraft(LocalDate.of(2023,1,12), 520, "Boeing 474","231QWE"),
+                new Aircraft(LocalDate.of(2023,3,23), 300, "Airbus 420","KKH437")
         );
         this.webTestClient
                 .put()

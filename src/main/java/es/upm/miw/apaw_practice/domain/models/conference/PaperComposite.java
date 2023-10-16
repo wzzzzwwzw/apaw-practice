@@ -27,6 +27,10 @@ public class PaperComposite implements TreePapers {
         this.treePapers.remove(treePapers);
     }
 
+    public List<TreePapers> getTreePapers() {
+        return treePapers;
+    }
+
     @Override
     public String toString() {
         return "PaperComposite{" +

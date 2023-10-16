@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestConfig
-public class BookWriterRepositoryIT {
+class BookWriterRepositoryIT {
     @Autowired
     private BookWriterRepository bookWriterRepository;
 

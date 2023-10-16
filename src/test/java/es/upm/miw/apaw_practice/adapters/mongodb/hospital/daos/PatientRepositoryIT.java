@@ -32,7 +32,7 @@ class PatientRepositoryIT {
     void testPatientFindBySocialInsuranceNumber() {
         assertTrue(this.patientRepository.findBySocialInsuranceNumber("111111111").isPresent());
         PatientEntity patient = this.patientRepository.findBySocialInsuranceNumber("111111111").get();
-        assertEquals("Male", patient.getGender());
+        assertEquals("NONE", patient.getAllergicMedicine());
         assertEquals(LocalDate.of(2000,2,2),patient.getBirthDate());
         assertTrue(
                 patient.getAppointmentsEntities().stream()

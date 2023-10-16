@@ -6,6 +6,8 @@ import es.upm.miw.apaw_practice.domain.services.subway.SubwayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(SubwayResource.SUBWAYS)
 public class SubwayResource {
@@ -36,5 +38,9 @@ public class SubwayResource {
     }
 
 
+    @PutMapping(CITY_ID + LINES)
+    public Subway updateStation(@PathVariable String city, @RequestBody List<Line> lines) {
+        return this.subwayService.updateLines(city, lines);
+    }
 
 }

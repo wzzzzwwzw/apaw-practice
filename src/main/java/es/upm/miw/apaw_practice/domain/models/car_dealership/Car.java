@@ -13,6 +13,9 @@ public class Car {
     private CarModel carModel;
     private List<Seller> sellerList;
 
+    public Car() {
+        //empty from framework
+    }
     public Car(String chassisNumber, BigDecimal price, Boolean sold, LocalDate fabricationDate, CarModel carModel) {
         this.chassisNumber = chassisNumber;
         this.price = price;
@@ -38,7 +41,7 @@ public class Car {
         this.price = price;
     }
 
-    public Boolean isSold() {
+    public Boolean getSold() {
         return sold;
     }
 

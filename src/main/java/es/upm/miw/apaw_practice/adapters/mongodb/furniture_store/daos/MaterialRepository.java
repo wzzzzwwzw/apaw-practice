@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface MaterialRepository extends MongoRepository<MaterialEntity, String> {
     Optional<MaterialEntity> findByName(String name);
+
+    int deleteByName(String name);
 }

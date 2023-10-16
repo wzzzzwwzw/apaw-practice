@@ -17,17 +17,35 @@ class RestaurantPersistenceMongodbIT {
     private RestaurantPersistenceMongodb restaurantPersistence;
 
     @Test
-    void testNameNotExist(){
+    void testNameNotExist() {
         assertTrue(this.restaurantPersistence.existName("Taco Fiesta"));
     }
 
     @Test
-    void testCreate(){
+    void testCreate() {
         Restaurant restaurant = new Restaurant("La pizzeria de Carlos", "Italian", "italian food", "89 Calle de atocha", 30);
         Restaurant newRestaurant = this.restaurantPersistence.create(restaurant);
         assertTrue(this.restaurantPersistence.existName("La pizzeria de Carlos"));
-        assertEquals("Italian",newRestaurant.getType());
-        assertEquals(30,newRestaurant.getMaximumOrders());
+        assertEquals("Italian", newRestaurant.getType());
+        assertEquals(30, newRestaurant.getMaximumOrders());
+
+
+    }
+
+    @Test
+    void testCreateWithBuilder() {
+        Restaurant restaurant = Restaurant.builder().name("Restaurant A")
+                .type("Italian")
+                .description("Authentic Italian cuisine")
+                .adress("123 Pasta Avenue")
+                .maximumOrders(50)
+                .build();
+        Restaurant newRestaurant = this.restaurantPersistence.create(restaurant);
+        assertEquals("Restaurant A", newRestaurant.getName());
+        assertEquals("Italian", newRestaurant.getType());
+        assertEquals("Authentic Italian cuisine", newRestaurant.getDescription());
+        assertEquals("123 Pasta Avenue", newRestaurant.getAdress());
+        assertEquals(50, newRestaurant.getMaximumOrders());
 
 
     }

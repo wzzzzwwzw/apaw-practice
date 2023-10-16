@@ -74,6 +74,12 @@ public class StationEntity {
         return Objects.hash(id, name, order, open);
     }
 
+    public Station toStation() {
+        Station station = new Station();
+        BeanUtils.copyProperties(this, station);
+        return station;
+    }
+
     @java.lang.Override
     public java.lang.String toString() {
         return "Station{" +

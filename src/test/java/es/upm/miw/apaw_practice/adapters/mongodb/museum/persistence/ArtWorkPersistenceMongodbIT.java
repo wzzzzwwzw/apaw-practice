@@ -1,9 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.museum.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.museum.MuseumSeederService;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.museum.ArtWork;
 import es.upm.miw.apaw_practice.domain.models.museum.Room;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,10 +16,30 @@ class ArtWorkPersistenceMongodbIT {
 
     @Autowired
     private ArtWorkPersistenceMongodb artWorkPersistence;
+    @Autowired
+    private MuseumSeederService museumSeederService;
+
+    @BeforeEach
+    void resetDataBase() {
+        this.museumSeederService.deleteAll();
+        this.museumSeederService.seedDatabase();
+    }
 
     @Test
     void testReadFound() {
-        ArtWork artWork = new ArtWork("P001174", "Las Meninas", 1656, true, new Room("Sala 012", 1, 9.75));
+        Room room = new Room().builder()
+                .description("Sala 012")
+                .floor(1)
+                .popularity(9.75)
+                .build();
+        ArtWork artWork = new ArtWork().builder()
+                .inventoryNumber("P001174")
+                .title("Las Meninas")
+                .approximateYear(1656)
+                .exhibited(true)
+                .room(room)
+                .build();
+
         ArtWork foundArtWork = this.artWorkPersistence.findByInventoryNumber("P001174");
         assertEquals(artWork.getInventoryNumber(), foundArtWork.getInventoryNumber());
     }
@@ -39,8 +61,18 @@ class ArtWorkPersistenceMongodbIT {
 
     @Test
     void testCreateAndRead() {
-        Room room = new Room("Sala 009", 1, 7.25);
-        ArtWork artWork = new ArtWork("P001248", "Hércules desvía el curso del río Alfeo", 1634, true, room);
+        Room room = new Room().builder()
+                .description("Sala 009")
+                .floor(1)
+                .popularity(7.25)
+                .build();
+        ArtWork artWork = new ArtWork().builder()
+                .inventoryNumber("P001248")
+                .title("Hércules desvía el curso del río Alfeo")
+                .approximateYear(1634)
+                .exhibited(true)
+                .room(room)
+                .build();
 
         this.artWorkPersistence.create(artWork);
 

@@ -33,7 +33,7 @@ private TripRepository tripRepository;
         LogManager.getLogger(this.getClass()).warn("-- Bus Ticket Initial Load --");
         PassengerEntity[] passengers = {
                 new PassengerEntity("Y12345678", "wael louati", 24767211, false),
-
+                new PassengerEntity("Y64548633", "Aria lop", 23047948, false)
 
         };
         this.passengerRepository.saveAll(Arrays.asList(passengers));
@@ -56,8 +56,8 @@ private TripRepository tripRepository;
     }
 
     public void deleteAll() {
-        this.busRepository.deleteAll();
-        this.busRepository.deleteAll();
+        this.ticketRepository.deleteAll();
         this.passengerRepository.deleteAll();
+        this.busRepository.deleteAll();
     }
 }

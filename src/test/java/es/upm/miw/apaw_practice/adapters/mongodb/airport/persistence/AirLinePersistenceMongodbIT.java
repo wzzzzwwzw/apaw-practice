@@ -21,7 +21,7 @@ public class AirLinePersistenceMongodbIT {
     void testUpdate(){
         AirLine airLineOriginal = this.airLinePersistenceMongodb.readByName("Iberia");
         int sizeOriginal = airLineOriginal.getAircrafts().size();
-        Aircraft aircraft = new Aircraft(LocalDate.of(2023, 10, 10), 420, "Boeing 747");
+        Aircraft aircraft = new Aircraft(LocalDate.of(2023, 10, 10), 420, "Boeing 747","232YUT");
         airLineOriginal.getAircrafts().add(aircraft);
         AirLine airLineUpdate = this.airLinePersistenceMongodb.update(airLineOriginal);
         assertEquals(aircraft.toString(),airLineUpdate.getAircrafts().get(sizeOriginal).toString());

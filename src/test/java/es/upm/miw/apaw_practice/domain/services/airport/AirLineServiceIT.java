@@ -23,7 +23,7 @@ public class AirLineServiceIT {
     @Test
     void testUpdate(){
         List<Aircraft> aircraftList = new ArrayList<>();
-        Aircraft aircraft = new Aircraft(LocalDate.of(2023, 10, 10), 420, "Boeing 747");
+        Aircraft aircraft = new Aircraft(LocalDate.of(2023, 10, 10), 420, "Boeing 747","431GBN");
         aircraftList.add(aircraft);
         List<Aircraft> aircraftListOriginal = airLinePersistence.readByName("Iberia").getAircrafts();
         AirLine airLine = this.airLineService.updateAircrafts("Iberia",aircraftList);
@@ -34,7 +34,7 @@ public class AirLineServiceIT {
     @Test
     void testUpdateFailed(){
         List<Aircraft> aircraftList = new ArrayList<>();
-        Aircraft aircraft = new Aircraft(LocalDate.of(2023, 10, 10), 420, "Boeing 747");
+        Aircraft aircraft = new Aircraft(LocalDate.of(2023, 10, 10), 420, "Boeing 747", "LKM231");
         aircraftList.add(aircraft);
         RuntimeException exception = assertThrows(NotFoundException.class, () -> {
             this.airLineService.updateAircrafts("British Airways",aircraftList);

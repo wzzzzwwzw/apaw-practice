@@ -39,7 +39,7 @@ public class SubwayResource {
 
 
     @PutMapping(CITY_ID + LINES)
-    public Subway updateStation(@PathVariable String city, @RequestBody List<Line> lines) {
+    public Subway updateLines(@PathVariable String city, @RequestBody List<Line> lines) {
         return this.subwayService.updateLines(city, lines);
     }
 

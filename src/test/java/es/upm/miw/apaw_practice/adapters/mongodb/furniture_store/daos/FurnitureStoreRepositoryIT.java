@@ -32,8 +32,8 @@ class FurnitureStoreRepositoryIT {
                                 furniture.getName().equals("mesa extensible") &&
                                 furniture.getMaterialEntities().stream()
                                         .anyMatch(materials ->
-                                                materials.getName().equals("madera") &&
-                                                        materials.getType().equals("roble") &&
+                                                materials.getName().equals("roble") &&
+                                                        materials.getType().equals("madera") &&
                                                         materials.getDurability() == 8
                                         )
                 )

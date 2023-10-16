@@ -6,6 +6,7 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.football_competition.Fo
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -21,5 +22,9 @@ public class FootballGameService {
         return footballGameDateUpdatingList.stream()
                 .map(gameUpdate -> this.footballGamePersistence.updateDate(gameUpdate.getId(), gameUpdate.getDate()))
                 .toList();
+    }
+
+    public BigDecimal findTotalBudgetByLocation(String location) {
+        return this.footballGamePersistence.getTotalBudgetByLocation(location);
     }
 }

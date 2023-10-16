@@ -3,12 +3,15 @@ package es.upm.miw.apaw_practice.adapters.mongodb.computer_store.persistence;
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.ComputerStoreSeederService;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
+import es.upm.miw.apaw_practice.domain.models.computer_store.Computer;
 import es.upm.miw.apaw_practice.domain.models.computer_store.Repair;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -37,5 +40,17 @@ class RepairPersistenceMongodbIT {
     @Test
     void testUpdateRepairTimeException() {
         assertThrows(NotFoundException.class, () -> this.repairPersistenceMongodb.updateEndTimeByRepairNumber("test"));
+    }
+
+    @Test
+    void testFindComputersListByRepairDate() {
+        List<Computer> computerList = this.repairPersistenceMongodb.findComputersListByRepairDate(LocalDateTime.now().plusDays(2));
+        assertEquals(1, computerList.size());
+    }
+
+    @Test
+    void testEmptyFindComputersListByRepairDate() {
+        List<Computer> computerList = this.repairPersistenceMongodb.findComputersListByRepairDate(LocalDateTime.now().minusDays(5));
+        assertTrue(computerList.isEmpty());
     }
 }

@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface AlbumRepository extends MongoRepository<AlbumEntity, String> {
 
     Optional<AlbumEntity> findByDenomination(String denomination);
+
+    int deleteByDenomination(String denomination);
 }

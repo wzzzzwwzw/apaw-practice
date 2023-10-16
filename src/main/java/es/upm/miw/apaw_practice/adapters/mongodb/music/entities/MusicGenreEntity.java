@@ -1,10 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.music.entities;
 
+import es.upm.miw.apaw_practice.domain.models.music.MusicGenre;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
+import java.util.UUID;
 
 @Document
 public class MusicGenreEntity {
@@ -30,6 +33,11 @@ public class MusicGenreEntity {
         this.description = description;
         this.popularity = popularity;
         this.countryOrigin = countryOrigin;
+    }
+
+    public MusicGenreEntity(MusicGenre musicGenre) {
+        BeanUtils.copyProperties(musicGenre, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {
@@ -70,6 +78,12 @@ public class MusicGenreEntity {
 
     public void setCountryOrigin(String countryOrigin) {
         this.countryOrigin = countryOrigin;
+    }
+
+    public MusicGenre toMusicGenre() {
+        MusicGenre musicGenre = new MusicGenre();
+        BeanUtils.copyProperties(this, musicGenre);
+        return musicGenre;
     }
 
     @Override

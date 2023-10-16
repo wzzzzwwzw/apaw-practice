@@ -100,7 +100,7 @@ public class RaceEntity {
         BeanUtils.copyProperties(this, race, "raceDriverEntities");
         List<Driver> raceDrivers = this.raceDriverEntities.stream()
                 .map(DriverEntity::toDriver)
-                .collect(Collectors.toList());
+                .toList();
         race.setRaceDrivers(raceDrivers);
         return race;
     }

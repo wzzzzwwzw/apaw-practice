@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.restaurant;
 
+import es.upm.miw.apaw_practice.domain.models.restaurant.builders.CategoryRestaurantBuilders;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -63,5 +65,39 @@ public class CategoryRestaurant {
                 ", creationDate=" + creationDate +
                 '}';
     }
+
+
+    public static class Builder implements CategoryRestaurantBuilders.Tag, CategoryRestaurantBuilders.Optionals {
+        private final CategoryRestaurant category;
+
+        public Builder() {
+            category = new CategoryRestaurant();
+        }
+
+
+        @Override
+        public CategoryRestaurantBuilders.Optionals tag(String tag) {
+            this.category.tag = tag;
+            return this;
+        }
+
+        @Override
+        public CategoryRestaurantBuilders.Optionals color(String color) {
+            this.category.color = color;
+            return this;
+        }
+
+        @Override
+        public CategoryRestaurantBuilders.Optionals creationDate(LocalDateTime creationDate) {
+            this.category.creationDate = creationDate;
+            return this;
+        }
+
+        @Override
+        public CategoryRestaurant build() {
+            return this.category;
+        }
+    }
+
 
 }

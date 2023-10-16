@@ -51,4 +51,16 @@ public class DriverPersistenceMongodbIT {
         });
         assertTrue(exception.getMessage().contains("Driver with number: 6"));
     }
+
+    @Test
+    void testFindTotalPointsByEnginesBuiltIn() {
+        Float points = this.driverPersistenceMongodb.findTotalPointsByEnginesBuiltIn("Japan");
+        assertEquals(332.5F, points);
+    }
+
+    @Test
+    void testNotFindTotalPointsByEnginesBuiltIn() {
+        Float points = this.driverPersistenceMongodb.findTotalPointsByEnginesBuiltIn("Spain");
+        assertEquals(0F, points);
+    }
 }

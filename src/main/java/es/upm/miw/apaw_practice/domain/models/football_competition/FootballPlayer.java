@@ -12,12 +12,8 @@ public class FootballPlayer {
 
     public FootballPlayer() {}
 
-    public FootballPlayer(String name, BigDecimal salary, Float height, Integer goals, Integer assists) {
-        this.name = name;
-        this.salary = salary;
-        this.height = height;
-        this.goals = goals;
-        this.assists = assists;
+    public static FootballPlayerBuilders.Name builder() {
+        return new Builder();
     }
 
     public String getName() {
@@ -77,5 +73,54 @@ public class FootballPlayer {
                 ", Goals=" + this.goals +
                 ", Assists=" + this.assists +
                 '}';
+    }
+
+    public static class Builder implements FootballPlayerBuilders.Name, FootballPlayerBuilders.Optionals {
+        private final FootballPlayer footballPlayer;
+
+        public Builder() {
+            this.footballPlayer = new FootballPlayer();
+        }
+
+        @Override
+        public FootballPlayerBuilders.Optionals name(String name) {
+            this.footballPlayer.setName(name);
+            return this;
+        }
+
+        @Override
+        public FootballPlayerBuilders.Optionals salary(BigDecimal salary) {
+            this.footballPlayer.setSalary(salary);
+            return this;
+        }
+
+        @Override
+        public FootballPlayerBuilders.Optionals height(float height) {
+            this.footballPlayer.setHeight(height);
+            return this;
+        }
+
+        @Override
+        public FootballPlayerBuilders.Optionals goals(Integer goals) {
+            this.footballPlayer.setGoals(goals);
+            return this;
+        }
+
+        @Override
+        public FootballPlayerBuilders.Optionals assists(Integer assists) {
+            this.footballPlayer.setAssists(assists);
+            return this;
+        }
+
+        @Override
+        public FootballPlayerBuilders.Optionals team(FootballTeam team) {
+            this.footballPlayer.setTeam(team);
+            return this;
+        }
+
+        @Override
+        public FootballPlayer build() {
+            return this.footballPlayer;
+        }
     }
 }

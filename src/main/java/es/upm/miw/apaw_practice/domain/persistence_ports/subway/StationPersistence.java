@@ -13,4 +13,6 @@ public interface StationPersistence {
     Station create(Station station);
 
     Station readByName(String station);
+
+    void delete(String name);
 }

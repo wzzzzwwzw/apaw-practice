@@ -18,7 +18,8 @@ public class DirectorEntity {
     private String surname;
     private LocalDate dateOfBirth;
 
-    public DirectorEntity() {}
+    public DirectorEntity() {
+    }
 
     public DirectorEntity(Director director) {
         BeanUtils.copyProperties(director, this);

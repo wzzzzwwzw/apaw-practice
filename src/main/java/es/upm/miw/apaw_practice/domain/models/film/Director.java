@@ -9,7 +9,8 @@ public class Director {
     private String surname;
     private LocalDate dateOfBirth;
 
-    public Director() {}
+    public Director() {
+    }
 
     public Director(String dni, String name, String surname, LocalDate dateOfBirth) {
         this.dni = dni;

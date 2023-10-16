@@ -5,6 +5,7 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.influencer_agency.Brand
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.stream.Stream;
 
 @Service
@@ -19,5 +20,9 @@ public class BrandService {
 
     public Stream<Campaign> getCampaignsByBrand(String trademark) {
         return this.brandPersistence.getCampaignsByBrand(trademark);
+    }
+
+    public void updateBrand(String trademark, BigDecimal newBudget) {
+        this.brandPersistence.updateBrand(trademark, newBudget);
     }
 }

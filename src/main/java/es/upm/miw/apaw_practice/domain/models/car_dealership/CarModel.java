@@ -8,7 +8,7 @@ public class CarModel {
     private LocalDate createDate;
 
     public CarModel() {
-
+        //empty from framework
     }
 
     public CarModel(String name, String brand, LocalDate createDate) {

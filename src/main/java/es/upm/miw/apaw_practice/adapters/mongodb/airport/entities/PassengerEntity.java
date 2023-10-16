@@ -25,7 +25,9 @@ public class PassengerEntity {
         BeanUtils.copyProperties(passenger, this);
         this.id = UUID.randomUUID().toString();
     }
-
+    public void fromPassenger (Passenger passenger) {
+       BeanUtils.copyProperties(passenger, this);
+    }
     public String getId() {
         return id;
     }
@@ -63,6 +65,9 @@ public class PassengerEntity {
         return this.name.hashCode();
     }
 
+    public Passenger toPassenger(){
+        return new Passenger(this.name, this.age, this.numberOfPhone);
+    }
     @Override
     public boolean equals(Object obj) {
         return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((PassengerEntity) obj).name));

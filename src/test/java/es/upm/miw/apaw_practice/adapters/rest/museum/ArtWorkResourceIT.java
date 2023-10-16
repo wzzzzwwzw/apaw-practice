@@ -1,9 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.rest.museum;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.museum.MuseumSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.museum.ArtWork;
 import es.upm.miw.apaw_practice.domain.models.museum.Room;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +16,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RestTestConfig
-public class ArtWorkResourceIT {
+class ArtWorkResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
+    @Autowired
+    private MuseumSeederService museumSeederService;
+
+    @BeforeEach
+    void resetDataBase() {
+        this.museumSeederService.deleteAll();
+        this.museumSeederService.seedDatabase();
+    }
 
     @Test
     void testRead() {
@@ -48,8 +58,18 @@ public class ArtWorkResourceIT {
 
     @Test
     void testCreate() {
-        Room room = new Room("Sala 009", 1, 7.25);
-        ArtWork artWork = new ArtWork("P001248", "Hércules desvía el curso del río Alfeo", 1634, true, room);
+        Room room = new Room().builder()
+                .description("Sala 009")
+                .floor(1)
+                .popularity(7.25)
+                .build();
+        ArtWork artWork = new ArtWork().builder()
+                .inventoryNumber("P001248")
+                .title("Hércules desvía el curso del río Alfeo")
+                .approximateYear(1634)
+                .exhibited(true)
+                .room(room)
+                .build();
 
         this.webTestClient
                 .post()
@@ -70,8 +90,18 @@ public class ArtWorkResourceIT {
 
     @Test
     void testCreateConflict() {
-        Room room = new Room("Sala 012", 1, 9.75);
-        ArtWork artWork = new ArtWork("P001174", "Las Meninas (con conflicto)", 1656, true, room);
+        Room room = new Room().builder()
+                .description("Sala 012")
+                .floor(1)
+                .popularity(9.75)
+                .build();
+        ArtWork artWork = new ArtWork().builder()
+                .inventoryNumber("P001174")
+                .title("Las Meninas (con conflicto)")
+                .approximateYear(1656)
+                .exhibited(true)
+                .room(room)
+                .build();
 
         this.webTestClient
                 .post()

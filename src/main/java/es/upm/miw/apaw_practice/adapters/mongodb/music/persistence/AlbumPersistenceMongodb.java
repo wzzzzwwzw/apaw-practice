@@ -27,4 +27,9 @@ public class AlbumPersistenceMongodb implements AlbumPersistence {
                 .orElseThrow(() -> new NotFoundException("Album denomination: " + denomination))
                 .getSongsList().stream().map(SongEntity::toSong);
     }
+
+    @Override
+    public void delete(String denomination) {
+        this.albumRepository.deleteByDenomination(denomination);
+    }
 }

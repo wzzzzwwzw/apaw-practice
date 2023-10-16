@@ -1,9 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.airport.entities;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ShoppingCartEntity;
 import es.upm.miw.apaw_practice.domain.models.airport.Aircraft;
 import es.upm.miw.apaw_practice.domain.models.airport.AirLine;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Document
 public class AirLineEntity {
@@ -72,6 +71,16 @@ public class AirLineEntity {
     @Override
     public boolean equals(Object obj) {
         return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((AirLineEntity) obj).name));
+    }
+
+    public AirLine toAirLine(){
+        List<Aircraft> aircraftsTransformed = aircrafts.stream()
+                .map(air -> {
+                    Aircraft aircraft = air.toAircraft();
+                    return aircraft;
+                })
+                .collect(Collectors.toList());
+        return new AirLine(name, dayOfFoundation, aircraftsTransformed);
     }
 
     @Override

@@ -48,4 +48,12 @@ public class FilmPersistenceMongodb implements FilmPersistence {
         return this.filmRepository.findAll().stream()
                 .map(FilmEntity::toFilm);
     }
+
+    @Override
+    public Stream<Film> findFilmsByDirectorDni(String dni) {
+        return this.filmRepository.findAll().stream()
+                .map(FilmEntity::toFilm)
+                .filter(film -> film.getDirector()
+                        .getDni().equals(dni));
+    }
 }

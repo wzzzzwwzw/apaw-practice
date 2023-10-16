@@ -80,10 +80,10 @@ public class ExhibitionEntity {
     public Exhibition toExhibition() {
         Exhibition exhibition = new Exhibition();
         BeanUtils.copyProperties(this, exhibition, "artWorks");
-        List<ArtWork> artWorks = this.artWorks.stream()
+        List<ArtWork> artWorksList = this.artWorks.stream()
                 .map(ArtWorkEntity::toArtWork)
                 .toList();
-        exhibition.setArtWorks(artWorks);
+        exhibition.setArtWorks(artWorksList);
         return exhibition;
     }
 

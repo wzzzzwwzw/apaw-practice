@@ -1,8 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.football_competition.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.FootballCompetitionSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.entities.FootballCompetitionEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.entities.FootballTeamEntity;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,6 +18,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FootballCompetitionRepositoryIT {
     @Autowired
     private FootballCompetitionRepository footballCompetitionRepository;
+    @Autowired
+    private FootballCompetitionSeederService footballCompetitionSeederService;
+
+    @AfterEach
+    void after() {
+        this.footballCompetitionSeederService.deleteAll();
+        this.footballCompetitionSeederService.seedDatabase();
+    }
 
     @Test
     void testFindByOrganizingEntity() {

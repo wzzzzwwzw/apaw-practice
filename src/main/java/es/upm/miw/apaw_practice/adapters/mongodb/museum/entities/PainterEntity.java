@@ -10,13 +10,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @Document
 public class PainterEntity {
-    @Id
-    private String id;
     private String name;
+    @Id
     private String surname;
     private LocalDate birthDate;
     private LocalDate deathDate;
@@ -27,21 +25,16 @@ public class PainterEntity {
         // Empty for framework
     }
 
+    public PainterEntity(Painter painter) {
+        this.fromPainter(painter);
+    }
+
     public PainterEntity(String name, String surname, LocalDate birthDate, LocalDate deathDate, List<ArtWorkEntity> artWorks) {
-        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
         this.deathDate = deathDate;
         this.artWorks = artWorks;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -84,13 +77,20 @@ public class PainterEntity {
         this.artWorks = artWorks;
     }
 
+    public void fromPainter(Painter painter) {
+        BeanUtils.copyProperties(painter, this, "artWorks");
+        this.setArtWorks(painter.getArtWorks().stream()
+                .map(ArtWorkEntity::new)
+                .toList());
+    }
+
     public Painter toPainter() {
         Painter painter = new Painter();
         BeanUtils.copyProperties(this, painter, "artWorks");
-        List<ArtWork> artWorks = this.artWorks.stream()
+        List<ArtWork> artWorksList = this.artWorks.stream()
                 .map(ArtWorkEntity::toArtWork)
                 .toList();
-        painter.setArtWorks(artWorks);
+        painter.setArtWorks(artWorksList);
         return painter;
     }
 
@@ -99,19 +99,18 @@ public class PainterEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PainterEntity that = (PainterEntity) o;
-        return Objects.equals(id, that.id);
+        return Objects.equals(surname, that.surname);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(surname);
     }
 
     @Override
     public String toString() {
-        return "MuseumPainterEntity{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
+        return "PainterEntity{" +
+                "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", birthDate=" + birthDate +
                 ", deathDate=" + deathDate +

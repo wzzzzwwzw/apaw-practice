@@ -31,4 +31,10 @@ public class SellerResource {
     public Seller updateSellerName(@PathVariable String id, @RequestBody String name) {
         return this.sellerService.updateSellerName(id, name);
     }
+
+    @PatchMapping(ID_ID)
+    public Seller updateSellerSurname(@PathVariable String id, @RequestBody String surname) {
+        return this.sellerService.updateSellerSurname(id, surname);
+    }
+
 }

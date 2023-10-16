@@ -93,6 +93,13 @@ public class SchoolEntity {
         this.studentEntities = students;
     }
 
+    public School toSchool() {
+        School school = new School(this.name, this.address, this.openingDate, this.registrationPrice);
+        school.setStudents(this.studentEntities.stream()
+                .map(StudentEntity::toStudent).toList());
+        return school;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(name);

@@ -6,7 +6,6 @@ import es.upm.miw.apaw_practice.domain.models.subway.Schedule;
 import es.upm.miw.apaw_practice.domain.persistence_ports.subway.SchedulePersistence;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Stream;
 

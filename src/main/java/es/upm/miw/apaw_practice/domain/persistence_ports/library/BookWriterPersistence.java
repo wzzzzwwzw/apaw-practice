@@ -5,7 +5,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BookWriterPersistence {
-    BookWriter read(String nickname);
+    BookWriter readByNickname(String nickname);
     boolean existsNickname(String nickname);
     BookWriter create(BookWriter bookWriter);
+    BookWriter updateNumberOfBook(BookWriter bookWriter);
 }

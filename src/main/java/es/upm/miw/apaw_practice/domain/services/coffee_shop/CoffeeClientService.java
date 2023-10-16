@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.coffee_shop.CoffeeClien
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class CoffeeClientService {
     private final CoffeeClientPersistence coffeeClientPersistence;
@@ -19,6 +21,10 @@ public class CoffeeClientService {
 
     public CoffeeClient updateAddressByName(String name) {
         return this.coffeeClientPersistence.updateAddressByName(name);
+    }
+
+    public BigDecimal getTotalPriceByCategory(String category) {
+        return this.coffeeClientPersistence.getTotalPriceByCategory(category);
     }
 
 }

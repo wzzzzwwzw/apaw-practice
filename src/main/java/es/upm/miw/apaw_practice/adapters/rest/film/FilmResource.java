@@ -42,4 +42,10 @@ public class FilmResource {
         return this.filmService.findRatingAverageByDirectorDni(directorDni);
     }
 
+    @GetMapping(SEARCH)
+    public Stream<String> findCommentsWithTrueRecommendationByGenreStyle(@RequestParam String q) {
+        String genreStyle = new LexicalAnalyzer().extractWithAssure(q, "style");
+        return this.filmService.findCommentsWithTrueRecommendationByGenreStyle(genreStyle);
+    }
+
 }

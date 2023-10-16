@@ -1,9 +1,11 @@
 package es.upm.miw.apaw_practice.domain.services.football_competition;
 
+import es.upm.miw.apaw_practice.domain.models.football_competition.FootballCompetition;
 import es.upm.miw.apaw_practice.domain.persistence_ports.football_competition.FootballCompetitionPersistence;
-import es.upm.miw.apaw_practice.domain.persistence_ports.football_competition.FootballPlayerPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class FootballCompetitionService {
@@ -16,5 +18,13 @@ public class FootballCompetitionService {
 
     public void delete(String organizingEntity) {
         this.footballCompetitionPersistence.delete(organizingEntity);
+    }
+
+    public FootballCompetition getFootballCompetitionByOrganizingEntity(String organizingEntity) {
+        return this.footballCompetitionPersistence.readByOrganizingEntity(organizingEntity);
+    }
+
+    public List<String> getNamesByOrganizingEntity(String organizingEntity) {
+        return this.footballCompetitionPersistence.getNamesByOrganizingEntity(organizingEntity);
     }
 }

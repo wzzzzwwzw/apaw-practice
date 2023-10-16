@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PassengerPersistence {
     Passenger readByName(String name);
+    Passenger update(Passenger passenger);
 }

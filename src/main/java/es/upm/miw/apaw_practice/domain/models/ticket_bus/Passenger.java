@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.ticket_bus;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Passenger {
     private String nie;
@@ -58,6 +59,22 @@ public class Passenger {
 
     public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Passenger passenger)) return false;
+        return Objects.equals(nie, passenger.nie)
+                && Objects.equals(fullName, passenger.fullName)
+                && Objects.equals(number, passenger.number)
+                && Objects.equals(accessibility, passenger.accessibility)
+                && Objects.equals(tickets, passenger.tickets);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nie, fullName, number, accessibility);
     }
 
     @Override

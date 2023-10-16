@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.domain.services.airport;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
-import es.upm.miw.apaw_practice.domain.persistence_ports.aiport.AirLinePersistence;
 import es.upm.miw.apaw_practice.domain.persistence_ports.aiport.AircraftPersistence;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

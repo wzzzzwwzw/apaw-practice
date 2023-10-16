@@ -8,7 +8,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Optional;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,5 +32,12 @@ public class FootballCompetitionPersistenceMongodbIT {
         assertNotNull(competition);
         this.footballCompetitionPersistence.delete(organizingEntity);
         assertThrows(NotFoundException.class, () -> this.footballCompetitionPersistence.readByOrganizingEntity(organizingEntity));
+    }
+
+    @Test
+    public void testGetNamesByOrganizingEntity() {
+        String organizingEntity = "FFF";
+        List<String> playerNames = this.footballCompetitionPersistence.getNamesByOrganizingEntity(organizingEntity);
+        assertEquals(List.of("Luka Modric", "Lionel Messi"), playerNames);
     }
 }

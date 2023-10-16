@@ -68,6 +68,8 @@ public class FootballCompetitionSeederService {
         footballCompetitions[0].addSponsor("BBVA");
         footballCompetitions[0].addSponsor("Nike");
         footballCompetitions[0].setTeams(List.of(footballTeams));
+        footballCompetitions[1].addTeam(footballTeams[0]);
+        footballCompetitions[1].addTeam(footballTeams[1]);
         this.footballCompetitionRepository.saveAll(List.of(footballCompetitions));
     }
     public void deleteAll() {

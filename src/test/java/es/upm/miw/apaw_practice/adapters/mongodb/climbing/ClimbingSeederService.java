@@ -31,14 +31,14 @@ public class ClimbingSeederService {
         LogManager.getLogger(this.getClass()).warn("------- Climbing Initial Load -----------");
 
         RouteEntity[] routes = {
-                new RouteEntity("Route 1", "Easy"),
-                new RouteEntity("Route 2", "Medium"),
-                new RouteEntity("Route 3", "Hard")
+                new RouteEntity("1", "Route 1", "Easy"),
+                new RouteEntity("2", "Route 2", "Medium"),
+                new RouteEntity("3", "Route 3", "Hard")
         };
 
         ExpeditionEntity[] expeditions = {
-                new ExpeditionEntity(LocalDate.now(), new BigDecimal("1500.00")),
-                new ExpeditionEntity(LocalDate.now().minusDays(5), new BigDecimal("500.00"))
+                new ExpeditionEntity("1", LocalDate.now(), new BigDecimal("1500.00")),
+                new ExpeditionEntity("2", LocalDate.now().minusDays(5), new BigDecimal("500.00"))
         };
         this.expeditionRepository.saveAll(Arrays.asList(expeditions));
 

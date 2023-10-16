@@ -12,13 +12,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class LibraryPersistenceMongodbIT {
     @Autowired
     private LibraryPersistenceMongodb libraryPersistence;
+
     @Test
-    void testReadNotFound(){
-        assertThrows(NotFoundException.class, ()->this.libraryPersistence.read("."));
+    void testReadNotFound() {
+        assertThrows(NotFoundException.class, () -> this.libraryPersistence.read("."));
     }
 
     @Test
-    void testReadFound(){
+    void testReadFound() {
         assertNotNull(this.libraryPersistence.read("Biblioteca universitaria"));
     }
 }

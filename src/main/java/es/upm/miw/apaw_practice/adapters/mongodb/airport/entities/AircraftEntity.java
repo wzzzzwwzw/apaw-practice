@@ -15,6 +15,7 @@ public class AircraftEntity {
     private LocalDate dateOfLastRevision;
     private Integer capacity;
     private String model;
+    private String numberPlate;
 
     public AircraftEntity(){
         //empty for framework
@@ -66,10 +67,17 @@ public class AircraftEntity {
     public boolean equals(Object obj) {
         return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((AircraftEntity) obj).id));
     }
-    public Aircraft toAircraft(){
-        return new Aircraft(dateOfLastRevision,capacity,model);
+
+    public String getNumberPlate() {
+        return numberPlate;
     }
 
+    public void setNumberPlate(String numberPlate) {
+        this.numberPlate = numberPlate;
+    }
+    public Aircraft toAircraft(){
+        return new Aircraft(dateOfLastRevision,capacity,model,numberPlate);
+    }
     @Override
     public String toString() {
         return "AircraftEntity{" +
@@ -77,6 +85,7 @@ public class AircraftEntity {
                 ", dateOfLastRevision=" + dateOfLastRevision +
                 ", capacity=" + capacity +
                 ", model='" + model + '\'' +
+                ", numberPlate='" + numberPlate + '\'' +
                 '}';
     }
 }

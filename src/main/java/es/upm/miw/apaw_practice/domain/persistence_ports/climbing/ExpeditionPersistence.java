@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ExpeditionPersistence {
     Expedition create(Expedition expedition);
+
+    Expedition readByIdentifier(String identifier);
+
+    Expedition update(Expedition expedition);
 }

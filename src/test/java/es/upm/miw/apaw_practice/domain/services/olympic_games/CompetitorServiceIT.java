@@ -15,9 +15,9 @@ class CompetitorServiceIT {
 
     @Test
     void testCreateCompetitor() {
-        Competitor competitor = this.competitorService.create(new Competitor("Ibai", "Spain", 27));
+        Competitor competitor = this.competitorService.create(new Competitor("Carlos", "Spain", 27));
         assertNotNull(competitor);
-        assertEquals("Ibai", competitor.getName());
+        assertEquals("Carlos", competitor.getName());
         assertEquals("Spain", competitor.getNationality());
         assertEquals(27, competitor.getAge());
     }

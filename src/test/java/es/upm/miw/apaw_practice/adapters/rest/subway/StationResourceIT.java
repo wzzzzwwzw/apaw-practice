@@ -58,4 +58,13 @@ class StationResourceIT {
                 );
     }
 
+    @Test
+    void testDelete() {
+        this.webTestClient
+                .delete()
+                .uri(StationResource.STATIONS + StationResource.NAME_ID, "Opera")
+                .exchange()
+                .expectStatus().isOk();
+    }
+
 }

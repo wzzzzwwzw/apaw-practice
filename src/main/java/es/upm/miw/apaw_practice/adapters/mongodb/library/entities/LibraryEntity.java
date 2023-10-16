@@ -11,7 +11,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Document
 public class LibraryEntity {
@@ -41,7 +40,7 @@ public class LibraryEntity {
     }
 
     public void setId(String id) {
-        id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -81,7 +80,7 @@ public class LibraryEntity {
         BeanUtils.copyProperties(this, library, "bookEntities");
         List<Book> books = this.bookEntities.stream()
                 .map(BookEntity::toBook)
-                .collect(Collectors.toList());
+                .toList();
         library.setBooks(books);
         return library;
     }

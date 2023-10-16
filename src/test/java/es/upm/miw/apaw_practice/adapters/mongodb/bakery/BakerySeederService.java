@@ -55,9 +55,9 @@ public class BakerySeederService {
         this.productRepository.saveAll(Arrays.asList(products));
 
         ShelfEntity[] shelves = {
-                new ShelfEntity("Estanteria 1", 20, 2, "Pasillo 1", List.of(products[0], products[1])),
-                new ShelfEntity("Estanteria 2", 30, 3, "Pasillo 2", List.of(products[2], products[4], products[6])),
-                new ShelfEntity("Estanteria 3", 40, 4, "Pasillo 3", List.of(products[3], products[5]))
+                new ShelfEntity("Estanteria1", 20, 2, "Pasillo 1", List.of(products[0], products[1])),
+                new ShelfEntity("Estanteria2", 30, 3, "Pasillo 2", List.of(products[2], products[4], products[6])),
+                new ShelfEntity("Estanteria3", 40, 4, "Pasillo 3", List.of(products[3], products[5]))
 
         };
         this.shelfRepository.saveAll(Arrays.asList(shelves));

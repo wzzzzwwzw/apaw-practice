@@ -26,4 +26,13 @@ class SellerResourceIT {
                 .value(Assertions::assertNotNull);
     }
 
+    @Test
+    void testUpdateNotFound() {
+        String newName = "Igor";
+        this.webTestClient.put()
+                .uri(SellerResource.SELLERS + SellerResource.ID_ID + SellerResource.NAME, "kk")
+                .body(BodyInserters.fromValue(newName))
+                .exchange()
+                .expectStatus().isNotFound();
+    }
 }

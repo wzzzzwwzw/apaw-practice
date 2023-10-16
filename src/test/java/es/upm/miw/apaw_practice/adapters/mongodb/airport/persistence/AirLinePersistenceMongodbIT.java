@@ -1,10 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.airport.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.airport.AirLine;
 import es.upm.miw.apaw_practice.domain.models.airport.Aircraft;
-import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,12 +17,18 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AirLinePersistenceMongodbIT {
     @Autowired
     private AirLinePersistenceMongodb airLinePersistenceMongodb;
-
+    @Autowired
+    private AirportSeederService airportSeederService;
+    @AfterEach
+    void resetDataBase() {
+        this.airportSeederService.deleteAll();
+        this.airportSeederService.seedDatabase();
+    }
     @Test
     void testUpdate(){
         AirLine airLineOriginal = this.airLinePersistenceMongodb.readByName("Iberia");
         int sizeOriginal = airLineOriginal.getAircrafts().size();
-        Aircraft aircraft = new Aircraft(LocalDate.of(2023, 10, 10), 420, "Boeing 747");
+        Aircraft aircraft = new Aircraft(LocalDate.of(2023, 10, 10), 420, "Boeing 747","232YUT");
         airLineOriginal.getAircrafts().add(aircraft);
         AirLine airLineUpdate = this.airLinePersistenceMongodb.update(airLineOriginal);
         assertEquals(aircraft.toString(),airLineUpdate.getAircrafts().get(sizeOriginal).toString());

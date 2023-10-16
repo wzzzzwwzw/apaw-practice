@@ -21,12 +21,6 @@ public class Area {
         this.expedition = expedition;
     }
 
-    public static Area ofAreaName(Area area) {
-        Area areaDto = new Area();
-        areaDto.setName(area.getName());
-        return areaDto;
-    }
-
     public String getName() {
         return name;
     }

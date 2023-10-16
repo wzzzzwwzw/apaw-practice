@@ -2,8 +2,6 @@ package es.upm.miw.apaw_practice.domain.services.school;
 
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.models.school.Classroom;
-import es.upm.miw.apaw_practice.domain.models.shop.Article;
-import es.upm.miw.apaw_practice.domain.models.shop.ArticlePriceUpdating;
 import es.upm.miw.apaw_practice.domain.persistence_ports.school.ClassroomPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestConfig
-public class LibraryRepositoryIT {
+class LibraryRepositoryIT {
     @Autowired
     private LibraryRepository libraryRepository;
 

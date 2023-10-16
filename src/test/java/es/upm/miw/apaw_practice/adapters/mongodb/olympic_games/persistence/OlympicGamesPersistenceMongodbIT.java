@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
-class OlympicGamesPersistenceIT {
+class OlympicGamesPersistenceMongodbIT {
 
     @Autowired
     private  OlympicGamesPersistenceMongodb olympicGamesPersistence;

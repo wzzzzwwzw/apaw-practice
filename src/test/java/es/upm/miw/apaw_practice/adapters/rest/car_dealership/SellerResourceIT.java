@@ -28,10 +28,20 @@ class SellerResourceIT {
 
     @Test
     void testUpdateNotFound() {
-        String newName = "Igor";
+        String newName = "NewName";
         this.webTestClient.put()
-                .uri(SellerResource.SELLERS + SellerResource.ID_ID + SellerResource.NAME, "kk")
+                .uri(SellerResource.SELLERS + SellerResource.ID_ID + SellerResource.NAME, "NaN")
                 .body(BodyInserters.fromValue(newName))
+                .exchange()
+                .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testPatchNotFound() {
+        String newSurname = "NewSurname";
+        this.webTestClient.patch()
+                .uri(SellerResource.SELLERS + SellerResource.ID_ID, "NaN")
+                .body(BodyInserters.fromValue(newSurname))
                 .exchange()
                 .expectStatus().isNotFound();
     }

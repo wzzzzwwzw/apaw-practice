@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.library.entities;
 
 import es.upm.miw.apaw_practice.domain.models.library.Book;
 import es.upm.miw.apaw_practice.domain.models.library.BookWriter;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -9,7 +10,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Document
 public class BookEntity {
@@ -26,12 +26,18 @@ public class BookEntity {
         //empty from framework
     }
 
-    public BookEntity(String title, String isbn, LocalDate publicationDate, List<BookWriterEntity> bookWriterEntities) {
+    public BookEntity(String title, String isbn, LocalDate publicationDate, List<BookWriterEntity> bookWriterEntities
+    ) {
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.isbn = isbn;
         this.publicationDate = publicationDate;
         this.bookWriterEntities = bookWriterEntities;
+    }
+
+    public BookEntity(Book book) {
+        BeanUtils.copyProperties(book, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {
@@ -70,12 +76,14 @@ public class BookEntity {
         return bookWriterEntities;
     }
 
-    public void setWriterEntities(List<BookWriterEntity> bookWriterEntities) { this.bookWriterEntities = bookWriterEntities;}
+    public void setWriterEntities(List<BookWriterEntity> bookWriterEntities) {
+        this.bookWriterEntities = bookWriterEntities;
+    }
 
     public Book toBook() {
         List<BookWriter> bookWriters = this.bookWriterEntities.stream()
                 .map(BookWriterEntity::toBookWriter)
-                .collect(Collectors.toList());
+                .toList();
         return new Book(this.title, this.isbn, this.publicationDate, bookWriters);
     }
 

@@ -1,8 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.airport.entities;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities.DriverEntity;
-import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
-import es.upm.miw.apaw_practice.domain.models.airport.AirLine;
 import es.upm.miw.apaw_practice.domain.models.airport.Flight;
 import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
 import org.springframework.data.annotation.Id;

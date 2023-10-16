@@ -22,7 +22,12 @@ public class ClimberResource {
 
     @GetMapping(EMAIL_ID)
     public Climber read(@PathVariable String email) {
-        return Climber.ofClimberEmail(this.climberService.read(email));
+        return this.climberService.read(email);
+    }
+
+    @DeleteMapping(EMAIL_ID)
+    public void delete(@PathVariable String email) {
+        this.climberService.delete(email);
     }
 
 }

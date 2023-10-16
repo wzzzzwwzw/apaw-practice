@@ -12,10 +12,21 @@ public class Expedition {
 
     }
 
+    public Expedition(LocalDate date, BigDecimal totalExpense) {
+        this.date = date;
+        this.totalExpense = totalExpense;
+    }
+
     public Expedition(String identifier, LocalDate date, BigDecimal totalExpense) {
         this.identifier = identifier;
         this.date = date;
         this.totalExpense = totalExpense;
+    }
+
+    public void doDefault() {
+        if (this.totalExpense == null) {
+            this.totalExpense = BigDecimal.ZERO;
+        }
     }
 
     public String getIdentifier() {
@@ -50,4 +61,5 @@ public class Expedition {
                 ", totalExpense=" + totalExpense +
                 '}';
     }
+
 }

@@ -21,21 +21,20 @@ public class PatientPersistenceMongodb implements PatientPersistence {
     public Patient read(String socialInsuranceNumber) {
         return this.patientRepository
                 .findBySocialInsuranceNumber(socialInsuranceNumber)
-                .orElseThrow(() -> new NotFoundException("Patient name: " + socialInsuranceNumber))
+                .orElseThrow(() -> new NotFoundException("Patient socialInsuranceNumber: " + socialInsuranceNumber))
                 .toPatient();
     }
 
     @Override
-    public boolean existsPatientSocialInsuranceNumber(String socialInsuranceNumber) {
-        return this.patientRepository
+    public Patient updateAllergicMedicine(String socialInsuranceNumber, String newAllergicMedicine) {
+        PatientEntity patientEntity = this.patientRepository
                 .findBySocialInsuranceNumber(socialInsuranceNumber)
-                .isPresent();
+                .orElseThrow(() -> new NotFoundException("Patient socialInsuranceNumber: " + socialInsuranceNumber));
+        patientEntity.setAllergicMedicine(newAllergicMedicine);
+        return this.patientRepository.save(patientEntity).toPatient();
     }
 
-    @Override
-    public Patient create(Patient patient) {
-        return this.patientRepository
-                .save(new PatientEntity())
-                .toPatient();
-    }
+
+
+
 }

@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities;
 
 import es.upm.miw.apaw_practice.domain.models.hospital.Doctor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -61,10 +60,9 @@ public class DoctorEntity {
         this.departmentEntity = departmentEntity;
     }
 
-    public Doctor toDoctor() {
-        Doctor doctor = new Doctor();
-        BeanUtils.copyProperties(this, doctor);
-        return doctor;
+    public Doctor toDoctor(){
+
+        return new Doctor(medicalLicenseCode,office,departmentEntity.toDepartment());
     }
 
     @Override

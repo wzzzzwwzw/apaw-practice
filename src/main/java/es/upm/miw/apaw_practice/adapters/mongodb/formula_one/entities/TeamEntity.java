@@ -1,8 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities;
 
-import es.upm.miw.apaw_practice.domain.models.formula_one.Driver;
-import es.upm.miw.apaw_practice.domain.models.formula_one.Team;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -10,7 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Document
 public class TeamEntity {
@@ -84,17 +80,6 @@ public class TeamEntity {
 
     public void setMainColor(String mainColor) {
         this.mainColor = mainColor;
-    }
-
-    public Team toTeam() {
-        Team team = new Team();
-        BeanUtils.copyProperties(this, team, "driverEntities", "engineManufacturer");
-        List<Driver> drivers = this.driverEntities.stream()
-                .map(DriverEntity::toDriver)
-                .collect(Collectors.toList());
-        team.setDrivers(drivers);
-        team.setEngineManufacturer(this.engineManufacturerEntity.toEngineManufacturer());
-        return team;
     }
 
     @Override

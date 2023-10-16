@@ -19,12 +19,12 @@ class PatientServiceIT {
     void testReadService(){
         Patient patient = patientService.read("333333333");
         assertNotNull(patient);
-        assertEquals("Male",patient.getGender());
+        assertEquals("NONE",patient.getAllergicMedicine());
         assertEquals(LocalDate.of(1987,5,11),patient.getBirthDate());
         assertEquals(2,patient.getDoctors().size());
         assertEquals(LocalDateTime.of(2023,11,11,10,30),patient.getAppointments().get(0).getAppointmentHour());
         assertEquals(Boolean.FALSE,patient.getAppointments().get(1).getUrgent());
         assertEquals(Boolean.TRUE,patient.getAppointments().get(0).getUrgent());
-
     }
+
 }

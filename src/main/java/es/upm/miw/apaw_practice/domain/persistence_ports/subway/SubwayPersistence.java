@@ -14,5 +14,5 @@ public interface SubwayPersistence {
 
     Line findLineByCityAndLabel(String city, String lineLabel);
 
-
+    Subway update(Subway subway);
 }

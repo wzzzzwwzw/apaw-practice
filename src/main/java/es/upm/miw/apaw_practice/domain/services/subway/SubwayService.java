@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import es.upm.miw.apaw_practice.domain.persistence_ports.subway.SubwayPersistence;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SubwayService {
 
@@ -24,4 +26,10 @@ public class SubwayService {
         return this.subwayPersistence.readByCity(city);
     }
 
+
+    public Subway updateLines(String city, List<Line> lines) {
+        Subway subway = this.subwayPersistence.readByCity(city);
+        subway.setLines(lines);
+        return this.subwayPersistence.update(subway);
+    }
 }

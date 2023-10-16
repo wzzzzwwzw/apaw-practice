@@ -36,4 +36,7 @@ class SubwayResourceIT {
                 .expectBody(Line.class)
                 .value(line -> assertEquals("RED", line.getColor()));
     }
+
+
+
 }

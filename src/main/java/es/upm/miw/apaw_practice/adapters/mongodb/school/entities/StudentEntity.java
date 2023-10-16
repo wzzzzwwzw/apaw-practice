@@ -101,7 +101,10 @@ public class StudentEntity {
     }
 
     public Student toStudent() {
-        return new Student(this.name, this.age, this.contact, this.email, this.classroomEntity.toClassroom());
+        Student student = new Student(this.name, this.age, this.contact, this.email, this.classroomEntity.toClassroom());
+        student.setSubjects(this.subjectsEntities.stream()
+                .map(SubjectEntity::toSubject).toList());
+        return student;
     }
 
     @Override

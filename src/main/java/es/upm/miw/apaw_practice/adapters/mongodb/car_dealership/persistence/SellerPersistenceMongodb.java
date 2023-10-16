@@ -15,6 +15,8 @@ public class SellerPersistenceMongodb implements SellerPersistence {
 
     private final SellerRepository sellerRepository;
 
+    private static final String SELLER_ID = "Seller id: ";
+
     @Autowired
     public SellerPersistenceMongodb(SellerRepository sellerRepository) {
         this.sellerRepository = sellerRepository;
@@ -38,16 +40,25 @@ public class SellerPersistenceMongodb implements SellerPersistence {
     public Seller readById(String id) {
         return this.sellerRepository.
                 findById(id)
-                .orElseThrow(() -> new NotFoundException("Seller id: " + id))
+                .orElseThrow(() -> new NotFoundException(SELLER_ID + id))
                 .toSeller();
     }
 
     @Override
-    public Seller update(Seller seller) {
+    public Seller updateName(Seller seller) {
         SellerEntity sellerEntity = this.sellerRepository
                 .findById(seller.getId())
-                .orElseThrow(() -> new NotFoundException("Seller id: " + seller.getId()));
+                .orElseThrow(() -> new NotFoundException(SELLER_ID + seller.getId()));
         sellerEntity.setName(seller.getName());
+        return this.sellerRepository.save(sellerEntity).toSeller();
+    }
+
+    @Override
+    public Seller updateSurname(Seller seller) {
+        SellerEntity sellerEntity = this.sellerRepository
+                .findById(seller.getId())
+                .orElseThrow(() -> new NotFoundException(SELLER_ID + seller.getId()));
+        sellerEntity.setSurname(seller.getSurname());
         return this.sellerRepository.save(sellerEntity).toSeller();
     }
 }

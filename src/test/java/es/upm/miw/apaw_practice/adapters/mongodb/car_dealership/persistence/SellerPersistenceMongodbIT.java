@@ -7,7 +7,6 @@ import es.upm.miw.apaw_practice.domain.models.car_dealership.Seller;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.lang.reflect.Executable;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -56,7 +55,7 @@ class SellerPersistenceMongodbIT {
                 .findFirst();
         assertTrue(seller.isPresent());
         seller.get().setName("Igor");
-        this.sellerPersistence.update(seller.get());
+        this.sellerPersistence.updateName(seller.get());
         Optional<Seller> newSeller = this.sellerPersistence.readAll()
                 .filter(seller1 -> "Gonzalez".equals(seller1.getSurname()))
                 .findFirst();

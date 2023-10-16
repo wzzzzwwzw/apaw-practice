@@ -25,11 +25,12 @@ public class GenrePersistenceMongodb implements GenrePersistence {
     }
 
     @Override
-    public List<Genre> findGenresByGenreStyle(String style) {
+    public List<String> findGenreNamesByGenreStyle(String style) {
         return this.genreRepository.findAll().stream()
                 .map(GenreEntity::toGenre)
                 .filter(genre -> genre.getStyle()
                         .equals(style))
+                .map(Genre::getName)
                 .toList();
     }
 }

@@ -49,12 +49,13 @@ public class FilmService {
     }
 
     public Stream<String> findCommentsWithTrueRecommendationByGenreStyle(String style) {
-        List<Genre> genreList = this.genrePersistence.findGenresByGenreStyle(style);
+        List<String> genreList = this.genrePersistence.findGenreNamesByGenreStyle(style);
         if (genreList.isEmpty()) {
             throw new NotFoundException("No genres found with " + style + " style");
         }
         return this.filmPersistence.readAll()
                 .filter(film -> film.getGenres().stream()
+                        .map(Genre::getName)
                         .anyMatch(genreList::contains))
                 .flatMap(film -> film.getReviews().stream())
                 .filter(Review::getRecommendation)

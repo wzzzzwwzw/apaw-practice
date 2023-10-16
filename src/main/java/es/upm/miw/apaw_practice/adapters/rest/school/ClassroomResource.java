@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.school;
 
 import es.upm.miw.apaw_practice.domain.models.school.Classroom;
-import es.upm.miw.apaw_practice.domain.models.shop.ArticlePriceUpdating;
 import es.upm.miw.apaw_practice.domain.services.school.ClassroomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

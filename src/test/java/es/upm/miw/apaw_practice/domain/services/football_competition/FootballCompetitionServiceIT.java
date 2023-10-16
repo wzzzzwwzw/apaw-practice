@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -45,5 +47,13 @@ public class FootballCompetitionServiceIT {
         assertThrows(
                 NotFoundException.class,
                 () -> this.footballCompetitionService.getFootballCompetitionByOrganizingEntity(organizingEntity));
+    }
+
+    @Test
+    public void testGetNamesByOrganizingEntity() {
+        String organizingEntity = "FFF";
+        List<String> names = this.footballCompetitionService.getNamesByOrganizingEntity(organizingEntity);
+        assertNotNull(names);
+        assertEquals(List.of("Luka Modric", "Lionel Messi"), names);
     }
 }

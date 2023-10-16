@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.football_competition.Fo
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FootballCompetitionService {
     private final FootballCompetitionPersistence footballCompetitionPersistence;
@@ -20,5 +22,9 @@ public class FootballCompetitionService {
 
     public FootballCompetition getFootballCompetitionByOrganizingEntity(String organizingEntity) {
         return this.footballCompetitionPersistence.readByOrganizingEntity(organizingEntity);
+    }
+
+    public List<String> getNamesByOrganizingEntity(String organizingEntity) {
+        return this.footballCompetitionPersistence.getNamesByOrganizingEntity(organizingEntity);
     }
 }

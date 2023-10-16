@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+import java.util.List;
+
 @RestTestConfig
 public class FootballCompetitionResourceIT {
     @Autowired
@@ -27,5 +29,21 @@ public class FootballCompetitionResourceIT {
                 .uri(FootballCompetitionResource.COMPETITIONS + FootballCompetitionResource.ORGANIZING_ENTITY_ID, "PFF")
                 .exchange()
                 .expectStatus().isOk();
+    }
+
+    @Test
+    public void testGetNamesByOrganizingEntity() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FootballCompetitionResource.COMPETITIONS + FootballCompetitionResource.SEARCH)
+                                .queryParam("organizingEntity", "FFF")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .returnResult()
+                .getResponseBody()
+                .equals(List.of("Luka Modric", "Lionel Messi"));
     }
 }

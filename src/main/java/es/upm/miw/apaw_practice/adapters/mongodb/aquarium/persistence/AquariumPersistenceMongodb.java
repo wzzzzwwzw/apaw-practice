@@ -36,4 +36,14 @@ public class AquariumPersistenceMongodb implements AquariumPersistence {
                 .save(new AquariumEntity(aquarium))
                 .toAquarium();
     }
+    @Override
+    public Aquarium update(Aquarium aquarium){
+        AquariumEntity aquariumEntity = this.aquariumRepository
+                .findByDescription(aquarium.getDescription())
+                .orElseThrow(()-> new NotFoundException("Aquarium with description"+ aquarium.getDescription()));
+        aquariumEntity.fromAquarium(aquarium);
+        return this.aquariumRepository
+                .save(aquariumEntity)
+                .toAquarium();
+    }
 }

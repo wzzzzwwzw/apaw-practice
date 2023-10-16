@@ -6,4 +6,5 @@ public interface AquariumPersistence {
     Aquarium read(String description);
     boolean existsAquariumDescription(String description);
     Aquarium create(Aquarium aquarium);
+    Aquarium update(Aquarium aquarium);
 }

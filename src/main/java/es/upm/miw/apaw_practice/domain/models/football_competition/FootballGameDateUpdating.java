@@ -1,8 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.football_competition;
 
-import org.springframework.cglib.core.Local;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class FootballGameDateUpdating {

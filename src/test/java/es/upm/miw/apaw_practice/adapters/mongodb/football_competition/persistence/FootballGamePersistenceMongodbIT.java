@@ -2,18 +2,20 @@ package es.upm.miw.apaw_practice.adapters.mongodb.football_competition.persisten
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.FootballCompetitionSeederService;
-import es.upm.miw.apaw_practice.domain.models.football_competition.FootballPlayer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+
 @TestConfig
-public class FootballPlayerPersistenceMongodbIT {
+public class FootballGamePersistenceMongodbIT {
     @Autowired
-    private FootballPlayerPersistenceMongodb footballPlayerPersistence;
+    private FootballGamePersistenceMongodb footballGamePersistence;
     @Autowired
     private FootballCompetitionSeederService footballCompetitionSeederService;
 
@@ -24,13 +26,15 @@ public class FootballPlayerPersistenceMongodbIT {
     }
 
     @Test
-    public void testUpdateGoals() {
-        String playerName = "Lionel Messi";
-        FootballPlayer player = this.footballPlayerPersistence.readByName(playerName);
-        assertNotNull(player);
-        assertEquals(25, player.getGoals());
-        FootballPlayer updatedPlayer = this.footballPlayerPersistence.updateGoals(playerName, 30);
-        assertNotNull(updatedPlayer);
-        assertEquals(30, updatedPlayer.getGoals());
+    public void testRead() {
+        String id = this.footballGamePersistence.getGamesIdentifiers().get(0);
+        assertNotNull(this.footballGamePersistence.read(id));
+    }
+
+    @Test
+    public void testGetTotalBudgetByLocation() {
+        BigDecimal totalBudget = this.footballGamePersistence.getTotalBudgetByLocation("Barcelona");
+        assertNotNull(totalBudget);
+        assertEquals(new BigDecimal("20499779.34"), totalBudget);
     }
 }

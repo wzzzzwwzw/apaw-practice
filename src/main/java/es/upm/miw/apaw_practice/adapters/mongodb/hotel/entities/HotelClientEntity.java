@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hotel.entities;
 
+import es.upm.miw.apaw_practice.domain.models.hotel.HotelBooking;
 import es.upm.miw.apaw_practice.domain.models.hotel.HotelClient;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
@@ -57,12 +58,18 @@ public class HotelClientEntity {
         this.telephone = telephone;
     }
 
-    public Boolean isPartner() {
+    public Boolean getPartnership() {
         return partnership;
     }
 
     public void setPartnership(Boolean newPartnership) {
         this.partnership = newPartnership;
+    }
+
+    public HotelClient toObject() {
+        HotelClient client = new HotelClient();
+        BeanUtils.copyProperties(this, client);
+        return client;
     }
 
     @Override

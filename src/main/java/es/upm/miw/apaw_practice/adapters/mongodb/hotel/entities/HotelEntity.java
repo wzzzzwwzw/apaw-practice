@@ -1,12 +1,16 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hotel.entities;
 
 import es.upm.miw.apaw_practice.domain.models.hotel.Hotel;
+import es.upm.miw.apaw_practice.domain.models.hotel.HotelActivity;
+import es.upm.miw.apaw_practice.domain.models.hotel.HotelBooking;
+import es.upm.miw.apaw_practice.domain.models.hotel.HotelClient;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.Arrays;
@@ -80,6 +84,25 @@ public class HotelEntity {
 
     public void setActivities(List<HotelActivityEntity> activities) {
         this.activities = activities;
+    }
+    
+    public Hotel toObject() {
+        Hotel hotel = new Hotel();
+        BeanUtils.copyProperties(this, hotel);
+
+        List<HotelActivity> activities = new ArrayList<HotelActivity>();
+        this.activities.forEach(activity -> {
+            activities.add(activity.toObject());
+        });
+        hotel.setActivities(activities);
+
+        List<HotelBooking> bookings = new ArrayList<HotelBooking>();
+        this.bookings.forEach(activity -> {
+            bookings.add(activity.toObject());
+        });
+        hotel.setBookings(bookings);
+        
+        return hotel;
     }
 
     @Override

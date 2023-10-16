@@ -65,7 +65,7 @@ public class HotelActivityEntity {
         this.maxParticipants = maxParticipants;
     }
 
-    public HotelActivity toHotelActivity() {
+    public HotelActivity toObject() {
         HotelActivity activity = new HotelActivity();
         BeanUtils.copyProperties(this, activity);
         return activity;

@@ -81,8 +81,9 @@ public class HotelBookingEntity {
         this.client = client;
     }
 
-    public HotelBooking toHotelBooking() {
+    public HotelBooking toObject() {
         HotelBooking booking = new HotelBooking();
+        booking.setClient(this.client.toObject());
         BeanUtils.copyProperties(this, booking);
         return booking;
     }

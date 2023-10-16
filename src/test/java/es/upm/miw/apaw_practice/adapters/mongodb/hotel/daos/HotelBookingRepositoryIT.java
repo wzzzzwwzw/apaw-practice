@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
@@ -17,5 +20,10 @@ public class HotelBookingRepositoryIT {
     void testCreateAndRead() {
         assertTrue(this.BookingRepository.findByNumber(1).isPresent());
         HotelBookingEntity firstBooking = this.BookingRepository.findByNumber(1).get();
+        assertEquals(firstBooking.getNumber(),1);
+        assertEquals(firstBooking.getRoomNumber(),327);
+        assertEquals(firstBooking.getDate(), LocalDate.of(2023,10,21));
+        assertEquals(firstBooking.getCost(),new BigDecimal("49.99"));
+        assertNotNull(firstBooking.getClient());
     }
 }

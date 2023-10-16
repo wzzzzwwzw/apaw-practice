@@ -16,4 +16,10 @@ public class PassengerService {
     public Passenger read(String name){
         return this.passengerPersistence.readByName(name);
     }
+    public Passenger updateNumberOfPhone(String name, String numberOfPhone){
+        Passenger passenger = this.passengerPersistence.readByName(name);
+        passenger.setNumberOfPhone(numberOfPhone);
+        return this.passengerPersistence.update(passenger);
+
+    }
 }

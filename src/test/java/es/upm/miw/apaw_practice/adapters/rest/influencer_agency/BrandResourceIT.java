@@ -33,4 +33,25 @@ class BrandResourceIT {
                 .expectStatus().isNotFound();
     }
 
+    @Test
+    void testUpdateBrand() {
+        this.webTestClient
+                .patch()
+                .uri(BrandResource.BRANDS + "/Brand1")
+                .bodyValue(1000)
+                .exchange()
+                .expectStatus().isOk();
+    }
+
+    @Test
+    void testUpdateBrandException() {
+        this.webTestClient
+                .patch()
+                .uri(BrandResource.BRANDS + "/nike")
+                .bodyValue(1000)
+                .exchange()
+                .expectStatus().isNotFound();
+    }
+
+
 }

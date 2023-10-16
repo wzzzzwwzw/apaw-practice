@@ -32,10 +32,10 @@ public class BankTypeResourceIT {
                 .expectStatus().isOk()
                 .expectBody(BankType.class)
                 .value(Assertions::assertNotNull)
-                .value(bankData -> {
-                    assertEquals("Banco Cooperativo", bankData.getTypeName());
-                    assertEquals("Banco que es propiedad de sus miembros y opera con principios cooperativos.", bankData.getDescription());
-                    assertEquals(new BigDecimal("30000000.00"), bankData.getMinimunCapital());
+                .value(bankType -> {
+                    assertEquals("Banco Cooperativo", bankType.getTypeName());
+                    assertEquals("Banco que es propiedad de sus miembros y opera con principios cooperativos.", bankType.getDescription());
+                    assertEquals(new BigDecimal("30000000.00"), bankType.getMinimunCapital());
                 });
     }
 

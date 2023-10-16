@@ -34,4 +34,16 @@ class SubwayPersistenceMongodbIT {
 
     }
 
+    @Test
+    void testPutLine() {
+        Subway subway = this.subwayPersistenceMongodb.readByCity("Madrid");
+        assertEquals("Madrid", subway.getCity());
+        subway.getLines().get(1).setLabel("Blue Line");
+        Subway update = this.subwayPersistenceMongodb.update(subway);
+        assertEquals("Blue Line", update.getLines().get(1).getLabel());
+        Line line = this.subwayPersistenceMongodb.findLineByCityAndLabel("Madrid", "Blue Line");
+        assertEquals("Blue Line", line.getLabel());
+        assertThrows(NotFoundException.class, () -> this.subwayPersistenceMongodb.findLineByCityAndLabel("Madrid", "Orange Line"));
+    }
+
 }

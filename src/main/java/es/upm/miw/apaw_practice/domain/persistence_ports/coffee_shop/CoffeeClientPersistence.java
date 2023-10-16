@@ -4,11 +4,12 @@ import es.upm.miw.apaw_practice.domain.models.coffee_shop.CoffeeClient;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.util.stream.Stream;
 
 @Repository
 public interface CoffeeClientPersistence {
     void delete(String name);
 
     CoffeeClient updateAddressByName(String name);
-    BigDecimal getTotalPriceByCategory(String category);
+    Stream<CoffeeClient> getCoffeeClientStreamByCategory(String category);
 }

@@ -30,4 +30,12 @@ class StationPersistenceMongodbIT {
         assertThrows(NotFoundException.class, () -> this.stationPersistenceMongodb.readByName("Sagrada Familia"));
     }
 
+    @Test
+    void testDelete() {
+        this.stationPersistenceMongodb.delete("Sol");
+        Optional<Station> stationBD = this.stationPersistenceMongodb.readAll()
+                .filter(station1 -> "Sol".equals(station1.getName())).findFirst();
+        assertFalse(stationBD.isPresent());
+    }
+
 }

@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.domain.services.coffee_shop;
 
 import es.upm.miw.apaw_practice.domain.models.coffee_shop.CoffeeClient;
+import es.upm.miw.apaw_practice.domain.models.coffee_shop.Transaction;
 import es.upm.miw.apaw_practice.domain.persistence_ports.coffee_shop.CoffeeClientPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,11 @@ public class CoffeeClientService {
     }
 
     public BigDecimal getTotalPriceByCategory(String category) {
-        return this.coffeeClientPersistence.getTotalPriceByCategory(category);
+        return this.coffeeClientPersistence.getCoffeeClientStreamByCategory(category)
+                .flatMap(client -> client.getTransactions().stream())
+                .map(Transaction::getTotalPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
 
 }

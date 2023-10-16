@@ -4,6 +4,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.coffee_shop.daos.CoffeeClientRe
 import es.upm.miw.apaw_practice.adapters.mongodb.coffee_shop.entities.CoffeeClientEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.coffee_shop.entities.CoffeeEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.coffee_shop.entities.TransactionEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.entities.ComputerEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.coffee_shop.CoffeeClient;
 import es.upm.miw.apaw_practice.domain.persistence_ports.coffee_shop.CoffeeClientPersistence;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Repository("coffeeClientPersistence")
 public class CoffeeClientPersistenceMongodb implements CoffeeClientPersistence {
@@ -37,24 +39,15 @@ public class CoffeeClientPersistenceMongodb implements CoffeeClientPersistence {
     }
 
     @Override
-    public BigDecimal getTotalPriceByCategory(String category) {
-        List<CoffeeClientEntity> clients = this.coffeeClientRepository.findAll();
-        BigDecimal totalPrice = BigDecimal.ZERO;
-
-        for (CoffeeClientEntity client : clients) {
-            List<CoffeeEntity> coffeesInCategory = client.getCoffeesEntities().stream()
-                    .filter(coffee -> coffee.getCategory().equalsIgnoreCase(category))
-                    .toList();
-
-            if (!coffeesInCategory.isEmpty()) {
-                totalPrice = totalPrice.add(
-                        client.getTransactionsEntities().stream()
-                                .map(TransactionEntity::getTotalPrice)
-                                .reduce(BigDecimal.ZERO, BigDecimal::add)
+    public Stream<CoffeeClient> getCoffeeClientStreamByCategory(String category) {
+        return this.coffeeClientRepository.findAll()
+        .stream()
+                .map(CoffeeClientEntity::toClient)
+                .filter(coffeeclient -> coffeeclient
+                        .getCoffees()
+                        .stream()
+                        .anyMatch(coffee -> coffee.getCategory().equals(category)
+                        )
                 );
-            }
-        }
-
-        return totalPrice;
     }
 }

@@ -22,4 +22,9 @@ public class StationService {
     public Station readByName(String station) {
         return this.stationPersistence.readByName(station);
     }
+
+    public void delete(String name) {
+        this.stationPersistence.delete(name);
+    }
+
 }

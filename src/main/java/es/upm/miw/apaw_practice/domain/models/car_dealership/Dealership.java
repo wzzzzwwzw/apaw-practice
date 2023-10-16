@@ -9,11 +9,15 @@ public class Dealership {
     private String district;
     private List<Car> carList;
 
+    public Dealership() {
+        carList = new ArrayList<>();
+    }
+
     public Dealership(String name, String city, String district) {
+        this();
         this.name = name;
         this.city = city;
         this.district = district;
-        this.carList = new ArrayList<>();
     }
 
     public String getName() {
@@ -46,10 +50,6 @@ public class Dealership {
 
     public void setCarList(List<Car> carList) {
         this.carList = carList;
-    }
-
-    public void setCar(Car car) {
-        this.carList.add(car);
     }
 
     @Override

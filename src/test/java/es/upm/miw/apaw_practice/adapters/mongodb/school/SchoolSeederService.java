@@ -59,7 +59,8 @@ public class SchoolSeederService {
                 new StudentEntity("student2", 30, 687654321, "student2@mail.test", classrooms[1], List.of()),
                 new StudentEntity("student3", 40, 666666666, "student3@mail.test", classrooms[2], List.of(subjects[2], subjects[3], subjects[4])),
                 new StudentEntity("student4", 50, 777777777, "student4@mail.test", classrooms[3], List.of(subjects[1])),
-                new StudentEntity("student5", 60, 888888888, "student5@mail.test", classrooms[4], List.of(subjects[1], subjects[2], subjects[3], subjects[4]))
+                new StudentEntity("student5", 60, 888888888, "student5@mail.test", classrooms[4], List.of(subjects[1], subjects[2], subjects[3], subjects[4])),
+                new StudentEntity("student6", 70, 999999999, "student6@mail.test", classrooms[4], List.of(subjects[1], subjects[3]))
         };
         this.studentRepository.saveAll(Arrays.asList(students));
 

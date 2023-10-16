@@ -1,18 +1,15 @@
 package es.upm.miw.apaw_practice.domain.services.airport;
 
 import es.upm.miw.apaw_practice.TestConfig;
-import es.upm.miw.apaw_practice.adapters.rest.airport.FlightResource;
+import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
-import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.airport.AirLine;
 import es.upm.miw.apaw_practice.domain.models.airport.Aircraft;
 import es.upm.miw.apaw_practice.domain.models.airport.Flight;
 import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.reactive.function.BodyInserters;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -26,6 +23,13 @@ public class FlightServiceIT {
     @Autowired
     private FlightService flightService;
 
+    @Autowired
+    private AirportSeederService airportSeederService;
+    @AfterEach
+    void resetDataBase() {
+        this.airportSeederService.deleteAll();
+        this.airportSeederService.seedDatabase();
+    }
     @Test
     void testCreate() {
         List<Passenger> passengerList = new ArrayList<>();

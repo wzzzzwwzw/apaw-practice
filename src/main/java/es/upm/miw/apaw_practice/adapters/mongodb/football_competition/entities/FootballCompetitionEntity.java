@@ -95,6 +95,7 @@ public class FootballCompetitionEntity {
     public FootballCompetition toFootballCompetition() {
         FootballCompetition competition = new FootballCompetition();
         BeanUtils.copyProperties(this, competition);
+        competition.setTeams(this.getTeams().stream().map(FootballTeamEntity::toFootballTeam).toList());
         return competition;
     }
 

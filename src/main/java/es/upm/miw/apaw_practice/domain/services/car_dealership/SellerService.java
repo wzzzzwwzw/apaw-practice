@@ -22,6 +22,12 @@ public class SellerService {
     public Seller updateSellerName(String id, String name) {
         Seller seller = this.sellerPersistence.readById(id);
         seller.setName(name);
-        return this.sellerPersistence.update(seller);
+        return this.sellerPersistence.updateName(seller);
+    }
+
+    public Seller updateSellerSurname(String id, String surname) {
+        Seller seller = this.sellerPersistence.readById(id);
+        seller.setSurname(surname);
+        return this.sellerPersistence.updateSurname(seller);
     }
 }

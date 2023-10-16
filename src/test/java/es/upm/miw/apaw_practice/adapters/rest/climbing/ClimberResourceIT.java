@@ -46,4 +46,13 @@ class ClimberResourceIT {
                 .exchange()
                 .expectStatus().isNotFound();
     }
+
+    @Test
+    void testDelete() {
+        this.webTestClient
+                .delete()
+                .uri(CLIMBERS + EMAIL_ID, "climber2@email.com")
+                .exchange()
+                .expectStatus().isOk();
+    }
 }

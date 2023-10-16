@@ -40,7 +40,8 @@ public class SchoolSeederService {
                 new SubjectEntity(new Subject("subject2", "desc2", false, 5)),
                 new SubjectEntity(new Subject("subject3", "desc3", false, 10)),
                 new SubjectEntity(new Subject("subject4", "desc4", false, 1)),
-                new SubjectEntity(new Subject("subject5", "desc5", true, 16))
+                new SubjectEntity(new Subject("subject5", "desc5", true, 16)),
+                new SubjectEntity(new Subject("subjectResource", "foo", false, 20))
         };
         this.subjectRepository.saveAll(Arrays.asList(subjects));
 

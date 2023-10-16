@@ -7,7 +7,6 @@ import es.upm.miw.apaw_practice.domain.models.car_dealership.Seller;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.lang.reflect.Executable;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -50,19 +49,37 @@ class SellerPersistenceMongodbIT {
     }
 
     @Test
-    void testUpdate() {
+    void testUpdateName() {
         Optional<Seller> seller = this.sellerPersistence.readAll()
                 .filter(seller1 -> "Gonzalez".equals(seller1.getSurname()))
                 .findFirst();
         assertTrue(seller.isPresent());
         seller.get().setName("Igor");
-        this.sellerPersistence.update(seller.get());
+        this.sellerPersistence.updateName(seller.get());
         Optional<Seller> newSeller = this.sellerPersistence.readAll()
                 .filter(seller1 -> "Gonzalez".equals(seller1.getSurname()))
                 .findFirst();
         assertTrue(newSeller.isPresent());
         assertEquals(seller.get().getSalary(), newSeller.get().getSalary());
         assertEquals("Igor", newSeller.get().getName());
+        carDealershipSeederService.deleteAll();
+        carDealershipSeederService.seedDatabase();
+    }
+
+    @Test
+    void testUpdateSurname() {
+        Optional<Seller> seller = this.sellerPersistence.readAll()
+                .filter(seller1 -> "Asier".equals(seller1.getName()))
+                .findFirst();
+        assertTrue(seller.isPresent());
+        seller.get().setSurname("Lopez");
+        this.sellerPersistence.updateSurname(seller.get());
+        Optional<Seller> newSeller = this.sellerPersistence.readAll()
+                .filter(seller1 -> "Asier".equals(seller1.getName()))
+                .findFirst();
+        assertTrue(newSeller.isPresent());
+        assertEquals(seller.get().getSalary(), newSeller.get().getSalary());
+        assertEquals("Lopez", newSeller.get().getSurname());
         carDealershipSeederService.deleteAll();
         carDealershipSeederService.seedDatabase();
     }

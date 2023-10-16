@@ -1,8 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.rest.airport;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.domain.models.airport.AirLine;
 import es.upm.miw.apaw_practice.domain.models.airport.Aircraft;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -15,7 +16,13 @@ import java.util.List;
 public class AirLineResourceIT {
     @Autowired
     private WebTestClient webTestClient;
-
+    @Autowired
+    private AirportSeederService airportSeederService;
+    @AfterEach
+    void resetDataBase() {
+        this.airportSeederService.deleteAll();
+        this.airportSeederService.seedDatabase();
+    }
     @Test
     void testUpdate() {
         List<Aircraft> aircraftList = Arrays.asList(

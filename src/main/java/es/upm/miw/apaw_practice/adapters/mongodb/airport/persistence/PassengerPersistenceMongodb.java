@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.airport.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.daos.PassengerRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.entities.PassengerEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.formula_one.entities.DriverEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
 import es.upm.miw.apaw_practice.domain.persistence_ports.aiport.PassengerPersistence;

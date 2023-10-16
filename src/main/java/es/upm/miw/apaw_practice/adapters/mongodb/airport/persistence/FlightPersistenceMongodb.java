@@ -5,17 +5,12 @@ import es.upm.miw.apaw_practice.adapters.mongodb.airport.entities.AirLineEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.entities.AircraftEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.entities.FlightEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.entities.PassengerEntity;
-import es.upm.miw.apaw_practice.domain.models.airport.Aircraft;
 import es.upm.miw.apaw_practice.domain.models.airport.Flight;
-import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
 import es.upm.miw.apaw_practice.domain.persistence_ports.aiport.FlightPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Repository("flightPersistence")

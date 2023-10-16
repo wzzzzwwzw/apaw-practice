@@ -22,7 +22,7 @@ public class PassengerResource {
         return this.passengerService.read(name);
     }
 
-    @PostMapping(NAME_ID)
+    @PatchMapping(NAME_ID)
     public Passenger updateNumberOfPhone(@PathVariable String name, @RequestBody String numberOfPhone){
         return this.passengerService.updateNumberOfPhone(name, numberOfPhone);
     }

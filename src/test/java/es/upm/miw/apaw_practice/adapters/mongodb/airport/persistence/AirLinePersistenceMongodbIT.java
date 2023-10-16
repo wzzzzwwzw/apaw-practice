@@ -1,10 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.airport.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.airport.AirLine;
 import es.upm.miw.apaw_practice.domain.models.airport.Aircraft;
-import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,7 +17,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AirLinePersistenceMongodbIT {
     @Autowired
     private AirLinePersistenceMongodb airLinePersistenceMongodb;
-
+    @Autowired
+    private AirportSeederService airportSeederService;
+    @AfterEach
+    void resetDataBase() {
+        this.airportSeederService.deleteAll();
+        this.airportSeederService.seedDatabase();
+    }
     @Test
     void testUpdate(){
         AirLine airLineOriginal = this.airLinePersistenceMongodb.readByName("Iberia");

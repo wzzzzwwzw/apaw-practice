@@ -6,7 +6,7 @@ import java.util.List;
 public class Patient {
 
     private String socialInsuranceNumber;
-    private String gender;
+    private String allergicMedicine;
     private LocalDate birthDate;
     private List<Doctor> doctors;
     private List<Appointment> appointments;
@@ -15,9 +15,9 @@ public class Patient {
         //empty for framework
     }
 
-    public Patient(String socialInsuranceNumber, String gender, LocalDate birthDate, List<Doctor> doctors, List<Appointment> appointments) {
+    public Patient(String socialInsuranceNumber, String allergicMedicine, LocalDate birthDate, List<Doctor> doctors, List<Appointment> appointments) {
         this.socialInsuranceNumber = socialInsuranceNumber;
-        this.gender = gender;
+        this.allergicMedicine = allergicMedicine;
         this.birthDate = birthDate;
         this.doctors = doctors;
         this.appointments = appointments;
@@ -30,12 +30,13 @@ public class Patient {
     public void setSocialInsuranceNumber(String socialInsuranceNumber) {
         this.socialInsuranceNumber = socialInsuranceNumber;
     }
-    public String getGender() {
-        return gender;
+
+    public String getAllergicMedicine() {
+        return allergicMedicine;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setAllergicMedicine(String allergicMedicine) {
+        this.allergicMedicine = allergicMedicine;
     }
 
     public LocalDate getBirthDate() {
@@ -67,7 +68,7 @@ public class Patient {
     public String toString() {
         return "Patients{" +
                 "socialInsuranceNumber=" + socialInsuranceNumber +
-                ", gender='" + gender + '\'' +
+                ", allergicMedicine='" + allergicMedicine + '\'' +
                 ", birthDate='" + birthDate + '\'' +
                 ", doctors='" + doctors + '\'' +
                 ", appointments='" + appointments + '\'' +

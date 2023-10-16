@@ -10,4 +10,10 @@ public interface FilmPersistence {
 
     Stream<Film> readByTitle(String title);
 
+    Film update(Film film);
+
+    Stream<Film> readAll();
+
+    Stream<Film> findFilmsByDirectorDni(String dni);
+
 }

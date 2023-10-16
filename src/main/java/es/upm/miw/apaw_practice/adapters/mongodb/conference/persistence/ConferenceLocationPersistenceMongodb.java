@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.conference.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.conference.daos.ConferenceLocationRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.conference.daos.ConferenceRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.conference.entities.ConferenceLocationEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.conference.ConferenceLocation;
@@ -13,10 +14,12 @@ import java.util.stream.Stream;
 @Repository("conferenceLocationPersistence")
 public class ConferenceLocationPersistenceMongodb implements ConferenceLocationPersistence {
     private final ConferenceLocationRepository conferenceLocationRepository;
+    private final ConferenceRepository conferenceRepository;
 
     @Autowired
-    public ConferenceLocationPersistenceMongodb(ConferenceLocationRepository conferenceLocationRepository) {
+    public ConferenceLocationPersistenceMongodb(ConferenceLocationRepository conferenceLocationRepository, ConferenceRepository conferenceRepository) {
         this.conferenceLocationRepository = conferenceLocationRepository;
+        this.conferenceRepository = conferenceRepository;
     }
 
 
@@ -44,5 +47,14 @@ public class ConferenceLocationPersistenceMongodb implements ConferenceLocationP
         return this.conferenceLocationRepository
                 .save(conferenceLocationEntity)
                 .toConferenceLocation();
+    }
+
+    @Override
+    public Stream<String> findCitiesByAuthorHonorific(String honorific) {
+        return this.conferenceRepository.findAll().stream()
+                .filter(conferenceEntity -> conferenceEntity.getPapersEntities().stream()
+                        .flatMap(paperEntity -> paperEntity.getAuthorEntities().stream())
+                        .anyMatch(authorEntity -> honorific.equals(authorEntity.getHonorific())))
+                .map(conferenceEntity -> conferenceEntity.getLocationEntity().getCity()).distinct();
     }
 }

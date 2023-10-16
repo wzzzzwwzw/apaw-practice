@@ -31,10 +31,10 @@ public class FurnitureStoreSeederService {
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Furniture store Initial Load -----------");
         MaterialEntity[] materials = {
-                new MaterialEntity(new Material("madera", "roble", 8)),
-                new MaterialEntity(new Material("plástico", "polipropileno", 5)),
-                new MaterialEntity(new Material("metal", "aluminio", 7)),
-                new MaterialEntity(new Material("vidrio", "laminado", 4)),
+                new MaterialEntity(new Material("roble", "madera", 8)),
+                new MaterialEntity(new Material("polipropileno", "plástico", 5)),
+                new MaterialEntity(new Material("aluminio", "metal", 7)),
+                new MaterialEntity(new Material("laminado", "vidrio", 4)),
         };
         this.materialRepository.saveAll(Arrays.asList(materials));
         ManagerEntity[] managers = {
@@ -52,11 +52,11 @@ public class FurnitureStoreSeederService {
         FurnitureStoreEntity[] furnitureStoreEntities = {
                 new FurnitureStoreEntity("ikia", LocalDateTime.of(LocalDateTime.now().toLocalDate(), LocalTime.of(9, 0)),
                         LocalDateTime.of(LocalDateTime.now().toLocalDate(), LocalTime.of(20, 30)), managers[1],
-                        Arrays.asList(furnitures[0], furnitures[2], furnitures[3])),
+                        Arrays.asList(furnitures[0], furnitures[1], furnitures[3])),
 
                 new FurnitureStoreEntity("muebles vintage", LocalDateTime.of(LocalDateTime.now().toLocalDate(), LocalTime.of(10, 0)),
                         LocalDateTime.of(LocalDateTime.now().toLocalDate(), LocalTime.of(21, 0)), managers[0],
-                        Arrays.asList(furnitures[0], furnitures[1])),
+                        Arrays.asList(furnitures[0], furnitures[2])),
         };
         this.furnitureStoreRepository.saveAll(Arrays.asList(furnitureStoreEntities));
     }

@@ -10,6 +10,9 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.restaurant.DishPersiste
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Repository("dishPersistence")
@@ -48,6 +51,25 @@ public class DishPersistenceMongodb implements DishPersistence {
                 .findByTitle(title)
                 .orElseThrow(() -> new NotFoundException("Dish title:" + title))
                 .toDish();
+    }
+
+    @Override
+    public void increasePrices(Float increment) {
+        List<DishEntity> dishes = this.dishRepository.findAll();
+        dishes.stream().map(dishEntity -> {
+            BigDecimal newPrice = BigDecimal.valueOf(dishEntity.getPrice().floatValue() + increment);
+            dishEntity.setPrice(newPrice);
+            return dishEntity;
+        }).forEach(dish -> this.dishRepository.save(dish).toDish());
+    }
+
+    @Override
+    public List<Dish> findAllDishesByCategoryColor(String color) {
+        return this.dishRepository.findAll()
+                .stream()
+                .filter(dish -> dish.getCategory().getColor().equals(color))
+                .map(DishEntity::toDish)
+                .collect(Collectors.toList());
     }
 
 }

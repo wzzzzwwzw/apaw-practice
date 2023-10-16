@@ -18,11 +18,15 @@ public class DriverRepositoryIT {
     void testFindByNumber() {
         assertTrue(this.driverRepository.findByNumber(1).isPresent());
         DriverEntity driver = this.driverRepository.findByNumber(1).get();
-        driver.setPoints(200F);
 
         assertEquals(1, driver.getNumber());
         assertEquals("Max Verstappen", driver.getDriverName());
         assertEquals("Netherlands", driver.getNationality());
-        assertEquals(200F, driver.getPoints());
+        assertEquals(224.5F, driver.getPoints());
+    }
+
+    @Test
+    void testFindByNumberNotFound() {
+        assertTrue(this.driverRepository.findByNumber(0).isEmpty());
     }
 }

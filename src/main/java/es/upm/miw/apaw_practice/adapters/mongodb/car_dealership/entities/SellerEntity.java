@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities;
 
+import es.upm.miw.apaw_practice.domain.models.car_dealership.Seller;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,6 +16,10 @@ public class SellerEntity {
     private String surname;
     private Integer salary;
 
+    public SellerEntity() {
+        //empty for framework
+    }
+
     public SellerEntity(String name, String surname, Integer salary) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
@@ -21,6 +27,10 @@ public class SellerEntity {
         this.salary = salary;
     }
 
+    public SellerEntity(Seller seller) {
+        BeanUtils.copyProperties(seller, this);
+        this.id = UUID.randomUUID().toString();
+    }
     public String getId() {
         return id;
     }
@@ -53,6 +63,11 @@ public class SellerEntity {
         this.salary = salary;
     }
 
+    public Seller toSeller() {
+        Seller seller = new Seller();
+        BeanUtils.copyProperties(this, seller);
+        return seller;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @TestConfig
-public class ArtWorkRepositoryIT {
+class ArtWorkRepositoryIT {
 
     @Autowired
     private ArtWorkRepository artWorkRepository;

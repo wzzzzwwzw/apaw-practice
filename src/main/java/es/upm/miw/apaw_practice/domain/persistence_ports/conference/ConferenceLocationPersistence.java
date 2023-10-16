@@ -11,4 +11,6 @@ public interface ConferenceLocationPersistence {
 
     Stream<ConferenceLocation> readAll();
     ConferenceLocation update(String id, ConferenceLocation conferenceLocation);
+
+    Stream<String> findCitiesByAuthorHonorific(String honorific);
 }

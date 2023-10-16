@@ -3,16 +3,16 @@ package es.upm.miw.apaw_practice.domain.models.hospital;
 public class Doctor {
 
     private String medicalLicenseCode;
-    private String speciality;
+    private String office;
     private Department department;
 
     public Doctor() {
 
     }
 
-    public Doctor(String medicalLicenseCode, String speciality, Department department) {
+    public Doctor(String medicalLicenseCode, String office, Department department) {
         this.medicalLicenseCode = medicalLicenseCode;
-        this.speciality = speciality;
+        this.office = office;
         this.department = department;
     }
 
@@ -24,12 +24,12 @@ public class Doctor {
         this.medicalLicenseCode = medicalLicenseCode;
     }
 
-    public String getSpeciality() {
-        return speciality;
+    public String getOffice() {
+        return office;
     }
 
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
+    public void setOffice(String office) {
+        this.office = office;
     }
 
     public Department getDepartment() {
@@ -45,7 +45,7 @@ public class Doctor {
     public String toString() {
         return "Doctor{" +
                 "medicalLicenseCode=" + medicalLicenseCode +
-                ", speciality='" + speciality + '\'' +
+                ", office='" + office + '\'' +
                 ", department='" + department + '\'' +
                 '}';
     }

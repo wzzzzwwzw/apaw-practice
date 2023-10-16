@@ -5,5 +5,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RacePersistence {
-    Race findByCircuitName(String circuitName);
+    Race readByCircuitName(String circuitName);
+
+    Race update(Race race);
 }

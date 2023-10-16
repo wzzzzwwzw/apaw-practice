@@ -22,4 +22,9 @@ public class ArtWorkResource {
     public ArtWork read(@PathVariable String inventoryNumber) {
         return this.artWorkService.findByInventoryNumber(inventoryNumber);
     }
+
+    @PostMapping
+    public ArtWork create(@RequestBody ArtWork artWork) {
+        return this.artWorkService.create(artWork);
+    }
 }

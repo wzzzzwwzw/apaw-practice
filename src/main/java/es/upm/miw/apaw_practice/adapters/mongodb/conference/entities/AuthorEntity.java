@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.conference.entities;
 
 import es.upm.miw.apaw_practice.domain.models.conference.Author;
-import es.upm.miw.apaw_practice.domain.models.shop.Article;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

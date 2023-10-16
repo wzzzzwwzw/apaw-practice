@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @Document
@@ -70,10 +71,27 @@ public class DriverEntity {
         this.points = points;
     }
 
+    public void fromDriver(Driver driver) {
+        BeanUtils.copyProperties(driver, this);
+    }
+
     public Driver toDriver() {
         Driver driver = new Driver();
         BeanUtils.copyProperties(this, driver);
         return driver;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DriverEntity that = (DriverEntity) o;
+        return Objects.equals(id, that.id) && Objects.equals(number, that.number) && Objects.equals(driverName, that.driverName) && Objects.equals(nationality, that.nationality) && Objects.equals(points, that.points);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, number, driverName, nationality, points);
     }
 
     @Override

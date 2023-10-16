@@ -9,6 +9,11 @@ public class Route {
 
     }
 
+    public Route(String name, String difficulty) {
+        this.name = name;
+        this.difficulty = difficulty;
+    }
+
     public Route(String key, String name, String difficulty) {
         this.key = key;
         this.name = name;

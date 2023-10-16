@@ -18,14 +18,14 @@ public class RaceRepositoryIT {
 
     @Test
     void testFindByCircuitName() {
-        assertTrue(this.raceRepository.findByCircuitName("Hermanos Rodríguez").isPresent());
-        RaceEntity race = this.raceRepository.findByCircuitName("Hermanos Rodríguez").get();
+        assertTrue(this.raceRepository.findByCircuitName("Albert Park").isPresent());
+        RaceEntity race = this.raceRepository.findByCircuitName("Albert Park").get();
         race.setNightRace(false);
-        race.setLaps(71);
+        race.setLaps(58);
 
-        assertEquals("Hermanos Rodríguez", race.getCircuitName());
-        assertEquals("Mexico", race.getHostCountry());
-        assertEquals(LocalDate.of(2023, 10, 29), race.getDate());
+        assertEquals("Albert Park", race.getCircuitName());
+        assertEquals("Australia", race.getHostCountry());
+        assertEquals(LocalDate.of(2023, 4, 2), race.getDate());
         assertTrue(
                 race.getRaceDriverEntities().stream()
                         .anyMatch(driver ->
@@ -34,9 +34,13 @@ public class RaceRepositoryIT {
                                         driver.getNationality().equals("Spain")
                         )
         );
-        assertEquals("Mexico", race.getHostCountry());
         assertEquals(false, race.isNightRace());
-        assertEquals(71, race.getLaps());
+        assertEquals(58, race.getLaps());
+    }
+
+    @Test
+    void testFindByCircuitNameNotFound() {
+        assertTrue(this.raceRepository.findByCircuitName("Monaco").isEmpty());
     }
 }
 

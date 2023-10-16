@@ -35,7 +35,7 @@ public class Classroom {
         this.entryHour = entryHour;
     }
 
-    public Boolean hasSmartBoard() {
+    public Boolean getSmartBoard() {
         return smartBoard;
     }
 
@@ -49,6 +49,13 @@ public class Classroom {
 
     public void setLockers(Integer lockers) {
         this.lockers = lockers;
+    }
+
+    public void doDefault() {
+        this.location = "default";
+        this.entryHour = LocalDateTime.of(2001, 1, 1, 1, 1);
+        this.smartBoard = true;
+        this.lockers = 0;
     }
 
     @Override

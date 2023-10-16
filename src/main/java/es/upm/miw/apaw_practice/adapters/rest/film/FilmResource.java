@@ -1,13 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.rest.film;
 
+import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.film.Film;
+import es.upm.miw.apaw_practice.domain.models.film.Review;
 import es.upm.miw.apaw_practice.domain.services.film.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @RestController
@@ -16,6 +16,8 @@ public class FilmResource {
     static final String FILMS = "/film/films";
 
     static final String TITLE_ID = "/{title}";
+    static final String REVIEWS = "/reviews";
+    static final String SEARCH = "/search";
 
     private final FilmService filmService;
 
@@ -28,4 +30,16 @@ public class FilmResource {
     public Stream<Film> read(@PathVariable String title) {
         return this.filmService.read(title);
     }
+
+    @PutMapping(TITLE_ID + REVIEWS)
+    public Film updateReviews(@PathVariable String title, @RequestBody List<Review> reviewList) {
+        return this.filmService.updateReviews(title, reviewList);
+    }
+
+    @GetMapping(SEARCH)
+    public Double findRatingAverageByDirectorDni(@RequestParam String q) {
+        String directorDni = new LexicalAnalyzer().extractWithAssure(q, "dni");
+        return this.filmService.findRatingAverageByDirectorDni(directorDni);
+    }
+
 }

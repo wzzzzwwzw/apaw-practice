@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.domain.services.bakery;
 
-import es.upm.miw.apaw_practice.domain.models.bakery.Product;
 import es.upm.miw.apaw_practice.domain.persistence_ports.bakery.ProductPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ public class ProductService {
     }
 
     public void delete(String name) {
-        return this.productPersistence.delete(name);
+        this.productPersistence.delete(name);
     }
 
 }

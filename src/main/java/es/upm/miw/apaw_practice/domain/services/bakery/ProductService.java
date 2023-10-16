@@ -21,7 +21,7 @@ public class ProductService {
         this.productPersistence.delete(name);
     }
 
-    public Product updatePrice(String name, Double price) {
+    public Product updatePrice(String name, String price) {
         Product product = this.productPersistence.findByName(name);
         product.setPrice(new BigDecimal(price));
         return this.productPersistence.update(product);

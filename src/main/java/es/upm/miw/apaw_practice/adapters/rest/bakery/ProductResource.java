@@ -24,7 +24,7 @@ public class ProductResource {
     }
 
     @PatchMapping(NAME_ID)
-    public Product updatePrice(@PathVariable String name, @RequestBody Double price) {
+    public Product updatePrice(@PathVariable String name, @RequestBody String price) {
         return this.productService.updatePrice(name, price);
     }
 }

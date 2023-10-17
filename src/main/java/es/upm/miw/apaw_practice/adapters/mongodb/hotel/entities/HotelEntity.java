@@ -88,16 +88,12 @@ public class HotelEntity {
         Hotel hotel = new Hotel();
         BeanUtils.copyProperties(this, hotel);
 
-        List<HotelActivity> activities = new ArrayList<HotelActivity>();
-        this.activities.forEach(activity -> {
-            activities.add(activity.toObject());
-        });
+        List<HotelActivity> activities = new ArrayList<>();
+        this.activities.forEach(activity -> activities.add(activity.toObject()));
         hotel.setActivities(activities);
 
-        List<HotelBooking> bookings = new ArrayList<HotelBooking>();
-        this.bookings.forEach(activity -> {
-            bookings.add(activity.toObject());
-        });
+        List<HotelBooking> bookings = new ArrayList<>();
+        this.bookings.forEach(activity -> bookings.add(activity.toObject()));
         hotel.setBookings(bookings);
         
         return hotel;

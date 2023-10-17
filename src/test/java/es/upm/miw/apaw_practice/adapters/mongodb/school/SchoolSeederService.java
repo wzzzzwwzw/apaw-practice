@@ -83,5 +83,8 @@ public class SchoolSeederService {
 
     public void deleteAll() {
         this.subjectRepository.deleteAll();
+        this.studentRepository.deleteAll();
+        this.schoolRepository.deleteAll();
+        this.classroomRepository.deleteAll();
     }
 }

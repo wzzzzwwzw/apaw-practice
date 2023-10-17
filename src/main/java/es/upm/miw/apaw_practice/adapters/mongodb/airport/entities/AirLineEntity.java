@@ -1,10 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.airport.entities;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ShoppingCartEntity;
 import es.upm.miw.apaw_practice.domain.models.airport.Aircraft;
 import es.upm.miw.apaw_practice.domain.models.airport.AirLine;
-import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;

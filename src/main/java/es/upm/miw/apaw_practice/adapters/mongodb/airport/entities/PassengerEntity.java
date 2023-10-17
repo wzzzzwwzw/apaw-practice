@@ -25,7 +25,9 @@ public class PassengerEntity {
         BeanUtils.copyProperties(passenger, this);
         this.id = UUID.randomUUID().toString();
     }
-
+    public void fromPassenger (Passenger passenger) {
+       BeanUtils.copyProperties(passenger, this);
+    }
     public String getId() {
         return id;
     }

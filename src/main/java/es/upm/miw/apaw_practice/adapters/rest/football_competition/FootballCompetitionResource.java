@@ -4,11 +4,14 @@ import es.upm.miw.apaw_practice.domain.services.football_competition.FootballCom
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(FootballCompetitionResource.COMPETITIONS)
 public class FootballCompetitionResource {
     static final String COMPETITIONS = "/football_competition/competitions";
     static final String ORGANIZING_ENTITY_ID = "/{organizingEntity}";
+    static final String SEARCH = "/search";
     private final FootballCompetitionService footballCompetitionService;
 
     @Autowired
@@ -19,5 +22,10 @@ public class FootballCompetitionResource {
     @DeleteMapping(ORGANIZING_ENTITY_ID)
     public void delete(@PathVariable String organizingEntity) {
         this.footballCompetitionService.delete(organizingEntity);
+    }
+
+    @GetMapping(SEARCH)
+    public List<String> getNamesByOrganizingEntity(@RequestParam String organizingEntity) {
+        return this.footballCompetitionService.getNamesByOrganizingEntity(organizingEntity);
     }
 }

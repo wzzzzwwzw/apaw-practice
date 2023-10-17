@@ -1,11 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.subway.entities;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ArticleEntity;
+import es.upm.miw.apaw_practice.domain.models.subway.Line;
+import es.upm.miw.apaw_practice.domain.models.subway.Station;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -91,6 +91,13 @@ public class LineEntity {
     @Override
     public int hashCode() {
         return Objects.hash(label, color, works, stations, schedule);
+    }
+
+    public Line toLine() {
+        List<Station> stationsCollection = this.stations.stream()
+                .map(StationEntity::toStation)
+                .toList();
+        return new Line(this.label, this.color, this.works, this.schedule.toSchedule(), stationsCollection);
     }
 
     @Override

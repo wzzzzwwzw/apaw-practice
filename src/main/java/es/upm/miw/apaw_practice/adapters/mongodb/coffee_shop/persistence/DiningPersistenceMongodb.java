@@ -17,6 +17,12 @@ public class DiningPersistenceMongodb implements DiningPersistence {
     }
 
     @Override
+    public boolean existDiningNumber(String dining) {
+        return this.diningRepository
+                .findByDiningNumber(dining)
+                .isPresent();
+    }
+    @Override
     public Dining create(Dining dining) {
         return this.diningRepository
                 .save(new DiningEntity(dining))

@@ -12,6 +12,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.fruitshop.FruitPersiste
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 
 @Repository("fruitpersistence")
 
@@ -59,6 +61,13 @@ public class FruitPersistenceMongdb implements FruitPersistence {
                 .orElseThrow(() -> new NotFoundException("Fruit Specie:" + fruit.getFruitSpecie().getSpecie()));
         fruitEntity.setFruitSpecieEntity(fruitSpecieEntity);
         return this.fruitRepository.save(fruitEntity).toFruit();
+    }
+
+    @Override
+    public Stream<Fruit> readAll(){
+        return this.fruitRepository.findAll().stream()
+                .map(FruitEntity::toFruit);
+
     }
 
 }

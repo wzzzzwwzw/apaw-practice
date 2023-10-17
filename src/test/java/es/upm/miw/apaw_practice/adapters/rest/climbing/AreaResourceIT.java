@@ -59,7 +59,7 @@ class AreaResourceIT {
 
     @Test
     void testUpdateRoute() {
-        Route route = new Route("3", "Route 3 updated", "Easy");
+        Route route = new Route("4", "Route 4 updated", "Easy");
         this.webTestClient
                 .put()
                 .uri(AREAS + NAME_ID + ROUTES + KEY_ID, "Area 2", route.getKey())
@@ -69,7 +69,7 @@ class AreaResourceIT {
                 .expectBody(Area.class)
                 .value(Assertions::assertNotNull)
                 .value(areaData -> {
-                    assertEquals("Route 3 updated", areaData.getRoutes().get(1).getName());
+                    assertEquals("Route 4 updated", areaData.getRoutes().get(1).getName());
                     assertEquals("Easy", areaData.getRoutes().get(1).getDifficulty());
                 });
     }

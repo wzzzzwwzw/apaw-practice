@@ -84,6 +84,10 @@ public class SubjectEntity {
         return new Subject(this.title, this.description, this.bilingual, this.credits);
     }
 
+    public void fromSubject(Subject subject) {
+        BeanUtils.copyProperties(subject, this);
+    }
+
     @Override
     public String toString() {
         return "SubjectEntity{" +

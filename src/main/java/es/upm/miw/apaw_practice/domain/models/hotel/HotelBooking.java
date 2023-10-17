@@ -4,14 +4,14 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class HotelBooking {
-    private Integer bookingNumber;
+    private Integer number;
     private Integer roomNumber;
     private LocalDate date;
     private BigDecimal cost;
     private HotelClient client;
 
-    public HotelBooking(Integer bookingNumber, Integer roomNumber, LocalDate date, BigDecimal cost, HotelClient client) {
-        this.bookingNumber = bookingNumber;
+    public HotelBooking(Integer number, Integer roomNumber, LocalDate date, BigDecimal cost, HotelClient client) {
+        this.number = number;
         this.roomNumber = roomNumber;
         this.date = date;
         this.cost = cost;
@@ -22,12 +22,12 @@ public class HotelBooking {
         // empty for framework
     }
 
-    public Integer getBookingNumber() {
-        return bookingNumber;
+    public Integer getNumber() {
+        return number;
     }
 
-    public void setBookingNumber(Integer bookingNumber) {
-        this.bookingNumber = bookingNumber;
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     public Integer getRoomNumber() { return roomNumber; }
@@ -61,7 +61,7 @@ public class HotelBooking {
     @Override
     public String toString() {
         return "HotelBooking {" + "\n" +
-                "   bookingNumber = " + bookingNumber + "\n" +
+                "   bookingNumber = " + number + "\n" +
                 "   date = " + date + "\n" +
                 "   cost = " + cost + "\n" +
                 "   client = " + client + "\n" +

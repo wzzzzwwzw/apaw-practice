@@ -41,7 +41,7 @@ public class HotelClient {
         this.telephone = telephone;
     }
 
-    public Boolean isPartner() {
+    public Boolean getPartnership() {
         return partnership;
     }
 

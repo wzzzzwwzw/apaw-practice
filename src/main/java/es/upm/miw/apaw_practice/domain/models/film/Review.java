@@ -6,7 +6,8 @@ public class Review {
     private String comment;
     private Boolean recommendation;
 
-    public Review() {}
+    public Review() {
+    }
 
     public Review(Integer rating, String comment, Boolean recommendation) {
         this.rating = rating;

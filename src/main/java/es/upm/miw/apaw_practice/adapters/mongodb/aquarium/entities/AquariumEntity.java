@@ -98,4 +98,7 @@ public class AquariumEntity {
         BeanUtils.copyProperties(aquarium, this);
         this.id = UUID.randomUUID().toString();
     }
+    public void fromAquarium(Aquarium aquarium) {
+        BeanUtils.copyProperties(aquarium, this);
+    }
 }

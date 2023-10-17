@@ -25,6 +25,7 @@ public class BusEntity {
     private TripEntity trip;
     @DBRef
     private List<PassengerEntity> passengers;
+
     public BusEntity() {
         //open for framework
     }
@@ -108,8 +109,8 @@ public class BusEntity {
         return passengers;
     }
 
-    public void setPassengers(List<PassengerEntity> passengers) {
-        this.passengers = passengers;
+    public void setPassengers(List<PassengerEntity> passengersEntities) {
+        this.passengers = passengersEntities;
     }
 
     public Boolean isAccessibility() {

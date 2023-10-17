@@ -42,4 +42,12 @@ public class AreaPersistenceMongodb implements AreaPersistence {
                 .save(areaEntityEntity)
                 .toArea();
     }
+
+    @Override
+    public List<Area> findAll() {
+        return this.areaRepository.findAll()
+                .stream()
+                .map(AreaEntity::toArea)
+                .toList();
+    }
 }

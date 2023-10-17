@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class CoffeeClientService {
@@ -31,5 +32,8 @@ public class CoffeeClientService {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
+    public List<String> getUniqueLocationsByCoffee(String coffee) {
+        return this.coffeeClientPersistence.getUniqueLocationsByCoffee(coffee);
+    }
 
 }

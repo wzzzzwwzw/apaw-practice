@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.furniture_store;
 
+import es.upm.miw.apaw_practice.domain.models.furniture_store.Manager;
 import es.upm.miw.apaw_practice.domain.services.furniture_store.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,11 @@ public class ManagerResource {
     @DeleteMapping(AFFILIATION_NUMBER_ID)
     public void delete(@PathVariable String affiliationNumber) {
         this.managerService.delete(affiliationNumber);
+    }
+
+    @PatchMapping(AFFILIATION_NUMBER_ID)
+    public Manager updateSurname(@PathVariable String affiliationNumber, @RequestBody String name) {
+        return this.managerService.updateName(affiliationNumber, name);
     }
 
 }

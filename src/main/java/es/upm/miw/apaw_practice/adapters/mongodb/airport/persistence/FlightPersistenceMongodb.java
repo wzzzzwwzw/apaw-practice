@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Repository("flightPersistence")
 public class FlightPersistenceMongodb implements FlightPersistence {
@@ -45,4 +46,12 @@ public class FlightPersistenceMongodb implements FlightPersistence {
         return this.flightRepository.findByNumberOfFlight(numberOfFlight)
                 .isPresent();
     }
+
+    @Override
+    public Stream<String> findAirlineNameByPassengerAgeGreaterThan(Integer age) {
+         return this.flightRepository.findAll().stream()
+                .filter(flight -> flight.getPassengers().stream()
+                 .anyMatch(passengerEntity -> passengerEntity.getAge()>age))
+                 .map(flightEntity -> flightEntity.getAirLine().getName()).distinct();
+     }
 }

@@ -53,5 +53,8 @@ public class FlightServiceIT {
         assertTrue(exception.getMessage().contains("Flight exist: 12345"));
     }
 
-
+    @Test
+    void testFindAirlineNameByPassengerAgeGreaterThan(){
+        assertTrue(this.flightService.findAirlineNameByPassengerAgeGreaterThan(70).toList().contains("Iberia"));
+    }
 }

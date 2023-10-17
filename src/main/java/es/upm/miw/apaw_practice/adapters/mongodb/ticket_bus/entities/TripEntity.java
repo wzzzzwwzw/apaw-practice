@@ -122,6 +122,11 @@ public class TripEntity {
         return Objects.hash( path);
     }
 
+    public void fromTrip(Trip trip) {
+        this.id = UUID.randomUUID().toString();
+        BeanUtils.copyProperties(trip, this);
+    }
+
     @Override
     public String toString() {
         return "TripEntity{" +
@@ -134,6 +139,7 @@ public class TripEntity {
                 ", tickets=" + tickets +
                 '}';
     }
+
 
 
 }

@@ -4,10 +4,7 @@ import es.upm.miw.apaw_practice.domain.exceptions.BadRequestException;
 import es.upm.miw.apaw_practice.domain.models.ticket_bus.Bus;
 import es.upm.miw.apaw_practice.domain.services.ticket_bus.BusService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 @RestController
@@ -32,5 +29,10 @@ public class BusResource {
             throw new BadRequestException("Incomplete information");
         }
         this.busService.createWithTripPath(bus.getTrip().getPath(), bus);
+    }
+
+    @PutMapping(BusResource.REFERENCE_BUS + BusResource.TRIPS_PATH)
+    public void updateTrip(@PathVariable("referenceBus") String referenceBus, @PathVariable("path") String tripPath) {
+        this.busService.updateTrip(referenceBus, tripPath);
     }
 }

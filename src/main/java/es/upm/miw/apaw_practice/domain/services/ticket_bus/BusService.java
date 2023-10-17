@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.domain.services.ticket_bus;
 
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.models.ticket_bus.Bus;
+import es.upm.miw.apaw_practice.domain.models.ticket_bus.Trip;
 import es.upm.miw.apaw_practice.domain.persistence_ports.ticket_bus.BusPersistence;
 import es.upm.miw.apaw_practice.domain.persistence_ports.ticket_bus.TripPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,9 @@ public class BusService {
         if (this.busPersistence.existReferenceBus(busReference)) {
             throw new ConflictException("Reference Bus exists: " + busReference);
         }
+    }
+    public void updateTrip(String referenceBus, String tripPath) {
+        Trip trip = this.tripPersistence.readByPath(tripPath);
+        this.busPersistence.updateTrip(referenceBus, trip);
     }
 }

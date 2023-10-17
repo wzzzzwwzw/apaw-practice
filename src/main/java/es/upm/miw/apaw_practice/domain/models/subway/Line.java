@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.subway;
 
+import es.upm.miw.apaw_practice.domain.models.subway.builders.LineBuilders;
 import es.upm.miw.apaw_practice.domain.models.subway.trees.TreeLines;
 
 import java.util.List;
@@ -87,4 +88,48 @@ public class Line implements TreeLines {
                 ", stations=" + stations +
                 '}';
     }
+
+    public static class Builder implements LineBuilders.Label, LineBuilders.Optionals{
+
+        private final Line line;
+
+        public Builder() {
+            this.line = new Line();
+        }
+
+        @Override
+        public LineBuilders.Optionals label(String label) {
+            this.line.setLabel(label);
+            return this;
+        }
+
+        @Override
+        public LineBuilders.Optionals color(String color) {
+            this.line.setColor(color);
+            return this;
+        }
+
+        @Override
+        public LineBuilders.Optionals works(Boolean works) {
+            this.line.setWorks(works);
+            return this;
+        }
+
+        @Override
+        public LineBuilders.Optionals schedule(Schedule schedule) {
+            this.line.setSchedule(schedule);
+            return this;
+        }
+
+        @Override
+        public LineBuilders.Optionals stations(List<Station> stations) {
+            this.line.setStations(stations);
+            return this;
+        }
+
+        public Line build() {
+            return this.line;
+        }
+    }
+
 }

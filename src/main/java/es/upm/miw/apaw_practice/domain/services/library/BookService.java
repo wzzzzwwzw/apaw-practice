@@ -12,7 +12,7 @@ public class BookService {
         this.bookPersistence = bookPersistence;
     }
 
-    public void delete(String isbn){
-        this.bookPersistence.delete(isbn);
+    public void deleteByIsbn(String isbn){
+        this.bookPersistence.deleteByIsbn(isbn);
     }
 }

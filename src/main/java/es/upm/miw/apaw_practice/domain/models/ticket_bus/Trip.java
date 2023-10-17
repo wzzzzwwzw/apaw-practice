@@ -22,7 +22,9 @@ public class Trip {
         this.numStops = numStops;
         this.bus = bus;
     }
-
+    public Trip(String path) {
+        this.path = path;
+    }
     public String getPath() {
         return path;
     }

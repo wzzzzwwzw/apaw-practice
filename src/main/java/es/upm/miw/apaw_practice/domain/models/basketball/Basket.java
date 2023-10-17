@@ -2,7 +2,7 @@ package es.upm.miw.apaw_practice.domain.models.basketball;
 
 import java.time.LocalDateTime;
 
-class Basket {
+public class Basket {
     private String identifier;
     private Integer value;
     private LocalDateTime basketTime;

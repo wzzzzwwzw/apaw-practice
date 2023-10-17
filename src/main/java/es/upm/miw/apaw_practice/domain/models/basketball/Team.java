@@ -3,21 +3,25 @@ package es.upm.miw.apaw_practice.domain.models.basketball;
 import java.util.ArrayList;
 import java.util.List;
 
-class Team {
+public class Team {
     private String alias;
     private Integer numPlayers;
     private String coach;
     private List<Player> players;
+    private List<Pavilion> pavilions;
 
 
     public Team() {
         this.players = new ArrayList<>();
+        this.pavilions = new ArrayList<>();
     }
 
-    public Team(String alias, Integer numPlayers, String coach) {
+    public Team(String alias, Integer numPlayers, String coach, List<Player> players, List<Pavilion> pavilions) {
         this.alias = alias;
         this.numPlayers = numPlayers;
         this.coach = coach;
+        this.players = players;
+        this.pavilions = pavilions;
     }
 
     public String getAlias() {
@@ -44,6 +48,17 @@ class Team {
         this.coach = coach;
     }
 
+    public List<Pavilion> getPavilions() {
+        return pavilions;
+    }
+
+    public void setPavilions(List<Pavilion> pavilions) {
+        this.pavilions = pavilions;
+    }
+
+    public void addPavilion(Pavilion pavilion) {
+        this.pavilions.add(pavilion);
+    }
     public List<Player> getPlayers() {
         return players;
     }

@@ -49,9 +49,9 @@ public class FlightPersistenceMongodb implements FlightPersistence {
 
     @Override
     public Stream<String> findAirlineNameByPassengerAgeGreaterThan(Integer age) {
-        return this.flightRepository.findAll().stream()
+         return this.flightRepository.findAll().stream()
                 .filter(flight -> flight.getPassengers().stream()
-                        .anyMatch(passengerEntity -> passengerEntity.getAge()>age)
-                        ).map(flightEntity -> flightEntity.getAirLine().getName());
-    }
+                 .anyMatch(passengerEntity -> passengerEntity.getAge()>age))
+                 .map(flightEntity -> flightEntity.getAirLine().getName()).distinct();
+     }
 }

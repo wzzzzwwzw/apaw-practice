@@ -3,7 +3,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.hotel.entities;
 import es.upm.miw.apaw_practice.domain.models.hotel.Hotel;
 import es.upm.miw.apaw_practice.domain.models.hotel.HotelActivity;
 import es.upm.miw.apaw_practice.domain.models.hotel.HotelBooking;
-import es.upm.miw.apaw_practice.domain.models.hotel.HotelClient;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -13,7 +12,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.Arrays;
 
 @Document
 public class HotelEntity {

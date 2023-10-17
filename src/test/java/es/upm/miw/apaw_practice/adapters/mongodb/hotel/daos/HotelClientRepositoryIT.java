@@ -1,14 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hotel.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
-import es.upm.miw.apaw_practice.adapters.mongodb.hotel.entities.HotelBookingEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.hotel.entities.HotelClientEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 

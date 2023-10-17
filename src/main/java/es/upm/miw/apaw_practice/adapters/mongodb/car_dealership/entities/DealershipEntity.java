@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities;
 
+import es.upm.miw.apaw_practice.domain.models.car_dealership.Car;
+import es.upm.miw.apaw_practice.domain.models.car_dealership.Dealership;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -88,5 +91,15 @@ public class DealershipEntity {
                 ", district='" + district + '\'' +
                 ", carEntities=" + carEntities +
                 '}';
+    }
+
+    public Dealership toDealership() {
+        Dealership dealership = new Dealership();
+        BeanUtils.copyProperties(this, dealership);
+        List<Car> cars = this.carEntities.stream()
+                .map(CarEntity::toCar)
+                .toList();
+        dealership.setCarList(cars);
+        return dealership;
     }
 }

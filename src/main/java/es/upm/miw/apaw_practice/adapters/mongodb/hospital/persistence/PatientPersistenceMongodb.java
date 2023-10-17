@@ -24,4 +24,17 @@ public class PatientPersistenceMongodb implements PatientPersistence {
                 .orElseThrow(() -> new NotFoundException("Patient socialInsuranceNumber: " + socialInsuranceNumber))
                 .toPatient();
     }
+
+    @Override
+    public Patient updateAllergicMedicine(String socialInsuranceNumber, String newAllergicMedicine) {
+        PatientEntity patientEntity = this.patientRepository
+                .findBySocialInsuranceNumber(socialInsuranceNumber)
+                .orElseThrow(() -> new NotFoundException("Patient socialInsuranceNumber: " + socialInsuranceNumber));
+        patientEntity.setAllergicMedicine(newAllergicMedicine);
+        return this.patientRepository.save(patientEntity).toPatient();
+    }
+
+
+
+
 }

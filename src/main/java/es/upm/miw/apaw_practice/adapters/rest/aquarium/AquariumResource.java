@@ -2,10 +2,8 @@ package es.upm.miw.apaw_practice.adapters.rest.aquarium;
 import es.upm.miw.apaw_practice.domain.models.aquarium.Aquarium;
 import es.upm.miw.apaw_practice.domain.services.aquarium.AquariumService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 @RequestMapping(AquariumResource.AQUARIUMS)
 public class AquariumResource {
@@ -19,5 +17,13 @@ public class AquariumResource {
     @GetMapping(DESCRIPTION)
     public Aquarium read(@PathVariable String description){
         return this.aquariumService.read(description);
+    }
+    @PostMapping
+    public Aquarium create(@RequestBody Aquarium aquarium){
+        return this.aquariumService.create(aquarium);
+    }
+    @PatchMapping(DESCRIPTION)
+    public Aquarium updateSize(@PathVariable String description,@RequestBody double size){
+        return this.aquariumService.updateDescription(description,size);
     }
 }

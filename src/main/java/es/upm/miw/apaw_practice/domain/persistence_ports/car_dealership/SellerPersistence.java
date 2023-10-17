@@ -13,5 +13,9 @@ public interface SellerPersistence {
 
     Seller readById(String id);
 
-    Seller update(Seller seller);
+    Seller updateName(Seller seller);
+
+    Seller updateSurname(Seller seller);
+
+    Stream<String> findUniqueSurnamesMore20000ByBrand(String brand);
 }

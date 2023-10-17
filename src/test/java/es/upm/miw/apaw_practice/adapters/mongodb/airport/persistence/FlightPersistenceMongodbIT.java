@@ -38,4 +38,17 @@ public class FlightPersistenceMongodbIT {
         assertTrue(this.flightPersistenceMongodb.existFlight(12345));
         assertFalse(this.flightPersistenceMongodb.existFlight(545476));
     }
+    @Test
+    void testSearch(){
+       assertTrue( this.flightPersistenceMongodb.findAirlineNameByPassengerAgeGreaterThan(80).toList().isEmpty());
+    }
+    @Test
+    void test2Search(){
+        assertTrue(this.flightPersistenceMongodb.findAirlineNameByPassengerAgeGreaterThan(70).toList().contains("Iberia"));
+        assertEquals(1,this.flightPersistenceMongodb.findAirlineNameByPassengerAgeGreaterThan(70).toList().size());
+    }
+    @Test
+    void testFindAverageAgeByModel(){
+        assertEquals(48.0, this.flightPersistenceMongodb.findAverageAgeByModel("Airbus A320"));
+    }
 }

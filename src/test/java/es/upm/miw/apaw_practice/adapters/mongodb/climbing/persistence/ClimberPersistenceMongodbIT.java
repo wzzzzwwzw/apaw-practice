@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @TestConfig
 class ClimberPersistenceMongodbIT {
@@ -27,7 +28,6 @@ class ClimberPersistenceMongodbIT {
         Expedition expedition = climber.getExpeditions().get(0);
         assertEquals(LocalDate.now(), expedition.getDate());
         assertEquals(0, new BigDecimal("1500.00").compareTo(expedition.getTotalExpense()));
-
     }
 
 }

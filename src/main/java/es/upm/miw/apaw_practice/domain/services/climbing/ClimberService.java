@@ -19,4 +19,7 @@ public class ClimberService {
         return this.climberPersistence.readByEmail(email);
     }
 
+    public void delete(String email) {
+        this.climberPersistence.delete(email);
+    }
 }

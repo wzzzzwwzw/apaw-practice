@@ -3,25 +3,35 @@ package es.upm.miw.apaw_practice.domain.models.library;
 import java.time.LocalDateTime;
 
 public class Loan {
+    private String loanCode;
     private Book book;
-    private LocalDateTime localDateTime;
+    private LocalDateTime loanDateTime;
     private LocalDateTime returnDateTime;
     private Boolean loanStatus;
 
-    public Loan(Book book, LocalDateTime localDateTime, LocalDateTime returnDateTime, Boolean loanStatus) {
+    public Loan(String loanCode, Book book, LocalDateTime loanDateTime, LocalDateTime returnDateTime, Boolean loanStatus) {
+        this.loanCode = loanCode;
         this.book = book;
-        this.localDateTime = localDateTime;
+        this.loanDateTime = loanDateTime;
         this.returnDateTime = returnDateTime;
         this.loanStatus = loanStatus;
+    }
+
+    public String getLoanCode() {
+        return loanCode;
+    }
+
+    public void setLoanCode(String loanCode) {
+        this.loanCode = loanCode;
     }
 
     public Book getBook() { return book; }
 
     public void setBook(Book book) { this.book=book; }
 
-    public LocalDateTime getLocalDateTime() { return localDateTime;}
+    public LocalDateTime getLoanDateTime() { return loanDateTime;}
 
-    public void setLocalDateTime(LocalDateTime localDateTime) { this.localDateTime = localDateTime;}
+    public void setLoanDateTime(LocalDateTime loanDateTime) { this.loanDateTime = loanDateTime;}
 
     public LocalDateTime getReturnDateTime() { return returnDateTime;}
 
@@ -34,8 +44,9 @@ public class Loan {
     @Override
     public String toString() {
         return "Loan{" +
-                "book=" + book +
-                ", localDateTime=" + localDateTime +
+                "loanCode='" + loanCode + '\'' +
+                ", book=" + book +
+                ", loanDateTime=" + loanDateTime +
                 ", returnDateTime=" + returnDateTime +
                 ", loanStatus=" + loanStatus +
                 '}';

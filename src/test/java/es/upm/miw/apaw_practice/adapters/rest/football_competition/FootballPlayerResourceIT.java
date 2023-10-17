@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.rest.football_competition;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.FootballCompetitionSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.football_competition.FootballPlayer;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +16,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @RestTestConfig
-public class FootballPlayerResourceIT {
+class FootballPlayerResourceIT {
     @Autowired
     private WebTestClient webTestClient;
+    @Autowired
+    private FootballCompetitionSeederService footballCompetitionSeederService;
+
+    @AfterEach
+    void after() {
+        this.footballCompetitionSeederService.deleteAll();
+        this.footballCompetitionSeederService.seedDatabase();
+    }
 
     @Test
-    public void testUpdateGoals() {
+    void testUpdateGoals() {
         this.webTestClient
                 .put()
                 .uri(FootballPlayerResource.PLAYERS + FootballPlayerResource.NAME_ID + FootballPlayerResource.GOALS, "Lionel Messi")

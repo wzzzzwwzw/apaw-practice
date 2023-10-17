@@ -14,7 +14,8 @@ public class ManagerService {
         this.managerPersistence = managerPersistence;
     }
 
-    public void delete(String name) {
-        this.managerPersistence.delete(name);
+    public void delete(String affiliationNumber) {
+        this.managerPersistence.delete(affiliationNumber);
     }
+
 }

@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.subway;
 
+import es.upm.miw.apaw_practice.domain.models.subway.builders.StationBuilders;
+
 public class Station {
     private String name;
     private String order;
@@ -47,4 +49,37 @@ public class Station {
                 ", open=" + open +
                 '}';
     }
+
+    public static class Builder implements StationBuilders.Name, StationBuilders.Optionals {
+
+        private final Station station;
+
+        public Builder() {
+            this.station = new Station();
+        }
+
+        @Override
+        public StationBuilders.Optionals name(String name) {
+            this.station.setName(name);
+            return this;
+        }
+
+        @Override
+        public StationBuilders.Optionals order(String order) {
+            this.station.setOrder(order);
+            return this;
+        }
+
+        @Override
+        public StationBuilders.Optionals open(Boolean open) {
+            this.station.setOpen(open);
+            return this;
+        }
+
+        @Override
+        public Station build() {
+            return this.station;
+        }
+    }
+
 }

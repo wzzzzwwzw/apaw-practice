@@ -71,4 +71,9 @@ public class OlympicGamesSeederService {
         this.disciplineRepository.deleteAll();
         this.olympicGamesRepository.deleteAll();
     }
+
+    public void reSeedDatabase() {
+        this.deleteAll();
+        this.seedDatabase();
+    }
 }

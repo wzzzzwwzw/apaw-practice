@@ -36,5 +36,4 @@ public class SellerResource {
     public Seller updateSellerSurname(@PathVariable String id, @RequestBody String surname) {
         return this.sellerService.updateSellerSurname(id, surname);
     }
-
 }

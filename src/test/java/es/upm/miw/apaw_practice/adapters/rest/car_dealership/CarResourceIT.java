@@ -40,4 +40,31 @@ class CarResourceIT {
                 .exchange()
                 .expectStatus().isNotFound();
     }
+
+    @Test
+    void testFindAverageCarPriceByName () {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(CARS + SEARCH)
+                                .queryParam("q", "name:Asier")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BigDecimal.class)
+                .value(Assertions::assertNotNull)
+                .value(average -> assertEquals(0, new BigDecimal("29466.66").compareTo(average)));
+    }
+
+    @Test
+    void testFindAverageCarPriceByNameBadRequest () {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(CARS + SEARCH)
+                                .queryParam("q", "na:NaN")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
 }

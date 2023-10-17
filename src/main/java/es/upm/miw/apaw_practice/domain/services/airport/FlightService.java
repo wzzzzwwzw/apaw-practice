@@ -28,4 +28,7 @@ public class FlightService {
     public Stream<String> findAirlineNameByPassengerAgeGreaterThan(Integer age){
         return this.flightPersistence.findAirlineNameByPassengerAgeGreaterThan(age);
     }
+    public Double findAverageAgeByModel(String model){
+        return this.flightPersistence.findAverageAgeByModel(model);
+    }
 }

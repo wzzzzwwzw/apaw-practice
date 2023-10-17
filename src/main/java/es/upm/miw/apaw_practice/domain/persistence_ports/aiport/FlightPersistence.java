@@ -11,4 +11,5 @@ public interface FlightPersistence {
     Flight create(Flight flight);
     boolean existFlight(Integer numberOfFlight);
     Stream<String> findAirlineNameByPassengerAgeGreaterThan(Integer age);
+    Double findAverageAgeByModel(String model);
 }

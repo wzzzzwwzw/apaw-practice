@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Painter {
+public class Painter implements PainterComponent {
     private String name;
     private String surname;
     private LocalDate birthDate;
@@ -66,5 +66,20 @@ public class Painter {
             this.artWorks = new ArrayList<>();
         }
         this.artWorks.add(artWork);
+    }
+
+    @Override
+    public boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(PainterComponent painterComponent) {
+        // Do nothing because it is a leaf
+    }
+
+    @Override
+    public void remove(PainterComponent painterComponent) {
+        // Do nothing because it is a leaf
     }
 }

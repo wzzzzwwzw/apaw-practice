@@ -1,16 +1,15 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.museum.entities;
 
 import es.upm.miw.apaw_practice.domain.models.museum.Room;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
-import java.util.UUID;
 
 @Document
 public class RoomEntity {
     @Id
-    private String id;
     private String description;
     private Integer floor;
     private Double popularity;
@@ -19,19 +18,14 @@ public class RoomEntity {
         // Empty for framework
     }
 
+    public RoomEntity(Room room) {
+        fromRoom(room);
+    }
+
     public RoomEntity(String description, Integer floor, Double popularity) {
-        this.id = UUID.randomUUID().toString();
         this.description = description;
         this.floor = floor;
         this.popularity = popularity;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getDescription() {
@@ -58,6 +52,10 @@ public class RoomEntity {
         this.popularity = popularity;
     }
 
+    public void fromRoom(Room room) {
+        BeanUtils.copyProperties(room, this);
+    }
+
     public Room toRoom() {
         return new Room(this.description, this.floor, this.popularity);
     }
@@ -67,19 +65,18 @@ public class RoomEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RoomEntity that = (RoomEntity) o;
-        return Objects.equals(id, that.id);
+        return Objects.equals(description, that.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(description);
     }
 
     @Override
     public String toString() {
         return "RoomEntity{" +
-                "id='" + id + '\'' +
-                ", description='" + description + '\'' +
+                "description='" + description + '\'' +
                 ", floor=" + floor +
                 ", popularity=" + popularity +
                 '}';

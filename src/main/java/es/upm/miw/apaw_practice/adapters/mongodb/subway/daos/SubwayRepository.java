@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface SubwayRepository extends MongoRepository<SubwayEntity, String> {
     Optional<SubwayEntity> findByCity(String city);
+
 }

@@ -72,8 +72,8 @@ public class MedalEntity {
     public Medal toMedal() {
         Medal medal = new Medal();
         BeanUtils.copyProperties(this, medal, "winner");
-        Competitor winner = this.winner.toCompetitor();
-        medal.setWinner(winner);
+        Competitor competitor = this.winner.toCompetitor();
+        medal.setWinner(competitor);
         return medal;
     }
 

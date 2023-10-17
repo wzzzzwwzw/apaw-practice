@@ -25,11 +25,11 @@ class OrderServiceIT {
     private OrderPersistence orderPersistence;
 
     @Test
-    void testRead(){
+    void testRead() {
         Order order = this.orderService.read(3);
-        assertEquals(new BigDecimal("4.5"),order.getWeight());
-        assertEquals("Cash",order.getPaymentMethod());
-        assertEquals(false,order.getDelivered());
+        assertEquals(new BigDecimal("4.5"), order.getWeight());
+        assertEquals("Cash", order.getPaymentMethod());
+        assertEquals(false, order.getDelivered());
         assertNotNull(order.getTransport());
         assertNotNull(order.getRestaurant());
 
@@ -37,12 +37,24 @@ class OrderServiceIT {
     }
 
     @Test
-    void testUpdatePrices(){
+    void testUpdatePrices() {
         List<OrderPriceUpdating> orderPriceUpdatingList = Arrays.asList(
                 new OrderPriceUpdating(1, new BigDecimal("27.0"))
         );
         this.orderService.updatePrices(orderPriceUpdatingList.stream());
-        assertEquals(new BigDecimal("27.0"),this.orderPersistence.read(1).getPrice());
+        assertEquals(new BigDecimal("27.0"), this.orderPersistence.read(1).getPrice());
+
+        orderPriceUpdatingList = Arrays.asList(
+                new OrderPriceUpdating(1, new BigDecimal("25.0"))
+        );
+        this.orderService.updatePrices(orderPriceUpdatingList.stream());
+
+    }
+
+    @Test
+    void testFindByTypeRestaurant() {
+        BigDecimal sum = this.orderService.findByTypeRestaurant("Asian");
+        assertEquals(new BigDecimal("45.0"), sum);
     }
 }
 

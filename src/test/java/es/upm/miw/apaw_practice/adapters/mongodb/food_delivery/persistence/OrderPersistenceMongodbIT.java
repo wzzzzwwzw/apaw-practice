@@ -34,6 +34,16 @@ class OrderPersistenceMongodbIT {
         this.orderPersistence.update(2, order);
         order = this.orderPersistence.read(2);
         assertEquals(new BigDecimal("45.0"), order.getPrice());
+
+        order.setPrice(new BigDecimal("30.0"));
+        this.orderPersistence.update(2, order);
+
+    }
+
+    @Test
+    void testFindByTypeRestaurant(){
+        BigDecimal sum = this.orderPersistence.findByTypeRestaurant("Italian");
+        assertEquals(new BigDecimal("95.0"),sum);
     }
 
 

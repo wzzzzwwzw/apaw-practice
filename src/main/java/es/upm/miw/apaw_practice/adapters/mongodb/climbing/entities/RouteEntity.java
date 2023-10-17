@@ -13,6 +13,12 @@ public class RouteEntity {
 
     }
 
+    public RouteEntity(String key, String name, String difficulty) {
+        this.key = key;
+        this.name = name;
+        this.difficulty = difficulty;
+    }
+
     public RouteEntity(String name, String difficulty) {
         this.key = UUID.randomUUID().toString();
         this.name = name;

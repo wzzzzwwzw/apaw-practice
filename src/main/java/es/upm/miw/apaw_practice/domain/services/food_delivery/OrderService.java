@@ -6,6 +6,7 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.food_delivery.OrderPers
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.stream.Stream;
 
 @Service
@@ -31,4 +32,7 @@ public class OrderService {
                 .forEach(order -> this.orderPersistence.update(order.getNumber(),order));
     }
 
+    public BigDecimal findByTypeRestaurant(String type) {
+        return this.orderPersistence.findByTypeRestaurant(type);
+    }
 }

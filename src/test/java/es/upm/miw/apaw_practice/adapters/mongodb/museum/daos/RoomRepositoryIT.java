@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class RoomRepositoryIT {
+class RoomRepositoryIT {
 
     @Autowired
     private RoomRepository roomRepository;

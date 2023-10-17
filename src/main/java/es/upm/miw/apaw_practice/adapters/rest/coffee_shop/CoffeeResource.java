@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.coffee_shop;
 
 import es.upm.miw.apaw_practice.domain.models.coffee_shop.Coffee;
-import es.upm.miw.apaw_practice.domain.models.computer_store.Monitor;
 import es.upm.miw.apaw_practice.domain.services.coffee_shop.CoffeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -19,6 +19,12 @@ public class BookWriterService {
         return this.bookWriterPersistence.create(bookWriter);
     }
 
+    public BookWriter updateNumberOfBook(String nickname, Integer numberOfBook){
+        BookWriter bookWriter = this.bookWriterPersistence.readByNickname(nickname);
+        bookWriter.setNumberOfBook(numberOfBook);
+        return this.bookWriterPersistence.updateNumberOfBook(bookWriter);
+    }
+
     public void assertNicknameNotExist(String nickname){
         if(this.bookWriterPersistence.existsNickname(nickname)){
             throw new ConflictException("Nickname exist: "+nickname);

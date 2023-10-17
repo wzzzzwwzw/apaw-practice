@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.coffee_shop;
 
+import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.coffee_shop.CoffeeClient;
 import es.upm.miw.apaw_practice.domain.services.coffee_shop.CoffeeClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import java.math.BigDecimal;
 public class CoffeeClientResource {
     static final String COFFEES = "/coffee-shop/coffees-clients";
     static final String NAME = "/{name}";
-    static final String CATEGORY = "/{category}";
     static final String TOTAL_PRICE = "/total-price";
     @Autowired
     private final CoffeeClientService coffeeClientService;
@@ -31,8 +31,9 @@ public class CoffeeClientResource {
         return this.coffeeClientService.updateAddressByName(name);
     }
 
-    @GetMapping(CATEGORY + TOTAL_PRICE)
-    public BigDecimal getTotalPriceByCategory(@PathVariable String category) {
-        return this.coffeeClientService.getTotalPriceByCategory(category);
+    @GetMapping(TOTAL_PRICE)
+    public BigDecimal getTotalPriceByCategory(@RequestParam String q) {
+        String coffeeCategory = new LexicalAnalyzer().extractWithAssure(q, "category");
+        return this.coffeeClientService.getTotalPriceByCategory(coffeeCategory);
     }
 }

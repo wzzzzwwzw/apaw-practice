@@ -17,7 +17,7 @@ public class BookWriterPersistenceMongodb implements BookWriterPersistence {
     }
 
     @Override
-    public BookWriter read(String nickname){
+    public BookWriter readByNickname(String nickname){
         return this.bookWriterRepository
                 .findByNickname(nickname)
                 .orElseThrow(() -> new NotFoundException("BookWriter nickname: " + nickname))
@@ -36,6 +36,15 @@ public class BookWriterPersistenceMongodb implements BookWriterPersistence {
         return this.bookWriterRepository
                 .save(new BookWriterEntity(bookWriter))
                 .toBookWriter();
+    }
+
+    @Override
+    public BookWriter updateNumberOfBook(BookWriter bookWriter){
+        BookWriterEntity bookWriterEntity = this.bookWriterRepository
+                .findByNickname(bookWriter.getNickname())
+                .orElseThrow(() -> new NotFoundException("BookWriter nickname: " + bookWriter.getNumberOfBook()));
+        bookWriterEntity.setNumberOfBook(bookWriter.getNumberOfBook());
+        return this.bookWriterRepository.save(bookWriterEntity).toBookWriter();
     }
 
 }

@@ -69,6 +69,10 @@ public class Student {
         this.subjects = subjects;
     }
 
+    public Boolean hasClassroomSmartBoard() {
+        return this.classroom.getSmartBoard();
+    }
+
     @Override
     public String toString() {
         return "Student{" +

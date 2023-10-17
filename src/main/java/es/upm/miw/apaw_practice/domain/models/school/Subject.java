@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.school;
 
+import java.util.Objects;
+
 public class Subject {
     private String title;
     private String description;
@@ -47,6 +49,18 @@ public class Subject {
 
     public void setCredits(Integer credits) {
         this.credits = credits;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Subject subject)) return false;
+        return Objects.equals(title, subject.title) && Objects.equals(description, subject.description) && Objects.equals(bilingual, subject.bilingual) && Objects.equals(credits, subject.credits);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, description, bilingual, credits);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.rest.airport;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
+import es.upm.miw.apaw_practice.adapters.rest.conference.ConferenceLocationResource;
 import es.upm.miw.apaw_practice.domain.models.airport.AirLine;
 import es.upm.miw.apaw_practice.domain.models.airport.Aircraft;
 import es.upm.miw.apaw_practice.domain.models.airport.Flight;
@@ -55,4 +56,35 @@ public class FlightResourceIT {
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
     }
+    @Test
+    void testFindAirlineNameByPassengerAgeGreaterThan() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FlightResource.FLIGHTS + FlightResource.SEARCH_AIRLINE)
+                                .queryParam("q", 70)
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(names -> Assertions.assertFalse(names.isEmpty()))
+                .value(names -> Assertions.assertFalse(names.get(0).contains("Ryanair")))
+                .value(names -> Assertions.assertTrue(names.get(0).contains("Iberia")));
+    }
+
+    @Test
+    void testFindAverageAgeByModel() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FlightResource.FLIGHTS + FlightResource.SEARCH_AGE)
+                                .queryParam("q", "Airbus A320")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(names -> Assertions.assertFalse(names.isEmpty()))
+                .value(names -> Assertions.assertEquals("48.0",names.get(0)));
+    }
+
 }

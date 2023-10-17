@@ -22,6 +22,14 @@ public class Trip {
         this.numStops = numStops;
         this.bus = bus;
     }
+    public Trip(String path) {
+        this.path = path;
+    }
+
+    public Trip(String path, String departure) {
+        this.path = path;
+        this.departure = departure;
+    }
 
     public String getPath() {
         return path;

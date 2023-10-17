@@ -54,4 +54,19 @@ public class FlightPersistenceMongodb implements FlightPersistence {
                  .anyMatch(passengerEntity -> passengerEntity.getAge()>age))
                  .map(flightEntity -> flightEntity.getAirLine().getName()).distinct();
      }
+
+    @Override
+    public Double findAverageAgeByModel(String model) {
+        Integer ageAdd = this.flightRepository.findAll().stream()
+                .filter(flight -> flight.getAirLine().getAircrafts().stream()
+                        .anyMatch(aircraft -> aircraft.getModel().equals(model)))
+                .flatMap(flightEntity -> flightEntity.getPassengers().stream())
+                .map(PassengerEntity::getAge)
+                .reduce(Integer::sum).orElse(0);
+        return ageAdd.doubleValue()/this.flightRepository.findAll().stream()
+                .filter(flight -> flight.getAirLine().getAircrafts().stream()
+                        .anyMatch(aircraft -> aircraft.getModel().equals(model)))
+                .flatMap(flightEntity -> flightEntity.getPassengers().stream())
+                .toList().size();
+    }
 }

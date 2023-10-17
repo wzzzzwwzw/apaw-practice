@@ -61,7 +61,7 @@ public class FlightResourceIT {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
-                        uriBuilder.path(FlightResource.FLIGHTS + FlightResource.SEARCH)
+                        uriBuilder.path(FlightResource.FLIGHTS + FlightResource.SEARCH_AIRLINE)
                                 .queryParam("q", 70)
                                 .build())
                 .exchange()
@@ -71,4 +71,20 @@ public class FlightResourceIT {
                 .value(names -> Assertions.assertFalse(names.get(0).contains("Ryanair")))
                 .value(names -> Assertions.assertTrue(names.get(0).contains("Iberia")));
     }
+
+    @Test
+    void testFindAverageAgeByModel() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FlightResource.FLIGHTS + FlightResource.SEARCH_AGE)
+                                .queryParam("q", "Airbus A320")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(names -> Assertions.assertFalse(names.isEmpty()))
+                .value(names -> Assertions.assertEquals("48.0",names.get(0)));
+    }
+
 }

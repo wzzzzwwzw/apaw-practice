@@ -28,4 +28,9 @@ public class FlightResource {
     public Stream<String> findAirlineNameByPassengerAgeGreaterThan(@RequestParam Integer q) { //
         return this.flightService.findAirlineNameByPassengerAgeGreaterThan(q);
     }
+    @GetMapping(SEARCH)
+    public Double findAverageAgeByModel(String model){
+        return this.flightService.findAverageAgeByModel(model);
+    }
+
 }

@@ -14,7 +14,7 @@ public class BookPersistenceMongodb implements BookPersistence {
     }
 
     @Override
-    public void delete(String isbn){
+    public void deleteByIsbn(String isbn){
         this.bookRepository.deleteByIsbn(isbn);
     }
 }

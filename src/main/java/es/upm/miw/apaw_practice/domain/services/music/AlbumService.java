@@ -24,4 +24,8 @@ public class AlbumService {
     public void delete(String denomination) {
         this.albumPersistence.delete(denomination);
     }
+
+    public Stream<Integer> getPhoneNumberByTypeAndRecordLabel(String type, String recordLabel) {
+        return this.albumPersistence.getPhoneNumberByTypeAndRecordLabel(type, recordLabel);
+    }
 }

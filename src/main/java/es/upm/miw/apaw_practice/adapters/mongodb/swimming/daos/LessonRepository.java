@@ -6,6 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface LessonRepository extends MongoRepository<LessonEntity, String> {
-
-    Optional<LessonEntity> findBySwimStyle(String swimStyle);
+    Optional<LessonEntity> findBySwimStyleAndSwimRange(String swimStyle, String swimRange);
 }

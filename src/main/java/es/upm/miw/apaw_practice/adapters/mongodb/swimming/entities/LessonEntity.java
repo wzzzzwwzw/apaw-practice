@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.swimming.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -20,7 +19,6 @@ public class LessonEntity {
     private String swimRange;
     private String description;
     private LocalDateTime lessonDay;
-    @DBRef
     private List<InscriptionEntity> inscriptionEntities;
 
     public LessonEntity() {

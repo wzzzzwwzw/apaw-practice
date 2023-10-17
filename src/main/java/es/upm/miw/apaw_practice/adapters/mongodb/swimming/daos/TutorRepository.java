@@ -6,6 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface TutorRepository extends MongoRepository<TutorEntity, String> {
-
     Optional<TutorEntity> findByAppellation(String appellation);
 }

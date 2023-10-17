@@ -1,21 +1,24 @@
 package es.upm.miw.apaw_practice.domain.models.swimming;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Apprentice {
 
     private String foreName;
     private Integer age;
     private String address;
-    private Inscription inscription;
+    private List<Inscription> inscriptions;
 
     public Apprentice() {
-        //empty for framework
+        inscriptions = new ArrayList<>();
     }
 
-    public Apprentice(String foreName, Integer age, String address, Inscription inscription) {
+    public Apprentice(String foreName, Integer age, String address, List<Inscription> inscriptions) {
         this.foreName = foreName;
         this.age = age;
         this.address = address;
-        this.inscription = inscription;
+        this.inscriptions = inscriptions;
     }
 
     public String getForeName() {
@@ -42,12 +45,16 @@ public class Apprentice {
         this.address = address;
     }
 
-    public Inscription getInscription(){
-        return inscription;
+    public List<Inscription> getInscriptions() {
+        return inscriptions;
     }
 
-    public void setInscription(Inscription inscription) {
-        this.inscription = inscription;
+    public void setInscriptions(List<Inscription> inscriptions) {
+        this.inscriptions = inscriptions;
+    }
+
+    public void addInscription(Inscription inscription) {
+        this.inscriptions.add(inscription);
     }
 
     @Override
@@ -56,7 +63,7 @@ public class Apprentice {
                 "foreName='" + foreName + '\'' +
                 ", age=" + age + '\'' +
                 ", address='" + address + '\'' +
-                ", inscription='" + inscription +
+                ", inscriptions='" + inscriptions +
                 '}';
     }
 }

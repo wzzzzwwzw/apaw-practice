@@ -2,31 +2,31 @@ package es.upm.miw.apaw_practice.adapters.mongodb.swimming.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
 import java.util.UUID;
 
+@Document
 public class ApprenticeEntity {
-
     @Id
     private String id;
     @Indexed(unique = true)
     private String foreName;
     private Integer age;
     private String address;
-    @DBRef
-    private InscriptionEntity inscriptionEntity;
+    private List<InscriptionEntity> inscriptionEntities;
 
     public ApprenticeEntity() {
         // empty for framework
     }
 
-    public ApprenticeEntity(String foreName, Integer age, String address, InscriptionEntity inscriptionEntity) {
+    public ApprenticeEntity(String foreName, Integer age, String address, List<InscriptionEntity> inscriptionEntities) {
         this.id = UUID.randomUUID().toString();
         this.foreName = foreName;
         this.age = age;
         this.address = address;
-        this.inscriptionEntity = inscriptionEntity;
+        this.inscriptionEntities = inscriptionEntities;
     }
 
     public String getId() {
@@ -61,12 +61,12 @@ public class ApprenticeEntity {
         this.address = address;
     }
 
-    public InscriptionEntity getInscriptionEntity() {
-        return inscriptionEntity;
+    public List<InscriptionEntity> getInscriptionEntities() {
+        return inscriptionEntities;
     }
 
-    public void setInscriptionEntity(InscriptionEntity inscriptionEntity) {
-        this.inscriptionEntity = inscriptionEntity;
+    public void setInscriptionEntities(List<InscriptionEntity> inscriptionEntities) {
+        this.inscriptionEntities = inscriptionEntities;
     }
 
     @Override
@@ -86,7 +86,7 @@ public class ApprenticeEntity {
                 ", foreName='" + foreName + '\'' +
                 ", age='" + age + '\'' +
                 ", address=" + address + '\'' +
-                ", inscriptionEntity=" + inscriptionEntity +
+                ", inscriptionEntities=" + inscriptionEntities +
                 '}';
     }
 

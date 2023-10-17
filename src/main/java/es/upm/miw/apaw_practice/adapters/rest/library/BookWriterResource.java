@@ -1,0 +1,30 @@
+package es.upm.miw.apaw_practice.adapters.rest.library;
+
+import es.upm.miw.apaw_practice.domain.models.library.BookWriter;
+import es.upm.miw.apaw_practice.domain.services.library.BookWriterService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping(BookWriterResource.BOOKWRITER)
+public class BookWriterResource {
+    static final String BOOKWRITER = "/library/bookWriters";
+    static final String NICKNAME_ID = "/{nickname}";
+    static final String NUMBER_OF_BOOK = "/number-of-book";
+    private final BookWriterService bookWriterService;
+
+    @Autowired
+    public BookWriterResource(BookWriterService bookWriterService) {
+        this.bookWriterService = bookWriterService;
+    }
+
+    @PostMapping
+    public BookWriter create(@RequestBody BookWriter bookWriter) {
+        return this.bookWriterService.create(bookWriter);
+    }
+
+    @PutMapping(NICKNAME_ID + NUMBER_OF_BOOK)
+    public BookWriter updateBookWriterNumberOfBook(@PathVariable String nickname, @RequestBody Integer numberOfBook) {
+        return this.bookWriterService.updateNumberOfBook(nickname, numberOfBook);
+    }
+}

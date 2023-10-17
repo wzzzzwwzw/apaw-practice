@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestConfig
-public class FootballPlayerServiceIT {
+class FootballPlayerServiceIT {
     @Autowired
     private FootballPlayerService footballPlayerService;
     @Autowired
@@ -26,7 +26,7 @@ public class FootballPlayerServiceIT {
     }
 
     @Test
-    public void testUpdateGoals() {
+    void testUpdateGoals() {
         String playerName = "Lionel Messi";
         FootballPlayer player = this.footballPlayerPersistence.readByName(playerName);
         assertEquals(25, player.getGoals());

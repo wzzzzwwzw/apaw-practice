@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @RestTestConfig
 class BookWriterResourceIT {
     @Autowired
@@ -38,5 +40,22 @@ class BookWriterResourceIT {
                 .body(BodyInserters.fromValue(bookWriter))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
+    }
+
+    @Test
+    void testUpdateNumberOfBook(){
+        this.webTestClient
+                .put()
+                .uri(BookWriterResource.BOOKWRITER + BookWriterResource.NICKNAME_ID + BookWriterResource.NUMBER_OF_BOOK, "Cixin")
+                .body(BodyInserters.fromValue(30))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BookWriter.class)
+                .value(Assertions:: assertNotNull)
+                .value(bookWriter -> {
+                    assertEquals("Cixin Liu", bookWriter.getName());
+                    assertEquals("Cixin", bookWriter.getNickname());
+                    assertEquals(30, bookWriter.getNumberOfBook());
+                });
     }
 }

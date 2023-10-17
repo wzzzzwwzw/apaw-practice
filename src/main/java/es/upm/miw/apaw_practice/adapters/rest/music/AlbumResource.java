@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.music;
 
+import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.music.Song;
 import es.upm.miw.apaw_practice.domain.services.music.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class AlbumResource {
 
     static final String SONGS = "/songs";
 
+    static final String SEARCH = "/search";
+
+
     private final AlbumService albumService;
 
     @Autowired
@@ -32,5 +36,12 @@ public class AlbumResource {
     @DeleteMapping(DENOMINATION_ID)
     public void delete(@PathVariable String denomination) {
         this.albumService.delete(denomination);
+    }
+
+    @GetMapping(SEARCH)
+    public Stream<Integer> getPhoneNumberByTypeAndRecordLabel(@RequestParam String q) {
+        String type = new LexicalAnalyzer().extractWithAssure(q, "type");
+        String recordLabel = new LexicalAnalyzer().extractWithAssure(q, "recordLabel");
+        return this.albumService.getPhoneNumberByTypeAndRecordLabel(type, recordLabel);
     }
 }

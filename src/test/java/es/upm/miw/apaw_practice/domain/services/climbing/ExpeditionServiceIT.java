@@ -37,4 +37,11 @@ class ExpeditionServiceIT {
         assertEquals(LocalDate.now(), expedition.getDate());
         assertEquals(0, new BigDecimal("2000.00").compareTo(expedition.getTotalExpense()));
     }
+
+    @Test
+    void testFindSumOfTotalExpenseByRouteDifficulty() {
+        assertEquals(0, new BigDecimal("2000.00").compareTo(this.expeditionService.findSumOfTotalExpenseByRouteDifficulty("Easy")));
+        assertEquals(0, new BigDecimal("3500.00").compareTo(this.expeditionService.findSumOfTotalExpenseByRouteDifficulty("Medium")));
+        assertEquals(0, new BigDecimal("2500.00").compareTo(this.expeditionService.findSumOfTotalExpenseByRouteDifficulty("Hard")));
+    }
 }

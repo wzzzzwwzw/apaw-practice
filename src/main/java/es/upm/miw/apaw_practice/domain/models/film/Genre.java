@@ -6,7 +6,8 @@ public class Genre {
     private String description;
     private String style;
 
-    public Genre() {}
+    public Genre() {
+    }
 
     public Genre(String name, String description, String style) {
         this.name = name;

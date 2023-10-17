@@ -4,15 +4,17 @@ public class Tutor {
     private String appellation;
     private String specialty;
     private Integer experience;
+    private Lesson lesson;
 
     public Tutor() {
         //empty for framework
     }
 
-    public Tutor(String appellation, String specialty, Integer experience) {
+    public Tutor(String appellation, String specialty, Integer experience, Lesson lesson) {
         this.appellation = appellation;
         this.specialty = specialty;
         this.experience = experience;
+        this.lesson = lesson;
     }
 
     public String getAppellation() {
@@ -39,12 +41,21 @@ public class Tutor {
         this.experience = experience;
     }
 
+    public Lesson getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
+    }
+
     @Override
     public String toString() {
         return "Tutor{" +
                 "appellation='" + appellation + '\'' +
                 ", specialty='" + specialty + '\'' +
                 ", experience=" + experience + '\'' +
+                ", lesson=" + lesson +
                 '}';
     }
 }

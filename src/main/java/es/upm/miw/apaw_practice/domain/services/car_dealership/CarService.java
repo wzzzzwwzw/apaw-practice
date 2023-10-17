@@ -4,6 +4,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.car_dealership.CarPersi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class CarService {
     private final CarPersistence carPersistence;
@@ -17,5 +19,9 @@ public class CarService {
         return this.carPersistence.readByChassis(chassis)
                 .getCarModel()
                 .getName();
+    }
+
+    public BigDecimal findAverageCarPriceByName(String name) {
+        return this.carPersistence.findAverageCarPriceByName(name);
     }
 }

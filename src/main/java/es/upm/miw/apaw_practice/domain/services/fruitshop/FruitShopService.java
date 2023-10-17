@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.fruitshop.FruitShopPers
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Stream;
+
 @Service
 public class FruitShopService {
     private final FruitShopPersistence fruitShopPersistence;
@@ -21,6 +23,14 @@ public class FruitShopService {
 
     public FruitShop updateAddress(String name){
         return this.fruitShopPersistence.updateAddress(name);
+    }
+
+    public Stream<String> findAddressByFruitSpecie(String specie){
+        return this.fruitShopPersistence
+                .findAddressByFruitSpecie(specie)
+                .map(FruitShop::getAddress)
+                .distinct();
+
     }
 
 }

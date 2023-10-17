@@ -6,7 +6,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.util.UUID;
-
 public class HotelClientEntity {
     @Id
     private String id;
@@ -23,6 +22,14 @@ public class HotelClientEntity {
     public HotelClientEntity(HotelClient client) {
         BeanUtils.copyProperties(client, this);
         this.id = UUID.randomUUID().toString();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDni() {
@@ -49,12 +56,18 @@ public class HotelClientEntity {
         this.telephone = telephone;
     }
 
-    public Boolean isPartner() {
+    public Boolean getPartnership() {
         return partnership;
     }
 
     public void setPartnership(Boolean newPartnership) {
         this.partnership = newPartnership;
+    }
+
+    public HotelClient toObject() {
+        HotelClient client = new HotelClient();
+        BeanUtils.copyProperties(this, client);
+        return client;
     }
 
     @Override

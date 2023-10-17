@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class PassengerServiceIT {
+public class PassengerBusServiceIT {
     @Autowired
     private PassengerService passengerService;
     @Autowired

@@ -1,17 +1,17 @@
 package es.upm.miw.apaw_practice.domain.models.subway;
 
-import java.util.ArrayList;
+import es.upm.miw.apaw_practice.domain.models.subway.trees.TreeLines;
+
 import java.util.List;
 
-public class Line {
+public class Line implements TreeLines {
     private String label;
     private String color;
     private Boolean works;
     private List<Station> stations;
     private Schedule schedule;
 
-
-    public Line(String label, String color, Boolean works, Schedule schedule, List<Station> stations ) {
+    public Line(String label, String color, Boolean works, Schedule schedule, List<Station> stations) {
         this.label = label;
         this.color = color;
         this.works = works;
@@ -20,7 +20,7 @@ public class Line {
     }
 
     public Line() {
-        //for framework
+        // for framework
     }
 
     public String getLabel() {
@@ -64,6 +64,21 @@ public class Line {
     }
 
     @Override
+    public Boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(TreeLines treeLines) {
+        throw new UnsupportedOperationException("Unsupported operation in line leaf");
+    }
+
+    @Override
+    public void remove(TreeLines treeLines) {
+        // cannot remove in leaf
+    }
+
+    @Override
     public String toString() {
         return "Line{" +
                 "label='" + label + '\'' +
@@ -73,4 +88,3 @@ public class Line {
                 '}';
     }
 }
-

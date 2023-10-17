@@ -37,4 +37,11 @@ class CarPersistenceMongodbIT {
 
         assertNotNull(car.getSellerList());
     }
+
+    @Test
+    void testFindAverageCarPriceByName() {
+        BigDecimal average = this.carPersistence.findAverageCarPriceByName("Asier");
+        assertNotNull(average);
+        assertEquals(0, new BigDecimal("29466.66").compareTo(average));
+    }
 }

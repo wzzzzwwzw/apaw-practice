@@ -8,6 +8,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.fruitshop.FruitShopPers
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("fruitShopPersistence")
 public class FruitShopPersistenceMongdb implements FruitShopPersistence {
     private final FruitShopRepository fruitShopRepository;
@@ -31,6 +33,15 @@ public class FruitShopPersistenceMongdb implements FruitShopPersistence {
         fruitShopEntity.setAddress("New Address");
         return this.fruitShopRepository.save(fruitShopEntity).toFruitShop();
 
+    }
+
+    @Override
+    public Stream<FruitShop> findAddressByFruitSpecie(String specie){
+        return this.fruitShopRepository.findAll()
+                .stream()
+                .map(FruitShopEntity::toFruitShop)
+                .filter(fruitShop -> fruitShop.getFruits().stream()
+                        .anyMatch(fruit -> fruit.getFruitSpecie().getSpecie().equals(specie)));
     }
 
 

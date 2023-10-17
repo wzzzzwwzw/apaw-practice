@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import es.upm.miw.apaw_practice.domain.models.school.School;
-import es.upm.miw.apaw_practice.domain.models.school.Student;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -91,6 +90,13 @@ public class SchoolEntity {
 
     public void setStudents(List<StudentEntity> students) {
         this.studentEntities = students;
+    }
+
+    public School toSchool() {
+        School school = new School(this.name, this.address, this.openingDate, this.registrationPrice);
+        school.setStudents(this.studentEntities.stream()
+                .map(StudentEntity::toStudent).toList());
+        return school;
     }
 
     @Override

@@ -9,7 +9,8 @@ public class Director {
     private String surname;
     private LocalDate dateOfBirth;
 
-    public Director() {}
+    public Director() {
+    }
 
     public Director(String dni, String name, String surname, LocalDate dateOfBirth) {
         this.dni = dni;
@@ -58,5 +59,42 @@ public class Director {
                 ", surname='" + surname + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 '}';
+    }
+
+    public static class Builder implements DirectorBuilders.Dni, DirectorBuilders.Name, DirectorBuilders.Optionals {
+        private final Director director;
+
+        public Builder() {
+            this.director = new Director();
+        }
+
+        @Override
+        public DirectorBuilders.Name dni(String dni) {
+            this.director.dni = dni;
+            return this;
+        }
+
+        @Override
+        public DirectorBuilders.Optionals name(String name) {
+            this.director.name = name;
+            return this;
+        }
+
+        @Override
+        public DirectorBuilders.Optionals surname(String surname) {
+            this.director.surname = surname;
+            return this;
+        }
+
+        @Override
+        public DirectorBuilders.Optionals dateOfBirth(LocalDate dateOfBirth) {
+            this.director.dateOfBirth = dateOfBirth;
+            return this;
+        }
+
+        @Override
+        public Director build() {
+            return this.director;
+        }
     }
 }

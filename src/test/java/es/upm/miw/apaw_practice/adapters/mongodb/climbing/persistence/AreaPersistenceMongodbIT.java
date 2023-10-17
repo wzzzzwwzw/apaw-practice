@@ -10,6 +10,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.climbing.ClimbingSeederService;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -51,5 +52,14 @@ public class AreaPersistenceMongodbIT {
         area = this.areaPersistenceMongodb.readByName("Area 2");
         assertEquals("Route 3 updated", area.getRoutes().get(1).getName());
         assertEquals("Easy", area.getRoutes().get(1).getDifficulty());
+    }
+
+    @Test
+    void testFindAll() {
+        List<Area> areas = this.areaPersistenceMongodb.findAll();
+        assertEquals(3, areas.size());
+        assertEquals("Area 1", areas.get(0).getName());
+        assertEquals("Area 2", areas.get(1).getName());
+        assertEquals("Area 3", areas.get(2).getName());
     }
 }

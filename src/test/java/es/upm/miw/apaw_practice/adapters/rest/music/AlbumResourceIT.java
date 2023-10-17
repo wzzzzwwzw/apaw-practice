@@ -51,4 +51,18 @@ class AlbumResourceIT {
                 .exchange()
                 .expectStatus().isOk();
     }
+
+    @Test
+    void testGetPhoneNumberByTypeAndRecordLabel() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(AlbumResource.ALBUMS + AlbumResource.SEARCH)
+                        .queryParam("q", "type:reggaeton;recordLabel:La Industria Inc")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(Integer.class)
+                .hasSize(3);
+    }
 }

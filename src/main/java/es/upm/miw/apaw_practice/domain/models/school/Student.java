@@ -1,8 +1,10 @@
 package es.upm.miw.apaw_practice.domain.models.school;
 
+import es.upm.miw.apaw_practice.domain.models.school.composite.TreeStudents;
+
 import java.util.List;
 
-public class Student {
+public class Student implements TreeStudents {
     private String name;
     private Integer age;
     private long contact;
@@ -83,5 +85,20 @@ public class Student {
                 ", classroom=" + classroom +
                 ", subjects=" + subjects +
                 '}';
+    }
+
+    @Override
+    public Boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(TreeStudents treeStudents) {
+        throw new UnsupportedOperationException("Unsupported operation in Student leaf");
+    }
+
+    @Override
+    public void remove(TreeStudents treeStudents) {
+        // cannot remove in leaf
     }
 }

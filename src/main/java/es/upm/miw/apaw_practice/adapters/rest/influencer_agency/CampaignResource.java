@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.rest.influencer_agency;
 
 import es.upm.miw.apaw_practice.domain.models.influencer_agency.Campaign;
+import es.upm.miw.apaw_practice.domain.models.influencer_agency.Content;
 import es.upm.miw.apaw_practice.domain.services.influencer_agency.CampaignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(CampaignResource.CAMPAIGNS)
 public class CampaignResource {
     public static final String CAMPAIGNS = "/influencer-agency/campaigns";
+        public static final String DESCRIPTION_ID = "/{campaignDescription}";
+    public static final String CONTENTS = "/contents";
 
 
     private final CampaignService campaignService;
@@ -23,5 +26,9 @@ public class CampaignResource {
         return this.campaignService.create(campaign);
     }
 
+    @PutMapping(DESCRIPTION_ID + CONTENTS)
+    public void updateContentForCampaign(@PathVariable String campaignDescription, @RequestBody Content content) {
+        this.campaignService.updateContentForCampaign(campaignDescription, content);
+    }
 
 }

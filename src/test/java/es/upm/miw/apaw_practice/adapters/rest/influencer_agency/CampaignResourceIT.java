@@ -35,4 +35,28 @@ class CampaignResourceIT {
                 .expectBody(Campaign.class)
                 .value(Assertions::assertNotNull);
     }
+
+
+    @Test
+    void testUpdateContentForCampaign() {
+        Content content = new Content("Content 2", "Content 2 creator");
+        this.webTestClient
+                .put()
+                .uri(CampaignResource.CAMPAIGNS + CampaignResource.DESCRIPTION_ID +
+                        CampaignResource.CONTENTS, "Description2")
+                .body(BodyInserters.fromValue(content))
+                .exchange()
+                .expectStatus().isOk();
+    }
+
+    @Test
+    void testUpdateContentForCampaignException() {
+        Content content = new Content("Content", "Content creator");
+        this.webTestClient
+                .put()
+                .uri(CampaignResource.CAMPAIGNS + CampaignResource.CONTENTS, "Description5")
+                .body(BodyInserters.fromValue(content))
+                .exchange()
+                .expectStatus().isNotFound();
+    }
 }

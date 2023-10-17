@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CampaignPersistence {
     Campaign create(Campaign campaign);
+    Campaign findByDescription(String campaignDescription);
+    void save(Campaign campaign);
 }

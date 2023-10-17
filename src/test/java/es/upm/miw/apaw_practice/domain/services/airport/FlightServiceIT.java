@@ -57,4 +57,9 @@ public class FlightServiceIT {
     void testFindAirlineNameByPassengerAgeGreaterThan(){
         assertTrue(this.flightService.findAirlineNameByPassengerAgeGreaterThan(70).toList().contains("Iberia"));
     }
+
+    @Test
+    void testFindAverageAgeByModel(){
+        assertEquals(48.0, this.flightService.findAverageAgeByModel("Airbus A320"));
+    }
 }

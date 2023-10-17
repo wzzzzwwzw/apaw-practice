@@ -12,7 +12,8 @@ import java.util.stream.Stream;
 @RequestMapping(FlightResource.FLIGHTS)
 public class FlightResource {
     static final String FLIGHTS = "/airport/flights";
-    static final String SEARCH = "/search";
+    static final String SEARCH_AGE = "/search/average-age";
+    static final String SEARCH_AIRLINE = "/search/airline-name";
     private final FlightService flightService;
 
     @Autowired
@@ -24,13 +25,13 @@ public class FlightResource {
     public Flight create(@RequestBody Flight flight) {
         return this.flightService.create(flight);
     }
-    @GetMapping(SEARCH)
-    public Stream<String> findAirlineNameByPassengerAgeGreaterThan(@RequestParam Integer q) { //
+    @GetMapping(SEARCH_AIRLINE)
+    public Stream<String> findAirlineNameByPassengerAgeGreaterThan(@RequestParam Integer q) {
         return this.flightService.findAirlineNameByPassengerAgeGreaterThan(q);
     }
-    @GetMapping(SEARCH)
-    public Double findAverageAgeByModel(String model){
-        return this.flightService.findAverageAgeByModel(model);
+    @GetMapping(SEARCH_AGE)
+    public Double findAverageAgeByModel(String q){//q=model:model
+        return this.flightService.findAverageAgeByModel(q);
     }
 
 }

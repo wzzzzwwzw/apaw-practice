@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import static es.upm.miw.apaw_practice.adapters.rest.furniture_store.ManagerResource.MANAGER;
-import static es.upm.miw.apaw_practice.adapters.rest.furniture_store.ManagerResource.NAME_ID;
+import static es.upm.miw.apaw_practice.adapters.rest.furniture_store.ManagerResource.*;
 
 @RestTestConfig
 class ManagerResourceIT {
@@ -18,7 +17,7 @@ class ManagerResourceIT {
     void testDelete() {
         this.webTestClient
                 .delete()
-                .uri(MANAGER + NAME_ID, "No existe")
+                .uri(MANAGER + AFFILIATION_NUMBER_ID, "No existe")
                 .exchange()
                 .expectStatus().isOk();
     }

@@ -15,7 +15,7 @@ public class ManagerPersistenceMongodb implements ManagerPersistence {
     }
 
     @Override
-    public void delete(String name) {
-        this.managerRepository.deleteByName(name);
+    public void delete(String affiliationNumber) {
+        this.managerRepository.deleteByName(affiliationNumber);
     }
 }

@@ -18,6 +18,9 @@ public class Keeper {
         this.salary = salary;
     }
 
+    public Keeper(Keeper keeper) {
+    }
+
     public String getName() {
         return name;
     }

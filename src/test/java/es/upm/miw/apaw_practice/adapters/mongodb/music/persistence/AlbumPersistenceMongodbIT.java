@@ -5,8 +5,9 @@ import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 class AlbumPersistenceMongodbIT {
@@ -22,5 +23,16 @@ class AlbumPersistenceMongodbIT {
     @Test
     void testReadSongsByAlbumDenominationNotFound() {
         assertThrows(NotFoundException.class, () -> this.albumPersistenceMongodb.readSongsByAlbumDenomination("album2"));
+    }
+
+    @Test
+    void testGetPhoneNumberByTypeAndRecordLabel() {
+        List<Integer> phoneNumbers = this.albumPersistenceMongodb.
+                getPhoneNumberByTypeAndRecordLabel("reggaeton", "La Industria Inc").
+                toList();
+        assertEquals(3, phoneNumbers.size());
+        assertTrue(phoneNumbers.contains(123456789));
+        assertTrue(phoneNumbers.contains(222222222));
+        assertTrue(phoneNumbers.contains(333333333));
     }
 }

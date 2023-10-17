@@ -1,40 +1,54 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hotel.entities;
 
 import es.upm.miw.apaw_practice.domain.models.hotel.HotelBooking;
-import es.upm.miw.apaw_practice.domain.models.hotel.HotelClient;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
-
+@Document
 public class HotelBookingEntity {
     @Id
     private String id;
-    @Indexed
-    private Integer bookingNumber;
+    @Indexed(unique = true)
+    private Integer number;
     private Integer roomNumber;
     private LocalDate date;
     private BigDecimal cost;
-    private HotelClient client;
+    @DBRef
+    private HotelClientEntity client;
 
     public HotelBookingEntity() {
         // empty for framework
     }
 
-    public HotelBookingEntity(HotelBooking booking) {
-        BeanUtils.copyProperties(booking, this);
+    public HotelBookingEntity(Integer number, Integer roomNumber, LocalDate date, BigDecimal cost, HotelClientEntity client) {
+        this.number = number;
+        this.roomNumber = roomNumber;
+        this.date = date;
+        this.cost = cost;
+        this.client = client;
         this.id = UUID.randomUUID().toString();
     }
 
-    public Integer getBookingNumber() {
-        return bookingNumber;
+    public String getId() {
+        return id;
     }
 
-    public void setBookingNumber(Integer bookingNumber) {
-        this.bookingNumber = bookingNumber;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     public Integer getRoomNumber() { return roomNumber; }
@@ -57,18 +71,26 @@ public class HotelBookingEntity {
         this.cost = cost;
     }
 
-    public HotelClient getClient() {
+    public HotelClientEntity getClient() {
         return this.client;
     }
 
-    public void setClient(HotelClient client) {
+    public void setClient(HotelClientEntity client) {
         this.client = client;
     }
+
+    public HotelBooking toObject() {
+        HotelBooking booking = new HotelBooking();
+        booking.setClient(this.client.toObject());
+        BeanUtils.copyProperties(this, booking);
+        return booking;
+    }
+
 
     @Override
     public String toString() {
         return "HotelBooking {" + "\n" +
-                "   bookingNumber = " + bookingNumber + "\n" +
+                "   number = " + number + "\n" +
                 "   date = " + date + "\n" +
                 "   cost = " + cost + "\n" +
                 "   client = " + client + "\n" +

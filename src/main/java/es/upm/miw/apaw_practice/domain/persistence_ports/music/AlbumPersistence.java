@@ -11,4 +11,6 @@ public interface AlbumPersistence {
     Stream<Song> readSongsByAlbumDenomination(String denomination);
 
     void delete(String denomination);
+
+    Stream<Integer> getPhoneNumberByTypeAndRecordLabel(String type, String recordLabel);
 }

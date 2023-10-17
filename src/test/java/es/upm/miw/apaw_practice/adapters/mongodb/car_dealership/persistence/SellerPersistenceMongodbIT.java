@@ -7,6 +7,8 @@ import es.upm.miw.apaw_practice.domain.models.car_dealership.Seller;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -82,5 +84,13 @@ class SellerPersistenceMongodbIT {
         assertEquals("Lopez", newSeller.get().getSurname());
         carDealershipSeederService.deleteAll();
         carDealershipSeederService.seedDatabase();
+    }
+
+    @Test
+    void testFindUniqueSurnamesMore20000ByBrand() {
+        List<String> surnames = this.sellerPersistence.findUniqueSurnamesMore20000ByBrand("Toyota").toList();        assertNotNull(surnames);
+        assertFalse(surnames.isEmpty());
+        assertEquals(3, surnames.size());
+        assertTrue(surnames.get(0).contains("Gonzalez"));
     }
 }

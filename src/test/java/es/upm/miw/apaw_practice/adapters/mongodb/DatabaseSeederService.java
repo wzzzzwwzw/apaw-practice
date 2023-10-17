@@ -28,9 +28,11 @@ import es.upm.miw.apaw_practice.adapters.mongodb.school.SchoolSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.shop.ShopSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.stable.StableSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.subway.SubwaySeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.swimming.SwimmingSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticket_bus.TicketBusSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame_company.VideogameCompanySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.zoo.ZooSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.hotel.HotelSeederService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,34 +71,37 @@ public class DatabaseSeederService {
         private final LibrarySeederService librarySeederService;
         private final TicketBusSeederService ticketBusSeederService;
         private final BankSeederService bankSeederService;
+        private final HotelSeederService hotelSeederService;
+        private final SwimmingSeederService swimmingSeederService;
         @Autowired
         public DatabaseSeederService(ShopSeederService shopSeederService, ZooSeederService zooSeederService,
-                        ComputerStoreSeederService computerStoreSeederService,
-                        ConferenceSeederService conferenceSeederService,
-                        RestaurantSeederService restaurantSeederService,
-                        CarWorkshopSeederService carWorkshopSeederService,
-                        FoodDeliverySeederService foodDeliverySeederService,
-                        CarDealershipSeederService carDealershipSeederService,
-                        FormulaOneSeederService formulaOneSeederService,
-                        VideogameCompanySeederService videogameCompanySeederService,
-                        MuseumSeederService museumSeederService,
-                        FootballCompetitionSeederService footballCompetitionSeederService,
-                        FilmSeederService filmSeederService,
-                        InfluencerAgencySeederService influencerAgencySeederService,
-                        SubwaySeederService subwaySeederService, SchoolSeederService schoolSeederService,
-                        ClimbingSeederService climbingSeederService,
-                        MusicSeederService musicSeederService,
-                        PadelAcademySeederService padelAcademySeederService,
-                        OlympicGamesSeederService olympicGamesSeederService,
-                        FurnitureStoreSeederService furnitureStoreSeederService,
-                        AirportSeederService airportSeederService,
-                        AquariumSeederService aquariumSeederService,
-                        CoffeeShopSeederService coffeeShopSeederService,
-                        HospitalSeederService hospitalSeederService, FruitShopSeederService fruitShopSeederService,
-                        BakerySeederService bakerySeederService,
-                        StableSeederService stableSeederService,
-                        LibrarySeederService librarySeederService,BankSeederService bankSeederService,
-                                     TicketBusSeederService ticketBusSeederService) {
+                                     ComputerStoreSeederService computerStoreSeederService,
+                                     ConferenceSeederService conferenceSeederService,
+                                     RestaurantSeederService restaurantSeederService,
+                                     CarWorkshopSeederService carWorkshopSeederService,
+                                     FoodDeliverySeederService foodDeliverySeederService,
+                                     CarDealershipSeederService carDealershipSeederService,
+                                     FormulaOneSeederService formulaOneSeederService,
+                                     VideogameCompanySeederService videogameCompanySeederService,
+                                     MuseumSeederService museumSeederService,
+                                     FootballCompetitionSeederService footballCompetitionSeederService,
+                                     FilmSeederService filmSeederService,
+                                     InfluencerAgencySeederService influencerAgencySeederService,
+                                     SubwaySeederService subwaySeederService, SchoolSeederService schoolSeederService,
+                                     ClimbingSeederService climbingSeederService,
+                                     MusicSeederService musicSeederService,
+                                     PadelAcademySeederService padelAcademySeederService,
+                                     OlympicGamesSeederService olympicGamesSeederService,
+                                     FurnitureStoreSeederService furnitureStoreSeederService,
+                                     AirportSeederService airportSeederService,
+                                     AquariumSeederService aquariumSeederService,
+                                     CoffeeShopSeederService coffeeShopSeederService,
+                                     HospitalSeederService hospitalSeederService, FruitShopSeederService fruitShopSeederService,
+                                     BakerySeederService bakerySeederService,
+                                     StableSeederService stableSeederService,
+                                     LibrarySeederService librarySeederService, BankSeederService bankSeederService,
+                                     TicketBusSeederService ticketBusSeederService, HotelSeederService hotelSeederService,
+                                     SwimmingSeederService swimmingSeederService) {
 
                 this.shopSeederService = shopSeederService;
                 this.zooSeederService = zooSeederService;
@@ -129,7 +134,9 @@ public class DatabaseSeederService {
                 this.librarySeederService = librarySeederService;
                 this.bankSeederService=bankSeederService;
                 this.ticketBusSeederService=ticketBusSeederService;
-                this.seedDatabase();
+                this.hotelSeederService = hotelSeederService;
+                this.swimmingSeederService = swimmingSeederService;
+            this.seedDatabase();
         }
 
         public void seedDatabase() {
@@ -164,6 +171,8 @@ public class DatabaseSeederService {
                 this.librarySeederService.seedDatabase();
                 this.bankSeederService.seedDatabase();
                 this.ticketBusSeederService.seedDatabase();
+                this.hotelSeederService.seedDatabase();
+                this.swimmingSeederService.seedDatabase();
         }
 
         public void deleteAll() {
@@ -198,6 +207,8 @@ public class DatabaseSeederService {
                 this.librarySeederService.deleteAll();
                 this.bankSeederService.deleteAll();
                 this.ticketBusSeederService.deleteAll();
+                this.hotelSeederService.deleteAll();
+                this.swimmingSeederService.deleteAll();
         }
 
         public void reSeedDatabase() {

@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.restaurant;
 
+import es.upm.miw.apaw_practice.domain.models.restaurant.builders.DishBuilders;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
@@ -75,6 +77,43 @@ public class Dish {
                 ", category=" + category +
                 ", ingredients=" + ingredients +
                 '}';
+    }
+
+    public static class Builder implements DishBuilders.Title, DishBuilders.Optionals {
+        private final Dish dish;
+
+        public Builder() {
+            dish = new Dish();
+        }
+
+        @Override
+        public DishBuilders.Optionals title(String title) {
+            this.dish.title = title;
+            return this;
+        }
+
+        @Override
+        public DishBuilders.Optionals price(BigDecimal price) {
+            this.dish.price = price;
+            return this;
+        }
+
+        @Override
+        public DishBuilders.Optionals category(CategoryRestaurant category) {
+            this.dish.category = category;
+            return this;
+        }
+
+        @Override
+        public DishBuilders.Optionals ingredients(List<Ingredient> ingredients) {
+            this.dish.ingredients = ingredients;
+            return this;
+        }
+
+        @Override
+        public Dish build() {
+            return this.dish;
+        }
     }
 
 }

@@ -73,6 +73,12 @@ public class ScheduleEntity {
         return Objects.hash(id, startTime, endTime, frequency);
     }
 
+    public Schedule toSchedule() {
+        Schedule schedule = new Schedule();
+        BeanUtils.copyProperties(this, schedule);
+        return schedule;
+    }
+
     @java.lang.Override
     public java.lang.String toString() {
         return "Schedule{" +

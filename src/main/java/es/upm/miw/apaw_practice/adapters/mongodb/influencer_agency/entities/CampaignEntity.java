@@ -4,6 +4,7 @@ import es.upm.miw.apaw_practice.domain.models.influencer_agency.Campaign;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -66,5 +67,12 @@ public class CampaignEntity {
                 ", description='" + description + '\'' +
                 ", contents=" + contents +
                 '}';
+    }
+
+    public Campaign toCampaign() {
+        Campaign campaign = new Campaign();
+        campaign.setContents(new ArrayList<>());
+        BeanUtils.copyProperties(this, campaign);
+        return campaign;
     }
 }

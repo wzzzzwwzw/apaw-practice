@@ -8,4 +8,8 @@ public interface InvoicePersistence {
     void deleteByPaid(Boolean paid);
 
     Stream<Invoice> findAll();
+
+    Stream<Invoice> findByCarComponent(String carComponentName);
+
+    Stream<Invoice> findByIsITVSafe(Boolean isITVSafe);
 }

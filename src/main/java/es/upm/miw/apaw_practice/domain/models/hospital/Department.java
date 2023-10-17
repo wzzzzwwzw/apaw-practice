@@ -2,16 +2,16 @@ package es.upm.miw.apaw_practice.domain.models.hospital;
 
 public class Department {
     private String departmentName;
-    private int occupiedBeds;
-    private int floor;
+    private Integer availableBeds;
+    private Integer floor;
 
     public Department() {
         //empty for framework
     }
 
-    public Department(String departmentName, int occupiedBeds, int floor) {
+    public Department(String departmentName, Integer availableBeds, Integer floor) {
         this.departmentName = departmentName;
-        this.occupiedBeds = occupiedBeds;
+        this.availableBeds = availableBeds;
         this.floor=floor;
     }
 
@@ -23,19 +23,19 @@ public class Department {
         this.departmentName = departmentName;
     }
 
-    public int getOccupiedBeds() {
-        return occupiedBeds;
+    public Integer getAvailableBeds() {
+        return availableBeds;
     }
 
-    public void setOccupiedBeds(int occupiedBeds) {
-        this.occupiedBeds = occupiedBeds;
+    public void setAvailableBeds(Integer availableBeds) {
+        this.availableBeds = availableBeds;
     }
 
-    public int getFloor() {
+    public Integer getFloor() {
         return floor;
     }
 
-    public void setFloor(int floor) {
+    public void setFloor(Integer floor) {
         this.floor = floor;
     }
 
@@ -43,7 +43,7 @@ public class Department {
     public String toString() {
         return "Department{" +
                 "departmentName=" + departmentName +
-                ", occupiedBeds='" + occupiedBeds + '\'' +
+                ", availableBeds='" + availableBeds + '\'' +
                 ", floor='" + floor + '\'' +
                 '}';
     }

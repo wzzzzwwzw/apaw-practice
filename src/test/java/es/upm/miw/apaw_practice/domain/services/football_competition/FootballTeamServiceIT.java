@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.domain.services.football_competition;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.FootballCompetitionSeederService;
 import es.upm.miw.apaw_practice.domain.models.football_competition.FootballTeam;
 import es.upm.miw.apaw_practice.TestConfig;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,6 +17,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class FootballTeamServiceIT {
     @Autowired
     private FootballTeamService footballTeamService;
+    @Autowired
+    private FootballCompetitionSeederService footballCompetitionSeederService;
+
+    @AfterEach
+    void after() {
+        this.footballCompetitionSeederService.deleteAll();
+        this.footballCompetitionSeederService.seedDatabase();
+    }
 
     @Test
     public void testGetFootballTeamByCity() {

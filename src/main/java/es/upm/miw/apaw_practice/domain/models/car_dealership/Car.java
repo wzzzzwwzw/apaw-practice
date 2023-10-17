@@ -13,13 +13,16 @@ public class Car {
     private CarModel carModel;
     private List<Seller> sellerList;
 
+    public Car() {
+        this.sellerList = new ArrayList<>();
+    }
     public Car(String chassisNumber, BigDecimal price, Boolean sold, LocalDate fabricationDate, CarModel carModel) {
+        this();
         this.chassisNumber = chassisNumber;
         this.price = price;
         this.sold = sold;
         this.fabricationDate = fabricationDate;
         this.carModel = carModel;
-        this.sellerList = new ArrayList<>();
     }
 
     public String getChassisNumber() {
@@ -38,7 +41,7 @@ public class Car {
         this.price = price;
     }
 
-    public Boolean isSold() {
+    public Boolean getSold() {
         return sold;
     }
 

@@ -1,8 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.stable;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CareTask {
     private String description;
     private Double durationHours;

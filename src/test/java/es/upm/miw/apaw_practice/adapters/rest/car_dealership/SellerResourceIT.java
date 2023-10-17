@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @RestTestConfig
 class SellerResourceIT {
 
@@ -44,5 +46,34 @@ class SellerResourceIT {
                 .body(BodyInserters.fromValue(newSurname))
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testFindUniqueSurnamesMore20000ByBrand() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(SellerResource.SELLERS + SellerResource.SEARCH)
+                                .queryParam("q", "brand:Toyota")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(surnames -> assertFalse(surnames.isEmpty()))
+                .value(surnames -> assertTrue(surnames.get(0).contains("Gonzalez")))
+                .value(surnames -> assertTrue(surnames.get(0).contains("Fernandez")))
+                .value(surnames -> assertTrue(surnames.get(0).contains("Bosque")));
+    }
+
+    @Test
+    void testFindUniqueSurnamesMore20000ByBrandBadRequest() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(SellerResource.SELLERS + SellerResource.SEARCH)
+                                .queryParam("q", "br:NaN")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
     }
 }

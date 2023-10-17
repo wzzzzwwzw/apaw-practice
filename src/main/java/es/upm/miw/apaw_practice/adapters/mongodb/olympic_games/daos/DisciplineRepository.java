@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface DisciplineRepository extends MongoRepository<DisciplineEntity, String> {
     Optional<DisciplineEntity> findByName(String name);
+    int deleteByName(String name);
 }

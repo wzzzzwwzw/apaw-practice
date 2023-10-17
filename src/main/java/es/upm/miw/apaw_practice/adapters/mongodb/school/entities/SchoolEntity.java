@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import es.upm.miw.apaw_practice.domain.models.school.School;
-import es.upm.miw.apaw_practice.domain.models.school.Student;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

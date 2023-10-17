@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Film {
+public class Film implements TreeFilm {
 
     private String filmId;
     private String title;
@@ -94,5 +94,15 @@ public class Film {
                 ", reviews=" + reviews +
                 ", director=" + director +
                 '}';
+    }
+
+    @Override
+    public void add(TreeFilm treeFilm) {
+        throw new UnsupportedOperationException("Unsupported operation in leaf");
+    }
+
+    @Override
+    public void remove(TreeFilm treeFilm) {
+        // Do nothing in leaf
     }
 }

@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 @TestConfig
-public class FootballGamePersistenceMongodbIT {
+class FootballGamePersistenceMongodbIT {
     @Autowired
     private FootballGamePersistenceMongodb footballGamePersistence;
     @Autowired
@@ -26,13 +26,13 @@ public class FootballGamePersistenceMongodbIT {
     }
 
     @Test
-    public void testRead() {
+    void testRead() {
         String id = this.footballGamePersistence.getGamesIdentifiers().get(0);
         assertNotNull(this.footballGamePersistence.read(id));
     }
 
     @Test
-    public void testGetTotalBudgetByLocation() {
+    void testGetTotalBudgetByLocation() {
         BigDecimal totalBudget = this.footballGamePersistence.getTotalBudgetByLocation("Barcelona");
         assertNotNull(totalBudget);
         assertEquals(new BigDecimal("20499779.34"), totalBudget);

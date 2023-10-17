@@ -33,18 +33,23 @@ public class ClimbingSeederService {
         RouteEntity[] routes = {
                 new RouteEntity("1", "Route 1", "Easy"),
                 new RouteEntity("2", "Route 2", "Medium"),
-                new RouteEntity("3", "Route 3", "Hard")
+                new RouteEntity("3", "Route 3", "Hard"),
+                new RouteEntity("4", "Route 4", "Easy"),
+                new RouteEntity("5", "Route 5", "Medium"),
+                new RouteEntity("6", "Route 6", "Hard")
         };
 
         ExpeditionEntity[] expeditions = {
                 new ExpeditionEntity("1", LocalDate.now(), new BigDecimal("1500.00")),
-                new ExpeditionEntity("2", LocalDate.now().minusDays(5), new BigDecimal("500.00"))
+                new ExpeditionEntity("2", LocalDate.now().minusDays(5), new BigDecimal("500.00")),
+                new ExpeditionEntity("3", LocalDate.now().minusDays(10), new BigDecimal("2000.00"))
         };
         this.expeditionRepository.saveAll(Arrays.asList(expeditions));
 
         AreaEntity[] areas = {
                 new AreaEntity("Area 1", "Location 1", true, Arrays.asList(routes[0], routes[1]), expeditions[0]),
-                new AreaEntity("Area 2", "Location 2", false, Arrays.asList(routes[1], routes[2]), expeditions[1])
+                new AreaEntity("Area 2", "Location 2", false, Arrays.asList(routes[2], routes[3]), expeditions[1]),
+                new AreaEntity("Area 3", "Location 3", true, Arrays.asList(routes[4], routes[5]), expeditions[2])
         };
         this.areaRepository.saveAll(Arrays.asList(areas));
 

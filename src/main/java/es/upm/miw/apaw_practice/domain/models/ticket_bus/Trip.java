@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.ticket_bus;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Trip {
     private String path;
@@ -20,6 +21,14 @@ public class Trip {
         this.registrationDate = registrationDate;
         this.numStops = numStops;
         this.bus = bus;
+    }
+    public Trip(String path) {
+        this.path = path;
+    }
+
+    public Trip(String path, String departure) {
+        this.path = path;
+        this.departure = departure;
     }
 
     public String getPath() {
@@ -68,6 +77,18 @@ public class Trip {
 
     public void setBus(Bus bus) {
         this.bus = bus;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Trip trip)) return false;
+        return Objects.equals(path, trip.path);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(path);
     }
 
     @Override

@@ -51,7 +51,11 @@ public class FootballCompetitionSeederService {
         FootballGameEntity[] footballGames = {
                 new FootballGameEntity(LocalDateTime.of(2023, 5, 1, 21, 0), "Madrid", "Mateu Lahoz"),
                 new FootballGameEntity(LocalDateTime.of(2023, 5, 2, 21, 0), "Barcelona", "De Burgos Bengoetxea"),
+                new FootballGameEntity(LocalDateTime.of(2023, 5, 2, 15, 0), "Barcelona", "Mateu Lahoz"),
         };
+        footballGames[0].setPlayers(Arrays.stream(footballPlayers).toList());
+        footballGames[1].setPlayers(Arrays.stream(footballPlayers).toList());
+        footballGames[2].setPlayers(Arrays.stream(footballPlayers).toList());
         this.footballGameRepository.saveAll(Arrays.asList(footballGames));
 
         FootballCompetitionEntity[] footballCompetitions = {
@@ -59,10 +63,13 @@ public class FootballCompetitionSeederService {
                 new FootballCompetitionEntity(new BigDecimal("300000.00"), "FFF"),
                 new FootballCompetitionEntity(new BigDecimal("120000.00"), "DBF"),
                 new FootballCompetitionEntity(new BigDecimal("140000.00"), "PFF"),
+                new FootballCompetitionEntity(new BigDecimal("890000.00"), "PDK"),
         };
         footballCompetitions[0].addSponsor("BBVA");
         footballCompetitions[0].addSponsor("Nike");
         footballCompetitions[0].setTeams(List.of(footballTeams));
+        footballCompetitions[1].addTeam(footballTeams[0]);
+        footballCompetitions[1].addTeam(footballTeams[1]);
         this.footballCompetitionRepository.saveAll(List.of(footballCompetitions));
     }
     public void deleteAll() {

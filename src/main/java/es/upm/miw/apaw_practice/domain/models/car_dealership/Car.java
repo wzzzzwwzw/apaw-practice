@@ -14,15 +14,15 @@ public class Car {
     private List<Seller> sellerList;
 
     public Car() {
-        //empty from framework
+        this.sellerList = new ArrayList<>();
     }
     public Car(String chassisNumber, BigDecimal price, Boolean sold, LocalDate fabricationDate, CarModel carModel) {
+        this();
         this.chassisNumber = chassisNumber;
         this.price = price;
         this.sold = sold;
         this.fabricationDate = fabricationDate;
         this.carModel = carModel;
-        this.sellerList = new ArrayList<>();
     }
 
     public String getChassisNumber() {

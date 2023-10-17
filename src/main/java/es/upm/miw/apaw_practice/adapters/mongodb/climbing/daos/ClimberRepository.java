@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface ClimberRepository extends MongoRepository<ClimberEntity, String> {
     Optional<ClimberEntity> findByEmail(String email);
+
+    int deleteByEmail(String email);
 }

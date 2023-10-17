@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(PatientResource.PATIENTS)
 public class PatientResource {
     static final String PATIENTS = "/hospital/patients";
-    static final String NAME_ID = "/{socialInsuranceNumber}";
+    static final String SOCIAL_INSURANCE_NUMBER = "/{socialInsuranceNumber}";
+    static final String ALLERGIC_MEDICINE = "/allergicMedicine";
     private final PatientService patientService;
 
     @Autowired
@@ -17,9 +18,14 @@ public class PatientResource {
         this.patientService = patientService;
     }
 
-    @GetMapping(NAME_ID)
+    @GetMapping(SOCIAL_INSURANCE_NUMBER)
     public Patient read(@PathVariable String socialInsuranceNumber) {
         return this.patientService.read(socialInsuranceNumber);
+    }
+
+    @PatchMapping(SOCIAL_INSURANCE_NUMBER+ALLERGIC_MEDICINE)
+    public Patient updateAllergicMedicine(@PathVariable String socialInsuranceNumber, @RequestBody String newAllergicMedicine) {
+        return this.patientService.updateAllergicMedicineBySocialInsuranceNumber(socialInsuranceNumber,newAllergicMedicine);
     }
 
 }

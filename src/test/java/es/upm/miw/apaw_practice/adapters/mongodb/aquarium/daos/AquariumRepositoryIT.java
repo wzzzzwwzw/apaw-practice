@@ -17,6 +17,6 @@ public class AquariumRepositoryIT {
         assertTrue(this.aquariumRepository.findByDescription("Sea").isPresent());
         AquariumEntity aquarium = this.aquariumRepository.findByDescription("Sea").get();
         assertEquals(2000.55,aquarium.getSize());
-        assertEquals(5000,aquarium.getmaximumFishCapacity());
+        assertEquals(5000,aquarium.getMaximumFishCapacity());
     }
 }

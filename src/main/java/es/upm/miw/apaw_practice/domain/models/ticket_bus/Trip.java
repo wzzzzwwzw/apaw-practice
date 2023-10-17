@@ -25,6 +25,12 @@ public class Trip {
     public Trip(String path) {
         this.path = path;
     }
+
+    public Trip(String path, String departure) {
+        this.path = path;
+        this.departure = departure;
+    }
+
     public String getPath() {
         return path;
     }

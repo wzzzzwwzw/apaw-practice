@@ -27,4 +27,16 @@ public class BusResourceIT {
                 .expectStatus().isOk();
 
     }
+
+    @Test
+    void testUpdateTrip() {
+        Trip trip = new Trip("Toledo-Madrid", "18:00");
+        String referenceBus = "C-123";
+        this.webTestClient
+                .put()
+                .uri(BusResource.BUSES + BusResource.REFERENCE_BUS + BusResource.TRIPS_PATH,
+                        referenceBus, "Madrid-Toledo")
+                .exchange()
+                .expectStatus().isOk();
+    }
 }

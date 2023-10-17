@@ -31,6 +31,20 @@ public class AirLineResourceIT {
         );
         this.webTestClient
                 .put()
+                .uri(AirLineResource.AIRLINES + AirLineResource.NAME + AirLineResource.AIRCRAFTS, "Iberia")
+                .body(BodyInserters.fromValue(aircraftList))
+                .exchange()
+                .expectStatus().isOk();
+    }
+
+    @Test
+    void testUpdateNotFound() {
+        List<Aircraft> aircraftList = Arrays.asList(
+                new Aircraft(LocalDate.of(2023,1,12), 520, "Boeing 474","231QWE"),
+                new Aircraft(LocalDate.of(2023,3,23), 300, "Airbus 420","KKH437")
+        );
+        this.webTestClient
+                .put()
                 .uri(AirLineResource.AIRLINES + AirLineResource.NAME + AirLineResource.AIRCRAFTS, "British Airways")
                 .body(BodyInserters.fromValue(aircraftList))
                 .exchange()

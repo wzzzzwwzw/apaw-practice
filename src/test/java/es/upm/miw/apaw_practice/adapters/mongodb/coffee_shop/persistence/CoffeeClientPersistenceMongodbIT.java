@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -49,6 +51,12 @@ public class CoffeeClientPersistenceMongodbIT {
         Stream<CoffeeClient> coffeeClientStream = this.coffeeClientPersistenceMongodb.getCoffeeClientStreamByCategory("test");
         assertNotNull(coffeeClientStream);
         assertEquals(0, coffeeClientStream.count());
+    }
+
+    @Test
+    void testGetUniqueLocationsByCoffee() {
+        List<String> uniqueLocationByCoffee = this.coffeeClientPersistenceMongodb.getUniqueLocationsByCoffee("Expresso Frappuccino");
+        assertEquals(List.of("location4"), uniqueLocationByCoffee);
     }
 
 }

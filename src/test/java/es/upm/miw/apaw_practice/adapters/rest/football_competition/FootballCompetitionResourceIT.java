@@ -10,7 +10,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import java.util.List;
 
 @RestTestConfig
-public class FootballCompetitionResourceIT {
+class FootballCompetitionResourceIT {
     @Autowired
     private WebTestClient webTestClient;
     @Autowired
@@ -23,7 +23,7 @@ public class FootballCompetitionResourceIT {
     }
 
     @Test
-    public void testDeleteFootballCompetition() {
+    void testDeleteFootballCompetition() {
         this.webTestClient
                 .delete()
                 .uri(FootballCompetitionResource.COMPETITIONS + FootballCompetitionResource.ORGANIZING_ENTITY_ID, "PFF")
@@ -32,7 +32,7 @@ public class FootballCompetitionResourceIT {
     }
 
     @Test
-    public void testGetNamesByOrganizingEntity() {
+    void testGetNamesByOrganizingEntity() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->

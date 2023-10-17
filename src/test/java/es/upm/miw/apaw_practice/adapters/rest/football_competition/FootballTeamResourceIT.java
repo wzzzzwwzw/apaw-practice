@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RestTestConfig
-public class FootballTeamResourceIT {
+class FootballTeamResourceIT {
     @Autowired
     private WebTestClient webTestClient;
     @Autowired
@@ -28,7 +28,7 @@ public class FootballTeamResourceIT {
     }
 
     @Test
-    public void testGetByCity() {
+    void testGetByCity() {
         this.webTestClient
                 .get()
                 .uri(FootballTeamResource.TEAMS + FootballTeamResource.CITY_ID, "Madrid")
@@ -45,7 +45,7 @@ public class FootballTeamResourceIT {
     }
 
     @Test
-    public void testCreateFootballTeam() {
+    void testCreateFootballTeam() {
         FootballTeam footballTeam = new FootballTeam("Albacete", 1890, new BigDecimal("123922.16"), false);
 
         this.webTestClient

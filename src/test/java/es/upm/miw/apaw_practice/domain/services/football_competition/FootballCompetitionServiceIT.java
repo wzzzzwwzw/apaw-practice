@@ -15,7 +15,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
-public class FootballCompetitionServiceIT {
+class FootballCompetitionServiceIT {
     @Autowired
     private FootballCompetitionService footballCompetitionService;
     @Autowired
@@ -28,7 +28,7 @@ public class FootballCompetitionServiceIT {
     }
 
     @Test
-    public void testGetFootballCompetitionByOrganizingEntity() {
+    void testGetFootballCompetitionByOrganizingEntity() {
         String organizingEntity = "PFF";
         FootballCompetition competition =
                 this.footballCompetitionService.getFootballCompetitionByOrganizingEntity(organizingEntity);
@@ -40,7 +40,7 @@ public class FootballCompetitionServiceIT {
     }
 
     @Test
-    public void testDelete() {
+    void testDelete() {
         String organizingEntity = "PDK";
         assertNotNull(this.footballCompetitionService.getFootballCompetitionByOrganizingEntity(organizingEntity));
         this.footballCompetitionService.delete(organizingEntity);
@@ -50,7 +50,7 @@ public class FootballCompetitionServiceIT {
     }
 
     @Test
-    public void testGetNamesByOrganizingEntity() {
+    void testGetNamesByOrganizingEntity() {
         String organizingEntity = "FFF";
         List<String> names = this.footballCompetitionService.getNamesByOrganizingEntity(organizingEntity);
         assertNotNull(names);

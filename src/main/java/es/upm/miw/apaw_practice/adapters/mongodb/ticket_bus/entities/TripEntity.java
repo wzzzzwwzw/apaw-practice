@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.ticket_bus.entities;
 
 import es.upm.miw.apaw_practice.domain.models.ticket_bus.Trip;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -103,6 +104,12 @@ public class TripEntity {
         this.tickets = tickets;
     }
 
+    public Trip toTrip() {
+        Trip trip = new Trip();
+        BeanUtils.copyProperties(this, trip);
+        return trip;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -113,6 +120,11 @@ public class TripEntity {
     @Override
     public int hashCode() {
         return Objects.hash( path);
+    }
+
+    public void fromTrip(Trip trip) {
+        this.id = UUID.randomUUID().toString();
+        BeanUtils.copyProperties(trip, this);
     }
 
     @Override
@@ -127,4 +139,7 @@ public class TripEntity {
                 ", tickets=" + tickets +
                 '}';
     }
+
+
+
 }

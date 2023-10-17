@@ -26,6 +26,12 @@ public class Bus {
         this.trip = trip;
         this.passengers = passengers;
     }
+    public Bus(String referenceBus, boolean accessibility, Trip trip) {
+
+        this.referenceBus = referenceBus;
+        this.accessibility = accessibility;
+        this.trip = trip;
+    }
 
     public String getReferenceBus() {
         return referenceBus;

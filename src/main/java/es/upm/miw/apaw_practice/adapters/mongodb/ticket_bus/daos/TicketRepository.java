@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository("TicketTRepository")
 public interface TicketRepository extends MongoRepository<TicketEntity,String> {
+    void deleteByArrive(String arrive);
 }

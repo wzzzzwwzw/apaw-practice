@@ -23,7 +23,12 @@ public class AquariumService {
 
     private void assertAquariumDescriptionNotExists(String description) {
         if (this.aquariumPersistence.existsAquariumDescription(description)) {
-            throw new ConflictException("Aquarium descrription already exists: " + description);
+            throw new ConflictException("Aquarium description already exists: " + description);
         }
+    }
+    public Aquarium updateDescription(String description, double size){
+        Aquarium aquarium = this.aquariumPersistence.read(description);
+        aquarium.setDescription(description);
+        return this.aquariumPersistence.update(aquarium);
     }
 }

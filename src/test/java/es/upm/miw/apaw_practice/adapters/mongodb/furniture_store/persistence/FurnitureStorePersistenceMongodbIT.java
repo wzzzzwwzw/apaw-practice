@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.furniture_store.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.furniture_store.FurnitureStoreSeederService;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.furniture_store.Furniture;
 import es.upm.miw.apaw_practice.domain.models.furniture_store.FurnitureStore;
 import es.upm.miw.apaw_practice.domain.models.furniture_store.Material;
@@ -9,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -54,6 +54,18 @@ class FurnitureStorePersistenceMongodbIT {
         assertEquals("aluminio", newFurnitureStore.getFurnitures().get(0).getMaterials().get(0).getName());
         furnitureStoreSeederService.deleteAll();
         furnitureStoreSeederService.seedDatabase();
+    }
+
+    @Test
+    void testUpdateNotFound() {
+        FurnitureStore furnitureStore = this.furnitureStorePersistenceMongodb.readByName("ikia");
+        assertNotNull(furnitureStore);
+
+        Material material = new Material("abeto", "madera", 7);
+        List<Furniture> furnitureList = List.of(new Furniture("mesa comedor 100 x 200", new BigDecimal("97.97"), List.of(material)));
+        furnitureStore.setFurnitures(furnitureList);
+
+        assertThrows(NotFoundException.class, () -> this.furnitureStorePersistenceMongodb.update(furnitureStore));
 
     }
 }

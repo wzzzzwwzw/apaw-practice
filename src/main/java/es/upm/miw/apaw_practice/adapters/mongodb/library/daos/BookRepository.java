@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface BookRepository extends MongoRepository<BookEntity, String> {
     Optional<BookEntity> findByIsbn(String isbn);
-    int deleteByIsbn(String isbn);
+    void deleteByIsbn(String isbn);
 }

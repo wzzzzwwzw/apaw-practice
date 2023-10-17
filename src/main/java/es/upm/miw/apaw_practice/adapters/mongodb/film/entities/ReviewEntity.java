@@ -9,7 +9,8 @@ public class ReviewEntity {
     private String comment;
     private Boolean recommendation;
 
-    public ReviewEntity() {}
+    public ReviewEntity() {
+    }
 
     public ReviewEntity(Review review) {
         BeanUtils.copyProperties(review, this);

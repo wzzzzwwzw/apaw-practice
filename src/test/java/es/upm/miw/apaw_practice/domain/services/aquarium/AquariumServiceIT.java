@@ -33,4 +33,9 @@ public class AquariumServiceIT {
         Aquarium aquarium = new Aquarium("Sea", 2000.55, 5000);
         assertThrows(ConflictException.class, () -> this.aquariumService.create(aquarium));
     }
+    @Test
+    void testUpdate(){
+        Aquarium aquarium = this.aquariumService.updateDescription("Sea",2000.55);
+        assertEquals(2000.55,aquarium.getSize());
+    }
 }

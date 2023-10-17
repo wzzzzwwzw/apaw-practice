@@ -22,4 +22,9 @@ public class ProductResource {
     public void delete(@PathVariable String name) {
         this.productService.delete(name);
     }
+
+    @PatchMapping(NAME_ID)
+    public Product updatePrice(@PathVariable String name, @RequestBody String price) {
+        return this.productService.updatePrice(name, price);
+    }
 }

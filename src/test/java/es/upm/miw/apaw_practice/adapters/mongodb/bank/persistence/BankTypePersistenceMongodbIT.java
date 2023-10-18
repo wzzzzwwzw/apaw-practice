@@ -4,6 +4,7 @@ import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 
 
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.bank.BankType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -12,8 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 public class BankTypePersistenceMongodbIT {
@@ -35,5 +35,12 @@ public class BankTypePersistenceMongodbIT {
         assertEquals("Banco de Desarrollo", bankType.getTypeName());
         assertEquals("Banco público o privado que se enfoca en financiar proyectos de desarrollo y crecimiento económico en una región o país.", bankType.getDescription());
         assertEquals(bankType.getMinimunCapital(),new BigDecimal("20000000.00"));
+    }
+
+    @Test
+    void TestNotFoundReadTypeName(){
+        assertThrows(NotFoundException.class, () -> {
+            this.bankTypePersistenceMongodb.readByTypeName("Rural");
+        });
     }
 }

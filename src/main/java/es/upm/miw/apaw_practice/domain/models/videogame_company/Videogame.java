@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.videogame_company;
 
+import es.upm.miw.apaw_practice.domain.models.videogame_company.builders.VideogameBuilders;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,6 +24,10 @@ public class Videogame {
         this.price = price;
         this.releaseDate = releaseDate;
         this.gameEngine = gameEngine;
+    }
+
+    public static VideogameBuilders.Name build(){
+        return new Builder();
     }
 
     public String getName() {
@@ -77,6 +83,48 @@ public class Videogame {
                 ", gameEngine=" + gameEngine +
                 ", features=" + features +
                 '}';
+    }
+
+    public static class Builder implements VideogameBuilders.Name, VideogameBuilders.Price,
+            VideogameBuilders.ReleaseDate, VideogameBuilders.Engine, VideogameBuilders.Features,
+            VideogameBuilders.Build{
+        private final Videogame videogame;
+
+        public Builder(){ this.videogame = new Videogame();}
+
+        @Override
+        public VideogameBuilders.Price name(String name){
+            this.videogame.name = name;
+            return this;
+        }
+
+        @Override
+        public VideogameBuilders.ReleaseDate price(BigDecimal price){
+            this.videogame.price = price;
+            return this;
+        }
+
+        @Override
+        public VideogameBuilders.Engine releaseDate(LocalDate releaseDate){
+            this.videogame.releaseDate = releaseDate;
+            return this;
+        }
+
+        @Override
+        public VideogameBuilders.Features engine(GameEngine gameEngine){
+            this.videogame.gameEngine = gameEngine;
+            return this;
+        }
+
+        @Override
+        public VideogameBuilders.Build features(List<Feature> features){
+            this.videogame.features = features;
+            return this;
+        }
+
+        @Override
+        public Videogame build(){return this.videogame;}
+
     }
 
 }

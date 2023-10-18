@@ -16,7 +16,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestConfig
-public class FootballGameServiceIT {
+class FootballGameServiceIT {
     @Autowired
     private FootballGameService footballGameService;
     @Autowired
@@ -31,7 +31,7 @@ public class FootballGameServiceIT {
     }
 
     @Test
-    public void testUpdateDates() {
+    void testUpdateDates() {
         List<String> identifiers = this.footballGamePersistence.getGamesIdentifiers();
         LocalDateTime[] dates = {
                 LocalDateTime.of(2023, 5, 10, 21, 0),
@@ -51,7 +51,7 @@ public class FootballGameServiceIT {
     }
 
     @Test
-    public void testFindTotalBudgetByLocation() {
+    void testFindTotalBudgetByLocation() {
         assertEquals(
                 new BigDecimal("20499779.34"),
                 this.footballGameService.findTotalBudgetByLocation("Barcelona"));

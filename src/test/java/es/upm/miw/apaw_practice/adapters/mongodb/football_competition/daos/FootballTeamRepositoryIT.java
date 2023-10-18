@@ -8,10 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class FootballTeamRepositoryIT {
+class FootballTeamRepositoryIT {
     @Autowired
     private FootballTeamRepository footballTeamRepository;
     @Autowired

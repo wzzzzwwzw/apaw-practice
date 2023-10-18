@@ -40,14 +40,16 @@ private TripRepository tripRepository;
         this.passengerRepository.saveAll(Arrays.asList(passengers));
         TicketEntity[] tickets = {
                 new TicketEntity("E1", "17:00", "18:00",
-                        LocalDateTime.now(), new BigDecimal("10.00"), passengers[0]),
+                        LocalDateTime.now(), new BigDecimal("13.00"), passengers[0]),
                 new TicketEntity("E12", "17:00", "18:00",
-                        LocalDateTime.now(), new BigDecimal("10.00"), passengers[0])
+                        LocalDateTime.now(), new BigDecimal("14.00"), passengers[0]),
+                new TicketEntity("E1", "17:00", "18:00", LocalDateTime.now(), new BigDecimal("18.00"))
 
         };
         this.ticketRepository.saveAll(Arrays.asList(tickets));
         TripEntity[] trips = {
-                new TripEntity("Madrid-Toledo", "17:00"),
+
+                new TripEntity("Madrid-Toledo","17:00",List.of(tickets[0],tickets[1]))
         };
         this.tripRepository.saveAll(Arrays.asList(trips));
         BusEntity[] buses = {

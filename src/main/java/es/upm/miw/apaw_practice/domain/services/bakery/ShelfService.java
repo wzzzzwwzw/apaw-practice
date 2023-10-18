@@ -2,6 +2,9 @@ package es.upm.miw.apaw_practice.domain.services.bakery;
 
 import es.upm.miw.apaw_practice.domain.models.bakery.Shelf;
 import es.upm.miw.apaw_practice.domain.persistence_ports.bakery.ShelfPersistence;
+
+import java.util.stream.Stream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +20,9 @@ public class ShelfService {
 
     public Shelf update(String name, Shelf shelf) {
         return this.shelfPersistence.update(name, shelf);
+    }
+
+    public Stream<String> findUniqueLocationsByProductTypeCode(String code) {
+        return this.shelfPersistence.findUniqueLocationsByProductTypeCode(code);
     }
 }

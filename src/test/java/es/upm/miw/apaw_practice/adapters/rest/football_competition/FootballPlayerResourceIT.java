@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @RestTestConfig
-public class FootballPlayerResourceIT {
+class FootballPlayerResourceIT {
     @Autowired
     private WebTestClient webTestClient;
     @Autowired
@@ -29,7 +29,7 @@ public class FootballPlayerResourceIT {
     }
 
     @Test
-    public void testUpdateGoals() {
+    void testUpdateGoals() {
         this.webTestClient
                 .put()
                 .uri(FootballPlayerResource.PLAYERS + FootballPlayerResource.NAME_ID + FootballPlayerResource.GOALS, "Lionel Messi")

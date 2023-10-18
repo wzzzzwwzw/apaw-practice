@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 @TestConfig
-public class FootballTeamServiceIT {
+class FootballTeamServiceIT {
     @Autowired
     private FootballTeamService footballTeamService;
     @Autowired
@@ -27,7 +27,7 @@ public class FootballTeamServiceIT {
     }
 
     @Test
-    public void testGetFootballTeamByCity() {
+    void testGetFootballTeamByCity() {
         FootballTeam team = this.footballTeamService.read("Madrid");
         assertNotNull(team);
         assertEquals("Madrid", team.getCity());
@@ -37,7 +37,7 @@ public class FootballTeamServiceIT {
     }
 
     @Test
-    public void testCreateFootballTeam() {
+    void testCreateFootballTeam() {
         FootballTeam team = new FootballTeam("Zamora", 1890, new BigDecimal("174844.75"), false);
         assertNotNull(this.footballTeamService.create(team));
         assertNotNull(this.footballTeamService.read("Zamora"));

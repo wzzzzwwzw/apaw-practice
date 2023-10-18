@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.fruitShop;
 
+import es.upm.miw.apaw_practice.domain.models.fruitShop.builders.FruitSpecieBuilders;
+
 public class FruitSpecie {
 
     private String specie;
@@ -51,5 +53,37 @@ public class FruitSpecie {
                 ", season='" + season + '\'' +
                 ", size=" + size +
                 '}';
+    }
+
+    public static class Builder implements FruitSpecieBuilders.Specie, FruitSpecieBuilders.Optionals {
+        private final FruitSpecie fruitSpecie;
+
+        public Builder(){
+            fruitSpecie = new FruitSpecie();
+        }
+
+        @Override
+        public FruitSpecieBuilders.Optionals specie(String specie) {
+            this.fruitSpecie.specie = specie;
+            return this;
+        }
+
+        @Override
+        public FruitSpecieBuilders.Optionals season(String season){
+            this.fruitSpecie.season = season;
+            return this;
+        }
+
+        @Override
+        public FruitSpecieBuilders.Optionals size(Integer size){
+            this.fruitSpecie.size = size;
+            return this;
+        }
+
+        @Override
+        public FruitSpecie build(){
+            return this.fruitSpecie;
+        }
+
     }
 }

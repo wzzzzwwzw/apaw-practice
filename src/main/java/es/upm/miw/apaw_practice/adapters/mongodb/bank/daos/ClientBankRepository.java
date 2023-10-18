@@ -7,4 +7,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 public interface ClientBankRepository extends MongoRepository<ClientBankEntity,String>{
     Optional<ClientBankEntity> findByDni(String dni);
+
+
 }

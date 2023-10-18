@@ -43,13 +43,13 @@ public class BakerySeederService {
         this.productTypeRepository.saveAll(Arrays.asList(productTypes));
 
         ProductEntity[] products = {
-                new ProductEntity("Pan integral", "Nuestro pan integral", new BigDecimal("1.20"), true, LocalDate.of(2023, 1, 1), productTypes[0]),
-                new ProductEntity("Pan rustico", "Nuestro pan rustico clasico", new BigDecimal("0.80"), false, LocalDate.of(2023, 2, 1), productTypes[0]),
-                new ProductEntity("Napolitana de chocolate", "La napolitana mas dulce", new BigDecimal("0.5"), false, LocalDate.of(2023, 3, 1), productTypes[2]),
-                new ProductEntity("Empanadilla clasica", "Empanadilla de pisto tradicional", new BigDecimal("0.4"), true, LocalDate.of(2023, 4, 1), productTypes[1]),
-                new ProductEntity("Ensaimada", "Ensaimada sin relleno", new BigDecimal("0.3"), true, LocalDate.of(2023, 5, 1), productTypes[2]),
-                new ProductEntity("Rosquilletas", "Rosquilletas clasicas", new BigDecimal("1.10"), false, LocalDate.of(2023, 6, 1), productTypes[1]),
-                new ProductEntity("Rosquilletas de chocolate", "Rosquilletas con pepitas de chocolate", new BigDecimal("1.60"), false, LocalDate.of(2023, 7, 1), productTypes[2])
+                new ProductEntity("Pan integral", "Nuestro pan integral", new BigDecimal("1.20"), true, LocalDate.of(2023, 1, 1), productTypes[0], null),
+                new ProductEntity("Pan rustico", "Nuestro pan rustico clasico", new BigDecimal("0.80"), false, LocalDate.of(2023, 2, 1), productTypes[0], null),
+                new ProductEntity("Napolitana de chocolate", "La napolitana mas dulce", new BigDecimal("0.5"), false, LocalDate.of(2023, 3, 1), productTypes[2], null),
+                new ProductEntity("Empanadilla clasica", "Empanadilla de pisto tradicional", new BigDecimal("0.4"), true, LocalDate.of(2023, 4, 1), productTypes[1], null),
+                new ProductEntity("Ensaimada", "Ensaimada sin relleno", new BigDecimal("0.3"), true, LocalDate.of(2023, 5, 1), productTypes[2], null),
+                new ProductEntity("Rosquilletas", "Rosquilletas clasicas", new BigDecimal("1.10"), false, LocalDate.of(2023, 6, 1), productTypes[1], null),
+                new ProductEntity("Rosquilletas de chocolate", "Rosquilletas con pepitas de chocolate", new BigDecimal("1.60"), false, LocalDate.of(2023, 7, 1), productTypes[2], null)
 
         };
         this.productRepository.saveAll(Arrays.asList(products));
@@ -61,6 +61,14 @@ public class BakerySeederService {
 
         };
         this.shelfRepository.saveAll(Arrays.asList(shelves));
+
+        products[0].setShelf(shelves[0]);
+        products[1].setShelf(shelves[0]);
+        products[2].setShelf(shelves[1]);
+        products[3].setShelf(shelves[2]);
+        products[4].setShelf(shelves[1]);
+        products[5].setShelf(shelves[2]);
+        products[6].setShelf(shelves[1]);
 
         TicketEntity[] tickets = {
                 new TicketEntity(LocalDateTime.of(2023, 1, 1, 10, 50, 51), new BigDecimal("2.00"), 2, List.of(products[0], products[1])),

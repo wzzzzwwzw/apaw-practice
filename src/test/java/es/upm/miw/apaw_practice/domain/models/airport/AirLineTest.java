@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 public class AirLineTest {
     @Test
-    void testConferenceLocationBuilder() {
+    void testAirLineBuilder() {
         LocalDate date =  LocalDate.of(1978,10,11);
         AirLine airLine = AirLine.builder()
                 .name("Catar Airways")

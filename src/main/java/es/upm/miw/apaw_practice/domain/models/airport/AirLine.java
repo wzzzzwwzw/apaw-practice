@@ -20,6 +20,9 @@ public class AirLine {
         this.aircrafts = aircrafts;
     }
 
+    public static AirLineBuilders.Name builder(){
+        return new Builder();
+    }
     public String getName() {
         return name;
     }

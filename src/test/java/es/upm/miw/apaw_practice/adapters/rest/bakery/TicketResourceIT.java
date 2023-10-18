@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import static org.junit.Assert.assertEquals;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -41,5 +43,18 @@ class TicketResourceIT {
                 .expectStatus().isOk()
                 .expectBody(Ticket.class)
                 .value(Assertions::assertNotNull);
+    }
+
+    @Test
+    void testFindTotalPriceSumForShelfName() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder.path(TicketResource.TICKETS + TicketResource.SEARCH)
+                        .queryParam("q", "name:Estanteria2")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BigDecimal.class)
+                .value(responseSumTotalPrice -> assertEquals(new BigDecimal("3.90"), responseSumTotalPrice));
     }
 }

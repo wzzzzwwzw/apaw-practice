@@ -1,15 +1,11 @@
 package es.upm.miw.apaw_practice.domain.services.videogame_company;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.videogame_company.entities.GameEngineEntity;
-import es.upm.miw.apaw_practice.domain.models.videogame_company.GameEngine;
 import es.upm.miw.apaw_practice.domain.models.videogame_company.Videogame;
 import es.upm.miw.apaw_practice.domain.persistence_ports.videogame_company.VideogamePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.stream.Stream;
 
 @Service
 public class VideogameService {

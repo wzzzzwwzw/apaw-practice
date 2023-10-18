@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.rest.videogame_company;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.videogame_company.daos.VideogameRepository;
 import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.videogame_company.Videogame;
 import es.upm.miw.apaw_practice.domain.services.videogame_company.VideogameService;

@@ -15,7 +15,12 @@ public class OlympicGamesService {
         this.olympicGamesPersistence = olympicGamesPersistence;
     }
 
+    public OlympicGames updateHostingPlace(Integer edition, String hostingPlace) {
+        return this.olympicGamesPersistence.updateHostingPlace(edition, hostingPlace);
+    }
+
     public OlympicGames readByEdition(Integer edition) {
         return this.olympicGamesPersistence.readByEdition(edition);
     }
+
 }

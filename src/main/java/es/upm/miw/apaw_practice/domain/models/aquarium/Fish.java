@@ -2,7 +2,8 @@ package es.upm.miw.apaw_practice.domain.models.aquarium;
 
 import java.time.LocalDate;
 
-public class Fish {
+
+    public class Fish implements TreeFishes{
     private String species;
     private String color;
     private LocalDate dateOfEntrance;
@@ -47,4 +48,19 @@ public class Fish {
                 ", dateOfEntrance=" + dateOfEntrance +
                 '}';
     }
-}
+    @Override
+        public Boolean isComposite(){
+        return false;
+    }
+
+        @Override
+        public void add(TreeFishes treeFishes) {
+      throw new UnsupportedOperationException("Unsupported Operation in Fish leaf");
+        }
+
+        @Override
+        public void remove(TreeFishes treeFishes) {
+            //cannot remove in leaf
+        }
+
+    }

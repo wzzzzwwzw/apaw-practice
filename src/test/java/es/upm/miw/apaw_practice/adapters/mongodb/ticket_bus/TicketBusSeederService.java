@@ -47,7 +47,8 @@ private TripRepository tripRepository;
         };
         this.ticketRepository.saveAll(Arrays.asList(tickets));
         TripEntity[] trips = {
-                new TripEntity("Madrid-Toledo", "17:00"),
+
+                new TripEntity("Madrid-Toledo","17:00",List.of(tickets[0],tickets[1]))
         };
         this.tripRepository.saveAll(Arrays.asList(trips));
         BusEntity[] buses = {

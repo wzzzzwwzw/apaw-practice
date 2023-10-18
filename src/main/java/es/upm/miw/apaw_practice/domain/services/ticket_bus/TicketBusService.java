@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class TicketBusService {
+public class
+TicketBusService {
     private final TicketPersistence ticketPersistence;
 
     @Autowired

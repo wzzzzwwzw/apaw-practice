@@ -1,12 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.coffee_shop.entities;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.entities.MonitorEntity;
 import es.upm.miw.apaw_practice.domain.models.coffee_shop.Coffee;
 import es.upm.miw.apaw_practice.domain.models.coffee_shop.CoffeeClient;
 import es.upm.miw.apaw_practice.domain.models.coffee_shop.Dining;
 import es.upm.miw.apaw_practice.domain.models.coffee_shop.Transaction;
-import es.upm.miw.apaw_practice.domain.models.computer_store.Computer;
-import es.upm.miw.apaw_practice.domain.models.computer_store.Monitor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;

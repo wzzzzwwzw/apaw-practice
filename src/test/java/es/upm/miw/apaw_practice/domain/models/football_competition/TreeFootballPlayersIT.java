@@ -1,14 +1,14 @@
 package es.upm.miw.apaw_practice.domain.models.football_competition;
 
-import es.upm.miw.apaw_practice.domain.models.conference.Paper;
-import es.upm.miw.apaw_practice.domain.models.conference.PaperComposite;
+import es.upm.miw.apaw_practice.TestConfig;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class TreeFootballPlayersIT {
+@TestConfig
+class TreeFootballPlayersIT {
     @Test
     void testTreeFootballPlayersComposite() {
         TreeFootballPlayersComposite composite =

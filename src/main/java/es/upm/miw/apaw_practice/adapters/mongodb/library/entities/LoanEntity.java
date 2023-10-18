@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.library.entities;
 
 import es.upm.miw.apaw_practice.domain.models.library.Loan;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -11,6 +12,8 @@ import java.util.UUID;
 public class LoanEntity {
     @Id
     private String id;
+    @Indexed(unique = true)
+    private String loanCode;
     private BookEntity bookEntity;
     private LocalDateTime loanDateTime;
     private LocalDateTime returnDateTime;
@@ -20,8 +23,9 @@ public class LoanEntity {
         //empty for framework
     }
 
-    public LoanEntity(BookEntity bookEntity, LocalDateTime loanDateTime, LocalDateTime returnDateTime, Boolean loanStatus) {
+    public LoanEntity(String loanCode, BookEntity bookEntity, LocalDateTime loanDateTime, LocalDateTime returnDateTime, Boolean loanStatus) {
         this.id = UUID.randomUUID().toString();
+        this.loanCode = loanCode;
         this.bookEntity = bookEntity;
         this.loanDateTime = loanDateTime;
         this.returnDateTime = returnDateTime;
@@ -34,6 +38,14 @@ public class LoanEntity {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getLoanCode() {
+        return loanCode;
+    }
+
+    public void setLoanCode(String loanCode) {
+        this.loanCode = loanCode;
     }
 
     public BookEntity getBookEntity() {
@@ -69,7 +81,7 @@ public class LoanEntity {
     }
 
     public Loan toLoan() {
-        return new Loan(this.bookEntity.toBook(), this.loanDateTime, this.returnDateTime, this.loanStatus);
+        return new Loan(this.loanCode, bookEntity.toBook(), this.loanDateTime, this.returnDateTime, this.loanStatus);
     }
 
     @Override
@@ -79,13 +91,14 @@ public class LoanEntity {
 
     @Override
     public int hashCode() {
-        return this.id.hashCode();
+        return this.loanCode.hashCode();
     }
 
     @Override
     public String toString() {
         return "LoanEntity{" +
                 "id='" + id + '\'' +
+                ", loanCode='" + loanCode + '\'' +
                 ", bookEntity=" + bookEntity +
                 ", loanDateTime=" + loanDateTime +
                 ", returnDateTime=" + returnDateTime +

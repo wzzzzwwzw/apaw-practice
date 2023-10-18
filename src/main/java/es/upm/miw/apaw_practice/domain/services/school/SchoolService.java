@@ -6,6 +6,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.school.SchoolPersistenc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class SchoolService {
 
@@ -29,5 +31,8 @@ public class SchoolService {
 
     public School read(String name) {
         return this.schoolPersistence.read(name);
+    }
+    public BigDecimal registrationPriceSumGivenBilingual(Boolean bilingual) {
+        return this.schoolPersistence.registrationPriceSumGivenBilingual(bilingual);
     }
 }

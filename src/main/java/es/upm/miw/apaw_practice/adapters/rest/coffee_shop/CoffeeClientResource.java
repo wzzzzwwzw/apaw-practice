@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
 @RequestMapping(CoffeeClientResource.COFFEES)
@@ -14,6 +15,7 @@ public class CoffeeClientResource {
     static final String COFFEES = "/coffee-shop/coffees-clients";
     static final String NAME = "/{name}";
     static final String TOTAL_PRICE = "/total-price";
+    static final String UNIQUE_LOCATION = "/unique-location";
     @Autowired
     private final CoffeeClientService coffeeClientService;
 
@@ -35,5 +37,11 @@ public class CoffeeClientResource {
     public BigDecimal getTotalPriceByCategory(@RequestParam String q) {
         String coffeeCategory = new LexicalAnalyzer().extractWithAssure(q, "category");
         return this.coffeeClientService.getTotalPriceByCategory(coffeeCategory);
+    }
+
+    @GetMapping(UNIQUE_LOCATION)
+    public List<String> getUniqueLocationsByCoffee(@RequestParam String q) {
+        String coffee = new LexicalAnalyzer().extractWithAssure(q, "coffee");
+        return this.coffeeClientService.getUniqueLocationsByCoffee(coffee);
     }
 }

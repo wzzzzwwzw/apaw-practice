@@ -76,11 +76,15 @@ public class SchoolSeederService {
         SchoolEntity[] schools = {
                 new SchoolEntity("school1", "address1", LocalDate.of(2001, 3, 5), new BigDecimal("3000.00"), List.of(students[0], students[1])),
                 new SchoolEntity("school2", "address2", LocalDate.of(2010, 9, 21), new BigDecimal("250.75"), List.of(students[0], students[1], students[2], students[3])),
+                new SchoolEntity("All Students non bilingual", "address3", LocalDate.of(2020, 12, 9), new BigDecimal("173.99"), List.of(students[3]))
         };
         this.schoolRepository.saveAll(Arrays.asList(schools));
     }
 
     public void deleteAll() {
         this.subjectRepository.deleteAll();
+        this.studentRepository.deleteAll();
+        this.schoolRepository.deleteAll();
+        this.classroomRepository.deleteAll();
     }
 }

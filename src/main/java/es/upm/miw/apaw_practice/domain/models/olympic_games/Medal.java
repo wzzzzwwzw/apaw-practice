@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.domain.models.olympic_games;
 
 public class Medal {
 
+    private String medalID;
     private String tier;
     private Boolean teamMedal;
     private String competition;
@@ -12,11 +13,20 @@ public class Medal {
     public Medal() {
     }
 
-    public Medal(String tier, Boolean teamMedal, String competition, Competitor winner) {
+    public Medal(String medalID, String tier, Boolean teamMedal, String competition, Competitor winner) {
         this.tier = tier;
         this.teamMedal = teamMedal;
         this.competition = competition;
         this.winner = winner;
+        this.medalID = medalID;
+    }
+
+    public String getMedalID() {
+        return medalID;
+    }
+
+    public void setMedalID(String medalID) {
+        this.medalID = medalID;
     }
 
     public String getTier() {
@@ -54,7 +64,8 @@ public class Medal {
     @Override
     public String toString() {
         return "Medal{" +
-                "tier='" + tier + '\'' +
+                "medalID='" + medalID + '\'' +
+                ", tier='" + tier + '\'' +
                 ", teamMedal=" + teamMedal +
                 ", competition='" + competition + '\'' +
                 ", winner=" + winner +

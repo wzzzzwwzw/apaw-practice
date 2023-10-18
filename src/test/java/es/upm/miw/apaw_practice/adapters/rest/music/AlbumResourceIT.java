@@ -2,11 +2,15 @@ package es.upm.miw.apaw_practice.adapters.rest.music;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.music.MusicSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
+import es.upm.miw.apaw_practice.adapters.rest.music.dtos.DenominationCollectionDTO;
 import es.upm.miw.apaw_practice.domain.models.music.Song;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RestTestConfig
 class AlbumResourceIT {
@@ -64,5 +68,23 @@ class AlbumResourceIT {
                 .expectStatus().isOk()
                 .expectBodyList(Integer.class)
                 .hasSize(3);
+    }
+
+    @Test
+    void testGetDifferentDenominationsByFullname() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(AlbumResource.ALBUMS + AlbumResource.SEARCH2)
+                        .queryParam("q", "fullname:J Balvin")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(DenominationCollectionDTO.class)
+                .value(denominationCollectionDTO -> {
+                    assertEquals(2, denominationCollectionDTO.getDenominations().size());
+                    assertTrue(denominationCollectionDTO.getDenominations().contains("Colores"));
+                    assertTrue(denominationCollectionDTO.getDenominations().contains("Fearless"));
+                });
     }
 }

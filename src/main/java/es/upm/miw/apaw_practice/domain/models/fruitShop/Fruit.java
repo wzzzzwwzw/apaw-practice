@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.fruitShop;
 
+import es.upm.miw.apaw_practice.domain.models.fruitShop.builders.FruitBuilders;
+
 import java.time.LocalDate;
 import java.math.BigDecimal;
 import java.util.List;
@@ -92,4 +94,56 @@ public class Fruit {
                 ", customers=" + customers +
                 '}';
     }
+
+    public static class Builder implements FruitBuilders.Type, FruitBuilders.Optionals {
+        private final Fruit fruit;
+
+        public Builder(){
+            fruit = new Fruit();
+        }
+
+        @Override
+        public FruitBuilders.Optionals type(String type){
+            this.fruit.type = type;
+            return this;
+        }
+
+        @Override
+        public FruitBuilders.Optionals unitPrice(BigDecimal unitPrice){
+            this.fruit.unitPrice = unitPrice;
+            return this;
+        }
+
+        @Override
+        public FruitBuilders.Optionals tropical(Boolean tropical){
+            this.fruit.tropical = tropical;
+            return this;
+        }
+
+        @Override
+        public FruitBuilders.Optionals stockTime(LocalDate stockTime){
+            this.fruit.stockTime = stockTime;
+            return this;
+        }
+
+        @Override
+        public FruitBuilders.Optionals fruitSpecie(FruitSpecie fruitSpecies){
+            this.fruit.fruitSpecie = fruitSpecies;
+            return this;
+        }
+
+        @Override
+        public FruitBuilders.Optionals customers(List<Customer> customers){
+            this.fruit.customers = customers;
+            return this;
+        }
+
+        @Override
+        public Fruit build(){
+            return this.fruit;
+        }
+
+    }
+
+
 }

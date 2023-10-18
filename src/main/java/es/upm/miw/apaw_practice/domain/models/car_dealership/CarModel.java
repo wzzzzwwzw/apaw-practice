@@ -49,4 +49,30 @@ public class CarModel {
                 ", createDate=" + createDate +
                 '}';
     }
+    public static class Builder {
+        private final CarModel carModel;
+
+        public Builder() {
+            this.carModel = new CarModel();
+        }
+
+        public Builder name(String name) {
+            this.carModel.setName(name);
+            return this;
+        }
+
+        public Builder brand(String brand) {
+            this.carModel.setBrand(brand);
+            return this;
+        }
+
+        public Builder createDate(LocalDate createDate) {
+            this.carModel.setCreateDate(createDate);
+            return this;
+        }
+
+        public CarModel build() {
+            return this.carModel;
+        }
+    }
 }

@@ -52,7 +52,7 @@ public class BakerySeederService {
                 new ProductEntity("Rosquilletas de chocolate", "Rosquilletas con pepitas de chocolate", new BigDecimal("1.60"), false, LocalDate.of(2023, 7, 1), productTypes[2], null)
 
         };
-        this.productRepository.saveAll(Arrays.asList(products));
+        
 
         ShelfEntity[] shelves = {
                 new ShelfEntity("Estanteria1", 20, 2, "Pasillo 1", List.of(products[0], products[1])),
@@ -60,7 +60,6 @@ public class BakerySeederService {
                 new ShelfEntity("Estanteria3", 40, 4, "Pasillo 3", List.of(products[3], products[5]))
 
         };
-        this.shelfRepository.saveAll(Arrays.asList(shelves));
 
         products[0].setShelf(shelves[0]);
         products[1].setShelf(shelves[0]);
@@ -70,12 +69,15 @@ public class BakerySeederService {
         products[5].setShelf(shelves[2]);
         products[6].setShelf(shelves[1]);
 
+        this.productRepository.saveAll(Arrays.asList(products));
+        this.shelfRepository.saveAll(Arrays.asList(shelves));
+
+
         TicketEntity[] tickets = {
                 new TicketEntity(LocalDateTime.of(2023, 1, 1, 10, 50, 51), new BigDecimal("2.00"), 2, List.of(products[0], products[1])),
                 new TicketEntity(LocalDateTime.of(2023, 2, 20, 20, 54, 30), new BigDecimal("0.50"), 1, List.of(products[2])),
                 new TicketEntity(LocalDateTime.of(2023, 3, 15, 15, 58, 34), new BigDecimal("0.70"), 2, List.of(products[3], products[4])),
                 new TicketEntity(LocalDateTime.of(2023, 4, 10, 9, 12, 55), new BigDecimal("2.70"), 2, List.of(products[5], products[6])),
-                new TicketEntity(LocalDateTime.of(2024, 4, 10, 9, 12, 59), new BigDecimal("100.0"), 1, null)
         };
         this.ticketRepository.saveAll(Arrays.asList(tickets));
     }

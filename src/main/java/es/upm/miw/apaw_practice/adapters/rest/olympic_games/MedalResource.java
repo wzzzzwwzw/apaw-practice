@@ -12,7 +12,7 @@ public class MedalResource {
 
     static final String MEDAL = "/olympic-games/medals";
     static final String MEDAL_ID = "/{medalID}";
-    static final String WINNER  = "/competitors";
+    static final String WINNER  = "/winner";
     private final MedalService medalService;
 
     @Autowired

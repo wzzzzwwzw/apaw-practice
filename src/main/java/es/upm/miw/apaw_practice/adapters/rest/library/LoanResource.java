@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.library;
 
+import es.upm.miw.apaw_practice.adapters.rest.library.dto.LoanDataDto;
 import es.upm.miw.apaw_practice.domain.models.library.Loan;
 import es.upm.miw.apaw_practice.domain.services.library.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class LoanResource {
     }
 
     @PatchMapping(LOAN_CODE_ID)
-    public Loan updateLoanStatus(@PathVariable String loanCode){
-        return this.loanService.updateLoanStatusByLoanCode(loanCode);
+    public Loan updateLoanStatus(@PathVariable String loanCode, @RequestBody LoanDataDto loanDataDto){
+        return this.loanService.updateLoanStatusByLoanCode(loanCode, loanDataDto);
     }
 }

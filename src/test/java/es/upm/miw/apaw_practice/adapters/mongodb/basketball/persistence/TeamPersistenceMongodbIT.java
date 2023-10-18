@@ -1,7 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.basketball.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
-import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.TeamEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.TeamBasketballEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.basketball.daos.TeamBasketballRepository;
 import es.upm.miw.apaw_practice.domain.models.basketball.Pavilion;
 import es.upm.miw.apaw_practice.domain.models.basketball.Player;
@@ -28,8 +28,8 @@ class TeamPersistenceMongodbIT {
 
     @Test
     void testReadByAlias() {
-        TeamEntity teamEntity = this.teamBasketballRepository.findByAlias("alias1").orElse(null);
-        assertNotNull(teamEntity);
+        TeamBasketballEntity teamBasketballEntity = this.teamBasketballRepository.findByAlias("alias1").orElse(null);
+        assertNotNull(teamBasketballEntity);
 
         Team team = this.teamPersistence.readByAlias("alias1");
         assertEquals("alias1", team.getAlias());

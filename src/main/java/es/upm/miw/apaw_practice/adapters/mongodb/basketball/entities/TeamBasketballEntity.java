@@ -9,10 +9,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Document
-public class TeamEntity {
+public class TeamBasketballEntity {
     @Id
     private String id;
     @Indexed(unique = true)
@@ -24,10 +23,10 @@ public class TeamEntity {
     @DBRef
     private List<PlayerEntity> playerEntities;
 
-    public TeamEntity(){
+    public TeamBasketballEntity(){
         
     }
-    public TeamEntity(String alias, Integer numPlayers, String coach, List<PavilionEntity> pavilionEntities, List<PlayerEntity> playerEntities) {
+    public TeamBasketballEntity(String alias, Integer numPlayers, String coach, List<PavilionEntity> pavilionEntities, List<PlayerEntity> playerEntities) {
         this.id = UUID.randomUUID().toString();
         this.alias = alias;
         this.numPlayers = numPlayers;
@@ -83,11 +82,11 @@ public class TeamEntity {
     public Team toTeam() {
         List<Player> players = this.playerEntities.stream()
                 .map(PlayerEntity::toPlayer)
-                .collect(Collectors.toList());
+                .toList();
 
         List<Pavilion> pavilions = this.pavilionEntities.stream()
                 .map(PavilionEntity::toPavilion)
-                .collect(Collectors.toList());
+                .toList();
 
         return new Team(this.alias, this.numPlayers, this.coach, players, pavilions);
     }
@@ -99,7 +98,7 @@ public class TeamEntity {
 
     @Override
     public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (alias.equals(((TeamEntity) obj).alias));
+        return this == obj || obj != null && getClass() == obj.getClass() && (alias.equals(((TeamBasketballEntity) obj).alias));
     }
 
     @Override

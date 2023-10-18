@@ -7,7 +7,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.basketball.daos.TeamBasketballR
 import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.BasketEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.PavilionEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.PlayerEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.TeamEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.TeamBasketballEntity;
 import es.upm.miw.apaw_practice.domain.models.basketball.Pavilion;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +47,9 @@ public class BasketballSeederService {
         };
         this.playerRepository.saveAll(Arrays.asList(players));
 
-        TeamEntity[] teams = {
-                new TeamEntity("alias1", 2, "Alberto", List.of(pavilions[0], pavilions[1]), List.of(players[0], players[1])),
-                new TeamEntity("alias2", 1, "Juan", List.of(pavilions[1]), List.of(players[2]))
+        TeamBasketballEntity[] teams = {
+                new TeamBasketballEntity("alias1", 2, "Alberto", List.of(pavilions[0], pavilions[1]), List.of(players[0], players[1])),
+                new TeamBasketballEntity("alias2", 1, "Juan", List.of(pavilions[1]), List.of(players[2]))
         };
         this.teamBasketballRepository.saveAll(Arrays.asList(teams));
 

@@ -1,12 +1,16 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.bank.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.ClientBankEntity;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
+import org.junit.jupiter.api.AfterEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 @TestConfig
@@ -14,6 +18,10 @@ public class ClientBankRepositoryIT {
 
     @Autowired
     private ClientBankRepository clientBankRepository;
+    @Autowired
+    private BankSeederService bankSeederService;
+
+
     private static final String DNI="12345678A";
 
     private static final String NAME="Juan";
@@ -22,6 +30,11 @@ public class ClientBankRepositoryIT {
 
     private static final Integer AGE=30;
 
+    @AfterEach
+    void resetDataBase() {
+        this.bankSeederService.deleteAll();
+        this.bankSeederService.seedDatabase();
+    }
 
     @Test
     void testCreateAndRead() {
@@ -52,4 +65,20 @@ public class ClientBankRepositoryIT {
         ));
     }
 
+    @Test
+    void testNotFoundByDni(){
+        assertFalse(this.clientBankRepository.findByDni("AA890123H").isPresent());
+    }
+    @Test
+    void testDeleteByDni(){
+        this.clientBankRepository.delete(this.clientBankRepository.findByDni("67890123H").get());
+        assertFalse(this.clientBankRepository.findByDni("67890123H").isPresent());
+
+    }
+    @Test
+    void testNotFoundDelete() {
+        assertThrows(NoSuchElementException.class, () -> {
+            this.clientBankRepository.delete(this.clientBankRepository.findByDni("BB890123H").get());
+        });
+    }
 }

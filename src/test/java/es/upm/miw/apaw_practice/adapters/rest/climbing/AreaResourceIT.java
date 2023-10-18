@@ -10,10 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 import static es.upm.miw.apaw_practice.adapters.rest.climbing.AreaResource.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -63,7 +59,11 @@ class AreaResourceIT {
 
     @Test
     void testUpdateRoute() {
-        Route route = new Route("4", "Route 4 updated", "Easy");
+        Route route = new Route.Builder()
+                .name("Route 4 updated")
+                .difficulty("Easy")
+                .key("4")
+                .build();
         this.webTestClient
                 .put()
                 .uri(AREAS + NAME_ID + ROUTES + KEY_ID, "Area 2", route.getKey())

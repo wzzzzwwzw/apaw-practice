@@ -50,28 +50,28 @@ public class VideogameCompanySeederService{
         VideogameEntity[] videogames = {
                 new VideogameEntity("Super Bomberman R", new BigDecimal("39.99"),
                         LocalDate.of(2017,3,3),gameEngines[0],
-                        Arrays.asList(features[1],features[3])),//konami
+                        Arrays.asList(features[1],features[3])),
                 new VideogameEntity("Shin Megami Tensei V",new BigDecimal("59.99"),
                         LocalDate.of(2011,11,11),gameEngines[2],
-                        Arrays.asList(features[0],features[1],features[4])),//atlus
+                        Arrays.asList(features[0],features[1],features[4])),
                 new VideogameEntity("Dragon Quest 11",new BigDecimal("69.99"),
                         LocalDate.of(2017,7,29),gameEngines[2],
-                        Arrays.asList(features[0],features[4])),//square enix
+                        Arrays.asList(features[0],features[4])),
                 new VideogameEntity("Deus Ex Go",new BigDecimal("6.99"),
                         LocalDate.of(2016,8,18),gameEngines[0],
-                        Arrays.asList(features[3],features[4])),//square enix
+                        Arrays.asList(features[3],features[4])),
                 new VideogameEntity("Silent Hill 2",new BigDecimal("59.99"),
                         LocalDate.of(2016,8,18),gameEngines[2],
-                        Collections.singletonList(features[2])),//konami
+                        Collections.singletonList(features[2])),
                 new VideogameEntity("Bastion",new BigDecimal("14.79"),
                         LocalDate.of(2011,8,16),gameEngines[3],
-                        Arrays.asList(features[2],features[3])),//supergiant games
+                        Arrays.asList(features[2],features[3])),
                 new VideogameEntity("Pyre",new BigDecimal("19.50"),
                         LocalDate.of(2017,7,25),gameEngines[3],
-                        Collections.singletonList(features[0])),//supergiant games
+                        Collections.singletonList(features[0])),
                 new VideogameEntity("To the Moon",new BigDecimal("9.75"),
                         LocalDate.of(2011,11,1),gameEngines[1],
-                        Arrays.asList(features[1],features[4])),//freebird games
+                        Arrays.asList(features[1],features[4])),
         };
         videogameRepository.saveAll(Arrays.asList(videogames));
 

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,5 +39,12 @@ public class VideogamePersistenceMongodbIT {
     @Test
     void testUpdateReleaseDateNotFound(){
         assertThrows(NotFoundException.class, () -> this.videogamePersistenceMongodb.updateReleaseDateByName("x"));
+    }
+
+
+    @Test
+    void testReadAll(){
+        Stream<Videogame> videogames = this.videogamePersistenceMongodb.readAll();
+        assertEquals(8,videogames.count());
     }
 }

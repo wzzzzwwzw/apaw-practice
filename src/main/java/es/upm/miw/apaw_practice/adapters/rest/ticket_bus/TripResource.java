@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
+
 @RestController
 @RequestMapping(TripResource.TRIPS)
 public class TripResource {
@@ -26,5 +28,10 @@ public class TripResource {
     @GetMapping(TripResource.PATH)
     public Trip readByPath(@PathVariable String path) {
         return this.tripService.readByPath(path);
+    }
+
+    @GetMapping(TripResource.PATH + "/total-price")
+    public BigDecimal getSumOfTicketPricesByPath(@PathVariable String path) {
+        return this.tripService.getTotalTicketPrice(path);
     }
 }

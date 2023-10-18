@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.olympic_games.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.olympic_games.daos.OlympicGamesRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.olympic_games.entities.OlympicGamesEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.olympic_games.OlympicGames;
 import es.upm.miw.apaw_practice.domain.persistence_ports.olympic_games.OlympicGamesPersistence;
@@ -22,5 +23,14 @@ public class OlympicGamesPersistenceMongodb implements OlympicGamesPersistence {
                 .findByEdition(edition)
                 .orElseThrow(() -> new NotFoundException("Olympic edition: " + edition))
                 .toOlympicGames();
+    }
+
+    @Override
+    public OlympicGames updateHostingPlace(Integer edition, String hostingPlace) {
+        OlympicGamesEntity olympicGamesEntity = this.olympicGamesRepository
+                .findByEdition(edition)
+                .orElseThrow(() -> new NotFoundException("Olympic edition: " + edition));
+        olympicGamesEntity.setHostingPlace(hostingPlace);
+        return this.olympicGamesRepository.save(olympicGamesEntity).toOlympicGames();
     }
 }

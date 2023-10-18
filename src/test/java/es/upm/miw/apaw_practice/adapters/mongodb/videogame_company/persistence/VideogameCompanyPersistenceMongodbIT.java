@@ -1,11 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.videogame_company.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.domain.models.videogame_company.Videogame;
 import es.upm.miw.apaw_practice.domain.models.videogame_company.VideogameCompany;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -38,6 +40,19 @@ public class VideogameCompanyPersistenceMongodbIT {
     @Test
     void testVideogameCompanyExist(){
         assertTrue(this.videogameCompanyPersistence.existVideogameCompanyName("Square Enix"));
+    }
+
+    @Test
+    void testFindVideogamesByCompanyCountry(){
+        List<Videogame> videogames = this.videogameCompanyPersistence.findVideogamesByCompanyCountry("Japan");
+        assertEquals(5,videogames.size());
+    }
+
+    @Test
+    void NotFoundVideogamesByCompanyCountry(){
+        List<Videogame> videogames = this.videogameCompanyPersistence.findVideogamesByCompanyCountry("Spain");
+        assertNotNull(videogames);
+        assertEquals(0,videogames.size());
     }
 
 

@@ -10,6 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import static es.upm.miw.apaw_practice.adapters.rest.climbing.AreaResource.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -71,6 +75,24 @@ class AreaResourceIT {
                 .value(areaData -> {
                     assertEquals("Route 4 updated", areaData.getRoutes().get(1).getName());
                     assertEquals("Easy", areaData.getRoutes().get(1).getDifficulty());
+                });
+    }
+
+    @Test
+    void testFindRouteNamesByClimberLevel() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(AREAS + SEARCH)
+                        .queryParam("q", "level:Beginner")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(String[].class)
+                .value(Assertions::assertNotNull)
+                .value(routeNames -> {
+                    assertEquals(4, routeNames.length);
+                    assertArrayEquals(new String[]{"Route 1", "Route 2", "Route 3", "Route 4"}, routeNames);
                 });
     }
 }

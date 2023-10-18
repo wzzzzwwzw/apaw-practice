@@ -1,10 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.airport.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
-import es.upm.miw.apaw_practice.domain.models.airport.AirLine;
-import es.upm.miw.apaw_practice.domain.models.airport.Aircraft;
-import es.upm.miw.apaw_practice.domain.models.airport.Flight;
-import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
+import es.upm.miw.apaw_practice.domain.models.airport.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

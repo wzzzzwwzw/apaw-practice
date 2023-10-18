@@ -32,7 +32,7 @@ class ClimberResourceIT {
                     assertEquals("climber1@email.com", climberData.getEmail());
                     assertEquals(LocalDate.of(1990, 1, 1), climberData.getDateOfBirth());
                     assertEquals("Beginner", climberData.getLevel());
-                    assertEquals(1, climberData.getExpeditions().size());
+                    assertEquals(2, climberData.getExpeditions().size());
                     assertEquals(LocalDate.now(), climberData.getExpeditions().get(0).getDate());
                     assertEquals("1500.00", climberData.getExpeditions().get(0).getTotalExpense().toString());
                 });

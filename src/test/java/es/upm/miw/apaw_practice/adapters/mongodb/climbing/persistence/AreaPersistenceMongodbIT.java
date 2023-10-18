@@ -62,4 +62,18 @@ public class AreaPersistenceMongodbIT {
         assertEquals("Area 2", areas.get(1).getName());
         assertEquals("Area 3", areas.get(2).getName());
     }
+
+    @Test
+    void testFindByExpeditionIdentifier() {
+        Area area = this.areaPersistenceMongodb.findByExpeditionIdentifier("1");
+        assertEquals("Area 1", area.getName());
+        assertEquals("Location 1", area.getLocation());
+        assertTrue(area.getEasyAccess());
+        assertEquals(2, area.getRoutes().size());
+        assertEquals("Route 1", area.getRoutes().get(0).getName());
+        assertEquals("Route 2", area.getRoutes().get(1).getName());
+        Expedition expedition = area.getExpedition();
+        assertEquals(LocalDate.now(), expedition.getDate());
+        assertEquals(0, new BigDecimal("1500.00").compareTo(expedition.getTotalExpense()));
+    }
 }

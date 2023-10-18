@@ -35,4 +35,14 @@ class AreaServiceIT {
         assertEquals("Route 4 updated", area.getRoutes().get(1).getName());
         assertEquals("Easy", area.getRoutes().get(1).getDifficulty());
     }
+
+    @Test
+    void testFindRouteNamesByClimberLevel () {
+        String[] routeNames = this.areaService.findRouteNamesByClimberLevel("Beginner");
+        assertEquals(4, routeNames.length);
+        assertEquals("Route 1", routeNames[0]);
+        assertEquals("Route 2", routeNames[1]);
+        assertEquals("Route 3", routeNames[2]);
+        assertEquals("Route 4", routeNames[3]);
+    }
 }

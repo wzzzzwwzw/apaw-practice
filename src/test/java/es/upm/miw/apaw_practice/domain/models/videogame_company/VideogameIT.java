@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.videogame_company;
 
-import es.upm.miw.apaw_practice.domain.models.videogame_company.builders.VideogameBuilders;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

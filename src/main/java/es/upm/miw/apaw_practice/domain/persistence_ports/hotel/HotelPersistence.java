@@ -6,7 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface HotelPersistence {
-
     Hotel readByName(String name);
-
 }

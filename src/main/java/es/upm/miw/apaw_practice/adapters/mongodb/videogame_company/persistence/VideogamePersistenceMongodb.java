@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.stream.Stream;
 
 @Repository("videogamePersistence")
 public class VideogamePersistenceMongodb implements VideogamePersistence {
@@ -31,6 +32,13 @@ public class VideogamePersistenceMongodb implements VideogamePersistence {
                 .orElseThrow(() -> new NotFoundException("Videogame Name: " + name));
         videogame.setReleaseDate(LocalDate.now());
         return this.videogameRepository.save(videogame).toVideogame();
+    }
+
+    @Override
+    public Stream<Videogame> readAll(){
+        return this.videogameRepository.findAll()
+                .stream()
+                .map(VideogameEntity::toVideogame);
     }
 
 }

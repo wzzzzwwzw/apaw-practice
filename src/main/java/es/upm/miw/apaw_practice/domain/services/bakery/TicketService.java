@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.bakery.TicketPersistenc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class TicketService {
 
@@ -17,5 +19,9 @@ public class TicketService {
 
     public Ticket create(Ticket ticket) {
         return this.ticketPersistence.create(ticket);
+    }
+
+    public BigDecimal findTotalPriceSumForShelfName(String name) {
+        return this.ticketPersistence.findTotalPriceSumForShelfName(name);
     }
 }

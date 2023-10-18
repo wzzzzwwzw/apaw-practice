@@ -1,7 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.basketball;
 
-class Pavilion {
-    private String pavName;
+public class Pavilion {
+    private String pavname;
     private String direction;
     private Integer capacity;
 
@@ -9,18 +9,18 @@ class Pavilion {
 
     }
 
-    public Pavilion(String pavName, String direction, Integer capacity) {
-        this.pavName = pavName;
+    public Pavilion(String pavname, String direction, Integer capacity) {
+        this.pavname = pavname;
         this.direction = direction;
         this.capacity = capacity;
     }
 
-    public String getPavName() {
-        return pavName;
+    public String getPavname() {
+        return pavname;
     }
 
-    public void setPavName(String pavName) {
-        this.pavName = pavName;
+    public void setPavname(String pavname) {
+        this.pavname = pavname;
     }
 
     public String getDirection() {
@@ -41,7 +41,7 @@ class Pavilion {
     @Override
     public String toString() {
         return "Pavilion{" +
-                "pavName='" + pavName + '\'' +
+                "pavname='" + pavname + '\'' +
                 ", direction='" + direction + '\'' +
                 ", capacity=" + capacity +
                 '}';

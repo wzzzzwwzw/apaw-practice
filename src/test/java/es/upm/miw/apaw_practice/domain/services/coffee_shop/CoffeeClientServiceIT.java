@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -18,6 +20,12 @@ public class CoffeeClientServiceIT {
     void testGetTotalPriceByCategory() {
         BigDecimal totalPriceByCategory = this.coffeeClientService.getTotalPriceByCategory("Tea");
         assertEquals(new BigDecimal("60.00"), totalPriceByCategory);
+    }
+
+    @Test
+    void testGetUniqueLocationsByCoffee() {
+        List<String> uniqueLocationByCoffee = this.coffeeClientService.getUniqueLocationsByCoffee("Expresso Frappuccino");
+        assertEquals(List.of("location4"), uniqueLocationByCoffee);
     }
 
 }

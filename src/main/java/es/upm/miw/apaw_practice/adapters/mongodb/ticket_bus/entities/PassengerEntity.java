@@ -20,6 +20,7 @@ public class PassengerEntity {
     public PassengerEntity(){
         //open for framework
     }
+
     public PassengerEntity(String nie, String fullName, Integer number, Boolean accessibility) {
         this.id = UUID.randomUUID().toString();
         this.nie = nie;

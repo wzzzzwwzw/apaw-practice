@@ -13,7 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
-public class FootballCompetitionPersistenceMongodbIT {
+class FootballCompetitionPersistenceMongodbIT {
     @Autowired
     private FootballCompetitionPersistenceMongodb footballCompetitionPersistence;
     @Autowired
@@ -26,7 +26,7 @@ public class FootballCompetitionPersistenceMongodbIT {
     }
 
     @Test
-    public void testDeleteFootballCompetition() {
+    void testDeleteFootballCompetition() {
         String organizingEntity = "DBF";
         FootballCompetition competition = this.footballCompetitionPersistence.readByOrganizingEntity(organizingEntity);
         assertNotNull(competition);
@@ -35,7 +35,7 @@ public class FootballCompetitionPersistenceMongodbIT {
     }
 
     @Test
-    public void testGetNamesByOrganizingEntity() {
+    void testGetNamesByOrganizingEntity() {
         String organizingEntity = "FFF";
         List<String> playerNames = this.footballCompetitionPersistence.getNamesByOrganizingEntity(organizingEntity);
         assertEquals(List.of("Luka Modric", "Lionel Messi"), playerNames);

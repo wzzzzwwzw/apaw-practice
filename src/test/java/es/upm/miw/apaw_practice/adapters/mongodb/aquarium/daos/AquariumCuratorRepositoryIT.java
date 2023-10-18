@@ -18,7 +18,7 @@ public class AquariumCuratorRepositoryIT {
         assertTrue(this.aquariumCuratorRepository.findByName("Atlantis").isPresent());
         AquariumCuratorEntity aquariumCurator = this.aquariumCuratorRepository.findByName("Atlantis").get();
         assertEquals("Madrid",aquariumCurator.getPosition());
-        assertFalse(aquariumCurator.getVacationState());
+        assertFalse(aquariumCurator.isVacationState());
         assertEquals(1,aquariumCurator.getFishpondEntities().size());
         this.assertAquariumCurator(aquariumCurator,"Second floor");
         assertEquals("Sea",aquariumCurator.getAquariumEntity().getDescription());

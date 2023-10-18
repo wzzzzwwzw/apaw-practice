@@ -26,6 +26,12 @@ public class HotelBookingEntity {
         // empty for framework
     }
 
+    public HotelBookingEntity(HotelBooking booking) {
+        BeanUtils.copyProperties(booking,this);
+        this.client = new HotelClientEntity(booking.getClient());
+        this.id = UUID.randomUUID().toString();
+    }
+
     public HotelBookingEntity(Integer number, Integer roomNumber, LocalDate date, BigDecimal cost, HotelClientEntity client) {
         this.number = number;
         this.roomNumber = roomNumber;
@@ -81,8 +87,8 @@ public class HotelBookingEntity {
 
     public HotelBooking toObject() {
         HotelBooking booking = new HotelBooking();
-        booking.setClient(this.client.toObject());
         BeanUtils.copyProperties(this, booking);
+        booking.setClient(this.client.toObject());
         return booking;
     }
 

@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.ticket_bus.TripPersiste
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class TripService {
     private final TripPersistence tripPersistence;
@@ -16,5 +18,9 @@ public class TripService {
 
     public Trip readByPath(String path) {
         return this.tripPersistence.readByPath(path);
+    }
+
+    public BigDecimal getTotalTicketPrice(String path) {
+        return this.tripPersistence.getSumOfTicketPricesByTripPath(path);
     }
 }

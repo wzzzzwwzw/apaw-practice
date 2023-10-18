@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 public interface OlympicGamesPersistence {
 
     OlympicGames readByEdition(Integer edition);
+
+    OlympicGames updateHostingPlace(Integer edition, String hostingPlace);
 }

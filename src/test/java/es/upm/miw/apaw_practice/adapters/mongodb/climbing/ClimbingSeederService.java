@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 @Service
 public class ClimbingSeederService {
@@ -36,7 +37,8 @@ public class ClimbingSeederService {
                 new RouteEntity("3", "Route 3", "Hard"),
                 new RouteEntity("4", "Route 4", "Easy"),
                 new RouteEntity("5", "Route 5", "Medium"),
-                new RouteEntity("6", "Route 6", "Hard")
+                new RouteEntity("6", "Route 6", "Hard"),
+                new RouteEntity("7", "Route 2", "Expert"),
         };
 
         ExpeditionEntity[] expeditions = {
@@ -48,14 +50,20 @@ public class ClimbingSeederService {
 
         AreaEntity[] areas = {
                 new AreaEntity("Area 1", "Location 1", true, Arrays.asList(routes[0], routes[1]), expeditions[0]),
-                new AreaEntity("Area 2", "Location 2", false, Arrays.asList(routes[2], routes[3]), expeditions[1]),
+                new AreaEntity("Area 2", "Location 2", false, Arrays.asList(routes[2], routes[3], routes[6]), expeditions[1]),
                 new AreaEntity("Area 3", "Location 3", true, Arrays.asList(routes[4], routes[5]), expeditions[2])
         };
         this.areaRepository.saveAll(Arrays.asList(areas));
 
         ClimberEntity[] climbers = {
-                new ClimberEntity("climber1@email.com", LocalDate.of(1990, 1, 1), "Beginner", Collections.singletonList(expeditions[0])),
-                new ClimberEntity("climber2@email.com", LocalDate.of(1985, 6, 15), "Expert", Collections.singletonList(expeditions[1]))
+                new ClimberEntity("climber1@email.com",
+                        LocalDate.of(1990, 1, 1),
+                        "Beginner",
+                        List.of(expeditions[0], expeditions[1])),
+                new ClimberEntity("climber2@email.com",
+                        LocalDate.of(1985, 6, 15),
+                        "Expert",
+                        List.of(expeditions[1], expeditions[2]))
         };
         this.climberRepository.saveAll(Arrays.asList(climbers));
     }

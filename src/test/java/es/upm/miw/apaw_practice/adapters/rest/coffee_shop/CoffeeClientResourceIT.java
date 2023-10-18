@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.coffee_shop;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.domain.models.coffee_shop.Coffee;
 import es.upm.miw.apaw_practice.domain.models.coffee_shop.CoffeeClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

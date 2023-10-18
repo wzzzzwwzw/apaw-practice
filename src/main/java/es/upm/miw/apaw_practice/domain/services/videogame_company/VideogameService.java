@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.videogame_company.Video
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class VideogameService {
     private final VideogamePersistence videogamePersistence;
@@ -20,5 +22,14 @@ public class VideogameService {
 
     public Videogame updateReleaseDateByName(String name){
         return this.videogamePersistence.updateReleaseDateByName(name);
+    }
+
+    public BigDecimal findSumOfVideogamePricesByGameEngineLicence(String license){
+        return this.videogamePersistence.readAll()
+                .filter(videogame -> videogame.getGameEngine().getLicense().equals(license)
+                )
+                .map(Videogame::getPrice)
+                .reduce((accumulatorPrice, currentPrice) -> currentPrice.add(accumulatorPrice))
+                .orElse(BigDecimal.ZERO);
     }
 }

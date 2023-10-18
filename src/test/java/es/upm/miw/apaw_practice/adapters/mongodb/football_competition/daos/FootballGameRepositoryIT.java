@@ -13,7 +13,7 @@ import java.util.Objects;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class FootballGameRepositoryIT {
+class FootballGameRepositoryIT {
     @Autowired
     private FootballGameRepository footballGameRepository;
     @Autowired

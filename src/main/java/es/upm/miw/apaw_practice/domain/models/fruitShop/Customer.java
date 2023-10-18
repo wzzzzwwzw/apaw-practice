@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.fruitShop;
 
+import es.upm.miw.apaw_practice.domain.models.fruitShop.builders.CustomerBuilders;
+
 public class Customer {
 
     private Integer idCustomer;
@@ -50,5 +52,35 @@ public class Customer {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public static class Builder implements CustomerBuilders.IdCustomer, CustomerBuilders.Optionals {
+        private final Customer customer;
+
+        public Builder(){
+            customer = new Customer();
+        }
+        @Override
+        public CustomerBuilders.Optionals idCustomer(Integer idCustomer){
+            this.customer.idCustomer = idCustomer;
+            return this;
+        }
+
+        @Override
+        public CustomerBuilders.Optionals phone(String phone){
+            this.customer.phone = phone;
+            return this;
+        }
+
+        @Override
+        public CustomerBuilders.Optionals email(String email){
+            this.customer.email = email;
+            return this;
+        }
+
+        @Override
+        public Customer build(){
+            return customer;
+        }
     }
 }

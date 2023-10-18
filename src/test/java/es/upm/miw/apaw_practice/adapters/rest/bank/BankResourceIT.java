@@ -1,11 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.rest.bank;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 
 import es.upm.miw.apaw_practice.domain.models.bank.Bank;
 
 
 import es.upm.miw.apaw_practice.domain.models.bank.BankType;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +15,10 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 
-import static es.upm.miw.apaw_practice.adapters.rest.bank.BankResource.BANKS;
-import static es.upm.miw.apaw_practice.adapters.rest.bank.BankResource.BANK_NAME;
+
+import static es.upm.miw.apaw_practice.adapters.rest.bank.BankResource.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RestTestConfig
@@ -26,7 +27,14 @@ public class BankResourceIT {
     @Autowired
     private WebTestClient webTestClient;
 
+    @Autowired
+    private BankSeederService bankSeederService;
 
+    @AfterEach
+    void resetDataBase() {
+        this.bankSeederService.deleteAll();
+        this.bankSeederService.seedDatabase();
+    }
     @Test
     void testRead() {
         this.webTestClient
@@ -73,4 +81,34 @@ public class BankResourceIT {
                 });
     }
 
+
+    @Test
+    void testUpdateBankCapital(){
+        this.webTestClient
+                .put()
+                .uri(BANKS + BANK_NAME + CAPITAL,
+                        "SrDell")
+                .body(BodyInserters.fromValue(new BigDecimal("700000000.00")))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Bank.class)
+                .value(Assertions::assertNotNull)
+                .value(
+                        bank -> {
+                            assertEquals(new BigDecimal("700000000.00"), bank.getCapital());
+                        }
+                );
+    }
+
+    @Test
+    void testUpdateBankCapitalNotFound(){
+        this.webTestClient
+                .put()
+                .uri(BANKS + BANK_NAME + CAPITAL,
+                        "TERESA")
+                .body(BodyInserters.fromValue(new BigDecimal("700000000.00")))
+                .exchange()
+                .expectStatus()
+                .isNotFound();
+    }
 }

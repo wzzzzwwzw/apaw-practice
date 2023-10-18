@@ -35,4 +35,13 @@ class AlbumPersistenceMongodbIT {
         assertTrue(phoneNumbers.contains(222222222));
         assertTrue(phoneNumbers.contains(333333333));
     }
+
+    @Test
+    void testGetDifferentDenominationsByFullname() {
+        List<String> denominations = this.albumPersistenceMongodb.
+                getDifferentDenominationsByFullname("J Balvin");
+        assertEquals(2, denominations.size());
+        assertTrue(denominations.contains("Colores"));
+        assertTrue(denominations.contains("Fearless"));
+    }
 }

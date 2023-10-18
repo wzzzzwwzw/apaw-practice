@@ -18,17 +18,6 @@ public class SchoolService {
         this.schoolPersistence = schoolPersistence;
     }
 
-    public void assertNameNotExist(String name) {
-        if (this.schoolPersistence.existName(name)) {
-            throw new ConflictException("Name does not exist: " + name);
-        }
-    }
-
-    public School create(School school) {
-        this.assertNameNotExist(school.getName());
-        return this.schoolPersistence.create(school);
-    }
-
     public School read(String name) {
         return this.schoolPersistence.read(name);
     }

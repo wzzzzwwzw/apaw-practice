@@ -23,13 +23,15 @@ public class ProductEntity {
     private LocalDate expirationDate;
     @DBRef
     private ProductTypeEntity productType;
+    @DBRef
+    private ShelfEntity shelf;
 
     public ProductEntity() {
         // empty for framework
     }
 
     public ProductEntity(String name, String description, BigDecimal price, Boolean glutenFree,
-            LocalDate expirationDate, ProductTypeEntity productType) {
+            LocalDate expirationDate, ProductTypeEntity productType, ShelfEntity shelf) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.description = description;
@@ -37,6 +39,7 @@ public class ProductEntity {
         this.glutenFree = glutenFree;
         this.expirationDate = expirationDate;
         this.productType = productType;
+        this.shelf = shelf;
     }
 
     public String getId() {
@@ -97,6 +100,14 @@ public class ProductEntity {
 
     public void setProductType(ProductTypeEntity productType) {
         this.productType = productType;
+    }
+
+    public ShelfEntity getShelf() {
+        return this.shelf;
+    }
+
+    public void setShelf(ShelfEntity shelf) {
+        this.shelf = shelf;
     }
 
     public void fromProduct(Product product) {

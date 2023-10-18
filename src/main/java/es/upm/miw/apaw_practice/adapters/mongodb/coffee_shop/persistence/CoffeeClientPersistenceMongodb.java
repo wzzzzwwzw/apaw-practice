@@ -55,6 +55,6 @@ public class CoffeeClientPersistenceMongodb implements CoffeeClientPersistence {
                 .map(CoffeeClientEntity::getDiningEntity)
                 .map(DiningEntity::getLocation)
                 .distinct()
-                .collect(Collectors.toList());
+                .toList();
     }
 }

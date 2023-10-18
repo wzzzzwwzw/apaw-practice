@@ -23,7 +23,7 @@ public class BankEntity {
     private String bankName;
     private String location;
     private BigDecimal capital;
-    @DBRef
+
     private BankTypeEntity bankTypeEntity;
 
     private List<BankAccountEntity> bankAccountEntityList;

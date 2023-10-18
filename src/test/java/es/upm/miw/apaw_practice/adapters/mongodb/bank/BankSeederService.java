@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.bank;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.bank.daos.BankAccountRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.daos.BankRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.daos.BankTypeRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.daos.ClientBankRepository;
@@ -20,8 +19,7 @@ import java.util.List;
 
 @Service
 public class BankSeederService {
-    @Autowired
-    private BankAccountRepository bankAccountRepository;
+
     @Autowired
     private BankRepository bankRepository;
     @Autowired
@@ -61,7 +59,7 @@ public class BankSeederService {
                 new BankAccountEntity("1357-8642-9081-2468", LocalDate.of(2024, 11, 9), 135, new BigDecimal("875.25"))
         };
 
-        this.bankAccountRepository.saveAll(Arrays.asList(bankAccounts));
+
 
         ClientBankEntity[] clientsBank = {
                 new ClientBankEntity("Juan", "12345678A", "Pérez", 30, new ArrayList<>(Arrays.asList(bankAccounts[0], bankAccounts[1]))),
@@ -102,6 +100,5 @@ public class BankSeederService {
         this.bankRepository.deleteAll();
         this.bankTypeRepository.deleteAll();
         this.clientBankRepository.deleteAll();
-        this.bankAccountRepository.deleteAll();
     }
 }

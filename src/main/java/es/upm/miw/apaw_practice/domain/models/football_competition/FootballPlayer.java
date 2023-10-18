@@ -10,7 +10,9 @@ public class FootballPlayer {
     private Integer assists;
     private FootballTeam team;
 
-    public FootballPlayer() {}
+    public FootballPlayer() {
+        // empty for framework
+    }
 
     public static FootballPlayerBuilders.Name builder() {
         return new Builder();

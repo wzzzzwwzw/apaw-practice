@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -55,6 +56,23 @@ public class VideogameResourceIT {
                                     .isEqual(LocalDate.now().atStartOfDay()));
                         }
                 );
+    }
+
+    @Test
+    void testFindSumOfVideogamePricesByGameEngineLicense(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(VideogameResource.VIDEOGAMES+VideogameResource.SEARCH)
+                                .queryParam("q", "license:Freemium")
+                                .build()
+
+                )
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BigDecimal.class)
+                .value(Assertions::assertNotNull)
+                .value(price -> assertEquals(new BigDecimal("236.95"),price));
     }
 
 }

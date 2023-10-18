@@ -4,6 +4,7 @@ import es.upm.miw.apaw_practice.domain.models.library.Book;
 import es.upm.miw.apaw_practice.domain.models.library.BookWriter;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,7 +17,7 @@ public class BookEntity {
     @Id
     private String id;
     private String title;
-    //@Indexed(unique = true)
+    @Indexed(unique = true)
     private String isbn;
     private LocalDate publicationDate;
     @DBRef

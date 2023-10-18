@@ -4,6 +4,7 @@ import es.upm.miw.apaw_practice.domain.models.olympic_games.Competitor;
 import es.upm.miw.apaw_practice.domain.models.olympic_games.Medal;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
@@ -13,6 +14,8 @@ public class MedalEntity {
 
     @Id
     private String id;
+    @Indexed(unique = true)
+    private String medalID;
     private String tier;
     private Boolean teamMedal;
     private String competition;
@@ -21,12 +24,21 @@ public class MedalEntity {
     public MedalEntity() {
     }
 
-    public MedalEntity(String tier, Boolean teamMedal, String competition, CompetitorEntity winner) {
+    public MedalEntity(String medalID, String tier, Boolean teamMedal, String competition, CompetitorEntity winner) {
         this.id = UUID.randomUUID().toString();
+        this.medalID = medalID;
         this.tier = tier;
         this.teamMedal = teamMedal;
         this.competition = competition;
         this.winner = winner;
+    }
+
+    public String getMedalID() {
+        return medalID;
+    }
+
+    public void setMedalID(String medalID) {
+        this.medalID = medalID;
     }
 
     public String getId() {
@@ -92,6 +104,7 @@ public class MedalEntity {
     public String toString() {
         return "MedalEntity{" +
                 "id='" + id + '\'' +
+                ", medalID='" + medalID + '\'' +
                 ", tier='" + tier + '\'' +
                 ", teamMedal=" + teamMedal +
                 ", competition='" + competition + '\'' +

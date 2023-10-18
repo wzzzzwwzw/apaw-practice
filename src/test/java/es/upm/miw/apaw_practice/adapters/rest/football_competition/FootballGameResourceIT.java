@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestTestConfig
-public class FootballGameResourceIT {
+class FootballGameResourceIT {
     @Autowired
     private WebTestClient webTestClient;
 
@@ -31,7 +31,7 @@ public class FootballGameResourceIT {
     }
 
     @Test
-    public void testPatch() {
+    void testPatch() {
         List<String> identifiers = this.footballGamePersistence.getGamesIdentifiers();
         List<FootballGameDateUpdating> gameDateUpdatings = identifiers.stream()
                 .map(id -> new FootballGameDateUpdating(id, LocalDateTime.of(2023, 4, 1, 21, 0)))
@@ -46,7 +46,7 @@ public class FootballGameResourceIT {
     }
 
     @Test
-    public void testGetTotalBudgetByLocation() {
+    void testGetTotalBudgetByLocation() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->

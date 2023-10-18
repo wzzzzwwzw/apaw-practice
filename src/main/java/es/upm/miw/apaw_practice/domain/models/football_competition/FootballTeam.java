@@ -9,7 +9,9 @@ public class FootballTeam {
 
     private Boolean removed;
 
-    public FootballTeam() {}
+    public FootballTeam() {
+        // empty for framework
+    }
 
     public FootballTeam(String city, Integer foundationYear, BigDecimal budget, boolean removed) {
         this.city = city;

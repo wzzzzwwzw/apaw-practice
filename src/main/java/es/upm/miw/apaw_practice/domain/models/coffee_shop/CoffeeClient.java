@@ -1,10 +1,12 @@
 package es.upm.miw.apaw_practice.domain.models.coffee_shop;
 
 
+import es.upm.miw.apaw_practice.domain.models.coffee_shop.composite.TreeCoffeeClients;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoffeeClient {
+public class CoffeeClient implements TreeCoffeeClients {
     private String name;
     private String address;
     private String phoneNumber;
@@ -85,5 +87,20 @@ public class CoffeeClient {
                 ", coffees=" + coffees +
                 ", dining=" + dining +
                 '}';
+    }
+
+    @Override
+    public Boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(TreeCoffeeClients treeCoffeeClients) {
+        throw new UnsupportedOperationException("Unsupported operation in CoffeeClient leaf");
+    }
+
+    @Override
+    public void remove(TreeCoffeeClients treeCoffeeClients) {
+        // cannot remove in leaf
     }
 }

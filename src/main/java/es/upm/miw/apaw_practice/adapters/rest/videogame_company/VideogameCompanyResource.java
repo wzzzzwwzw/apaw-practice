@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.videogame_company;
 
 import es.upm.miw.apaw_practice.domain.models.videogame_company.VideogameCompany;
-import es.upm.miw.apaw_practice.domain.services.computer_store.WireService;
 import es.upm.miw.apaw_practice.domain.services.videogame_company.VideogameCompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

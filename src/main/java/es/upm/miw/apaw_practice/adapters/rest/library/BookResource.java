@@ -20,6 +20,6 @@ public class BookResource {
 
     @DeleteMapping(ISBN_ID)
     public void delete(@PathVariable String isbn){
-        this.bookService.delete(isbn);
+        this.bookService.deleteByIsbn(isbn);
     }
 }

@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.rest.hotel;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.hotel.entities.HotelBookingEntity;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.hotel.HotelBooking;
 import es.upm.miw.apaw_practice.domain.models.hotel.HotelClient;
@@ -31,7 +30,7 @@ public class HotelBookingResourceIT {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(HotelBooking.class)
-                .value(Assertions::assertNotNull);;
+                .value(Assertions::assertNotNull);
     }
 
 }

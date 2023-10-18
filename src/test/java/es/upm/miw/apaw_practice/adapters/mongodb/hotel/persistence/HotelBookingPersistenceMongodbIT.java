@@ -3,7 +3,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.hotel.persistence;
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.hotel.persistance.HotelBookingPersistenceMongodb;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
-import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.hotel.HotelBooking;
 import es.upm.miw.apaw_practice.domain.models.hotel.HotelClient;
 import org.junit.jupiter.api.Test;

@@ -8,12 +8,13 @@ import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.bank.Bank;
 
 import es.upm.miw.apaw_practice.domain.models.bank.BankType;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -63,5 +64,21 @@ public class BankPersistenceMongodbIT {
         assertEquals(new BigDecimal("999999990"), bankCreated.getCapital());
         assertEquals(0,bankCreated.getListAccounts().size());
 
+    }
+
+    @Test
+    void testUpdateBankCapital(){
+        Bank bank = this.bankPersistenceMongodb.readByBankName("DreamBank");
+        bank.setCapital(new BigDecimal("150000000"));
+        this.bankPersistenceMongodb.updateBankCapital(bank);
+        Bank bankUpdated = this.bankPersistenceMongodb.readByBankName("DreamBank");
+        assertEquals(new BigDecimal("150000000"), bankUpdated.getCapital());
+    }
+
+    @Test
+    void testUpdateBankCapitalNotFound(){
+        Bank newBank = new Bank("LuisBank","Sevilla",new BigDecimal("5000000"),new BankType("Extranjero","Banco no perteneciente al territorio nacional",new BigDecimal("1000000")));
+        assertThrows(NotFoundException.class,
+                () -> this.bankPersistenceMongodb.updateBankCapital(newBank));
     }
 }

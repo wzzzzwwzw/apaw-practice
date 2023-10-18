@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.airport;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.adapters.rest.conference.ConferenceLocationResource;
 import es.upm.miw.apaw_practice.domain.models.airport.AirLine;
 import es.upm.miw.apaw_practice.domain.models.airport.Aircraft;
 import es.upm.miw.apaw_practice.domain.models.airport.Flight;

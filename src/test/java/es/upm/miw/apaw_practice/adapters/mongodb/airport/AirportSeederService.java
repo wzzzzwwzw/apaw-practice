@@ -8,8 +8,8 @@ import es.upm.miw.apaw_practice.adapters.mongodb.airport.entities.AircraftEntity
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.entities.AirLineEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.entities.FlightEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.entities.PassengerEntity;
-import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
 import es.upm.miw.apaw_practice.domain.models.airport.Aircraft;
+import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

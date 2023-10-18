@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.domain.services.library;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.library.LibrarySeederService;
+import es.upm.miw.apaw_practice.adapters.rest.library.dto.LoanDataDto;
 import es.upm.miw.apaw_practice.domain.models.library.Loan;
 import es.upm.miw.apaw_practice.domain.persistence_ports.library.LoanPersistence;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestConfig
 public class LoanServiceIT {
     @Autowired
-    private LoanService loanService;
+    private es.upm.miw.apaw_practice.domain.services.library.LoanService loanService;
     @Autowired
     private LoanPersistence loanPersistence;
     @Autowired
@@ -30,7 +31,7 @@ public class LoanServiceIT {
 
     @Test
     void testUpdateLoan(){
-        this.loanService.updateLoanStatusByLoanCode("DLC789");
+        this.loanService.updateLoanStatusByLoanCode("DLC789", new LoanDataDto(LocalDateTime.now(),LocalDateTime.now().plusDays(7), true));
         Loan loan = this.loanPersistence.readByLoanCode("DLC789");
         assertTrue(loan.getLoanStatus());
         assertEquals("9788416738090",loan.getBook().getIsbn());

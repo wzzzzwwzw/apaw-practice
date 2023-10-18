@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.domain.services.library;
 
+import es.upm.miw.apaw_practice.adapters.rest.library.dto.LoanDataDto;
 import es.upm.miw.apaw_practice.domain.models.library.Loan;
 import es.upm.miw.apaw_practice.domain.persistence_ports.library.LoanPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ public class LoanService {
         this.loanPersistence = loanPersistence;
     }
 
-    public Loan updateLoanStatusByLoanCode(String loanCode){
-        return this.loanPersistence.updateLoanStatusByLoanCode(loanCode);
+    public Loan updateLoanStatusByLoanCode(String loanCode, LoanDataDto loanDataDto){
+        return this.loanPersistence.updateLoanStatusByLoanCode(loanCode, loanDataDto);
     }
 }

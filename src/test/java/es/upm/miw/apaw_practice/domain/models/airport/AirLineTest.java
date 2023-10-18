@@ -1,7 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.airport;
 
-import es.upm.miw.apaw_practice.domain.models.airport.AirLine;
-import es.upm.miw.apaw_practice.domain.models.airport.builders.AirLineBuilders;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

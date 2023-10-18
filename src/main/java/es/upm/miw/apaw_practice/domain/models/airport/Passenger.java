@@ -1,6 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.airport;
-import java.time.LocalDate;
-public class Passenger {
+
+public class Passenger implements TreePassengers{
 
    private String name;
    private Integer age;
@@ -46,5 +46,21 @@ public class Passenger {
                 ", age=" + age +
                 ", numberOfPhone='" + numberOfPhone + '\'' +
                 '}';
+    }
+
+    @Override
+    public Boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(TreePassengers treePassengers) {
+       throw new UnsupportedOperationException("Unsupported operation in Passenger leaf");
+
+    }
+
+    @Override
+    public void remove(TreePassengers treePassengers) {
+        // cannot remove in leaf
     }
 }

@@ -71,4 +71,31 @@ public class Seller {
                 ", salary=" + salary +
                 '}';
     }
+
+    public static class Builder {
+        private final Seller seller;
+
+        public Builder() {
+            this.seller = new Seller();
+        }
+
+        public Builder name(String name) {
+            this.seller.setName(name);
+            return this;
+        }
+
+        public Builder surname(String surname) {
+            this.seller.setSurname(surname);
+            return this;
+        }
+
+        public Builder salary(Integer salary) {
+            this.seller.setSalary(salary);
+            return this;
+        }
+
+        public Seller build() {
+            return this.seller;
+        }
+    }
 }

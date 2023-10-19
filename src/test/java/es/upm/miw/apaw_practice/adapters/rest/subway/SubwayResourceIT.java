@@ -74,4 +74,18 @@ class SubwayResourceIT {
                 .value(newSubway -> assertEquals("Blue Line", newSubway.getLines().get(0).getLabel()));
     }
 
+    @Test
+    void testFindCapacityOverTen() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(SubwayResource.SUBWAYS + SubwayResource.SEARCH)
+                        .queryParam("order", "RED-2#ORANGE-2")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(List.class)
+                .value(colors -> assertTrue(colors.contains("RED")));
+    }
+
 }

@@ -2,13 +2,13 @@ package es.upm.miw.apaw_practice.adapters.mongodb.music.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.music.daos.AlbumRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.AlbumEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.SongEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.music.Album;
 import es.upm.miw.apaw_practice.domain.models.music.Song;
 import es.upm.miw.apaw_practice.domain.persistence_ports.music.AlbumPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.SongEntity;
 
 import java.util.List;
 import java.util.stream.Stream;

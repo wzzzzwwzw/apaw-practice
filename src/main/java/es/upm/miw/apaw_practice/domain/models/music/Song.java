@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.music;
 
-import es.upm.miw.apaw_practice.domain.models.music.builders.ArtistBuilders;
 import es.upm.miw.apaw_practice.domain.models.music.builders.SongBuilders;
 
 import java.util.ArrayList;

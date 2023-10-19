@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 @Repository("furnitureStorePersistence")
 public class FurnitureStorePersistenceMongodb implements FurnitureStorePersistence {
@@ -60,11 +59,12 @@ public class FurnitureStorePersistenceMongodb implements FurnitureStorePersisten
 
 
     @Override
-    public Stream<Furniture> findFurnitureStoreNameByManagerPromotionCandidate(Boolean promotionCandidate) {
+    public List<Furniture> findFurnitureStoreNameByManagerPromotionCandidate(Boolean promotionCandidate) {
         return this.furnitureStoreRepository.findAll().stream()
                 .map(FurnitureStoreEntity::toFurnitureStore)
                 .filter(furnitureStore -> Objects.equals(furnitureStore.getManager().getPromotionCandidate(), promotionCandidate))
-                .flatMap(furnitureStore -> furnitureStore.getFurnitures().stream());
+                .flatMap(furnitureStore -> furnitureStore.getFurnitures().stream())
+                .toList();
     }
 
 }

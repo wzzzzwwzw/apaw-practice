@@ -5,13 +5,13 @@ import es.upm.miw.apaw_practice.domain.models.furniture_store.FurnitureStore;
 
 import org.springframework.stereotype.Repository;
 
-import java.util.stream.Stream;
+import java.util.List;
 
 @Repository
 public interface FurnitureStorePersistence {
 
     FurnitureStore readByName(String name);
     FurnitureStore update(FurnitureStore furnitureStore);
-    Stream<Furniture> findFurnitureStoreNameByManagerPromotionCandidate(Boolean promotionCandidate);
+    List<Furniture> findFurnitureStoreNameByManagerPromotionCandidate(Boolean promotionCandidate);
 
 }

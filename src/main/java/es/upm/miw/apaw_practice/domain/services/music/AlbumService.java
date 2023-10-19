@@ -26,10 +26,6 @@ public class AlbumService {
         this.albumPersistence.delete(denomination);
     }
 
-    public Stream<Integer> getPhoneNumberByTypeAndRecordLabel(String type, String recordLabel) {
-        return this.albumPersistence.getPhoneNumberByTypeAndRecordLabel(type, recordLabel);
-    }
-
     public List<String> getDifferentDenominationsByFullname(String fullname) {
         return this.albumPersistence.getDifferentDenominationsByFullname(fullname);
     }

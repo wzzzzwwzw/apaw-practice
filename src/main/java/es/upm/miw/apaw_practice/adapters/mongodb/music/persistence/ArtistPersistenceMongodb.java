@@ -2,10 +2,10 @@ package es.upm.miw.apaw_practice.adapters.mongodb.music.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.music.daos.ArtistRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.ArtistEntity;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.music.Artist;
 import es.upm.miw.apaw_practice.domain.persistence_ports.music.ArtistPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
-import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import org.springframework.stereotype.Repository;
 
 @Repository("artistPersistence")

@@ -5,6 +5,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.library.LibrarySeederService;
 import es.upm.miw.apaw_practice.adapters.rest.library.dto.LoanDataDto;
 import es.upm.miw.apaw_practice.domain.models.library.Loan;
 import es.upm.miw.apaw_practice.domain.persistence_ports.library.LoanPersistence;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,12 @@ public class LoanServiceIT {
     private LibrarySeederService librarySeederService;
 
     @BeforeEach
-    void resetDataBase() {
+    void resetDataBaseBefore() {
+        this.librarySeederService.deleteAll();
+        this.librarySeederService.seedDatabase();
+    }
+    @AfterEach
+    void resetDataBaseAfter() {
         this.librarySeederService.deleteAll();
         this.librarySeederService.seedDatabase();
     }

@@ -3,7 +3,7 @@ package es.upm.miw.apaw_practice.domain.models.bakery;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Product {
+public class Product implements ProductComponent {
     private String name;
     private String description;
     private BigDecimal price;
@@ -98,6 +98,19 @@ public class Product {
                 ", productType='" + getProductType() + "'" +
                 "}";
     }
+
+
+    // Composite Pattern
+
+    @Override
+    public boolean isComposite() { return false; }
+
+    @Override
+    public void add(ProductComponent productComponent) { }
+
+    @Override
+    public void remove(ProductComponent productComponent) { }
+
 
     // Builder Pattern
 

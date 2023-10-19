@@ -21,9 +21,6 @@ public class AlbumResource {
 
     static final String SEARCH = "/search";
 
-    static final String SEARCH2 = "/search2";
-
-
     private final AlbumService albumService;
 
     @Autowired
@@ -42,13 +39,6 @@ public class AlbumResource {
     }
 
     @GetMapping(SEARCH)
-    public Stream<Integer> getPhoneNumberByTypeAndRecordLabel(@RequestParam String q) {
-        String type = new LexicalAnalyzer().extractWithAssure(q, "type");
-        String recordLabel = new LexicalAnalyzer().extractWithAssure(q, "recordLabel");
-        return this.albumService.getPhoneNumberByTypeAndRecordLabel(type, recordLabel);
-    }
-
-    @GetMapping(SEARCH2)
     public DenominationCollectionDTO getDifferentDenominationsByFullname(@RequestParam String q) {
         String fullname = new LexicalAnalyzer().extractWithAssure(q, "fullname");
         return new DenominationCollectionDTO(this.albumService.getDifferentDenominationsByFullname(fullname));

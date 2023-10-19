@@ -1,8 +1,10 @@
 package es.upm.miw.apaw_practice.domain.models.climbing;
 
+import es.upm.miw.apaw_practice.domain.models.climbing.composite.TreeAreas;
+
 import java.util.List;
 
-public class Area {
+public class Area implements TreeAreas {
     private String name;
     private String location;
     private boolean easyAccess;
@@ -74,5 +76,20 @@ public class Area {
                 ", routes=" + routes +
                 ", expedition=" + expedition +
                 '}';
+    }
+
+    @Override
+    public Boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(TreeAreas treeAreas) {
+        throw new UnsupportedOperationException("Unsupported operation in Area leaf");
+    }
+
+    @Override
+    public void remove(TreeAreas treeAreas) {
+
     }
 }

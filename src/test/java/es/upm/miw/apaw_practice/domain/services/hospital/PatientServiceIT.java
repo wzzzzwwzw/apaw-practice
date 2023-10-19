@@ -26,5 +26,9 @@ class PatientServiceIT {
         assertEquals(Boolean.FALSE,patient.getAppointments().get(1).getUrgent());
         assertEquals(Boolean.TRUE,patient.getAppointments().get(0).getUrgent());
     }
+    @Test
+    void testFindTotalOccupiedBedsByAppointmentRoomAndUrgent() {
+        assertEquals(17, this.patientService.findTotalOccupiedBedsByAppointmentRoom("123",true));
+    }
 
 }

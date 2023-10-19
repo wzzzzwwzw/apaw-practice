@@ -18,7 +18,7 @@ public class DoctorServiceIT {
         Department department = new Department("TestDep",10,10);
         Doctor doctor = this.doctorService.create(new Doctor("M011", "T01",department));
         assertEquals("M011", doctor.getMedicalLicenseCode());
-        assertEquals("T01",doctor.getOffice());
+        assertEquals("T01",doctor.getSpeciality());
         assertEquals(10, doctor.getDepartment().getAvailableBeds());
 
     }

@@ -25,4 +25,16 @@ class BrandRepositoryIT {
         assertEquals("Agency1", brand.getAgency().getCompany());
         assertEquals(2, brand.getCampaigns().size());
     }
+
+    @Test
+    void testFindByAgencyId() {
+        assertTrue(this.brandRepository.findByTrademark("Brand1").isPresent());
+        BrandEntity brand = this.brandRepository.findByTrademark("Brand1").get();
+        assertTrue(this.brandRepository.findByAgencyId(brand.getAgency().getId()).isPresent());
+        BrandEntity brandWithId = this.brandRepository.findByAgencyId(brand.getAgency().getId()).get();
+        assertEquals(0, new BigDecimal("1000.00").compareTo(brandWithId.getAdvertisingBudget()));
+        assertEquals("Industry1", brandWithId.getIndustry());
+        assertEquals("Agency1", brandWithId.getAgency().getCompany());
+        assertEquals(2, brandWithId.getCampaigns().size());
+    }
 }

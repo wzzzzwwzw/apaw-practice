@@ -64,4 +64,10 @@ public class ContentEntity {
                 ", platform='" + platform + '\'' +
                 '}';
     }
+
+    public Content toContent() {
+        Content content = new Content();
+        BeanUtils.copyProperties(this, content);
+        return content;
+    }
 }

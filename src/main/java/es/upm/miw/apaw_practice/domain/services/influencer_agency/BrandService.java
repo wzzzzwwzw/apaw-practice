@@ -25,4 +25,8 @@ public class BrandService {
     public void updateBrand(String trademark, BigDecimal newBudget) {
         this.brandPersistence.updateBrand(trademark, newBudget);
     }
+
+    public BigDecimal sumBudgetsByPlatform(String platform) {
+        return this.brandPersistence.sumBudgetsByPlatform(platform);
+    }
 }

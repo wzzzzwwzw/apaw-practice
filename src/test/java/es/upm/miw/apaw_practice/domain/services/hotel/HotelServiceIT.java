@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.domain.services.hotel;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.hotel.HotelSeederService;
 import es.upm.miw.apaw_practice.domain.models.hotel.Hotel;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,6 +14,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class HotelServiceIT {
     @Autowired
     private HotelService hotelService;
+
+    @Autowired
+    private HotelSeederService hotelSeeder;
+
+    @AfterEach
+    public void resetDataBase() {
+        this.hotelSeeder.deleteAll();
+        this.hotelSeeder.seedDatabase();
+    }
 
     @Test
     void testReadService(){

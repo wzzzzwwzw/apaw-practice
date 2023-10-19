@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.rest.hotel;
 
-import es.upm.miw.apaw_practice.domain.models.hotel.HotelActivity;
 import es.upm.miw.apaw_practice.domain.models.hotel.HotelClient;
 import es.upm.miw.apaw_practice.domain.services.hotel.HotelClientService;
 import org.springframework.web.bind.annotation.*;

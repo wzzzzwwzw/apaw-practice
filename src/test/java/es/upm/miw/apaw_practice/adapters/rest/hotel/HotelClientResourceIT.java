@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.rest.hotel;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.hotel.HotelSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.domain.models.hotel.HotelActivity;
 import es.upm.miw.apaw_practice.domain.models.hotel.HotelClient;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;

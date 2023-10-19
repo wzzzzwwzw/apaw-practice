@@ -27,12 +27,12 @@ class FurnitureStoreResourceIT {
     void testRead() {
         this.webTestClient
                 .get()
-                .uri(FURNITURE_STORE + NAME_ID, "ikia")
+                .uri(FURNITURE_STORES + NAME_ID, "ikia")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(FurnitureStore.class)
                 .value(Assertions::assertNotNull)
-                .value(furnitureStoreData -> {;
+                .value(furnitureStoreData -> {
                     assertEquals(3, furnitureStoreData.getFurnitures().size());
                     assertEquals("456745674567", furnitureStoreData.getManager().getAffiliationNumber());
                 });
@@ -42,7 +42,7 @@ class FurnitureStoreResourceIT {
     void testReadNotFound() {
         this.webTestClient
                 .get()
-                .uri(FURNITURE_STORE + NAME_ID, "None")
+                .uri(FURNITURE_STORES + NAME_ID, "None")
                 .exchange()
                 .expectStatus().isNotFound();
     }
@@ -58,7 +58,7 @@ class FurnitureStoreResourceIT {
         );
         this.webTestClient
                 .put()
-                .uri(FURNITURE_STORE + NAME_ID + FURNITURE, "muebles vintage")
+                .uri(FURNITURE_STORES + NAME_ID + FURNITURES, "muebles vintage")
                 .body(BodyInserters.fromValue(furnitureList))
                 .exchange()
                 .expectStatus().isOk();

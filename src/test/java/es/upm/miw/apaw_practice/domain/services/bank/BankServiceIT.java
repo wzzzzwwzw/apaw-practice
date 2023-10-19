@@ -4,6 +4,7 @@ import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.domain.models.bank.Bank;
 import es.upm.miw.apaw_practice.domain.models.bank.BankType;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,12 @@ public class BankServiceIT {
         assertEquals(new BigDecimal("999999990"), bankCreated.getCapital());
         assertEquals(0,bankCreated.getListAccounts().size());
 
+    }
+
+    @Test
+    void testUpdateBankCapital(){
+        Bank bank = this.bankService.updateBankCapital("Bank Pavon",new BigDecimal("23000000.00"));
+        assertEquals("Bank Pavon", bank.getBankName());
+        assertEquals(new BigDecimal("23000000.00"), bank.getCapital());
     }
 }

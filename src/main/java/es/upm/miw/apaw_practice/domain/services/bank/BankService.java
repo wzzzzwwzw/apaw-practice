@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.bank.BankPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class BankService {
 
@@ -20,5 +22,11 @@ public class BankService {
 
     public Bank createBank(Bank bank){
         return this.bankPersistence.createBank(bank);
+    }
+
+    public Bank updateBankCapital(String bankName, BigDecimal capital){
+        Bank bank=this.bankPersistence.readByBankName(bankName);
+        bank.setCapital(capital);
+        return this.bankPersistence.updateBankCapital(bank);
     }
 }

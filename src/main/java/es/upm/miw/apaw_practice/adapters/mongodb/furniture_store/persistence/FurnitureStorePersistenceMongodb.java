@@ -59,10 +59,19 @@ public class FurnitureStorePersistenceMongodb implements FurnitureStorePersisten
 
 
     @Override
-    public List<Furniture> findFurnitureStoreNameByManagerPromotionCandidate(Boolean promotionCandidate) {
+    public List<Furniture> findFurnituresByManagerPromotionCandidate(Boolean promotionCandidate) {
         return this.furnitureStoreRepository.findAll().stream()
                 .map(FurnitureStoreEntity::toFurnitureStore)
                 .filter(furnitureStore -> Objects.equals(furnitureStore.getManager().getPromotionCandidate(), promotionCandidate))
+                .flatMap(furnitureStore -> furnitureStore.getFurnitures().stream())
+                .toList();
+    }
+
+    @Override
+    public List<Furniture> findFurnituresByManagerName(String name) {
+        return this.furnitureStoreRepository.findAll().stream()
+                .map(FurnitureStoreEntity::toFurnitureStore)
+                .filter(furnitureStore -> furnitureStore.getManager().getName().equals(name))
                 .flatMap(furnitureStore -> furnitureStore.getFurnitures().stream())
                 .toList();
     }

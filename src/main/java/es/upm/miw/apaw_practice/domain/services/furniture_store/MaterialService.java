@@ -35,7 +35,7 @@ public class MaterialService {
     }
 
     public List<String> findUniqueMaterialTypeByManagerPromotionCandidate(Boolean promotionCandidate) {
-        List<Furniture> furnitureList = this.furnitureStorePersistence.findFurnitureStoreNameByManagerPromotionCandidate(promotionCandidate);
+        List<Furniture> furnitureList = this.furnitureStorePersistence.findFurnituresByManagerPromotionCandidate(promotionCandidate);
 
         if (furnitureList.isEmpty()) {
             throw new NotFoundException("No furniture found with " + promotionCandidate + " promotion candidate");
@@ -49,4 +49,5 @@ public class MaterialService {
                 .distinct()
                 .toList();
     }
+
 }

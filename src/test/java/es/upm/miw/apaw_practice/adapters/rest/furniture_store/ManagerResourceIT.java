@@ -31,7 +31,7 @@ class ManagerResourceIT {
         String surname = "Roberto";
         this.webTestClient
                 .patch()
-                .uri(MANAGERS + AFFILIATION_NUMBER_ID, "111222333444")
+                .uri(MANAGERS + AFFILIATION_NUMBER_ID, "123456789012")
                 .body(BodyInserters.fromValue(surname))
                 .exchange()
                 .expectStatus().isOk()

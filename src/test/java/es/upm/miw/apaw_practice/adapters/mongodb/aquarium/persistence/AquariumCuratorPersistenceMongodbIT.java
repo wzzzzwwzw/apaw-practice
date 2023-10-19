@@ -53,4 +53,5 @@ public class AquariumCuratorPersistenceMongodbIT {
         assertEquals("Sea",aquariumCuratorChange.getAquarium().getDescription());
         assertEquals(1,aquariumCurator.getFishponds().size());
     }
+
 }

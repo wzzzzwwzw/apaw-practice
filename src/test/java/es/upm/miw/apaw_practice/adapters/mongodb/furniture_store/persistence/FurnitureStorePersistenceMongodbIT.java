@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -68,4 +69,12 @@ class FurnitureStorePersistenceMongodbIT {
         assertThrows(NotFoundException.class, () -> this.furnitureStorePersistenceMongodb.update(furnitureStore));
 
     }
+
+    @Test
+    void testFindFurnitureStoreNameByManagerPromotionCandidate() {
+        List<Furniture> furnitureList = this.furnitureStorePersistenceMongodb.findFurnitureStoreNameByManagerPromotionCandidate(true);
+        assertEquals(3, furnitureList.size());
+        assertEquals("lámpara de pie", furnitureList.get(0).getName());
+    }
+
 }

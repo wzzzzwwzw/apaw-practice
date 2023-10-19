@@ -6,6 +6,7 @@ import es.upm.miw.apaw_practice.domain.models.basketball.Pavilion;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static org.bson.assertions.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -22,5 +23,14 @@ class PavilionPersistenceMongodbIT {
         assertEquals("direction1", pavilion.getDirection());
 
         assertThrows(NotFoundException.class, () -> pavilionPersistenceMongodb.readByPavname("Non-Existent Pavilion"));
+    }
+
+    @Test
+    void testCreatePavilion() {
+        Pavilion pavilion = this.pavilionPersistenceMongodb.create(new Pavilion("pavilion3","location1",40));
+        assertNotNull(pavilion);
+        assertEquals("pavilion3", pavilion.getPavname());
+        assertEquals("location1", pavilion.getDirection());
+        assertEquals(40, pavilion.getCapacity());
     }
 }

@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface BrandRepository extends MongoRepository<BrandEntity, String> {
     Optional<BrandEntity> findByTrademark(String trademark);
+    Optional<BrandEntity> findByAgencyId(String campaignId);
 }

@@ -11,6 +11,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @RestTestConfig
 class CampaignResourceIT {
@@ -56,6 +57,36 @@ class CampaignResourceIT {
                 .put()
                 .uri(CampaignResource.CAMPAIGNS + CampaignResource.CONTENTS, "Description5")
                 .body(BodyInserters.fromValue(content))
+                .exchange()
+                .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testFindCreatorsByAgencyPhone() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(CampaignResource.CAMPAIGNS + CampaignResource.SEARCH)
+                        .queryParam("phone", 111111111)
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(List.class)
+                .value(Assertions::assertNotNull)
+                .value(creators -> Assertions.assertEquals(6, creators.size()))
+                .value(creators -> Assertions.assertEquals("Creator1", creators.get(0)))
+                .value(creators -> Assertions.assertEquals("Creator2", creators.get(1)))
+                .value(creators -> Assertions.assertEquals("Creator3", creators.get(2)));
+    }
+
+    @Test
+    void testFindCreatorsByAgencyPhoneException() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(CampaignResource.CAMPAIGNS + CampaignResource.SEARCH)
+                        .queryParam("phone", 1)
+                        .build())
                 .exchange()
                 .expectStatus().isNotFound();
     }

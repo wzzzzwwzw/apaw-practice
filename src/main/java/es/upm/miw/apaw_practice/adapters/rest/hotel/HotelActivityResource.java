@@ -18,7 +18,7 @@ public class HotelActivityResource {
         this.hotelActivityService = hotelActivityService;
     }
 
-    @PutMapping(ACTIVITY_NAME)
+    @PatchMapping(ACTIVITY_NAME)
     public HotelActivity updateInstructor(@PathVariable String activityName, @RequestBody String newInstructor) {
         return this.hotelActivityService.updateInstructor(activityName,newInstructor);
     }

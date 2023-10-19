@@ -25,8 +25,16 @@ public class CampaignEntity {
 
     public CampaignEntity(Campaign campaign) {
         BeanUtils.copyProperties(campaign, this);
+
+        this.contents = campaign.getContents() == null
+                ? new ArrayList<>()
+                : campaign.getContents().stream()
+                .map(ContentEntity::new)
+                .toList();
+
         this.id = UUID.randomUUID().toString();
     }
+
 
     public Date getStartDate() {
         return startDate;

@@ -1,9 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hotel.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.hotel.HotelSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.hotel.persistance.HotelActivityPersistenceMongodb;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.hotel.HotelActivity;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,6 +17,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class HotelActivityPersistenceMongodbIT {
     @Autowired
     private HotelActivityPersistenceMongodb hotelActivityPersistence;
+
+    @Autowired
+    private HotelSeederService hotelSeeder;
+
+    @AfterEach
+    public void resetDataBase() {
+        this.hotelSeeder.deleteAll();
+        this.hotelSeeder.seedDatabase();
+    }
 
     @Test
     void testReadNotFound() {

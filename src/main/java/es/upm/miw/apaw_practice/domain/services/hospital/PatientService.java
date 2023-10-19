@@ -26,5 +26,7 @@ public class PatientService {
         return this.patientPersistence.findTotalOccupiedBedsByAppointmentRoom(socialInsuranceNumber,urgent);
     }
 
-
+    public Integer findTotalAppointmentBySpeciality (String speciality) {
+        return this.patientPersistence.findTotalAppointmentBySpeciality(speciality);
+    }
 }

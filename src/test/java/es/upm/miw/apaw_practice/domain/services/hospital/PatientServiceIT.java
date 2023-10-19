@@ -31,4 +31,9 @@ class PatientServiceIT {
         assertEquals(17, this.patientService.findTotalOccupiedBedsByAppointmentRoom("123",true));
     }
 
+    @Test
+    void testFindAppointmentBySpeciality() {
+        assertEquals(1, this.patientService.findTotalAppointmentBySpeciality("E01"));
+    }
+
 }

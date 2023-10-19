@@ -72,9 +72,9 @@ class FurnitureStorePersistenceMongodbIT {
 
     @Test
     void testFindFurnitureStoreNameByManagerPromotionCandidate() {
-        Stream<Furniture> furnitureStream = this.furnitureStorePersistenceMongodb.findFurnitureStoreNameByManagerPromotionCandidate(true);
-        assertNotNull(furnitureStream);
-        assertEquals(3, furnitureStream.count());
+        List<Furniture> furnitureList = this.furnitureStorePersistenceMongodb.findFurnitureStoreNameByManagerPromotionCandidate(true);
+        assertEquals(3, furnitureList.size());
+        assertEquals("lámpara de pie", furnitureList.get(0).getName());
     }
 
 }

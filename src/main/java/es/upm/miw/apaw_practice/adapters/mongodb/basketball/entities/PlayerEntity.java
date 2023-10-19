@@ -51,7 +51,7 @@ public class PlayerEntity {
         return age;
     }
 
-    public void setLevel(Integer age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

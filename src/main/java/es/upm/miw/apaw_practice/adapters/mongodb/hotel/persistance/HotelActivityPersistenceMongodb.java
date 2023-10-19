@@ -13,9 +13,10 @@ public class HotelActivityPersistenceMongodb implements HotelActivityPersistence
     private final HotelActivityRepository hotelActivityRepository;
 
     @Autowired
-    public HotelActivityPersistenceMongodb(HotelActivityRepository hotelActivityRepository){
+    public HotelActivityPersistenceMongodb(HotelActivityRepository hotelActivityRepository) {
         this.hotelActivityRepository = hotelActivityRepository;
     }
+
     @Override
     public HotelActivity updateInstructor(String activityName, String newInstructor) {
         HotelActivityEntity activityEntity = this.hotelActivityRepository

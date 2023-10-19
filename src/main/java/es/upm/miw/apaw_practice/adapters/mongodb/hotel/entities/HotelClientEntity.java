@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.util.UUID;
+
 public class HotelClientEntity {
     @Id
     private String id;

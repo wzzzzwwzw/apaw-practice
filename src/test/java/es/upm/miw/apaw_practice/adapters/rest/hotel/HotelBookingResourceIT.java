@@ -31,8 +31,8 @@ public class HotelBookingResourceIT {
 
     @Test
     void testCreateBooking() {
-        HotelClient client = new HotelClient("11100033A","example@email.com",112222333,true);
-        HotelBooking booking = new HotelBooking(10, 999, LocalDate.of(2023,10,21), new BigDecimal("49.99"), client);
+        HotelClient client = new HotelClient("11100033A", "example@email.com", 112222333, true);
+        HotelBooking booking = new HotelBooking(10, 999, LocalDate.of(2023, 10, 21), new BigDecimal("49.99"), client);
 
         this.webTestClient
                 .post()

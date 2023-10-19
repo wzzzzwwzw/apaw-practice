@@ -1,8 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.rest.school;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.school.SchoolSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
+import es.upm.miw.apaw_practice.domain.models.school.School;
 import es.upm.miw.apaw_practice.domain.models.school.Student;
 import es.upm.miw.apaw_practice.domain.models.school.Subject;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,15 @@ public class StudentResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
+
+    @Autowired
+    private SchoolSeederService schoolSeederService;
+
+    @AfterEach
+    void resetDataBase() {
+        this.schoolSeederService.deleteAll();
+        this.schoolSeederService.seedDatabase();
+    }
 
     @Test
     void testUpdateSubjects() {

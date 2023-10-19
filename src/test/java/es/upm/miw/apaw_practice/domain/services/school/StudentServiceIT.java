@@ -25,6 +25,7 @@ class StudentServiceIT {
         this.schoolSeederService.deleteAll();
         this.schoolSeederService.seedDatabase();
     }
+
     @Test
     void testUpdateSubjects() {
         List<Subject> subjects = List.of(new Subject("subject5", "desc5", true, 16),

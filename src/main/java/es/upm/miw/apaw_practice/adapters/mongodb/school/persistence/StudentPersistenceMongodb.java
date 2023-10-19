@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.school.persistence;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.school.daos.SubjectRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.SubjectEntity;
 import es.upm.miw.apaw_practice.domain.models.school.Student;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.daos.StudentRepository;
@@ -23,14 +22,6 @@ public class StudentPersistenceMongodb implements StudentPersistence {
     }
 
     @Override
-    public Student read(String name) {
-        return this.studentRepository
-                .findByName(name)
-                .orElseThrow(() -> new NotFoundException("Student location: " + name))
-                .toStudent();
-    }
-
-    @Override
     public Student readByName(String name) {
         return this.studentRepository
                 .findByName(name)
@@ -39,24 +30,10 @@ public class StudentPersistenceMongodb implements StudentPersistence {
     }
 
     @Override
-    public boolean existName(String name) {
-        return this.studentRepository
-                .findByName(name)
-                .isPresent();
-    }
-
-    @Override
     public Stream<Student> readAll() {
         return this.studentRepository
                 .findAll().stream()
                 .map(StudentEntity::toStudent);
-    }
-
-    @Override
-    public Student create(Student student) {
-        return this.studentRepository
-                .save(new StudentEntity(student))
-                .toStudent();
     }
 
     @Override

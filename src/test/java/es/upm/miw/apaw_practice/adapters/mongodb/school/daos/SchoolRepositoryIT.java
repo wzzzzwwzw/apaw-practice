@@ -31,7 +31,7 @@ class SchoolRepositoryIT {
     }
 
     @Test
-    void testCreateAndRead() {
+    void testRead() {
         assertTrue(this.schoolRepository.findByName("school1").isPresent());
         SchoolEntity school1 = this.schoolRepository.findByName("school1").get();
         assertEquals("address1", school1.getAddress());

@@ -1,12 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.hospital;
 
-import es.upm.miw.apaw_practice.domain.models.computer_store.Monitor;
-import es.upm.miw.apaw_practice.domain.models.computer_store.Wire;
-import es.upm.miw.apaw_practice.domain.models.computer_store.builders.MonitorBuilders;
 import es.upm.miw.apaw_practice.domain.models.hospital.builders.DepartmentBuilders;
 
-import java.math.BigDecimal;
-import java.util.List;
 
 public class Department {
     private String departmentName;

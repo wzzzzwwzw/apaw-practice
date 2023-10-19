@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.entities;
 
 import es.upm.miw.apaw_practice.domain.models.influencer_agency.Campaign;
+import es.upm.miw.apaw_practice.domain.models.influencer_agency.Content;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 
@@ -70,9 +71,13 @@ public class CampaignEntity {
     }
 
     public Campaign toCampaign() {
-        Campaign campaign = new Campaign();
-        campaign.setContents(new ArrayList<>());
-        BeanUtils.copyProperties(this, campaign);
+        Campaign campaign = new Campaign(this.startDate, this.endDate);
+        campaign.setDescription(this.description);
+        List<Content> listOfContents = new ArrayList<>();
+        for (ContentEntity c : this.contents) {
+            listOfContents.add(c.toContent());
+        }
+        campaign.setContents(listOfContents);
         return campaign;
     }
 }

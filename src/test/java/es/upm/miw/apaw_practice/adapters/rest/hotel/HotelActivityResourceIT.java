@@ -18,7 +18,7 @@ public class HotelActivityResourceIT {
     @Test
     void testUpdateInstructor() {
         this.webTestClient
-                .put()
+                .patch()
                 .uri(HotelResource.HOTELS + HotelActivityResource.ACTIVITIES + HotelActivityResource.ACTIVITY_NAME, "Surf")
                 .body(BodyInserters.fromValue("Elena"))
                 .exchange()

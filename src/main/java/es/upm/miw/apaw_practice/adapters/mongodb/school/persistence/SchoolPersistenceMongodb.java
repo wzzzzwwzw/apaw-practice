@@ -29,35 +29,6 @@ public class SchoolPersistenceMongodb implements SchoolPersistence {
     }
 
     @Override
-    public School readByName(String name) {
-        return this.schoolRepository
-                .findByName(name)
-                .orElseThrow(() -> new NotFoundException("School name:" + name))
-                .toSchool();
-    }
-
-    @Override
-    public boolean existName(String name) {
-        return this.schoolRepository
-                .findByName(name)
-                .isPresent();
-    }
-
-    @Override
-    public Stream<School> readAll() {
-        return this.schoolRepository
-                .findAll().stream()
-                .map(SchoolEntity::toSchool);
-    }
-
-    @Override
-    public School create(School school) {
-        return this.schoolRepository
-                .save(new SchoolEntity(school))
-                .toSchool();
-    }
-
-    @Override
     public BigDecimal registrationPriceSumGivenBilingual(Boolean bilingual) {
         return this.schoolRepository
                     .findAll().stream()

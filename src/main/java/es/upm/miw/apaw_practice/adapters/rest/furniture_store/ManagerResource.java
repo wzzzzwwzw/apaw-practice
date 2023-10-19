@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(ManagerResource.MANAGER)
+@RequestMapping(ManagerResource.MANAGERS)
 public class ManagerResource {
 
-    static final String MANAGER = "/furniture-store/managers";
+    static final String MANAGERS = "/furniture-store/managers";
 
     static final String AFFILIATION_NUMBER_ID = "/{affiliationNumber}";
 

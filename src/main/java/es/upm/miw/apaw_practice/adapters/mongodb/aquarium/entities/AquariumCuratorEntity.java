@@ -87,6 +87,10 @@ public class AquariumCuratorEntity {
     public void setAquariumEntity(AquariumEntity aquariumEntity) {
         this.aquariumEntity = aquariumEntity;
     }
+    public FishpondEntity getFishpondEntity() {
+        return (FishpondEntity) fishpondEntities;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -124,4 +128,7 @@ public class AquariumCuratorEntity {
                 .collect(Collectors.toList());
         return new AquariumCurator(this.name,this.position,this.vacationState, fishponds, aquarium);
     }
+
+
+
 }

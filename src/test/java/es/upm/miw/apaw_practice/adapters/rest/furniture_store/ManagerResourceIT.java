@@ -21,7 +21,7 @@ class ManagerResourceIT {
     void testDelete() {
         this.webTestClient
                 .delete()
-                .uri(MANAGER + AFFILIATION_NUMBER_ID, "No existe")
+                .uri(MANAGERS + AFFILIATION_NUMBER_ID, "No existe")
                 .exchange()
                 .expectStatus().isOk();
     }
@@ -31,14 +31,12 @@ class ManagerResourceIT {
         String surname = "Roberto";
         this.webTestClient
                 .patch()
-                .uri(MANAGER + AFFILIATION_NUMBER_ID, "111222333444")
+                .uri(MANAGERS + AFFILIATION_NUMBER_ID, "123456789012")
                 .body(BodyInserters.fromValue(surname))
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Manager.class)
                 .value(Assertions::assertNotNull)
-                .value(manager -> {
-                    assertEquals("Roberto", manager.getName());
-                });
+                .value(manager -> assertEquals("Roberto", manager.getName()));
     }
 }

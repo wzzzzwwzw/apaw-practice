@@ -72,30 +72,33 @@ public class Seller {
                 '}';
     }
 
-    public static class Builder {
+    public static class SellerBuilder {
         private final Seller seller;
+        private final Car.CarBuilder carBuilder;
 
-        public Builder() {
+        public SellerBuilder(Car.CarBuilder carBuilder) {
             this.seller = new Seller();
+            this.carBuilder = carBuilder;
         }
 
-        public Builder name(String name) {
+        public SellerBuilder name(String name) {
             this.seller.setName(name);
             return this;
         }
 
-        public Builder surname(String surname) {
+        public SellerBuilder surname(String surname) {
             this.seller.setSurname(surname);
             return this;
         }
 
-        public Builder salary(Integer salary) {
+        public SellerBuilder salary(Integer salary) {
             this.seller.setSalary(salary);
             return this;
         }
 
-        public Seller build() {
-            return this.seller;
+        public Car.CarBuilder build() {
+            carBuilder.addSeller(this.seller);
+            return this.carBuilder;
         }
     }
 }

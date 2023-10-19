@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.music.entities;
 
+import es.upm.miw.apaw_practice.domain.models.music.Artist;
+import es.upm.miw.apaw_practice.domain.models.music.MusicGenre;
 import es.upm.miw.apaw_practice.domain.models.music.Song;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -91,6 +93,13 @@ public class SongEntity {
 
     public Song toSong() {
         Song song = new Song();
+        List<Artist> artistsList = this.artistsEntitiesList
+                .stream()
+                .map(ArtistEntity::toArtist)
+                .toList();
+        MusicGenre musicGenre = this.musicGenreEntity.toMusicGenre();
+        song.setArtistsList(artistsList);
+        song.setMusicGenre(musicGenre);
         BeanUtils.copyProperties(this, song);
         return song;
     }

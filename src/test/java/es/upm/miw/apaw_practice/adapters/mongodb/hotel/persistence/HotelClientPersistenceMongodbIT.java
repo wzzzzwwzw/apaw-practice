@@ -7,6 +7,7 @@ import es.upm.miw.apaw_practice.domain.models.hotel.HotelClient;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
@@ -29,11 +30,12 @@ public class HotelClientPersistenceMongodbIT {
         this.hotelClientPersistence.deleteClient("11122233A");
         assertFalse(this.hotelClientPersistence.existsClient("11122233A"));
     }
+
     @Test
     void testUpdate() {
-        HotelClient ClientUpdate = new HotelClient("11122233A","example@email.com",123123123,true);
+        HotelClient ClientUpdate = new HotelClient("11122233A", "example@email.com", 123123123, true);
         HotelClient ClientUpdated = this.hotelClientPersistence.updateClient(ClientUpdate);
-        assertNotEquals(ClientUpdate,ClientUpdated);
+        assertNotEquals(ClientUpdate, ClientUpdated);
     }
 
 

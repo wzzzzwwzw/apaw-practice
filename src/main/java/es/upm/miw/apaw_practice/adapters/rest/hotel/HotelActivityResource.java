@@ -20,6 +20,6 @@ public class HotelActivityResource {
 
     @PatchMapping(ACTIVITY_NAME)
     public HotelActivity updateInstructor(@PathVariable String activityName, @RequestBody String newInstructor) {
-        return this.hotelActivityService.updateInstructor(activityName,newInstructor);
+        return this.hotelActivityService.updateInstructor(activityName, newInstructor);
     }
 }

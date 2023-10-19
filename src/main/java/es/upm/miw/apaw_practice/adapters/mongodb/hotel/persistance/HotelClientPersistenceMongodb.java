@@ -12,17 +12,20 @@ public class HotelClientPersistenceMongodb implements HotelClientPersistence {
     private final HotelClientRepository hotelClientRepository;
 
     @Autowired
-    public HotelClientPersistenceMongodb(HotelClientRepository hotelClientRepository){
+    public HotelClientPersistenceMongodb(HotelClientRepository hotelClientRepository) {
         this.hotelClientRepository = hotelClientRepository;
     }
+
     @Override
     public void deleteClient(String dni) {
         this.hotelClientRepository.deleteByDni(dni);
     }
+
     @Override
     public boolean existsClient(String dni) {
         return this.hotelClientRepository.findByDni(dni).isPresent();
     }
+
     @Override
     public HotelClient updateClient(HotelClient client) {
         return this.hotelClientRepository.save(new HotelClientEntity(client)).toObject();

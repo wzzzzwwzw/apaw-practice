@@ -2,16 +2,15 @@ package es.upm.miw.apaw_practice.adapters.mongodb.music.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.music.daos.AlbumRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.AlbumEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.ArtistEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.SongEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
+import es.upm.miw.apaw_practice.domain.models.music.Album;
 import es.upm.miw.apaw_practice.domain.models.music.Song;
 import es.upm.miw.apaw_practice.domain.persistence_ports.music.AlbumPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.SongEntity;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Stream;
 
 @Repository("albumPersistence")
@@ -38,14 +37,11 @@ public class AlbumPersistenceMongodb implements AlbumPersistence {
     }
 
     @Override
-    public Stream<Integer> getPhoneNumberByTypeAndRecordLabel(String type, String recordLabel) {
+    public Stream<Album> findAlbumsByRecordLabel(String recordLabel) {
         return this.albumRepository.findAll()
                 .stream()
-                .filter(album -> Objects.equals(album.getRecordLabel(), recordLabel))
-                .flatMap(album -> album.getSongsList().stream())
-                .filter(song -> song.getMusicGenreEntity().getType().equals(type))
-                .flatMap(song -> song.getArtistsList().stream()).
-                        map(ArtistEntity::getPhoneNumber);
+                .filter(album -> album.getRecordLabel().equals(recordLabel))
+                .map(AlbumEntity::toAlbum);
     }
 
     @Override

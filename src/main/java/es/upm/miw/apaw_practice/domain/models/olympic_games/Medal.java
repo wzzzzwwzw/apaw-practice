@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.domain.models.olympic_games;
 
 
-public class Medal {
+import es.upm.miw.apaw_practice.domain.models.olympic_games.composite.TreeMedals;
+
+public class Medal implements TreeMedals {
 
     private String medalID;
     private String tier;
@@ -70,5 +72,19 @@ public class Medal {
                 ", competition='" + competition + '\'' +
                 ", winner=" + winner +
                 '}';
+    }
+
+    @Override
+    public Boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(TreeMedals treeMedals) {
+        throw new UnsupportedOperationException("Unsupported operation in medal leaf");
+    }
+
+    @Override
+    public void remove(TreeMedals treeMedals) {
     }
 }

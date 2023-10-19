@@ -16,9 +16,9 @@ public class HotelClientRepositoryIT {
     void testCreateAndRead() {
         assertTrue(this.ClientRepository.findByDni("11122233F").isPresent());
         HotelClientEntity firstClient = this.ClientRepository.findByDni("11122233F").get();
-        assertEquals(firstClient.getDni(),"11122233F");
-        assertEquals(firstClient.getEmail(),"sixth@email.com");
-        assertEquals(firstClient.getTelephone(),111222338);
+        assertEquals(firstClient.getDni(), "11122233F");
+        assertEquals(firstClient.getEmail(), "sixth@email.com");
+        assertEquals(firstClient.getTelephone(), 111222338);
         assertFalse(firstClient.getPartnership());
     }
 }

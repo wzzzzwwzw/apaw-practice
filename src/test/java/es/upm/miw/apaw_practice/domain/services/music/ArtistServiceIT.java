@@ -8,8 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
 class ArtistServiceIT {
@@ -33,5 +35,16 @@ class ArtistServiceIT {
         assertEquals("Ozuna", artist.getFullName());
         assertEquals(666666666, artist.getPhoneNumber());
         assertEquals(LocalDate.of(1989, 12, 30), artist.getBirthDate());
+    }
+
+    @Test
+    void testGetPhoneNumbersByTypeAndRecordLabel() {
+        List<Integer> phoneNumbers = this.artistService
+                .getPhoneNumbersByTypeAndRecordLabel("reggaeton", "La Industria Inc")
+                .toList();
+        assertEquals(3, phoneNumbers.size());
+        assertTrue(phoneNumbers.contains(123456789));
+        assertTrue(phoneNumbers.contains(222222222));
+        assertTrue(phoneNumbers.contains(333333333));
     }
 }

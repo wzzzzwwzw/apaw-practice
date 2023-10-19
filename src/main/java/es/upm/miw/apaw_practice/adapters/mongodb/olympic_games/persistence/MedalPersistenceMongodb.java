@@ -59,4 +59,15 @@ public class MedalPersistenceMongodb implements MedalPersistence {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<String> findTiersByCompetitor(List<String> competitorsNames) {
+        return this.medalRepository
+                .findAll()
+                .stream()
+                .filter(medal ->
+                        competitorsNames.contains(medal.getWinner().getName()))
+                .map(MedalEntity::getTier)
+                .collect(Collectors.toList());
+    }
+
 }

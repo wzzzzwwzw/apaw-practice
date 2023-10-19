@@ -9,7 +9,7 @@ public class AreasComposite implements TreeAreas {
     private final String name;
     private final List<TreeAreas> treeAreas;
 
-    public AreasComposite (String name) {
+    public AreasComposite(String name) {
         this.name = name;
         this.treeAreas = new ArrayList<>();
     }

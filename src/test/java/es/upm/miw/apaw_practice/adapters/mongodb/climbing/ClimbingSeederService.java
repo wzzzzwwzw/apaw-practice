@@ -1,13 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.climbing;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.climbing.daos.AreaRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.climbing.daos.ClimberRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.climbing.daos.ExpeditionRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.climbing.entities.AreaEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.climbing.entities.ClimberEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.climbing.entities.ExpeditionEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.climbing.entities.RouteEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.climbing.daos.AreaRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.climbing.daos.ClimberRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.climbing.daos.ExpeditionRepository;
-import es.upm.miw.apaw_practice.domain.models.climbing.Expedition;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Service

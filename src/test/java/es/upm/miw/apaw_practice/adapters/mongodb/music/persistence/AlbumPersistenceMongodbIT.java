@@ -26,14 +26,8 @@ class AlbumPersistenceMongodbIT {
     }
 
     @Test
-    void testGetPhoneNumberByTypeAndRecordLabel() {
-        List<Integer> phoneNumbers = this.albumPersistenceMongodb.
-                getPhoneNumberByTypeAndRecordLabel("reggaeton", "La Industria Inc").
-                toList();
-        assertEquals(3, phoneNumbers.size());
-        assertTrue(phoneNumbers.contains(123456789));
-        assertTrue(phoneNumbers.contains(222222222));
-        assertTrue(phoneNumbers.contains(333333333));
+    void testFindAlbumsByRecordLabel() {
+        assertEquals(1, this.albumPersistenceMongodb.findAlbumsByRecordLabel("La Industria Inc").count());
     }
 
     @Test

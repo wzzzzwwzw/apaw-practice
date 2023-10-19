@@ -9,15 +9,7 @@ import java.util.stream.Stream;
 @Repository
 public interface SchoolPersistence {
 
-    Stream<School> readAll();
-
-    School create(School school);
-
     School read(String name);
-
-    School readByName(String name);
-
-    boolean existName(String name);
 
     BigDecimal registrationPriceSumGivenBilingual(Boolean bilingual);
 }

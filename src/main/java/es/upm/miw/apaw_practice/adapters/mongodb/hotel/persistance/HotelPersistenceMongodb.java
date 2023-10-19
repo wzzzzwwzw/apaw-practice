@@ -13,9 +13,10 @@ public class HotelPersistenceMongodb implements HotelPersistence {
     private final HotelRepository hotelRepository;
 
     @Autowired
-    public HotelPersistenceMongodb(HotelRepository hotelRepository){
+    public HotelPersistenceMongodb(HotelRepository hotelRepository) {
         this.hotelRepository = hotelRepository;
     }
+
     @Override
     public Hotel readByName(String name) {
         return this.hotelRepository

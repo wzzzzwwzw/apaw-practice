@@ -68,4 +68,25 @@ class FurnitureStorePersistenceMongodbIT {
         assertThrows(NotFoundException.class, () -> this.furnitureStorePersistenceMongodb.update(furnitureStore));
 
     }
+
+    @Test
+    void testFindFurnituresByManagerPromotionCandidate() {
+        List<Furniture> furnitureList = this.furnitureStorePersistenceMongodb.findFurnituresByManagerPromotionCandidate(true);
+        assertEquals(3, furnitureList.size());
+        assertEquals("lámpara de pie", furnitureList.get(0).getName());
+    }
+
+    @Test
+    void testFindFurnituresByManagerName() {
+        List<Furniture> furnitureList = this.furnitureStorePersistenceMongodb.findFurnituresByManagerName("José");
+        assertEquals(2, furnitureList.size());
+        assertEquals("lámpara de pie", furnitureList.get(0).getName());
+    }
+
+    @Test
+    void testNotFindFurnituresByManagerName() {
+        List<Furniture> furnitureList = this.furnitureStorePersistenceMongodb.findFurnituresByManagerName("No existe");
+        assertTrue(furnitureList.isEmpty());
+    }
+
 }

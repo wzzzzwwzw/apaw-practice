@@ -1,5 +1,4 @@
 package es.upm.miw.apaw_practice.domain.persistence_ports.aquarium;
-import es.upm.miw.apaw_practice.domain.models.aquarium.Fishpond;
 import org.springframework.stereotype.Repository;
 
 @Repository

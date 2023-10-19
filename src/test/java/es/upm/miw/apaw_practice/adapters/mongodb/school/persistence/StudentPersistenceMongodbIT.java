@@ -2,8 +2,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.school.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.SchoolSeederService;
-import es.upm.miw.apaw_practice.adapters.mongodb.school.daos.StudentRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.StudentEntity;
 import es.upm.miw.apaw_practice.domain.models.school.Student;
 import es.upm.miw.apaw_practice.domain.models.school.Subject;
 import org.junit.jupiter.api.Test;

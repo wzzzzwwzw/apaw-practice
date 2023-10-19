@@ -53,7 +53,7 @@ public class ClassroomResourceIT {
     @Test
     void testCreateConflict() {
         Classroom classroom =
-                new Classroom("classroom5", LocalDateTime.of(2023, 9, 1, 8, 00), true, 50);
+                new Classroom("classroom5", LocalDateTime.of(2023, 9, 1, 8, 0), true, 50);
         this.webTestClient
                 .post()
                 .uri(ClassroomResource.CLASSROOMS)

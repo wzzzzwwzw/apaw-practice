@@ -46,13 +46,11 @@ public class StudentPersistenceMongodb implements StudentPersistence {
 
         studentEntity.setSubjectsEntities(
             student.getSubjects().stream()
-                    .map(subject -> {
-                        return this.subjectRepository.findByTitle(subject.getTitle())
-                                .orElseGet(() -> {
-                                    SubjectEntity newSubject = new SubjectEntity(subject);
-                                    return this.subjectRepository.save(newSubject);
-                                });
-                    }).toList());
+                    .map(subject -> this.subjectRepository.findByTitle(subject.getTitle())
+                            .orElseGet(() -> {
+                                SubjectEntity newSubject = new SubjectEntity(subject);
+                                return this.subjectRepository.save(newSubject);
+                            })).toList());
 
         return this.studentRepository
                 .save(studentEntity)

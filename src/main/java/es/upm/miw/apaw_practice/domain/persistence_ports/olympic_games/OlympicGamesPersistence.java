@@ -13,4 +13,6 @@ public interface OlympicGamesPersistence {
     OlympicGames updateHostingPlace(Integer edition, String hostingPlace);
 
     List<OlympicGames> findOlympicGamesPlaceStreamByCompetition(List<String> competitorNames);
+
+    List<String> findCompetitorsOlderThanEighteenBySummerGames(Boolean summerGames);
 }

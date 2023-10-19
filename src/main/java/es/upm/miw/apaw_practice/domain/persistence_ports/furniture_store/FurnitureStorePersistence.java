@@ -12,6 +12,7 @@ public interface FurnitureStorePersistence {
 
     FurnitureStore readByName(String name);
     FurnitureStore update(FurnitureStore furnitureStore);
-    List<Furniture> findFurnitureStoreNameByManagerPromotionCandidate(Boolean promotionCandidate);
+    List<Furniture> findFurnituresByManagerPromotionCandidate(Boolean promotionCandidate);
+    List<Furniture> findFurnituresByManagerName(String name);
 
 }

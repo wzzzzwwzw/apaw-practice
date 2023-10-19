@@ -13,4 +13,6 @@ public interface MedalPersistence {
     Medal update(Medal medal);
 
     List<String> findCompetitorsByCompetition(String competition);
+
+    List<String> findTiersByCompetitor(List<String> competitorsNames);
 }

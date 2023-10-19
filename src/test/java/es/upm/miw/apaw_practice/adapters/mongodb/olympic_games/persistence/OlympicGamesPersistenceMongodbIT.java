@@ -56,10 +56,17 @@ class OlympicGamesPersistenceMongodbIT {
     }
 
     @Test
-    void findOlympicGamesPlaceStreamByCompetition() {
+    void testFindOlympicGamesPlaceStreamByCompetition() {
         List<OlympicGames> olympicGames = this.olympicGamesPersistence.findOlympicGamesPlaceStreamByCompetition(Arrays.asList("Fernando","Cristina"));
         assertEquals("Athens", olympicGames.get(0).getHostingPlace());
         assertEquals("London", olympicGames.get(1).getHostingPlace());
         assertEquals("Barcelona", olympicGames.get(2).getHostingPlace());
+    }
+
+    @Test
+    void testFindCompetitorsOlderThanEighteenBySummerGames() {
+        List<String> expectedCompetitorsNames = Arrays.asList("Fernando","Mel","Cristina", "Marco", "Lebron");
+        List<String> competitorsNames = this.olympicGamesPersistence.findCompetitorsOlderThanEighteenBySummerGames(true);
+        assertTrue(expectedCompetitorsNames.containsAll(competitorsNames) && competitorsNames.containsAll(expectedCompetitorsNames));
     }
 }

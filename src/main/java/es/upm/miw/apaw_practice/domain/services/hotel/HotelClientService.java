@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.domain.services.hotel;
 
+import es.upm.miw.apaw_practice.domain.models.hotel.HotelClient;
 import es.upm.miw.apaw_practice.domain.persistence_ports.hotel.HotelClientPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,4 +20,5 @@ public class HotelClientService {
 
     public boolean existClient(String dni) { return this.hotelClientPersistence.existsClient(dni); }
 
+    public HotelClient updateClient(HotelClient client) { return this.hotelClientPersistence.updateClient(client); }
 }

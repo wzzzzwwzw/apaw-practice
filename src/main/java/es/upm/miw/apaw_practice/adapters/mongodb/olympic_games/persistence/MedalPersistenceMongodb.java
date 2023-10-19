@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository("medalPersistence")
 public class MedalPersistenceMongodb implements MedalPersistence {
@@ -56,7 +55,7 @@ public class MedalPersistenceMongodb implements MedalPersistence {
                 .stream()
                 .filter(medal -> medal.getCompetition().equals(competition))
                 .map(medal -> medal.getWinner().getName())
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -67,7 +66,7 @@ public class MedalPersistenceMongodb implements MedalPersistence {
                 .filter(medal ->
                         competitorsNames.contains(medal.getWinner().getName()))
                 .map(MedalEntity::getTier)
-                .collect(Collectors.toList());
+                .toList();
     }
 
 }

@@ -37,7 +37,7 @@ public class HotelClientResourceIT {
 
     @Test
     void testUpdateClient() {
-        HotelClient clientUpdate = new HotelClient("11122233A","example@email.com",123123123,true);
+        HotelClient clientUpdate = new HotelClient("11122233A", "example@email.com", 123123123, true);
 
         this.webTestClient
                 .put()

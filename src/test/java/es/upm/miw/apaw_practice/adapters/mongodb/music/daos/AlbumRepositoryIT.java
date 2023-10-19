@@ -46,6 +46,7 @@ class AlbumRepositoryIT {
                 )
         );
     }
+
     @Test
     void testDeleteByDenomination() {
         this.albumRepository.deleteByDenomination("Fearless");

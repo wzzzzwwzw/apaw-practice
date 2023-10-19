@@ -1,6 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.rest.hospital;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.DepartmentEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.DoctorEntity;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
+import es.upm.miw.apaw_practice.adapters.rest.airport.FlightResource;
 import es.upm.miw.apaw_practice.domain.models.hospital.Patient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -52,5 +55,21 @@ class PatientResourceIT {
                     assertEquals("TestAllergicMedicine",patient.getAllergicMedicine());
                 });
     }
+
+    @Test
+    void testSearchOccupiedBedsByAppointmentRoomAndUrgent() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(PatientResource.PATIENTS + PatientResource.SEARCH_AVAILABLEBEDS)
+                                .queryParam("appointmentRoom", "123")
+                                .queryParam("urgent", "true")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(String.class)
+                .value(result -> Assertions.assertEquals("17", result));
+    }
+
 
 }

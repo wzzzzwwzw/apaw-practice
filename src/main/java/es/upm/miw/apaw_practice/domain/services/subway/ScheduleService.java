@@ -25,4 +25,8 @@ public class ScheduleService {
     public Stream<Schedule> readAll() {
         return this.schedulePersistence.readAll();
     }
+
+    public Float getAverageFrequencyByCity(String city) {
+        return this.schedulePersistence.getAverageFrequencyByCity(city);
+    }
 }

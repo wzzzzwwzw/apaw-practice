@@ -9,8 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
-import static es.upm.miw.apaw_practice.adapters.rest.furniture_store.MaterialResource.MATERIAL;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.Objects;
+
+import static es.upm.miw.apaw_practice.adapters.rest.furniture_store.MaterialResource.MATERIALS;
+import static es.upm.miw.apaw_practice.adapters.rest.furniture_store.MaterialResource.SEARCH;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @RestTestConfig
@@ -25,7 +28,7 @@ class MaterialResourceIT {
                 new Material("pasta dura", "porcelana", 7);
         this.webTestClient
                 .post()
-                .uri(MATERIAL)
+                .uri(MATERIALS)
                 .body(BodyInserters.fromValue(material))
                 .exchange()
                 .expectStatus().isOk()
@@ -44,10 +47,29 @@ class MaterialResourceIT {
                 new Material("roble", "madera", 7);
         this.webTestClient
                 .post()
-                .uri(MATERIAL)
+                .uri(MATERIALS)
                 .body(BodyInserters.fromValue(material))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
+    }
+
+    @Test
+    void testSearchUniqueMaterialTypeByManagerPromotionCandidate() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(MATERIALS + SEARCH)
+                                .queryParam("q", "promotion-candidate:true")
+                                .build()
+                )
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .consumeWith(materialsType -> {
+                    assertEquals("[\"madera\",\"plástico\"]", Objects.requireNonNull(materialsType.getResponseBody()).get(0));
+                    assertTrue(materialsType.getResponseBody().size()>0);
+
+                });
     }
 
 }

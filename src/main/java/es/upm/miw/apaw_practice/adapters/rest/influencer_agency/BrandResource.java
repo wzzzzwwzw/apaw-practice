@@ -14,6 +14,8 @@ public class BrandResource {
     public static final String BRANDS = "/influencer-agency/brands";
     public static final String TRADEMARK = "/{trademark}";
     public static final String CAMPAIGNS = "/campaigns";
+    public static final String SEARCH = "/search";
+
 
     private final BrandService brandService;
 
@@ -30,5 +32,10 @@ public class BrandResource {
     @PatchMapping(TRADEMARK)
     public void updateBrand(@PathVariable String trademark, @RequestBody BigDecimal newBudget) {
         this.brandService.updateBrand(trademark, newBudget);
+    }
+
+    @GetMapping(SEARCH)
+    public BigDecimal sumBudgetsByPlatform(@RequestParam String platform) {
+        return this.brandService.sumBudgetsByPlatform(platform);
     }
 }

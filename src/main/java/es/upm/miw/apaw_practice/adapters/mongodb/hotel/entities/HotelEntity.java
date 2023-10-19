@@ -62,7 +62,9 @@ public class HotelEntity {
         this.stars = stars;
     }
 
-    public Integer getRooms() { return rooms; }
+    public Integer getRooms() {
+        return rooms;
+    }
 
     public void setRooms(Integer rooms) {
         this.rooms = rooms;
@@ -83,7 +85,7 @@ public class HotelEntity {
     public void setActivities(List<HotelActivityEntity> activities) {
         this.activities = activities;
     }
-    
+
     public Hotel toObject() {
         Hotel hotel = new Hotel();
         BeanUtils.copyProperties(this, hotel);
@@ -95,7 +97,7 @@ public class HotelEntity {
         List<HotelBooking> bookings = new ArrayList<>();
         this.bookings.forEach(activity -> bookings.add(activity.toObject()));
         hotel.setBookings(bookings);
-        
+
         return hotel;
     }
 

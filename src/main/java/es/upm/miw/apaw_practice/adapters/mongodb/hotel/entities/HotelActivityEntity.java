@@ -24,6 +24,7 @@ public class HotelActivityEntity {
         BeanUtils.copyProperties(activity, this);
         this.id = UUID.randomUUID().toString();
     }
+
     public String getId() {
         return id;
     }
@@ -69,6 +70,7 @@ public class HotelActivityEntity {
         BeanUtils.copyProperties(this, activity);
         return activity;
     }
+
     @Override
     public String toString() {
         return "HotelActivity {" + '\'' +

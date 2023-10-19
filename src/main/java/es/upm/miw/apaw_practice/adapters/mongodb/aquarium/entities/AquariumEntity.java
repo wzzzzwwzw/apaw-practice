@@ -1,14 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.aquarium.entities;
-import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.entities.ComputerEntity;
 import es.upm.miw.apaw_practice.domain.models.aquarium.Aquarium;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.beans.BeanUtils;
-import es.upm.miw.apaw_practice.domain.models.aquarium.Aquarium;
 
-import java.math.BigDecimal;
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -101,4 +97,5 @@ public class AquariumEntity {
     public void fromAquarium(Aquarium aquarium) {
         BeanUtils.copyProperties(aquarium, this);
     }
+
 }

@@ -1,16 +1,16 @@
 package es.upm.miw.apaw_practice.adapters.rest.bank;
 
 
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 
 import es.upm.miw.apaw_practice.domain.models.bank.ClientBank;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-
-import java.math.BigDecimal;
 
 import static es.upm.miw.apaw_practice.adapters.rest.bank.ClientBankResource.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,6 +20,15 @@ public class ClientBankResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
+
+    @Autowired
+    private BankSeederService bankSeederService;
+
+    @AfterEach
+    void resetDataBase() {
+        this.bankSeederService.deleteAll();
+        this.bankSeederService.seedDatabase();
+    }
     @Test
     void testRead() {
         this.webTestClient

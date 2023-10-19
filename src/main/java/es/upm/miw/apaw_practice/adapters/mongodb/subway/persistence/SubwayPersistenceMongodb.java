@@ -54,15 +54,11 @@ public class SubwayPersistenceMongodb implements SubwayPersistence {
                 .map(line -> new LineEntity(
                         line.getLabel(),
                         line.getColor(),
-                        line.isWorking(),
+                        line.getWorking(),
                         subwayEntity.getLines().get(0).getSchedule(),
                         line.getStations().stream()
                                 .map(station -> new StationEntity(
-                                        new Station(
-                                                station.getName(),
-                                                station.getOrder(),
-                                                station.isOpen()
-                                        )
+                                        new Station(station.getName(), station.getOrder(), station.getOpen())
                                 )).toList()
                 )).toList();
         subwayEntity.setLines(lines);

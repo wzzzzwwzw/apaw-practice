@@ -53,9 +53,9 @@ public class BasketballSeederService {
         };
         this.teamBasketballRepository.saveAll(Arrays.asList(teams));
 
-        BasketEntity[] baskets = {
-            new BasketEntity(3, LocalDateTime.of(2023, Month.OCTOBER, 16, 16, 0), players[0]),
-            new BasketEntity(2, LocalDateTime.of(2023, Month.OCTOBER, 16, 15, 0), players[1]),
+        BasketEntity[] baskets = new BasketEntity[]{
+                new BasketEntity(3, "canasta1", LocalDateTime.of(2023, Month.OCTOBER, 16, 16, 0), players[0]),
+                new BasketEntity(2, "canasta2", LocalDateTime.of(2023, Month.OCTOBER, 16, 15, 0), players[1])
         };
         this.basketRepository.saveAll(Arrays.asList(baskets));
     }

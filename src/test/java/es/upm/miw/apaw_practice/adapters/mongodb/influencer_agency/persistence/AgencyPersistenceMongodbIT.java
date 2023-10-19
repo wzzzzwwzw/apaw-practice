@@ -22,25 +22,14 @@ class AgencyPersistenceMongodbIT {
     @Autowired
     private AgencyRepository agencyRepository;
 
-    @BeforeEach
-    void seedDatabase() {
-        agencyRepository.save(new AgencyEntity(new Agency("TestAgency1", "TestAddress1")));
-        agencyRepository.save(new AgencyEntity(new Agency("TestAgency2", "TestAddress2")));
-        agencyRepository.save(new AgencyEntity(new Agency("AnotherAgency", "AnotherAddress")));
-    }
-
-    @AfterEach
-    void cleanDatabase() {
-        agencyRepository.deleteAll();
-    }
-
     @Test
     void testDeleteAgenciesStartingWith() {
+        agencyRepository.save(new AgencyEntity(new Agency("Testfewf", "9")));
         agencyPersistence.deleteAgenciesStartingWith("Test");
 
         List<AgencyEntity> agencies = agencyRepository.findAll();
 
         assertTrue(agencies.stream().noneMatch(agency -> agency.getCompany().startsWith("Test")));
-        assertTrue(agencies.stream().anyMatch(agency -> agency.getCompany().equals("AnotherAgency")));
+        assertTrue(agencies.stream().anyMatch(agency -> agency.getCompany().equals("Agency1")));
     }
 }

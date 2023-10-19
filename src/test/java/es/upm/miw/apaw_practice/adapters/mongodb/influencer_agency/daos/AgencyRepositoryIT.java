@@ -29,8 +29,8 @@ class AgencyRepositoryIT {
 
     @Test
     void testFindByPhone() {
-        assertTrue(this.agencyRepository.findByPhone(111111111).isPresent());
-        AgencyEntity agency = this.agencyRepository.findByPhone(111111111).get();
-        assertEquals("Agency1", agency.getCompany());
+        assertTrue(this.agencyRepository.findByPhone(222).isPresent());
+        AgencyEntity agency = this.agencyRepository.findByPhone(222).get();
+        assertEquals("Agency2", agency.getCompany());
     }
 }

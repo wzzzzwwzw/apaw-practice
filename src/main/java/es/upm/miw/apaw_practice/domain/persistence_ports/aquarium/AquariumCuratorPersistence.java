@@ -7,4 +7,6 @@ import java.util.List;
 public interface AquariumCuratorPersistence {
     AquariumCurator readByName(String name);
     AquariumCurator update (AquariumCurator aquariumCurator);
+    Double findAverageMaximumFishCapacity(String color);
+
 }

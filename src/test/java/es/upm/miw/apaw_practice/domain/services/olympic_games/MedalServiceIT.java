@@ -8,6 +8,9 @@ import es.upm.miw.apaw_practice.domain.models.olympic_games.Medal;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -41,5 +44,12 @@ class MedalServiceIT {
         medal = this.medalService.readByMedalId("MED111");
         assertEquals("Keria", medal.getWinner().getName());
         olympicGamesSeederService.reSeedDatabase();
+    }
+
+    @Test
+    void testFindMedalTiersBySummerGamesAndAge() {
+        List<String> expectedTiers = Arrays.asList("Gold", "Silver", "Bronze", "Bronze", "Gold");
+        List<String> tiers = this.medalService.findMedalTiersBySummerGamesAndAge(true);
+        assertEquals(expectedTiers, tiers);
     }
 }

@@ -17,4 +17,5 @@ public class AquariumCuratorServiceIT {
                 assertNotNull(aquariumCuratorChangePosition);
                 assertEquals(name,aquariumCuratorChangePosition.getName());
             }
+
 }

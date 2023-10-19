@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.influencer_agency;
 
+import es.upm.miw.apaw_practice.domain.models.influencer_agency.builders.AgencyBuilder;
+
 public class Agency {
 
     private String company;
@@ -47,5 +49,37 @@ public class Agency {
                 ", address='" + address + '\'' +
                 ", phone=" + phone +
                 '}';
+    }
+
+    public static class Builder implements AgencyBuilder.Company, AgencyBuilder.Address, AgencyBuilder.Phone, AgencyBuilder.Build {
+
+        private final Agency agency;
+
+        public Builder() {
+            this.agency = new Agency();
+        }
+
+        @Override
+        public AgencyBuilder.Address company(String company) {
+            this.agency.company = company;
+            return this;
+        }
+
+        @Override
+        public AgencyBuilder.Phone address(String address) {
+            this.agency.address = address;
+            return this;
+        }
+
+        @Override
+        public AgencyBuilder.Build phone(Integer phone) {
+            this.agency.phone = phone;
+            return this;
+        }
+
+        @Override
+        public Agency build() {
+            return this.agency;
+        }
     }
 }

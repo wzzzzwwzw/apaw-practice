@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(BankTypeResource.TYPES)
 public class BankTypeResource {
 
-    static final String TYPES="/bank/types";
+    static final String TYPES="/bank_model/types";
 
     static final String TYPE_NAME="/{typeName}";
 

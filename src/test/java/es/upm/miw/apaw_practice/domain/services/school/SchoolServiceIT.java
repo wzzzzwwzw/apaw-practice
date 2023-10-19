@@ -1,9 +1,7 @@
 package es.upm.miw.apaw_practice.domain.services.school;
 
 import es.upm.miw.apaw_practice.TestConfig;
-import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.models.school.School;
-import es.upm.miw.apaw_practice.domain.persistence_ports.school.SchoolPersistence;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,7 +9,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @TestConfig
 class SchoolServiceIT {

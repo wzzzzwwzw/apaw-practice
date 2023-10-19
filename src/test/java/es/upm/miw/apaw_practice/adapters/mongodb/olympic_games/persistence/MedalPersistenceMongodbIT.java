@@ -8,6 +8,9 @@ import es.upm.miw.apaw_practice.domain.models.olympic_games.Medal;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
@@ -42,5 +45,19 @@ class MedalPersistenceMongodbIT {
         medal = this.medalPersistenceMongodb.readByMedalId("MED111");
         assertEquals("Keria", medal.getWinner().getName());
         olympicGamesSeederService.reSeedDatabase();
+    }
+
+    @Test
+    void testFindCompetitorsByCompetition() {
+        List<String> competitorsNames = this.medalPersistenceMongodb.findCompetitorsByCompetition("4x100m relays");
+        assertEquals("Cristina", competitorsNames.get(0));
+        assertEquals("Fernando", competitorsNames.get(1));
+    }
+
+    @Test
+    void testFindTiersByCompetitor() {
+        List<String> expectedTiers = Arrays.asList("Gold", "Silver", "Bronze", "Bronze", "Gold");
+        List<String> tiers = this.medalPersistenceMongodb.findTiersByCompetitor(Arrays.asList("Fernando","Mel","Cristina", "Marco", "Lebron"));
+        assertEquals(expectedTiers, tiers);
     }
 }

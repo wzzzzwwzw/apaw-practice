@@ -10,6 +10,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.olympic_games.MedalPers
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository("medalPersistence")
 public class MedalPersistenceMongodb implements MedalPersistence {
 
@@ -44,6 +46,27 @@ public class MedalPersistenceMongodb implements MedalPersistence {
         medalEntity.setTeamMedal(medalEntity.getTeamMedal());
         medalEntity.setWinner(competitorEntity);
         return this.medalRepository.save(medalEntity).toMedal();
+    }
+
+    @Override
+    public List<String> findCompetitorsByCompetition (String competition) {
+        return this.medalRepository
+                .findAll()
+                .stream()
+                .filter(medal -> medal.getCompetition().equals(competition))
+                .map(medal -> medal.getWinner().getName())
+                .toList();
+    }
+
+    @Override
+    public List<String> findTiersByCompetitor(List<String> competitorsNames) {
+        return this.medalRepository
+                .findAll()
+                .stream()
+                .filter(medal ->
+                        competitorsNames.contains(medal.getWinner().getName()))
+                .map(MedalEntity::getTier)
+                .toList();
     }
 
 }

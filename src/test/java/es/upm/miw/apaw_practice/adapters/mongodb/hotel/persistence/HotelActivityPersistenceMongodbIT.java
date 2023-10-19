@@ -9,9 +9,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @TestConfig
 public class HotelActivityPersistenceMongodbIT {
@@ -39,7 +37,7 @@ public class HotelActivityPersistenceMongodbIT {
 
     @Test
     void testUpdateInstructor() {
-        HotelActivity updatedActivity = this.hotelActivityPersistence.updateInstructor("Tennis","Elena");
+        HotelActivity updatedActivity = this.hotelActivityPersistence.updateInstructor("Tennis", "Elena");
         assertNotNull(updatedActivity);
         assertEquals(updatedActivity.getName(), "Tennis");
         assertEquals(updatedActivity.getInstructor(), "Elena");
@@ -49,6 +47,6 @@ public class HotelActivityPersistenceMongodbIT {
 
     @Test
     void testActivityNotFound() {
-        assertThrows(NotFoundException.class, () -> this.hotelActivityPersistence.updateInstructor("Football","David"));
+        assertThrows(NotFoundException.class, () -> this.hotelActivityPersistence.updateInstructor("Football", "David"));
     }
 }

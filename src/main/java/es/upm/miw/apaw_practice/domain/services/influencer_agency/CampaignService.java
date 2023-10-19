@@ -6,6 +6,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.influencer_agency.Campa
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Stream;
+
 @Service
 public class CampaignService {
     private final CampaignPersistence campaignPersistence;
@@ -24,5 +26,9 @@ public class CampaignService {
         campaign.getContents().add(content);
 
         campaignPersistence.save(campaign);
+    }
+
+    public Stream<String> findCreatorsByAgencyPhone(Integer phone) {
+        return this.campaignPersistence.findCreatorsByAgencyPhone(phone);
     }
 }

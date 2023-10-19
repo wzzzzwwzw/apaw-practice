@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.hotel;
 
 import es.upm.miw.apaw_practice.domain.models.hotel.composite.HotelActivitiesTree;
-import es.upm.miw.apaw_practice.domain.models.school.composite.TreeStudents;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.olympic_games;
 
+import es.upm.miw.apaw_practice.domain.models.olympic_games.builders.CompetitorBuilders;
+
 public class Competitor {
     private String name;
     private String nationality;
@@ -46,5 +48,36 @@ public class Competitor {
                 ", nationality='" + nationality + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    public static class Builder implements CompetitorBuilders.Name, CompetitorBuilders.Optionals {
+        private final Competitor competitor;
+
+        public Builder() {
+            competitor = new Competitor();
+        }
+
+        @Override
+        public CompetitorBuilders.Optionals name(String name) {
+            this.competitor.name = name;
+            return this;
+        }
+
+        @Override
+        public CompetitorBuilders.Optionals nationality(String nationality) {
+            this.competitor.nationality = nationality;
+            return this;
+        }
+
+        @Override
+        public CompetitorBuilders.Optionals age(Integer age) {
+            this.competitor.age = age;
+            return this;
+        }
+
+        @Override
+        public Competitor build() {
+            return this.competitor;
+        }
     }
 }

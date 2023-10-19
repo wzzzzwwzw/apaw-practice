@@ -4,4 +4,6 @@ public interface TreeFishes {
     Boolean isComposite();
     void add(TreeFishes treeFishes);
     void remove(TreeFishes treeFishes);
+
+
 }

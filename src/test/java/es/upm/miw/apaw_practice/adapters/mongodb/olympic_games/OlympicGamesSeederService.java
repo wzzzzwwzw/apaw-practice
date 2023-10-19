@@ -38,7 +38,7 @@ public class OlympicGamesSeederService {
                 new CompetitorEntity(new Competitor("Mel", "United States", 25)),
                 new CompetitorEntity(new Competitor("Cristina", "Spain", 19)),
                 new CompetitorEntity(new Competitor("Marco", "Italy", 24)),
-                new CompetitorEntity(new Competitor("Gilbert", "France", 27)),
+                new CompetitorEntity(new Competitor("Gilbert", "France", 17)),
                 new CompetitorEntity(new Competitor("Lebron", "United States", 36))
         };
         this.competitorRepository.saveAll(Arrays.asList(competitors));

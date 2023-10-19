@@ -13,6 +13,8 @@ public class ScheduleResource {
 
     static final String SCHEDULES = "/subway/schedules";
 
+    static final String SEARCH = "/search";
+
     private final ScheduleService scheduleService;
 
     @Autowired
@@ -28,6 +30,11 @@ public class ScheduleResource {
     @GetMapping()
     public Stream<Schedule> readAll() {
         return this.scheduleService.readAll();
+    }
+
+    @GetMapping(SEARCH)
+    public Float getAverageFrequencyByCity(@RequestParam String city) {
+        return this.scheduleService.getAverageFrequencyByCity(city);
     }
 
 }

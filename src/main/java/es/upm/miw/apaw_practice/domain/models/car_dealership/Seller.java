@@ -71,4 +71,34 @@ public class Seller {
                 ", salary=" + salary +
                 '}';
     }
+
+    public static class SellerBuilder {
+        private final Seller seller;
+        private final Car.CarBuilder carBuilder;
+
+        public SellerBuilder(Car.CarBuilder carBuilder) {
+            this.seller = new Seller();
+            this.carBuilder = carBuilder;
+        }
+
+        public SellerBuilder name(String name) {
+            this.seller.setName(name);
+            return this;
+        }
+
+        public SellerBuilder surname(String surname) {
+            this.seller.setSurname(surname);
+            return this;
+        }
+
+        public SellerBuilder salary(Integer salary) {
+            this.seller.setSalary(salary);
+            return this;
+        }
+
+        public Car.CarBuilder build() {
+            carBuilder.addSeller(this.seller);
+            return this.carBuilder;
+        }
+    }
 }

@@ -7,8 +7,10 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.influencer_agency.Brand
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.entities.CampaignEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.entities.BrandEntity;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @Repository("brandPersistence")
@@ -41,4 +43,20 @@ public class BrandPersistenceMongodb implements BrandPersistence {
                         }
                 );
     }
+
+    @Override
+    public BigDecimal sumBudgetsByPlatform(String platform) {
+        return Optional.of(this.brandRepository.findAll().stream()
+                        .filter(brand -> brand.getCampaigns().stream()
+                                .anyMatch(campaign -> campaign.getContents().stream()
+                                        .anyMatch(content -> content.getPlatform().equals(platform))
+                                )
+                        )
+                        .map(BrandEntity::getAdvertisingBudget)
+                        .reduce(BigDecimal.ZERO, BigDecimal::add))
+                .filter(budget -> !budget.equals(BigDecimal.ZERO))
+                .orElseThrow(() -> new NotFoundException("No brands found with campaigns on the given platform: " + platform));
+    }
+
+
 }

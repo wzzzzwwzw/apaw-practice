@@ -22,6 +22,11 @@ public class PatientService {
         return this.patientPersistence.updateAllergicMedicine(socialInsuranceNumber,newAllergicMedicine);
     }
 
+    public Integer findTotalOccupiedBedsByAppointmentRoom (String socialInsuranceNumber, Boolean urgent) {
+        return this.patientPersistence.findTotalOccupiedBedsByAppointmentRoom(socialInsuranceNumber,urgent);
+    }
 
-
+    public Integer findTotalAppointmentBySpeciality (String speciality) {
+        return this.patientPersistence.findTotalAppointmentBySpeciality(speciality);
+    }
 }

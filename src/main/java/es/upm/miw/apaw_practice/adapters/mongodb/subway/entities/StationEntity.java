@@ -53,7 +53,7 @@ public class StationEntity {
         this.order = order;
     }
 
-    public Boolean isOpen() {
+    public Boolean getOpen() {
         return open;
     }
 

@@ -47,18 +47,17 @@ public class AreaService {
 
     public String[] findRouteNamesByClimberLevel(String level) {
         List<Climber> climbers = this.climberPersistence.findByLevel(level);
-        List<Expedition> expeditions = new ArrayList<>();
-        for (Climber climber : climbers) {
-            expeditions.addAll(climber.getExpeditions());
-        }
-        List<Area> areas = new ArrayList<>();
-        for (Expedition expedition : expeditions) {
-            areas.add(this.areaPersistence.findByExpeditionIdentifier(expedition.getIdentifier()));
-        }
-        List<Route> routes = new ArrayList<>();
-        for (Area area : areas) {
-            routes.addAll(area.getRoutes());
-        }
+        List<Expedition> expeditions = climbers.stream()
+                .flatMap(climber -> climber.getExpeditions().stream())
+                .toList();
+
+        List<Area> areas = expeditions.stream()
+                .map(expedition -> areaPersistence.findByExpeditionIdentifier(expedition.getIdentifier()))
+                .toList();
+
+        List<Route> routes = areas.stream()
+                .flatMap(area -> area.getRoutes().stream())
+                .toList();
 
         return routes.stream()
                 .map(Route::getName)

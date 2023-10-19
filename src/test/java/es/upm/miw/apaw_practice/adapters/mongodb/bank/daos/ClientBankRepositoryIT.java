@@ -3,7 +3,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.bank.daos;
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.ClientBankEntity;
-import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
+
 import org.junit.jupiter.api.AfterEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.junit.jupiter.api.Test;

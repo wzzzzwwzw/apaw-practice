@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(FurnitureStoreResource.FURNITURE_STORE)
+@RequestMapping(FurnitureStoreResource.FURNITURE_STORES)
 public class FurnitureStoreResource {
 
-    static final String FURNITURE_STORE = "/furniture-store/furniture-stores";
-    static final String FURNITURE = "/furnitures";
+    static final String FURNITURE_STORES = "/furniture-store/furniture-stores";
+    static final String FURNITURES = "/furnitures";
     static final String NAME_ID = "/{name}";
     private final FurnitureStoreService furnitureStoreService;
 
@@ -22,7 +22,7 @@ public class FurnitureStoreResource {
         this.furnitureStoreService = furnitureStoreService;
     }
 
-    @PutMapping(NAME_ID + FURNITURE)
+    @PutMapping(NAME_ID + FURNITURES)
     public FurnitureStore updateFurniture(@PathVariable String name, @RequestBody List<Furniture> furnitureList) {
         return this.furnitureStoreService.updateFurnitures(name, furnitureList);
     }

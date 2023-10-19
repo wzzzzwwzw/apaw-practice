@@ -10,18 +10,21 @@ public class Product {
     private Boolean glutenFree;
     private LocalDate expirationDate;
     private ProductType productType;
+    private Shelf shelf;
 
     public Product() {
-        //empty for framework
+        // empty for framework
     }
 
-    public Product(String name, String description, BigDecimal price, Boolean glutenFree, LocalDate expirationDate, ProductType productType) {
+    public Product(String name, String description, BigDecimal price, Boolean glutenFree, LocalDate expirationDate,
+            ProductType productType, Shelf shelf) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.glutenFree = glutenFree;
         this.expirationDate = expirationDate;
         this.productType = productType;
+        this.shelf = shelf;
     }
 
     public String getName() {
@@ -76,15 +79,23 @@ public class Product {
         this.productType = productType;
     }
 
+    public Shelf getShelf() {
+        return this.shelf;
+    }
+
+    public void setShelf(Shelf shelf) {
+        this.shelf = shelf;
+    }
+
     @Override
     public String toString() {
         return "{" +
-            " name='" + getName() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", price='" + getPrice() + "'" +
-            ", glutenFree='" + isGlutenFree() + "'" +
-            ", expirationDate='" + getExpirationDate() + "'" +
-            ", productType='" + getProductType() + "'" +
-            "}";
+                " name='" + getName() + "'" +
+                ", description='" + getDescription() + "'" +
+                ", price='" + getPrice() + "'" +
+                ", glutenFree='" + isGlutenFree() + "'" +
+                ", expirationDate='" + getExpirationDate() + "'" +
+                ", productType='" + getProductType() + "'" +
+                "}";
     }
 }

@@ -29,7 +29,11 @@ class AreaServiceIT {
 
     @Test
     void testUpdateRoute() {
-        Route route = new Route("4", "Route 4 updated", "Easy");
+        Route route = new Route.Builder()
+                .name("Route 4 updated")
+                .difficulty("Easy")
+                .key("4")
+                .build();
         this.areaService.updateRoute("Area 2", route.getKey(), route);
         Area area = this.areaPersistence.readByName("Area 2");
         assertEquals("Route 4 updated", area.getRoutes().get(1).getName());

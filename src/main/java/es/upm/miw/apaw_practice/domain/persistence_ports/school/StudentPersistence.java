@@ -10,13 +10,7 @@ public interface StudentPersistence {
 
     Stream<Student> readAll();
 
-    Student create(Student student);
-
     Student update(Student student);
 
-    Student read(String name);
-
     Student readByName(String name);
-
-    boolean existName(String name);
 }

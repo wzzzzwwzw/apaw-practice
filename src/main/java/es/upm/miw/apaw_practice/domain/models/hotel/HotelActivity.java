@@ -1,6 +1,9 @@
 package es.upm.miw.apaw_practice.domain.models.hotel;
 
-public class HotelActivity {
+import es.upm.miw.apaw_practice.domain.models.hotel.composite.HotelActivitiesTree;
+import es.upm.miw.apaw_practice.domain.models.school.composite.TreeStudents;
+
+public class HotelActivity implements HotelActivitiesTree {
     private String name;
     private String schedule;
     private String instructor;
@@ -57,5 +60,20 @@ public class HotelActivity {
                 "  instructor = '" + instructor + '\'' +
                 "  maxParticipants = " + maxParticipants + '\'' +
                 '}';
+    }
+
+    @Override
+    public Boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(HotelActivitiesTree treeActivity) {
+        throw new UnsupportedOperationException("Unsupported operation in HotelActivity leaf");
+    }
+
+    @Override
+    public void remove(HotelActivitiesTree treeActivity) {
+        // cannot remove in leaf
     }
 }

@@ -11,7 +11,7 @@ import static es.upm.miw.apaw_practice.adapters.rest.basketball.TeamBasketballRe
 import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
-class TeamResourceIT {
+class TeamBasketballResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;

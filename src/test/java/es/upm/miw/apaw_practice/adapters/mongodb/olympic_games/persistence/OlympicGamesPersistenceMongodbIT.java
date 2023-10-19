@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -51,5 +53,13 @@ class OlympicGamesPersistenceMongodbIT {
     @Test
     void testUpdateHostingPlaceError() {
         assertThrows(NotFoundException.class, () -> this.olympicGamesPersistence.updateHostingPlace(44, "Rome"));
+    }
+
+    @Test
+    void findOlympicGamesPlaceStreamByCompetition() {
+        List<OlympicGames> olympicGames = this.olympicGamesPersistence.findOlympicGamesPlaceStreamByCompetition(Arrays.asList("Fernando","Cristina"));
+        assertEquals("Athens", olympicGames.get(0).getHostingPlace());
+        assertEquals("London", olympicGames.get(1).getHostingPlace());
+        assertEquals("Barcelona", olympicGames.get(2).getHostingPlace());
     }
 }

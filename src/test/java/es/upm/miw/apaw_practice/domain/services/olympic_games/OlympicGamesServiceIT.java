@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -56,10 +57,9 @@ class OlympicGamesServiceIT {
 
     @Test
     void testFindHostingPlaceByCompetition() {
+        List<String> expectedHostingPlaces= Arrays.asList("Athens", "London", "Barcelona");
         List<String> hostingPlaces = this.olympicGamesService.findHostingPlaceByCompetition("4x100m relays");
-        assertEquals("Athens", hostingPlaces.get(0));
-        assertEquals("London", hostingPlaces.get(1));
-        assertEquals("Barcelona", hostingPlaces.get(2));
+        assertEquals(expectedHostingPlaces, hostingPlaces);
     }
 }
 

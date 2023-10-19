@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
+
 @Document
 public class HotelBookingEntity {
     @Id
@@ -27,7 +28,7 @@ public class HotelBookingEntity {
     }
 
     public HotelBookingEntity(HotelBooking booking) {
-        BeanUtils.copyProperties(booking,this);
+        BeanUtils.copyProperties(booking, this);
         this.client = new HotelClientEntity(booking.getClient());
         this.id = UUID.randomUUID().toString();
     }
@@ -57,9 +58,13 @@ public class HotelBookingEntity {
         this.number = number;
     }
 
-    public Integer getRoomNumber() { return roomNumber; }
+    public Integer getRoomNumber() {
+        return roomNumber;
+    }
 
-    public void setRoomNumber(Integer roomNumber) { this.roomNumber = roomNumber; }
+    public void setRoomNumber(Integer roomNumber) {
+        this.roomNumber = roomNumber;
+    }
 
     public LocalDate getDate() {
         return date;

@@ -15,7 +15,7 @@ class LineIT {
                 .build();
         assertEquals("L1", line.getLabel());
         assertEquals("red", line.getColor());
-        assertEquals(true, line.isWorking());
+        assertEquals(true, line.getWorking());
     }
 
     @Test

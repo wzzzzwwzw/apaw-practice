@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.library;
 
+import es.upm.miw.apaw_practice.domain.models.library.builders.BookBuilders;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,5 +41,43 @@ public class Book {
                 ", publicationDate=" + publicationDate +
                 ", bookWriters=" + bookWriters +
                 '}';
+    }
+
+    public static class Builder implements BookBuilders.Isbn, BookBuilders.Optionals {
+        private final Book book;
+
+        public Builder(){
+            this.book = new Book();
+        }
+
+        @Override
+        public BookBuilders.Optionals isbn(String isbn) {
+            this.book.setIsbn(isbn);
+            return this;
+        }
+
+        @Override
+        public BookBuilders.Optionals title(String title) {
+            this.book.setTitle(title);
+            return this;
+        }
+
+        @Override
+        public BookBuilders.Optionals publicationDate(LocalDate publicationDate) {
+            this.book.setPublicationDate(publicationDate);
+            return this;
+        }
+
+        @Override
+        public BookBuilders.Optionals bookWriters(List<BookWriter> bookWriters) {
+            this.book.setBookWriters(bookWriters);
+            return this;
+        }
+
+        @Override
+        public Book build() {
+            return this.book;
+        }
+
     }
 }

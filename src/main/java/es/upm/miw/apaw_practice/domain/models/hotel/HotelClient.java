@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.hotel;
 
+import es.upm.miw.apaw_practice.domain.models.hotel.buiders.HotelClientBuilder;
+
 public class HotelClient {
     private String dni;
     private String email;
@@ -57,5 +59,44 @@ public class HotelClient {
                 "  telephone = " + telephone + '\'' +
                 "  partnership = " + partnership + '\'' +
                 '}';
+    }
+
+    public static class Builder implements HotelClientBuilder.DNI, HotelClientBuilder.Email,
+            HotelClientBuilder.Telephone, HotelClientBuilder.Partnership,
+            HotelClientBuilder.Build {
+        private final HotelClient client;
+
+        public Builder() {
+            this.client = new HotelClient();
+        }
+
+        @Override
+        public HotelClientBuilder.Email dni(String dni) {
+            this.client.setDni(dni);
+            return this;
+        }
+
+        @Override
+        public HotelClientBuilder.Telephone email(String email) {
+            this.client.setEmail(email);
+            return this;
+        }
+
+        @Override
+        public HotelClientBuilder.Partnership telephone(Integer telephone) {
+            this.client.setTelephone(telephone);
+            return this;
+        }
+
+        @Override
+        public HotelClientBuilder.Build partnership(Boolean partnership) {
+            this.client.setPartnership(partnership);
+            return this;
+        }
+
+        @Override
+        public HotelClient build() {
+            return this.client;
+        }
     }
 }

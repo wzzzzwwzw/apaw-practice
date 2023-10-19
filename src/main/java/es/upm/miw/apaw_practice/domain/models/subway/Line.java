@@ -40,7 +40,7 @@ public class Line implements TreeLines {
         this.color = color;
     }
 
-    public Boolean isWorking() {
+    public Boolean getWorking() {
         return works;
     }
 

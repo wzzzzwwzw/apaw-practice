@@ -9,7 +9,6 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -45,13 +44,26 @@ public class SchoolResourceIT {
                 .get()
                 .uri(uriBuilder ->
                         uriBuilder.path(SchoolResource.SCHOOLS + SchoolResource.REGISTRATION_PRICE_SUM_BY_BILINGUAL)
+                                .queryParam("q", "bilingual:true")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BigDecimal.class)
+                .value(registrationPriceSum -> {
+                    assertEquals(new BigDecimal("300.50"), registrationPriceSum);
+                });
+
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(SchoolResource.SCHOOLS + SchoolResource.REGISTRATION_PRICE_SUM_BY_BILINGUAL)
                                 .queryParam("q", "bilingual:false")
                                 .build())
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(BigDecimal.class)
                 .value(registrationPriceSum -> {
-                    assertEquals(BigDecimal.valueOf(173.99), registrationPriceSum);
+                    assertEquals(new BigDecimal("173.99"), registrationPriceSum);
                 });
     }
 }

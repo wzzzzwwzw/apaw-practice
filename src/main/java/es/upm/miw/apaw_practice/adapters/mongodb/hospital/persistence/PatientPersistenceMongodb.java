@@ -49,4 +49,15 @@ public class PatientPersistenceMongodb implements PatientPersistence {
                 .sum();
     }
 
+    @Override
+    public Integer findTotalAppointmentBySpeciality(String speciality) {
+        return this.patientRepository.findAll().stream()
+                .filter(patient -> patient.getDoctorsEntities().stream()
+                        .anyMatch(doctor -> doctor.getSpeciality().equals(speciality)))
+                .flatMap(patient -> patient.getAppointmentsEntities().stream())
+                .filter(appointmentEntity -> appointmentEntity.getUrgent().equals(true))
+                .mapToInt(appointmentEntity -> 1)
+                .sum();
+    }
+
 }

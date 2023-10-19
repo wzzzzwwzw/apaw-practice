@@ -40,5 +40,12 @@ class PatientPersistenceMongodbIT {
     void testFindTotalOccupiedBedsByAppointmentRoomAndUrgent() {
         assertEquals(17, this.patientPersistence.findTotalOccupiedBedsByAppointmentRoom("123",true));
     }
+
+    @Test
+    void testFindTotalAppointmentBySpeciality() {
+        assertEquals(1, this.patientPersistence.findTotalAppointmentBySpeciality("E01"));
+    }
+
+
 }
 

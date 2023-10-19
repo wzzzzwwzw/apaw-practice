@@ -48,6 +48,13 @@ public class VideogameCompanyPersistenceMongodbIT {
         assertEquals(5,videogames.size());
     }
 
+    @Test
+    void NotFoundVideogamesByCompanyCountry(){
+        List<Videogame> videogames = this.videogameCompanyPersistence.findVideogamesByCompanyCountry("Spain");
+        assertNotNull(videogames);
+        assertEquals(0,videogames.size());
+    }
+
 
 
 }

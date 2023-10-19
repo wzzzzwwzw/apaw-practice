@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.domain.services.videogame_company;
 
 import es.upm.miw.apaw_practice.TestConfig;
-import es.upm.miw.apaw_practice.domain.models.videogame_company.Videogame;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import es.upm.miw.apaw_practice.domain.models.videogame_company.GameEngine;

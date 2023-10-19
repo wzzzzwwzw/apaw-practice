@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -78,6 +79,7 @@ public class FishpondEntity {
         this.fishEntities = fishEntities;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -110,4 +112,6 @@ public class FishpondEntity {
         BeanUtils.copyProperties(fishpond, this);
         this.id = UUID.randomUUID().toString();
     }
+
+
 }

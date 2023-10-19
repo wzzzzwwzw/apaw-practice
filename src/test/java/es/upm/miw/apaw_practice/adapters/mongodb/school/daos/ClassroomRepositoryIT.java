@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.school.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.school.SchoolSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.ClassroomEntity;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,6 +16,15 @@ class ClassroomRepositoryIT {
 
     @Autowired
     private ClassroomRepository classroomRepository;
+
+    @Autowired
+    private SchoolSeederService schoolSeederService;
+
+    @AfterEach
+    void resetDataBase() {
+        this.schoolSeederService.deleteAll();
+        this.schoolSeederService.seedDatabase();
+    }
 
     @Test
     void testCreateAndRead() {

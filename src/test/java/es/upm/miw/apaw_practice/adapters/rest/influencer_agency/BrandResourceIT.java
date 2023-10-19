@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+import java.math.BigDecimal;
+
 @RestTestConfig
 class BrandResourceIT {
     @Autowired
@@ -53,5 +55,31 @@ class BrandResourceIT {
                 .expectStatus().isNotFound();
     }
 
+    @Test
+    void testSumBudgetsByPlatform() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(BrandResource.BRANDS + BrandResource.SEARCH)
+                        .queryParam("platform", "Platform1")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BigDecimal.class)
+                .value(Assertions::assertNotNull)
+                .value(sum -> Assertions.assertEquals(new BigDecimal("1209.00"), sum));
+    }
+
+    @Test
+    void testSumBudgetsByPlatformException() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(BrandResource.BRANDS + BrandResource.SEARCH)
+                        .queryParam("platform", "Platformx")
+                        .build())
+                .exchange()
+                .expectStatus().isNotFound();
+    }
 
 }

@@ -6,4 +6,8 @@ public interface PatientPersistence {
     Patient read(String socialInsuranceNumber);
 
     Patient updateAllergicMedicine(String socialInsuranceNumber, String newAllergicMedicine);
+
+    Integer findTotalOccupiedBedsByAppointmentRoom(String AppointmentRoom, Boolean urgent);
+
+    Integer findTotalAppointmentBySpeciality(String speciality);
 }

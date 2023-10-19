@@ -41,7 +41,7 @@ public class ProductResourceIT {
     @Test
     void testUpdatePrice() {
         Product expectedProduct = new Product("Pan integral", "Nuestro pan integral", new BigDecimal("900.10"), true,
-                LocalDate.of(2023, 1, 1), null);
+                LocalDate.of(2023, 1, 1), null, null);
         String newPrice = "900.10";
         this.webTestClient
                 .patch()

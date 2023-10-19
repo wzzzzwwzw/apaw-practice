@@ -32,7 +32,7 @@ public class CoffeeClientEntity {
     }
 
     public CoffeeClientEntity(String name, String address, String phoneNumber, List<TransactionEntity> transactionsEntities, List<CoffeeEntity> coffeesEntities, DiningEntity diningEntity) {
-        this.id = UUID.randomUUID().toString();;
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;

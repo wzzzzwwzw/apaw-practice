@@ -17,6 +17,6 @@ class StationIT {
         assertNotNull(station);
         assertEquals("Canal", station.getName());
         assertEquals("1", station.getOrder());
-        assertEquals(true, station.isOpen());
+        assertEquals(true, station.getOpen());
     }
 }

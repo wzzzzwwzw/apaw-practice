@@ -8,11 +8,8 @@ import es.upm.miw.apaw_practice.adapters.mongodb.aquarium.entities.FishpondEntit
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.aquarium.AquariumCurator;
 import es.upm.miw.apaw_practice.domain.persistence_ports.aquarium.AquariumCuratorPersistence;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository("aquariumCuratorPersistence")
 public class AquariumCuratorPersistenceMongodb implements AquariumCuratorPersistence {
@@ -53,19 +50,22 @@ public AquariumCurator readByName(String name){
         aquariumCuratorEntity.setAquariumEntity(aquariumEntity);
         return this.aquariumCuratorRepository.save(aquariumCuratorEntity).toAquariumCurator();
 
-//        BeanUtils.copyProperties(aquariumCurator,aquariumCuratorEntity,"fishpond");
-//        List<FishpondEntity> fishpondEntityList = aquariumCurator.getFishponds().stream()
-//                .map(fishpond -> {
-//                    FishpondEntity fishpondEntity = new FishpondEntity(fishpond);
-//                    return fishpondEntity;
-//                })
-//                .collect(Collectors.toList());
-//        aquariumCuratorEntity.setFishpondEntities(fishpondEntityList);
-//        return this.aquariumCuratorRepository
-//                .save(aquariumCuratorEntity)
-//                .toAquariumCurator();
+
 
     }
-
+   @Override
+    public Double findAverageMaximumFishCapacity(String color){
+    Integer maximumFishCapacityAdd = this.aquariumCuratorRepository.findAll().stream()
+            .filter(aquariumCurator -> aquariumCurator.getFishpondEntity().getFishEntities().stream()
+                   .anyMatch(fish -> fish.getColor().equals(color)))
+            .map(AquariumCuratorEntity::getAquariumEntity)
+            .map(AquariumEntity::getMaximumFishCapacity)
+            .reduce(Integer::sum).orElse(0);
+    return maximumFishCapacityAdd.doubleValue()/this.aquariumCuratorRepository.findAll().stream()
+            .filter(aquariumCurator -> aquariumCurator.getFishpondEntity().getFishEntities().stream()
+                    .anyMatch(fish -> fish.getColor().equals(color)))
+            .map(AquariumCuratorEntity::getAquariumEntity)
+            .toList().size();
+}
 
 }

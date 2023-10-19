@@ -24,16 +24,6 @@ public class StudentResource {
         this.studentService = studentService;
     }
 
-    @GetMapping(NAME_ID)
-    public Student read(@PathVariable String name) {
-        return this.studentService.read(name);
-    }
-
-    @PostMapping
-    public Student create(@RequestBody Student student) {
-        return this.studentService.create(student);
-    }
-
     @PutMapping(NAME_ID + SUBJECTS)
     public Student updateSubjects(@PathVariable String name, @RequestBody List<Subject> subjects) {
         return this.studentService.updateSubjects(name, subjects);

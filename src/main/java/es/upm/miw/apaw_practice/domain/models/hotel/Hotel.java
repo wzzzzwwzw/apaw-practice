@@ -37,7 +37,9 @@ public class Hotel {
         this.stars = stars;
     }
 
-    public Integer getRooms() { return rooms; }
+    public Integer getRooms() {
+        return rooms;
+    }
 
     public void setRooms(Integer rooms) {
         this.rooms = rooms;

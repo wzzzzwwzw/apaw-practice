@@ -12,4 +12,6 @@ public interface AreaPersistence {
     Area update(Area area);
 
     List<Area> findAll();
+
+    Area findByExpeditionIdentifier(String identifier);
 }

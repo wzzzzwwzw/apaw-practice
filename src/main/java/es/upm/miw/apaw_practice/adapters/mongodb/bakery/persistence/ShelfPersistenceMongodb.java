@@ -8,9 +8,11 @@ import es.upm.miw.apaw_practice.domain.models.bakery.Shelf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("shelfPersistence")
 public class ShelfPersistenceMongodb implements ShelfPersistence {
-    
+
     private final ShelfRepository shelfRepository;
 
     @Autowired
@@ -27,5 +29,14 @@ public class ShelfPersistenceMongodb implements ShelfPersistence {
         return this.shelfRepository
                 .save(shelfEntity)
                 .toShelf();
+    }
+
+    @Override
+    public Stream<String> findUniqueLocationsByProductTypeCode(String code) {
+        return this.shelfRepository.findAll().stream()
+                .filter(shelf -> shelf.getProducts().stream()
+                        .anyMatch(product -> code.equals(product.getProductType().getCode())))
+                .map(ShelfEntity::getLocation)
+                .distinct();
     }
 }

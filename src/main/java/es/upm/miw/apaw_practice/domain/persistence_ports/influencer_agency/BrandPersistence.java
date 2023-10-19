@@ -12,4 +12,6 @@ public interface BrandPersistence {
     Stream<Campaign> getCampaignsByBrand(String trademark);
 
     void updateBrand(String trademark, BigDecimal newBudget);
+
+    BigDecimal sumBudgetsByPlatform(String platform);
 }

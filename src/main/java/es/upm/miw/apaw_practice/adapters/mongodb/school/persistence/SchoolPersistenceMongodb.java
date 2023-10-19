@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
-import java.util.stream.Stream;
 
 @Repository("SchoolPersistence")
 public class SchoolPersistenceMongodb implements SchoolPersistence {
@@ -25,35 +24,6 @@ public class SchoolPersistenceMongodb implements SchoolPersistence {
         return this.schoolRepository
                 .findByName(name)
                 .orElseThrow(() -> new NotFoundException("School location: " + name))
-                .toSchool();
-    }
-
-    @Override
-    public School readByName(String name) {
-        return this.schoolRepository
-                .findByName(name)
-                .orElseThrow(() -> new NotFoundException("School name:" + name))
-                .toSchool();
-    }
-
-    @Override
-    public boolean existName(String name) {
-        return this.schoolRepository
-                .findByName(name)
-                .isPresent();
-    }
-
-    @Override
-    public Stream<School> readAll() {
-        return this.schoolRepository
-                .findAll().stream()
-                .map(SchoolEntity::toSchool);
-    }
-
-    @Override
-    public School create(School school) {
-        return this.schoolRepository
-                .save(new SchoolEntity(school))
                 .toSchool();
     }
 

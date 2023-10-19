@@ -50,7 +50,11 @@ public class RouteEntity {
     }
 
     public Route toRoute() {
-        return new Route(this.key, this.name, this.difficulty);
+        return new Route.Builder()
+                .name(this.name)
+                .difficulty(this.difficulty)
+                .key(this.key)
+                .build();
     }
 
     @Override

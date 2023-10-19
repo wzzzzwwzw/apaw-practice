@@ -14,11 +14,11 @@ public class HotelClientRepositoryIT {
 
     @Test
     void testCreateAndRead() {
-        assertTrue(this.ClientRepository.findByDni("11122233A").isPresent());
-        HotelClientEntity firstClient = this.ClientRepository.findByDni("11122233A").get();
-        assertEquals(firstClient.getDni(),"11122233A");
-        assertEquals(firstClient.getEmail(),"first@email.com");
-        assertEquals(firstClient.getTelephone(),111222333);
+        assertTrue(this.ClientRepository.findByDni("11122233F").isPresent());
+        HotelClientEntity firstClient = this.ClientRepository.findByDni("11122233F").get();
+        assertEquals(firstClient.getDni(), "11122233F");
+        assertEquals(firstClient.getEmail(), "sixth@email.com");
+        assertEquals(firstClient.getTelephone(), 111222338);
         assertFalse(firstClient.getPartnership());
     }
 }

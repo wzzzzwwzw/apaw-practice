@@ -2,14 +2,10 @@ package es.upm.miw.apaw_practice.adapters.mongodb.hospital.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
-import es.upm.miw.apaw_practice.domain.models.computer_store.Repair;
-import es.upm.miw.apaw_practice.domain.models.hospital.Appointment;
-import es.upm.miw.apaw_practice.domain.models.hospital.Department;
 import es.upm.miw.apaw_practice.domain.models.hospital.Patient;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -40,5 +36,16 @@ class PatientPersistenceMongodbIT {
     void testUpdateAllergicMedicineTimeException() {
         assertThrows(NotFoundException.class, () -> this.patientPersistence.updateAllergicMedicine("test","test"));
     }
+    @Test
+    void testFindTotalOccupiedBedsByAppointmentRoomAndUrgent() {
+        assertEquals(17, this.patientPersistence.findTotalOccupiedBedsByAppointmentRoom("123",true));
+    }
+
+    @Test
+    void testFindTotalAppointmentBySpeciality() {
+        assertEquals(1, this.patientPersistence.findTotalAppointmentBySpeciality("E01"));
+    }
+
+
 }
 

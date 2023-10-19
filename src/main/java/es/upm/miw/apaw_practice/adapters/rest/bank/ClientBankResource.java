@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(ClientBankResource.CLIENTS)
 public class ClientBankResource {
-    static final String CLIENTS="/bank/clients";
+    static final String CLIENTS="/bank_model/clients";
 
     static final String DNI="/{dni}";
 

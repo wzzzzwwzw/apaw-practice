@@ -5,6 +5,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.subway.SubwaySeederService;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.subway.Line;
 import es.upm.miw.apaw_practice.domain.models.subway.Subway;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,6 +19,12 @@ class SubwayPersistenceMongodbIT {
 
     @Autowired
     private SubwaySeederService subwaySeederService;
+
+    @BeforeEach
+    void resetDataBase() {
+        this.subwaySeederService.deleteAll();
+        this.subwaySeederService.seedDatabase();
+    }
 
     @Test
     void testGetSubway() {

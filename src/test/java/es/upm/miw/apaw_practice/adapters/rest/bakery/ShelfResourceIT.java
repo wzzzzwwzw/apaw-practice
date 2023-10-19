@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RestTestConfig
@@ -45,5 +46,18 @@ class ShelfResourceIT {
                     assertEquals("Pasillo Modificado", shelf.getLocation());
                     assertEquals(null, shelf.getProducts());
                 });
+    }
+
+    @Test
+    void testFindUniqueLocationsByProductTypeCode() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder.path(ShelfResource.SHELVES + ShelfResource.SEARCH)
+                        .queryParam("q", "code:SALS")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(responseLocations -> assertTrue(responseLocations.get(0).contains("Pasillo 3")));
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class DoctorResource {
     static final String DOCTORS = "/hospital/doctors";
     static final String MEDICAL_LICENSE_CODE = "/{medicalLicenseCode}";
+
     private final DoctorService doctorService;
 
     @Autowired
@@ -31,6 +32,8 @@ public class DoctorResource {
     public void delete(@PathVariable String medicalLicenseCode) {
         this.doctorService.delete(medicalLicenseCode);
     }
+
+
 
 
 }

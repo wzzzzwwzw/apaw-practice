@@ -7,7 +7,7 @@ public interface PatientPersistence {
 
     Patient updateAllergicMedicine(String socialInsuranceNumber, String newAllergicMedicine);
 
-    Integer findTotalOccupiedBedsByAppointmentRoom(String AppointmentRoom, Boolean urgent);
+    Integer findTotalOccupiedBedsByAppointmentRoom(String appointmentRoom, Boolean urgent);
 
     Integer findTotalAppointmentBySpeciality(String speciality);
 }

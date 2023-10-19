@@ -18,11 +18,6 @@ public class DoctorResource {
         this.doctorService = doctorService;
     }
 
-    @GetMapping(DOCTORS)
-    public Doctor read(@PathVariable String medicalLicenseCode) {
-        return this.doctorService.read(medicalLicenseCode);
-    }
-
     @PostMapping
     public Doctor create(@RequestBody Doctor doctor) {
         return this.doctorService.create(doctor);

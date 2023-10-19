@@ -38,10 +38,10 @@ public class PatientPersistenceMongodb implements PatientPersistence {
     }
 
     @Override
-    public Integer findTotalOccupiedBedsByAppointmentRoom(String AppointmentRoom, Boolean urgent) {
+    public Integer findTotalOccupiedBedsByAppointmentRoom(String appointmentRoom, Boolean urgent) {
         return this.patientRepository.findAll().stream()
                 .filter(patient -> patient.getAppointmentsEntities().stream()
-                        .anyMatch(appointment -> appointment.getUrgent().equals(urgent) && appointment.getAppointmentRoom().equals(AppointmentRoom)))
+                        .anyMatch(appointment -> appointment.getUrgent().equals(urgent) && appointment.getAppointmentRoom().equals(appointmentRoom)))
                 .flatMap(patient -> patient.getDoctorsEntities().stream())
                 .map(DoctorEntity::getDepartmentEntity)
                 .map(DepartmentEntity::getAvailableBeds)

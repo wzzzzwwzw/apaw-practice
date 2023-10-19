@@ -2,7 +2,7 @@ package es.upm.miw.apaw_practice.domain.models.hospital;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class TreeDoctorsIT {
+class TreeDoctorsIT {
     @Test
     void testTreeDoctorsComposite() {
         DoctorsComposite doctorsComposite = new DoctorsComposite("M9999");

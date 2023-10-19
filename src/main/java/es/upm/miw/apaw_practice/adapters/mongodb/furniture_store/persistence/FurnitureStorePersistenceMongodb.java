@@ -5,12 +5,15 @@ import es.upm.miw.apaw_practice.adapters.mongodb.furniture_store.daos.MaterialRe
 import es.upm.miw.apaw_practice.adapters.mongodb.furniture_store.entities.FurnitureEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.furniture_store.entities.FurnitureStoreEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
+import es.upm.miw.apaw_practice.domain.models.furniture_store.Furniture;
 import es.upm.miw.apaw_practice.domain.models.furniture_store.FurnitureStore;
 import es.upm.miw.apaw_practice.domain.persistence_ports.furniture_store.FurnitureStorePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 @Repository("furnitureStorePersistence")
 public class FurnitureStorePersistenceMongodb implements FurnitureStorePersistence {
@@ -53,6 +56,15 @@ public class FurnitureStorePersistenceMongodb implements FurnitureStorePersisten
 
         furnitureStoreEntity.setFurnitureEntities(furnitureEntities);
         return this.furnitureStoreRepository.save(furnitureStoreEntity).toFurnitureStore();
+    }
+
+
+    @Override
+    public Stream<Furniture> findFurnitureStoreNameByManagerPromotionCandidate(Boolean promotionCandidate) {
+        return this.furnitureStoreRepository.findAll().stream()
+                .map(FurnitureStoreEntity::toFurnitureStore)
+                .filter(furnitureStore -> Objects.equals(furnitureStore.getManager().getPromotionCandidate(), promotionCandidate))
+                .flatMap(furnitureStore -> furnitureStore.getFurnitures().stream());
     }
 
 }

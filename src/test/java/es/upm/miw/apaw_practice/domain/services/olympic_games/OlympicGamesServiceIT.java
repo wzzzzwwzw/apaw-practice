@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.domain.services.olympic_games;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.olympic_games.OlympicGamesSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.olympic_games.daos.DisciplineRepository;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.olympic_games.OlympicGames;
@@ -18,6 +19,8 @@ class OlympicGamesServiceIT {
     private OlympicGamesService olympicGamesService;
     @Autowired
     private DisciplineRepository disciplineRepository;
+    @Autowired
+    private OlympicGamesSeederService olympicGamesSeederService;
 
     @Test
     void testReadByEdition() {
@@ -34,4 +37,20 @@ class OlympicGamesServiceIT {
     void testReadByEditionError() {
         assertThrows(NotFoundException.class, () -> this.olympicGamesService.readByEdition(10));
     }
+
+    @Test
+    void testUpdateHostingPlace() {
+        OlympicGames olympicGames = this.olympicGamesService.updateHostingPlace(1, "Rome");
+        assertEquals("Rome", olympicGames.getHostingPlace());
+        assertEquals(LocalDate.of(1896,4,5), olympicGames.getStartDate());
+        assertTrue(olympicGames.getSummerGames());
+        assertEquals(2, olympicGames.getDisciplines().size());
+        olympicGamesSeederService.reSeedDatabase();
+    }
+
+    @Test
+    void testUpdateHostingPlaceError() {
+        assertThrows(NotFoundException.class, () -> this.olympicGamesService.updateHostingPlace(44, "Rome"));
+    }
 }
+

@@ -22,6 +22,12 @@ public class Ticket {
         this.price = price;
     }
 
+    public Ticket(String departure, String arrive, BigDecimal price) {
+        this.departure=departure;
+        this.arrive=arrive;
+        this.price=price;
+    }
+
     public String getReference() {
         return reference;
     }

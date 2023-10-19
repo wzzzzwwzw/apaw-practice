@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.music.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.music.daos.AlbumRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.AlbumEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.ArtistEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.music.Song;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.SongEntity;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -44,5 +46,17 @@ public class AlbumPersistenceMongodb implements AlbumPersistence {
                 .filter(song -> song.getMusicGenreEntity().getType().equals(type))
                 .flatMap(song -> song.getArtistsList().stream()).
                         map(ArtistEntity::getPhoneNumber);
+    }
+
+    @Override
+    public List<String> getDifferentDenominationsByFullname(String fullname) {
+        return this.albumRepository.findAll()
+                .stream()
+                .filter(album -> album.getSongsList().stream()
+                        .anyMatch(song -> song.getArtistsList().stream()
+                                .anyMatch(artist -> artist.getFullName().equals(fullname))))
+                .map(AlbumEntity::getDenomination)
+                .distinct()
+                .toList();
     }
 }

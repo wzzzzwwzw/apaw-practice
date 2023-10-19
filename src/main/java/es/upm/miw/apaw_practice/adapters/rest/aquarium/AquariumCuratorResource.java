@@ -7,6 +7,7 @@ import es.upm.miw.apaw_practice.domain.services.aquarium.AquariumCuratorService;
 public class AquariumCuratorResource {
     static final String AquariumCurator = "/aquariumCurators";
     static final String NAME = "/{name}";
+    static final String SEARCH_MaximumCapacity ="/search/average-MaximumCapacity";
     static final String POSITION = "/position";
     private final AquariumCuratorService aquariumCuratorService;
 
@@ -16,5 +17,9 @@ public class AquariumCuratorResource {
     @PutMapping(NAME+POSITION)
     public AquariumCurator updatePosition(@PathVariable String name,@RequestBody String position){
         return this.aquariumCuratorService.updatePosition(name,position);
+    }
+    @GetMapping(SEARCH_MaximumCapacity)
+    public Double findAverageMaximumFishCapacity(String color){
+        return this.aquariumCuratorService.findAverageMaximumFishCapacity(color);
     }
 }

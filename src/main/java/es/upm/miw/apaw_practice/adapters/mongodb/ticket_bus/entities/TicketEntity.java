@@ -48,6 +48,16 @@ public class TicketEntity {
 
     }
 
+    public TicketEntity(String reference, String departure, String arrive, LocalDateTime registrationDate, BigDecimal price) {
+        this.id = UUID.randomUUID().toString();
+        this.reference = reference;
+        this.departure = departure;
+        this.arrive = arrive;
+        this.registrationDate = registrationDate;
+        this.price = price;
+
+    }
+
     public String getId() {
         return id;
     }

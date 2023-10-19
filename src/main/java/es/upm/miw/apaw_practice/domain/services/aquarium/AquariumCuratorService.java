@@ -16,4 +16,8 @@ public class AquariumCuratorService {
         aquariumCurator.setPosition(position);
         return this.aquariumCuratorPersistence.update(aquariumCurator);
     }
+
+    public Double findAverageMaximumFishCapacity(String color) {
+        return this.aquariumCuratorPersistence.findAverageMaximumFishCapacity(color);
+    }
 }

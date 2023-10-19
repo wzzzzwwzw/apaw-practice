@@ -10,7 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static es.upm.miw.apaw_practice.adapters.rest.olympic_games.MedalResource.*;
 
 @RestTestConfig
 class MedalResourceIT {
@@ -46,5 +50,23 @@ class MedalResourceIT {
                 .body(BodyInserters.fromValue(winner))
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testFindMedalTiersBySummerGamesAndAge() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(MEDAL + SEARCH)
+                                .queryParam("q", "summerGames:true")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(List.class)
+                .value(Assertions::assertNotNull)
+                .value(tiers -> {
+                    List<String> expectedTiers = Arrays.asList("Gold", "Silver", "Bronze", "Bronze", "Gold");
+                    assertEquals(expectedTiers, tiers);
+                });
     }
 }

@@ -1,12 +1,16 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.olympic_games.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.olympic_games.daos.OlympicGamesRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.olympic_games.entities.CompetitorEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.olympic_games.entities.OlympicGamesEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.olympic_games.OlympicGames;
 import es.upm.miw.apaw_practice.domain.persistence_ports.olympic_games.OlympicGamesPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository("olympicGamesPersistence")
 public class OlympicGamesPersistenceMongodb implements OlympicGamesPersistence {
@@ -33,4 +37,42 @@ public class OlympicGamesPersistenceMongodb implements OlympicGamesPersistence {
         olympicGamesEntity.setHostingPlace(hostingPlace);
         return this.olympicGamesRepository.save(olympicGamesEntity).toOlympicGames();
     }
+
+    @Override
+    public List<OlympicGames> findOlympicGamesPlaceStreamByCompetition(List<String> competitorNames) {
+        return this.olympicGamesRepository.findAll()
+                .stream()
+                .map(OlympicGamesEntity::toOlympicGames)
+                .filter(olympicGames -> olympicGames
+                        .getDisciplines()
+                        .stream()
+                        .anyMatch(discipline -> discipline
+                                .getCompetitors()
+                                .stream()
+                                .anyMatch(competitor ->
+                                        competitorNames.contains(competitor.getName())
+                                )
+                        )
+                )
+                .toList();
+    }
+
+    @Override
+    public List<String> findCompetitorsOlderThanEighteenBySummerGames(Boolean summerGames) {
+        return this.olympicGamesRepository
+                .findAll()
+                .stream()
+                .filter(olympicGames ->
+                        olympicGames.getSummerGames().equals(summerGames))
+                .flatMap(olympicGames ->
+                        olympicGames.getDisciplinesEntities().stream())
+                .flatMap(discipline ->
+                        discipline.getCompetitorEntities().stream())
+                .filter(competitor ->
+                        competitor.getAge() >= 18)
+                .map(CompetitorEntity::getName)
+                .distinct()
+                .toList();
+    }
+
 }

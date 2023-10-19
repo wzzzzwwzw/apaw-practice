@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -71,10 +70,23 @@ class FurnitureStorePersistenceMongodbIT {
     }
 
     @Test
-    void testFindFurnitureStoreNameByManagerPromotionCandidate() {
-        Stream<Furniture> furnitureStream = this.furnitureStorePersistenceMongodb.findFurnitureStoreNameByManagerPromotionCandidate(true);
-        assertNotNull(furnitureStream);
-        assertEquals(3, furnitureStream.count());
+    void testFindFurnituresByManagerPromotionCandidate() {
+        List<Furniture> furnitureList = this.furnitureStorePersistenceMongodb.findFurnituresByManagerPromotionCandidate(true);
+        assertEquals(3, furnitureList.size());
+        assertEquals("lámpara de pie", furnitureList.get(0).getName());
+    }
+
+    @Test
+    void testFindFurnituresByManagerName() {
+        List<Furniture> furnitureList = this.furnitureStorePersistenceMongodb.findFurnituresByManagerName("José");
+        assertEquals(2, furnitureList.size());
+        assertEquals("lámpara de pie", furnitureList.get(0).getName());
+    }
+
+    @Test
+    void testNotFindFurnituresByManagerName() {
+        List<Furniture> furnitureList = this.furnitureStorePersistenceMongodb.findFurnituresByManagerName("No existe");
+        assertTrue(furnitureList.isEmpty());
     }
 
 }

@@ -10,10 +10,11 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static es.upm.miw.apaw_practice.adapters.rest.olympic_games.OlympicGamesResource.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
 class OlympicGamesResourceIT {
@@ -75,5 +76,23 @@ class OlympicGamesResourceIT {
                 .body(BodyInserters.fromValue("Rome"))
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testFindHostingPlaceByCompetition() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(OLYMPIC_GAMES + SEARCH)
+                                .queryParam("q", "competition:4x100m relays")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(List.class)
+                .value(Assertions::assertNotNull)
+                .value(hostingPlaces -> {
+                    List<String> expectedHostingPlaces = Arrays.asList("Athens", "London", "Barcelona");
+                    assertIterableEquals(expectedHostingPlaces, hostingPlaces);
+                });
     }
 }

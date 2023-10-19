@@ -30,9 +30,13 @@ public class HotelBooking {
         this.number = number;
     }
 
-    public Integer getRoomNumber() { return roomNumber; }
+    public Integer getRoomNumber() {
+        return roomNumber;
+    }
 
-    public void setRoomNumber(Integer roomNumber) { this.roomNumber = roomNumber; }
+    public void setRoomNumber(Integer roomNumber) {
+        this.roomNumber = roomNumber;
+    }
 
     public LocalDate getDate() {
         return date;

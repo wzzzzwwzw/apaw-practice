@@ -14,12 +14,13 @@ public class HotelBookingPersistenceMongodb implements HotelBookingPersistence {
     private final HotelBookingRepository hotelBookingRepository;
 
     @Autowired
-    public HotelBookingPersistenceMongodb(HotelBookingRepository hotelBookingRepository){
+    public HotelBookingPersistenceMongodb(HotelBookingRepository hotelBookingRepository) {
         this.hotelBookingRepository = hotelBookingRepository;
     }
+
     @Override
     public HotelBooking create(HotelBooking booking) {
-        if(existsBooking(booking.getNumber()))
+        if (existsBooking(booking.getNumber()))
             throw new ConflictException("Booking number " + booking.getNumber() + " taken.");
 
         return this.hotelBookingRepository

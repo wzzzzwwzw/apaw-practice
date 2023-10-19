@@ -41,21 +41,21 @@ public class HotelBookingPersistenceMongodbIT {
 
     @Test
     void testCreateBooking() {
-        HotelClient client = new HotelClient("21345155G","example@email.com",111222333,true);
-        HotelBooking booking = new HotelBooking( 10, 555, LocalDate.of(2023,10,21), new BigDecimal("49.99"), client);
+        HotelClient client = new HotelClient("21345155G", "example@email.com", 111222333, true);
+        HotelBooking booking = new HotelBooking(10, 555, LocalDate.of(2023, 10, 21), new BigDecimal("49.99"), client);
         HotelBooking createdBooking = this.hotelBookingPersistence.create(booking);
         assertNotNull(createdBooking);
         assertEquals(createdBooking.getNumber(), 10);
         assertEquals(createdBooking.getRoomNumber(), 555);
-        assertEquals(createdBooking.getDate(), LocalDate.of(2023,10,21));
+        assertEquals(createdBooking.getDate(), LocalDate.of(2023, 10, 21));
         assertEquals(createdBooking.getCost(), new BigDecimal("49.99"));
         assertNotNull(createdBooking.getClient());
     }
 
     @Test
     void testCreateBookingConflict() {
-        HotelClient client = new HotelClient("21345155G","example@email.com",111222333,true);
-        HotelBooking booking = new HotelBooking( 1, 555, LocalDate.of(2023,10,21), new BigDecimal("49.99"), client);
+        HotelClient client = new HotelClient("21345155G", "example@email.com", 111222333, true);
+        HotelBooking booking = new HotelBooking(1, 555, LocalDate.of(2023, 10, 21), new BigDecimal("49.99"), client);
         assertThrows(ConflictException.class, () -> this.hotelBookingPersistence.create(booking));
     }
 

@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.music.entities;
 
+import es.upm.miw.apaw_practice.domain.models.music.Album;
+import es.upm.miw.apaw_practice.domain.models.music.Song;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -97,6 +100,17 @@ public class AlbumEntity {
         return this.id.hashCode();
     }
 
+    public Album toAlbum() {
+        Album album = new Album();
+        List<Song> songs = this.songsEntitiesList
+                .stream()
+                .map(SongEntity::toSong)
+                .toList();
+        BeanUtils.copyProperties(this, album);
+        album.setSongsList(songs);
+        return album;
+    }
+
     @Override
     public String toString() {
         return "AlbumEntity{" +
@@ -107,4 +121,6 @@ public class AlbumEntity {
                 ", songsList=" + songsEntitiesList +
                 '}';
     }
+
+
 }

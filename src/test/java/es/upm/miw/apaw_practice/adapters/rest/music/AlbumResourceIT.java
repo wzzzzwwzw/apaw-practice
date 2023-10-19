@@ -57,25 +57,11 @@ class AlbumResourceIT {
     }
 
     @Test
-    void testGetPhoneNumberByTypeAndRecordLabel() {
-        this.webTestClient
-                .get()
-                .uri(uriBuilder -> uriBuilder
-                        .path(AlbumResource.ALBUMS + AlbumResource.SEARCH)
-                        .queryParam("q", "type:reggaeton;recordLabel:La Industria Inc")
-                        .build())
-                .exchange()
-                .expectStatus().isOk()
-                .expectBodyList(Integer.class)
-                .hasSize(3);
-    }
-
-    @Test
     void testGetDifferentDenominationsByFullname() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder -> uriBuilder
-                        .path(AlbumResource.ALBUMS + AlbumResource.SEARCH2)
+                        .path(AlbumResource.ALBUMS + AlbumResource.SEARCH)
                         .queryParam("q", "fullname:J Balvin")
                         .build())
                 .exchange()

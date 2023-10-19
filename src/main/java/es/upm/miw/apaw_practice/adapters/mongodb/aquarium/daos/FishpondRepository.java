@@ -3,7 +3,6 @@ import es.upm.miw.apaw_practice.adapters.mongodb.aquarium.entities.FishpondEntit
 import es.upm.miw.apaw_practice.adapters.mongodb.aquarium.entities.FishEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
-import org.springframework.stereotype.Repository;
 public interface FishpondRepository extends MongoRepository<FishpondEntity, String>{
     Optional<FishpondEntity> findByDirection(String direction);
 

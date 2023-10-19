@@ -11,7 +11,7 @@ public class Fishpond {
     private List<Fish> fishes;
 
 
-    public Fishpond(String direction, Integer id, LocalDate openTime, List<Fish> fishes) {
+    public Fishpond(String direction, Integer fishId, LocalDate openTime, List<Fish> fishes) {
         this.direction = direction;
         this.fishId = fishId;
         this.openTime = openTime;

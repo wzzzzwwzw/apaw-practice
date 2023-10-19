@@ -6,7 +6,7 @@ public class ProductType {
     private String code;
 
     public ProductType() {
-        //empty for framework
+        // empty for framework
     }
 
     public ProductType(String name, String description, String code) {
@@ -42,9 +42,63 @@ public class ProductType {
     @Override
     public String toString() {
         return "{" +
-            " name='" + getName() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", code='" + getCode() + "'" +
-            "}";
+                " name='" + getName() + "'" +
+                ", description='" + getDescription() + "'" +
+                ", code='" + getCode() + "'" +
+                "}";
+    }
+
+    // Builder Pattern
+
+    public static ProductTypeBuilder.Name builder(String name) {
+        return new ProductType.Builder();
+    }
+
+    private interface ProductTypeBuilder {
+        interface Name {
+            Description name(String name);
+        }
+
+        interface Description {
+            Code description(String description);
+        }
+
+        interface Code {
+            Code code(String code);
+
+            ProductType build();
+        }
+    }
+
+    public static class Builder
+            implements ProductTypeBuilder.Name, ProductTypeBuilder.Description, ProductTypeBuilder.Code {
+        private final ProductType productType;
+
+        public Builder() {
+            this.productType = new ProductType();
+        }
+
+        @Override
+        public ProductTypeBuilder.Description name(String name) {
+            this.productType.setName(name);
+            return this;
+        }
+
+        @Override
+        public ProductTypeBuilder.Code description(String description) {
+            this.productType.setDescription(description);
+            return this;
+        }
+
+        @Override
+        public ProductTypeBuilder.Code code(String code) {
+            this.productType.setCode(code);
+            return this;
+        }
+
+        @Override
+        public ProductType build() {
+            return this.productType;
+        }
     }
 }

@@ -98,4 +98,89 @@ public class Product {
                 ", productType='" + getProductType() + "'" +
                 "}";
     }
+
+    // Builder Pattern
+
+    public static ProductBuilder.Name builder(String name) {
+        return new Product.Builder();
+    }
+
+    private interface ProductBuilder {
+        interface Name {
+            Description name(String name);
+        }
+
+        interface Description {
+            Price description(String description);
+        }
+
+        interface Price {
+            GlutenFree price(BigDecimal price);
+        }
+
+        interface GlutenFree {
+            ExpirationDate isGlutenFree(Boolean isGlutenFree);
+        }
+
+        interface ExpirationDate {
+            ProductType expirationDate(LocalDate date);
+        }
+
+        interface ProductType {
+            ProductType productType(es.upm.miw.apaw_practice.domain.models.bakery.ProductType productType);
+
+            Product build();
+        }
+    }
+
+    public static class Builder implements ProductBuilder.Name, ProductBuilder.Description, ProductBuilder.Price,
+            ProductBuilder.GlutenFree, ProductBuilder.ExpirationDate, ProductBuilder.ProductType {
+        private final Product product;
+
+        public Builder() {
+            this.product = new Product();
+        }
+
+        @Override
+        public ProductBuilder.Description name(String name) {
+            this.product.setName(name);
+            return this;
+        }
+
+        @Override
+        public ProductBuilder.Price description(String description) {
+            this.product.setDescription(description);
+            return this;
+        }
+
+        @Override
+        public ProductBuilder.GlutenFree price(BigDecimal price) {
+            this.product.setPrice(price);
+            return this;
+        }
+
+        @Override
+        public ProductBuilder.ExpirationDate isGlutenFree(Boolean glutenFree) {
+            this.product.setGlutenFree(glutenFree);
+            return this;
+        }
+
+        @Override
+        public ProductBuilder.ProductType expirationDate(LocalDate date) {
+            this.product.setExpirationDate(date);
+            return this;
+        }
+
+        @Override
+        public Product build() {
+            return this.product;
+        }
+
+        @Override
+        public ProductBuilder.ProductType productType(
+                es.upm.miw.apaw_practice.domain.models.bakery.ProductType productType) {
+            this.product.setProductType(productType);
+            return this;
+        }
+    }
 }

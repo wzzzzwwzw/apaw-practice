@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.school.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.school.SchoolSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.daos.StudentRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.StudentEntity;
 import es.upm.miw.apaw_practice.domain.models.school.Student;
@@ -18,6 +19,9 @@ class StudentPersistenceMongodbIT {
 
     @Autowired
     private StudentPersistenceMongodb studentPersistence;
+
+    @Autowired
+    private SchoolSeederService schoolSeederService;
 
     @Test
     void testReadByName() {
@@ -53,8 +57,11 @@ class StudentPersistenceMongodbIT {
         Student student1 = studentPersistence.readByName("studentS3");
         student.setSubjects(student1.getSubjects());
         this.studentPersistence.update(student);
-        Student updatedStudent = studentPersistence.readByName("studentS2");
-        assertEquals("studentS2", updatedStudent.getName());
+        Student updatedStudent = studentPersistence.readByName("studentS3");
+        assertEquals("studentS3", updatedStudent.getName());
         assertEquals(student1.getSubjects(), updatedStudent.getSubjects());
+
+        schoolSeederService.deleteAll();
+        schoolSeederService.seedDatabase();
     }
 }

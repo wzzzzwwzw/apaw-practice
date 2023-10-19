@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PavilionPersistence {
     Pavilion readByPavname(String pavname);
+
+    Pavilion create(Pavilion pavilion);
 }

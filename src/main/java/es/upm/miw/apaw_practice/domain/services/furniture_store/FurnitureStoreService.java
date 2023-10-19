@@ -42,7 +42,7 @@ public class FurnitureStoreService {
                 .stream()
                 .map(Furniture::getPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
-                .divide(BigDecimal.valueOf(furnitureList.size()), RoundingMode.UNNECESSARY);
+                .divide(BigDecimal.valueOf(furnitureList.size()), RoundingMode.FLOOR);
     }
 
 }

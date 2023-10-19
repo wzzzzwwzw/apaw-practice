@@ -56,7 +56,7 @@ public class MedalPersistenceMongodb implements MedalPersistence {
                 .stream()
                 .filter(medal -> medal.getCompetition().equals(competition))
                 .map(medal -> medal.getWinner().getName())
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -67,7 +67,7 @@ public class MedalPersistenceMongodb implements MedalPersistence {
                 .filter(medal ->
                         competitorsNames.contains(medal.getWinner().getName()))
                 .map(MedalEntity::getTier)
-                .collect(Collectors.toList());
+                .toList();
     }
 
 }

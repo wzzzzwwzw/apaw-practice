@@ -54,7 +54,7 @@ public class OlympicGamesPersistenceMongodb implements OlympicGamesPersistence {
                                 )
                         )
                 )
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -72,7 +72,7 @@ public class OlympicGamesPersistenceMongodb implements OlympicGamesPersistence {
                         competitor.getAge() >= 18)
                 .map(CompetitorEntity::getName)
                 .distinct()
-                .collect(Collectors.toList());
+                .toList();
     }
 
 }

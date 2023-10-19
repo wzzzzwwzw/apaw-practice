@@ -35,6 +35,6 @@ public class OlympicGamesService {
                 .findOlympicGamesPlaceStreamByCompetition(competitorNames)
                 .stream()
                 .map(OlympicGames::getHostingPlace)
-                .collect(Collectors.toList());
+                .toList();
     }
 }

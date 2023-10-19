@@ -73,7 +73,7 @@ class CampaignResourceIT {
                 .expectStatus().isOk()
                 .expectBody(List.class)
                 .value(Assertions::assertNotNull)
-                .value(creators -> Assertions.assertEquals(3, creators.size()))
+                .value(creators -> Assertions.assertEquals(6, creators.size()))
                 .value(creators -> Assertions.assertEquals("Creator1", creators.get(0)))
                 .value(creators -> Assertions.assertEquals("Creator2", creators.get(1)))
                 .value(creators -> Assertions.assertEquals("Creator3", creators.get(2)));

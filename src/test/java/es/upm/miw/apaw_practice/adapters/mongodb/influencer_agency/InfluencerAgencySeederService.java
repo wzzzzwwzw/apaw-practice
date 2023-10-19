@@ -48,11 +48,20 @@ public class InfluencerAgencySeederService {
                 new ContentEntity(new Content("Info1", "Creator1")),
                 new ContentEntity(new Content("Info2", "Creator2")),
                 new ContentEntity(new Content("Info3", "Creator3")),
-                new ContentEntity(new Content("Info4", "Creator4"))
+                new ContentEntity(new Content("Info4", "Creator4")),
+                new ContentEntity(new Content("Info5", "Creator5")),
+                new ContentEntity(new Content("Info6", "Creator6")),
         };
-        campaigns[0].setContents(Arrays.asList(contents[0], contents[1]));
+        contents[0].setPlatform("Platform1");
+        contents[1].setPlatform("Platform1");
+        contents[2].setPlatform("Platform2");
+        contents[3].setPlatform("Platform1");
+        contents[4].setPlatform("Platform3");
+        contents[5].setPlatform("Platform3");
+
+        campaigns[0].setContents(Arrays.asList(contents[0], contents[1], contents[2], contents[3]));
         campaigns[0].setDescription("Description1");
-        campaigns[1].setContents(List.of(contents[2]));
+        campaigns[1].setContents(List.of(contents[4], contents[5]));
         campaigns[1].setDescription("Description2");
         campaigns[2].setContents(List.of(contents[3]));
         campaigns[2].setDescription("");
@@ -62,15 +71,15 @@ public class InfluencerAgencySeederService {
 
         BrandEntity[] brands = {
                 new BrandEntity("Brand1", agencies[0], List.of(campaigns[0], campaigns[1])),
-                new BrandEntity("Brand2", agencies[1], List.of(campaigns[1])),
+                new BrandEntity("Brand2", agencies[1], List.of(campaigns[1],campaigns[2])),
                 new BrandEntity("Brand3", agencies[2], List.of(campaigns[0], campaigns[2], campaigns[3])),
                 new BrandEntity("Brand4", agencies[3], new ArrayList<>())
         };
         brands[0].setAdvertisingBudget(new BigDecimal("1000.00"));
         brands[0].setIndustry("Industry1");
-        brands[1].setAdvertisingBudget(null);
+        brands[1].setAdvertisingBudget(new BigDecimal("199.00"));
         brands[1].setIndustry("");
-        brands[2].setAdvertisingBudget(new BigDecimal("0.00"));
+        brands[2].setAdvertisingBudget(new BigDecimal("10.00"));
         brands[2].setIndustry("Industry3");
         brands[3].setAdvertisingBudget(new BigDecimal("100.00"));
         brands[3].setIndustry(null);

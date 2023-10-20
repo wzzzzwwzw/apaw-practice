@@ -31,12 +31,14 @@ public class MaterialResource {
 
     @GetMapping(SEARCH)
     public List<String> findUniqueMaterialTypeByManagerPromotionCandidate(@RequestParam String q) {
-        String promotionCandidateString = new LexicalAnalyzer().extractWithAssure(q, "promotion-candidate");
-        Boolean promotionCandidate = Boolean.valueOf(promotionCandidateString);
+        Boolean promotionCandidate = new LexicalAnalyzer().extractWithAssure(q, "promotion-candidate",
+                promotionCandidateString -> {
+                    if (!Objects.equals(promotionCandidateString, "true") && !Objects.equals(promotionCandidateString, "false")) {
+                        throw new IllegalArgumentException("Cadena no válida : se esperaba 'true' o 'false'.");
+                    }
+                    return Boolean.valueOf(promotionCandidateString);
+                });
 
-        if (!Objects.equals(promotionCandidateString, "true") && !Objects.equals(promotionCandidateString, "false")) {
-            promotionCandidate = null;
-        }
         return this.materialService.findUniqueMaterialTypeByManagerPromotionCandidate(promotionCandidate);
     }
 

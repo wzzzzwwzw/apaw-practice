@@ -66,7 +66,7 @@ class FurnitureStoreResourceIT {
     }
 
     @Test
-    void testFindAverageFurniturePriceByManagerName() {
+    void testFindAverageFurnituresPriceByManagerName() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
@@ -82,7 +82,7 @@ class FurnitureStoreResourceIT {
     }
 
     @Test
-    void testBadRequestFindAverageFurniturePriceByManagerName() {
+    void testBadRequestFindAverageFurnituresPriceByManagerName() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
@@ -94,7 +94,7 @@ class FurnitureStoreResourceIT {
     }
 
     @Test
-    void testNotFoundAverageFurniturePriceByManagerName() {
+    void testNotFoundAverageFurnituresPriceByManagerName() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->

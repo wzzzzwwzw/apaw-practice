@@ -5,7 +5,6 @@ import es.upm.miw.apaw_practice.adapters.mongodb.hotel.entities.HotelEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig

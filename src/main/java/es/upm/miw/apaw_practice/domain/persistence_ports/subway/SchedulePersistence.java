@@ -12,4 +12,6 @@ public interface SchedulePersistence {
         Stream<Schedule> readAll();
 
         Stream<Schedule> update(Float newFrecuency);
+
+        Float getAverageFrequencyByCity(String city);
 }

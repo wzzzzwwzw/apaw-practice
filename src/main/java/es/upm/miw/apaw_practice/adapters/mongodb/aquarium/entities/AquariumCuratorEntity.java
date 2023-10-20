@@ -1,12 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.aquarium.entities;
-import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.entities.ComputerEntity;
 import es.upm.miw.apaw_practice.domain.models.aquarium.Aquarium;
 import es.upm.miw.apaw_practice.domain.models.aquarium.AquariumCurator;
 import es.upm.miw.apaw_practice.domain.models.aquarium.Fishpond;
-import io.micrometer.observation.ObservationFilter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.stream.Collectors;
@@ -87,6 +84,10 @@ public class AquariumCuratorEntity {
     public void setAquariumEntity(AquariumEntity aquariumEntity) {
         this.aquariumEntity = aquariumEntity;
     }
+    public FishpondEntity getFishpondEntity() {
+        return (FishpondEntity) fishpondEntities;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -121,7 +122,10 @@ public class AquariumCuratorEntity {
         Aquarium aquarium = this.aquariumEntity.toAquarium();
         List<Fishpond> fishponds =this.fishpondEntities.stream()
                 .map(FishpondEntity::toFishpond)
-                .collect(Collectors.toList());
+                .toList();
         return new AquariumCurator(this.name,this.position,this.vacationState, fishponds, aquarium);
     }
+
+
+
 }

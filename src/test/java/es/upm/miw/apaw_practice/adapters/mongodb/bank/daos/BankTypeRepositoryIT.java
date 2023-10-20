@@ -45,7 +45,7 @@ public class BankTypeRepositoryIT {
     void testfindByTypeName(){
         assertTrue(this.bankTypeRepository.findByTypeName("Banco de Inversión").isPresent());
         BankTypeEntity bankTypeEntity= this.bankTypeRepository.findByTypeName("Banco de Inversión").get();
-        assertTrue(bankTypeEntity.getMinimunCapital().equals(new BigDecimal("10000000.00")));
+        assertEquals(new BigDecimal("10000000.00"),bankTypeEntity.getMinimunCapital());
     }
 
     @Test

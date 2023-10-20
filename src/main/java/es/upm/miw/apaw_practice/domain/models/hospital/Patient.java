@@ -74,4 +74,7 @@ public class Patient {
                 ", appointments='" + appointments + '\'' +
                 '}';
     }
+
+    public static interface TreeDoctors {
+    }
 }

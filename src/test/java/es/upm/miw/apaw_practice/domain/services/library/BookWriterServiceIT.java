@@ -46,7 +46,7 @@ public class BookWriterServiceIT {
     void testFindAverageOfNumberOfBookByLibraryName(){
         BigDecimal average = this.bookWriterService.findAverageOfNumberOfBookByLibraryName("Biblioteca territorial");
         assertEquals(BigDecimal.valueOf(2).setScale(2, RoundingMode.HALF_UP), average.setScale(2,RoundingMode.HALF_UP));
-        average = this.bookWriterService.findAverageOfNumberOfBookByLibraryName("Biblioteca Nacional");
-        assertEquals(BigDecimal.valueOf(16.33),average.setScale(2,RoundingMode.HALF_UP));
+        BigDecimal average2 = this.bookWriterService.findAverageOfNumberOfBookByLibraryName("Biblioteca universitaria");
+        assertEquals(BigDecimal.valueOf(19.67).setScale(2,RoundingMode.HALF_UP),average2.setScale(2,RoundingMode.HALF_UP));
     }
 }

@@ -50,13 +50,13 @@ public class SchoolSeederService {
 
         ClassroomEntity[] classrooms = {
                 new ClassroomEntity(new Classroom("classroom1", LocalDateTime.of(2019, 1, 5, 8, 30), true, 30)),
-                new ClassroomEntity(new Classroom("classroom2", LocalDateTime.of(2020, 12, 10, 10, 00), false, 0)),
+                new ClassroomEntity(new Classroom("classroom2", LocalDateTime.of(2020, 12, 10, 10, 0), false, 0)),
                 new ClassroomEntity(new Classroom("classroom3", LocalDateTime.of(2021, 5, 2, 9, 45), true, 10)),
                 new ClassroomEntity(new Classroom("classroom4", LocalDateTime.of(2022, 2, 8, 7, 15), false, 25)),
-                new ClassroomEntity(new Classroom("classroom5", LocalDateTime.of(2023, 9, 1, 8, 00), true, 50)),
+                new ClassroomEntity(new Classroom("classroom5", LocalDateTime.of(2023, 9, 1, 8, 0), true, 50)),
                 new ClassroomEntity(new Classroom("classroomS1", LocalDateTime.of(2021, 5, 2, 9, 45), false, 10)),
                 new ClassroomEntity(new Classroom("classroomS2", LocalDateTime.of(2022, 2, 8, 7, 15), true, 25)),
-                new ClassroomEntity(new Classroom("classroomS3", LocalDateTime.of(2023, 9, 1, 8, 00), true, 50))
+                new ClassroomEntity(new Classroom("classroomS3", LocalDateTime.of(2023, 9, 1, 8, 0), true, 50))
         };
         this.classroomRepository.saveAll(Arrays.asList(classrooms));
 

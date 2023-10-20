@@ -5,8 +5,9 @@ import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.math.BigDecimal;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 class LibraryPersistenceMongodbIT {
@@ -21,5 +22,9 @@ class LibraryPersistenceMongodbIT {
     @Test
     void testReadFound() {
         assertNotNull(this.libraryPersistence.read("Biblioteca universitaria"));
+    }
+    @Test
+    void testFindNumberOfBookAverageByLibraryName(){
+        assertEquals(new BigDecimal("20.50"), this.libraryPersistence.findAverageOfNumberOfBookByLibraryName("Biblioteca universitaria"));
     }
 }

@@ -34,4 +34,20 @@ class LibraryResourceIT {
                     assertEquals("9788466659734", libraryData.getBooks().get(2).getIsbn());
                 });
     }
+
+    @Test
+    void testFindAverageOfNumberOfBookByLibraryName(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(LibraryResource.LIBRARY + LibraryResource.SEARCH)
+                                .queryParam("q","name:Biblioteca Nacional")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Double.class)
+                .value(Assertions::assertNotNull)
+                .value(averageOfNumberOfBook ->
+                        assertEquals(16.33, averageOfNumberOfBook));
+    }
 }

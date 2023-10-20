@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.library.LibraryPersiste
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class LibraryService {
     private final LibraryPersistence libraryPersistence;
@@ -16,4 +18,6 @@ public class LibraryService {
     public Library read(String name){
         return this.libraryPersistence.read(name);
     }
+
+    public BigDecimal findAverageOfNumberOfBookByLibraryName(String name){ return this.libraryPersistence.findAverageOfNumberOfBookByLibraryName(name); }
 }

@@ -4,7 +4,6 @@ import es.upm.miw.apaw_practice.domain.models.hotel.Hotel;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 
 @Repository

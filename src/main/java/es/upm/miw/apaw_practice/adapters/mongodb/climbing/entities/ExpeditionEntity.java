@@ -20,7 +20,7 @@ public class ExpeditionEntity {
     private BigDecimal totalExpense;
 
     public ExpeditionEntity() {
-
+        //empty for framework
     }
 
     public ExpeditionEntity(Expedition expedition) {

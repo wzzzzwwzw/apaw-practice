@@ -4,12 +4,14 @@ import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.library.LibrarySeederService;
 import es.upm.miw.apaw_practice.adapters.rest.library.dto.LoanDataDto;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
+import es.upm.miw.apaw_practice.domain.models.library.Book;
 import es.upm.miw.apaw_practice.domain.models.library.Loan;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,5 +44,13 @@ public class LoanPersistenceMongodbIT {
     @Test
     void testUpdateLoanStatusException(){
         assertThrows(NotFoundException.class, () -> this.loanPersistenceMongodb.updateLoanStatusByLoanCode("NotFoundCode", new LoanDataDto(null,null,null)));
+    }
+
+    @Test
+    void testFindListOfBooksByLoanStatus(){
+        List<Book> listOfBook = this.loanPersistenceMongodb.findAddressOfLibraryByLoanStatus(true);
+        assertNotNull(listOfBook);
+        assertEquals("9788401020414", listOfBook.get(0).getIsbn());
+        assertEquals("9788416738090", listOfBook.get(1).getIsbn());
     }
 }

@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.music;
 
+import es.upm.miw.apaw_practice.domain.models.music.builders.SongBuilders;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,5 +95,54 @@ public class Song {
                 ", artistsList=" + this.artistsList +
                 ", Musicgenre=" + this.musicGenre +
                 '}';
+    }
+
+    public static class Builder implements SongBuilders.Title, SongBuilders.Optionals {
+        private final Song song;
+
+        public Builder() {
+            song = new Song();
+        }
+
+        @Override
+        public SongBuilders.Optionals title(String title) {
+            this.song.title = title;
+            return this;
+        }
+
+        @Override
+        public SongBuilders.Optionals duration(Integer duration) {
+            this.song.duration = duration;
+            return this;
+        }
+
+        @Override
+        public SongBuilders.Optionals remix(Boolean remix) {
+            this.song.remix = remix;
+            return this;
+        }
+
+        @Override
+        public SongBuilders.Optionals rating(Double rating) {
+            this.song.rating = rating;
+            return this;
+        }
+
+        @Override
+        public SongBuilders.Optionals artistsList(List<Artist> artistsList) {
+            this.song.artistsList = artistsList;
+            return this;
+        }
+
+        @Override
+        public SongBuilders.Optionals musicGenre(MusicGenre musicGenre) {
+            this.song.musicGenre = musicGenre;
+            return this;
+        }
+
+        @Override
+        public Song build() {
+            return this.song;
+        }
     }
 }

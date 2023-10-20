@@ -3,9 +3,11 @@ package es.upm.miw.apaw_practice.adapters.rest.bank;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 
+import es.upm.miw.apaw_practice.adapters.rest.bank.dto.IncrementBalanceDto;
 import es.upm.miw.apaw_practice.domain.models.bank.Bank;
 
 
+import es.upm.miw.apaw_practice.domain.models.bank.BankAccount;
 import es.upm.miw.apaw_practice.domain.models.bank.BankType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -107,6 +109,34 @@ public class BankResourceIT {
                 .uri(BANKS + BANK_NAME + CAPITAL,
                         "TERESA")
                 .body(BodyInserters.fromValue(new BigDecimal("700000000.00")))
+                .exchange()
+                .expectStatus()
+                .isNotFound();
+    }
+
+    @Test
+    void testUpdateIncreaseBankAccountBalance(){
+        this.webTestClient
+                .patch()
+                .uri(BANKS +BANK_NAME+INCREASE_BALANCE,"SrDell")
+                .body(BodyInserters.fromValue(new IncrementBalanceDto("5678-1234-7890-2345",new BigDecimal("100.00"))))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BankAccount.class)
+                .value(Assertions::assertNotNull)
+                .value(
+                        bankAccount -> {
+                            assertEquals(new BigDecimal("350.50"), bankAccount.getBalance());
+                        }
+                );
+
+    }
+    @Test
+    void testUpdateIncreaseBankAccountBalanceBankAccountNotFound(){
+        this.webTestClient
+                .patch()
+                .uri(BANKS +BANK_NAME+INCREASE_BALANCE,"SrDell")
+                .body(BodyInserters.fromValue(new IncrementBalanceDto("2345-2134-0099-0000",new BigDecimal("200"))))
                 .exchange()
                 .expectStatus()
                 .isNotFound();

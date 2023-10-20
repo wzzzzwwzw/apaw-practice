@@ -49,9 +49,7 @@ public class SchoolResourceIT {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(BigDecimal.class)
-                .value(registrationPriceSum -> {
-                    assertEquals(new BigDecimal("300.50"), registrationPriceSum);
-                });
+                .value(registrationPriceSum -> assertEquals(new BigDecimal("300.50"), registrationPriceSum));
 
         this.webTestClient
                 .get()
@@ -62,8 +60,6 @@ public class SchoolResourceIT {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(BigDecimal.class)
-                .value(registrationPriceSum -> {
-                    assertEquals(new BigDecimal("173.99"), registrationPriceSum);
-                });
+                .value(registrationPriceSum -> assertEquals(new BigDecimal("173.99"), registrationPriceSum));
     }
 }

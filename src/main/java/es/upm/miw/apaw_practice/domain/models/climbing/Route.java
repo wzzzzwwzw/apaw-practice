@@ -8,7 +8,7 @@ public class Route {
     private String difficulty;
 
     public Route() {
-
+        //empty for framework
     }
 
     public static RouteBuilders.Name builder() {

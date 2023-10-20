@@ -53,4 +53,34 @@ class PatientResourceIT {
                 });
     }
 
+    @Test
+    void testSearchOccupiedBedsByAppointmentRoomAndUrgent() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(PatientResource.PATIENTS + PatientResource.SEARCH_AVAILABLE)
+                                .queryParam("appointmentRoom", "123")
+                                .queryParam("urgent", "true")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(String.class)
+                .value(result -> Assertions.assertEquals("17", result));
+    }
+
+    @Test
+    void testSearchAppointmentBySpeciality() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(PatientResource.PATIENTS + PatientResource.SEARCH_APPOINTMENT)
+                                .queryParam("speciality", "E01")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(String.class)
+                .value(result -> Assertions.assertEquals("1", result));
+    }
+
+
 }

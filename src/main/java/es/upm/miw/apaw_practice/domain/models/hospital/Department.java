@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.domain.models.hospital;
 
+import es.upm.miw.apaw_practice.domain.models.hospital.builders.DepartmentBuilders;
+
+
 public class Department {
     private String departmentName;
     private Integer availableBeds;
@@ -47,4 +50,36 @@ public class Department {
                 ", floor='" + floor + '\'' +
                 '}';
     }
+
+    public static class Builder implements DepartmentBuilders.DepartmentName, DepartmentBuilders.Optionals {
+        private final Department department;
+
+        public Builder() {
+            department = new Department();
+        }
+
+        @Override
+        public DepartmentBuilders.Optionals departmentName(String departmentName) {
+            this.department.departmentName = departmentName;
+            return this;
+        }
+
+        @Override
+        public DepartmentBuilders.Optionals availableBeds(Integer availableBeds) {
+            this.department.availableBeds = availableBeds;
+            return this;
+        }
+
+        @Override
+        public DepartmentBuilders.Optionals floor(Integer floor) {
+            this.department.floor = floor;
+            return this;
+        }
+
+        @Override
+        public Department build() {
+            return this.department;
+        }
+    }
+
 }

@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.library;
 
+import es.upm.miw.apaw_practice.domain.models.library.builders.BookWriterBuilders;
+
 public class BookWriter {
     private String name;
     private String nickname;
@@ -35,4 +37,36 @@ public class BookWriter {
                 ", numberOfBook=" + numberOfBook +
                 '}';
     }
+
+    public static class Builder implements BookWriterBuilders.Nickname, BookWriterBuilders.Optionals{
+        private final BookWriter bookWriter;
+        public Builder(){
+            this.bookWriter = new BookWriter();
+        }
+
+        @Override
+        public BookWriterBuilders.Optionals nickname(String nickname) {
+            this.bookWriter.setNickname(nickname);
+            return this;
+        }
+
+        @Override
+        public BookWriterBuilders.Optionals name(String name) {
+            this.bookWriter.setName(name);
+            return this;
+        }
+
+        @Override
+        public BookWriterBuilders.Optionals numberOfBook(Integer numberOfBook) {
+            this.bookWriter.setNumberOfBook(numberOfBook);
+            return this;
+        }
+
+        @Override
+        public BookWriter build() {
+            return this.bookWriter;
+        }
+    }
+
+
 }

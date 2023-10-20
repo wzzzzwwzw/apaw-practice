@@ -6,10 +6,11 @@ import es.upm.miw.apaw_practice.domain.models.climbing.Expedition;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestConfig
 class ExpeditionPersistenceMongodbIT {

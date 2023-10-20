@@ -1,11 +1,15 @@
 package es.upm.miw.apaw_practice.domain.services.library;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.library.LibrarySeederService;
 import es.upm.miw.apaw_practice.domain.models.library.Library;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -14,6 +18,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class LibraryServiceIT {
     @Autowired
     private LibraryService libraryService;
+    @Autowired
+    private LibrarySeederService librarySeederService;
+
+    @AfterEach
+    void resetDataBaseAfter() {
+        this.librarySeederService.deleteAll();
+        this.librarySeederService.seedDatabase();
+    }
     @Test
     void testReadService(){
         Library library = this.libraryService.read("Biblioteca Nacional");
@@ -24,4 +36,16 @@ public class LibraryServiceIT {
         assertEquals("9788401020414", library.getBooks().get(0).getIsbn());
         assertEquals("9788416738090", library.getBooks().get(1).getIsbn());
     }
+
+    @Test
+    void testFindAddressOfLibraryByLoanStatus(){
+        List<String> listOfAddress = this.libraryService.findAddressOfLibraryByLoanStatus(true);
+        assertNotNull(listOfAddress);
+        List<String> listAddressToCompare = new ArrayList<>();
+        listAddressToCompare.add("Calle atocha 10");
+        listAddressToCompare.add("Calle universidad 20");
+        assertEquals(listAddressToCompare, listOfAddress);
+        assertEquals(2, listOfAddress.size());
+    }
+
 }

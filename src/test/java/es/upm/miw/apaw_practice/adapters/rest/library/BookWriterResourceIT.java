@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RestTestConfig
@@ -57,5 +60,21 @@ class BookWriterResourceIT {
                     assertEquals("Cixin", bookWriter.getNickname());
                     assertEquals(30, bookWriter.getNumberOfBook());
                 });
+    }
+
+    @Test
+    void testFindAverageOfNumberOfBookByLibraryName() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(BookWriterResource.BOOKWRITER+ BookWriterResource.SEARCH)
+                                .queryParam("q", "name:Biblioteca territorial")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Double.class)
+                .value(Assertions::assertNotNull)
+                .value(averageOfNumberOfBook ->
+                        assertEquals(BigDecimal.valueOf(2).setScale(2,RoundingMode.HALF_UP), BigDecimal.valueOf(averageOfNumberOfBook).setScale(2, RoundingMode.HALF_UP)));
     }
 }

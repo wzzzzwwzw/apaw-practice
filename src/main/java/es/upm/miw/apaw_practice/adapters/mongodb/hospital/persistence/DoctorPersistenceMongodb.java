@@ -34,7 +34,7 @@ public class DoctorPersistenceMongodb implements DoctorPersistence {
     public Doctor create(Doctor doctor) {
         DepartmentEntity departmentEntity = new DepartmentEntity(doctor.getDepartment().getDepartmentName(),doctor.getDepartment().getAvailableBeds(),doctor.getDepartment().getFloor());
         return this.doctorRepository
-                .save(new DoctorEntity(doctor.getMedicalLicenseCode(),doctor.getOffice(),departmentEntity))
+                .save(new DoctorEntity(doctor.getMedicalLicenseCode(),doctor.getSpeciality(),departmentEntity))
                 .toDoctor();
     }
 

@@ -11,7 +11,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 @TestConfig
 class ClimberPersistenceMongodbIT {
@@ -32,7 +31,7 @@ class ClimberPersistenceMongodbIT {
     }
 
     @Test
-    void testFindByLevel () {
+    void testFindByLevel() {
         List<Climber> climbers = this.climberPersistence.findByLevel("Beginner");
         assertEquals(1, climbers.size());
         assertEquals("Beginner", climbers.get(0).getLevel());

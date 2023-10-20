@@ -64,8 +64,18 @@ public class DishResourceIT {
                 .expectBody(BigDecimal.class)
                 .value(Assertions::assertNotNull)
                 .value(cost -> assertEquals(new BigDecimal("13.5"), cost));
+    }
 
-
+    @Test
+    void testFindSumOfPriceByAvailableAndLastModificationThisMonthBadRequest() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(DishResource.DISHES + DishResource.SEARCH)
+                                .queryParam("q", "availabl:true")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
     }
 
 }

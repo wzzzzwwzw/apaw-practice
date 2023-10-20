@@ -38,7 +38,7 @@ public class DishService {
         return menus.stream()
                 .map(menu -> menu.getDishes().stream()
                         .filter(dish -> dish.getIngredients().stream()
-                                .allMatch(ingredient -> ingredient.isAvailable() == available))
+                                .allMatch(ingredient -> ingredient.isAvailable().equals(available)))
                         .map(Dish::getPrice)
                         .reduce(BigDecimal.ZERO, BigDecimal::add))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);

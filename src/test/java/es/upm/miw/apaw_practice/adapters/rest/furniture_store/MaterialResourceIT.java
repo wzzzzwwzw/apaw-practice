@@ -54,7 +54,7 @@ class MaterialResourceIT {
     }
 
     @Test
-    void testSearchUniqueMaterialTypeByManagerPromotionCandidate() {
+    void testFindUniqueMaterialsTypeByManagerPromotionCandidateTrue() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
@@ -66,10 +66,35 @@ class MaterialResourceIT {
                 .expectStatus().isOk()
                 .expectBodyList(String.class)
                 .consumeWith(materialsType -> {
-                    assertEquals("[\"madera\",\"plástico\"]", Objects.requireNonNull(materialsType.getResponseBody()).get(0));
+                    assertEquals("[\"madera\",\"plástico\",\"metal\",\"vidrio\"]", Objects.requireNonNull(materialsType.getResponseBody()).get(0));
                     assertTrue(materialsType.getResponseBody().size()>0);
 
                 });
+    }
+
+    @Test
+    void testFindUniqueMaterialsTypeByManagerPromotionCandidateFalse() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(MATERIALS + SEARCH)
+                                .queryParam("q", "promotion-candidate:false")
+                                .build()
+                )
+                .exchange()
+                .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testBadRequestFindUniqueMaterialsTypeByManagerPromotionCandidate() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(MATERIALS + SEARCH)
+                                .queryParam("q", "promotion-candidate:null")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
     }
 
 }

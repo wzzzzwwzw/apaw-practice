@@ -58,4 +58,31 @@ public class IngredientResourceIT {
                 .value(names -> assertEquals(List.of("Arroz", "Lubina"), names));
     }
 
+    @Test
+    void testNotSearchIngredientsNameByCategoryColor() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(INGREDIENTS + SEARCH)
+                                .queryParam("q", "color:unknown_color")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(List.class)
+                .value(Assertions::assertNotNull)
+                .value(names -> assertEquals(List.of(), names));
+    }
+
+    @Test
+    void testSearchIngredientsNameByCategoryColorBadRequest() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(INGREDIENTS + SEARCH)
+                                .queryParam("q", "colo:Azul")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
+
 }

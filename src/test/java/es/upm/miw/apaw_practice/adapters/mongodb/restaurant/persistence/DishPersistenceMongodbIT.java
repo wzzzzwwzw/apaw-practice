@@ -2,11 +2,15 @@ package es.upm.miw.apaw_practice.adapters.mongodb.restaurant.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.restaurant.RestaurantSeederService;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
+import es.upm.miw.apaw_practice.domain.models.restaurant.CategoryRestaurant;
 import es.upm.miw.apaw_practice.domain.models.restaurant.Dish;
+import es.upm.miw.apaw_practice.domain.models.restaurant.Ingredient;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,6 +41,16 @@ public class DishPersistenceMongodbIT {
         assertNotEquals(price, updatedPrice);
         restaurantSeederService.deleteAll();
         restaurantSeederService.seedDatabase();
+    }
+
+    @Test
+    void testUpdateNotFound() {
+        Dish dish = new Dish("Macarrones", new BigDecimal("8.5"), new CategoryRestaurant("Pasta", "Amarillo"),
+                List.of(new Ingredient("Macarron", false, true)));
+        RuntimeException exception = assertThrows(NotFoundException.class, () -> {
+            this.dishPersistence.update(dish);
+        });
+        assertTrue(exception.getMessage().contains("Dish title:Macarrones"));
     }
 
     @Test

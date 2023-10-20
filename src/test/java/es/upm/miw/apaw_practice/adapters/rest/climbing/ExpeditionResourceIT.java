@@ -10,11 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RestTestConfig
 class ExpeditionResourceIT {

@@ -72,8 +72,14 @@ class FurnitureStorePersistenceMongodbIT {
     @Test
     void testFindFurnituresByManagerPromotionCandidate() {
         List<Furniture> furnitureList = this.furnitureStorePersistenceMongodb.findFurnituresByManagerPromotionCandidate(true);
-        assertEquals(3, furnitureList.size());
+        assertEquals(5, furnitureList.size());
         assertEquals("lámpara de pie", furnitureList.get(0).getName());
+    }
+
+    @Test
+    void testNotFoundFurnituresByManagerPromotionCandidate() {
+        List<Furniture> furnitureList = this.furnitureStorePersistenceMongodb.findFurnituresByManagerPromotionCandidate(false);
+        assertTrue(furnitureList.isEmpty());
     }
 
     @Test
@@ -84,7 +90,7 @@ class FurnitureStorePersistenceMongodbIT {
     }
 
     @Test
-    void testNotFindFurnituresByManagerName() {
+    void testNotFoundFurnituresByManagerName() {
         List<Furniture> furnitureList = this.furnitureStorePersistenceMongodb.findFurnituresByManagerName("No existe");
         assertTrue(furnitureList.isEmpty());
     }

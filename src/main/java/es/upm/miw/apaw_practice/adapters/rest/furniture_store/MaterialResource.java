@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping(MaterialResource.MATERIALS)
@@ -30,8 +31,16 @@ public class MaterialResource {
 
     @GetMapping(SEARCH)
     public List<String> findUniqueMaterialTypeByManagerPromotionCandidate(@RequestParam String q) {
-        Boolean promotionCandidate = Boolean.valueOf(new LexicalAnalyzer().extractWithAssure(q, "promotion-candidate"));
+        Boolean promotionCandidate = new LexicalAnalyzer().extractWithAssure(q, "promotion-candidate",
+                promotionCandidateString -> {
+                    if (!Objects.equals(promotionCandidateString, "true") && !Objects.equals(promotionCandidateString, "false")) {
+                        throw new IllegalArgumentException("Cadena no válida : se esperaba 'true' o 'false'.");
+                    }
+                    return Boolean.valueOf(promotionCandidateString);
+                });
+
         return this.materialService.findUniqueMaterialTypeByManagerPromotionCandidate(promotionCandidate);
     }
+
 
 }

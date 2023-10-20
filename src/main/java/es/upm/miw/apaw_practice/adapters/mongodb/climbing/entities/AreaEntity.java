@@ -23,7 +23,7 @@ public class AreaEntity {
     private ExpeditionEntity expeditionEntity;
 
     public AreaEntity() {
-
+        //empty for framework
     }
 
     public AreaEntity(String name, String location, boolean easyAccess, List<RouteEntity> routeEntities, ExpeditionEntity expeditionEntity) {

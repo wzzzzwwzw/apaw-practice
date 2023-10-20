@@ -1,12 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.climbing.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.climbing.ClimbingSeederService;
 import es.upm.miw.apaw_practice.domain.models.climbing.Area;
 import es.upm.miw.apaw_practice.domain.models.climbing.Expedition;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import es.upm.miw.apaw_practice.adapters.mongodb.climbing.ClimbingSeederService;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

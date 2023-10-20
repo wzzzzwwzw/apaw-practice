@@ -3,7 +3,7 @@ package es.upm.miw.apaw_practice.domain.models.bakery;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Product {
+public class Product implements ProductComponent {
     private String name;
     private String description;
     private BigDecimal price;
@@ -97,5 +97,103 @@ public class Product {
                 ", expirationDate='" + getExpirationDate() + "'" +
                 ", productType='" + getProductType() + "'" +
                 "}";
+    }
+
+
+    // Composite Pattern
+
+    @Override
+    public boolean isComposite() { return false; }
+
+    @Override
+    public void add(ProductComponent productComponent) { }
+
+    @Override
+    public void remove(ProductComponent productComponent) { }
+
+
+    // Builder Pattern
+
+    public static ProductBuilder.Name builder(String name) {
+        return new Product.Builder();
+    }
+
+    private interface ProductBuilder {
+        interface Name {
+            Description name(String name);
+        }
+
+        interface Description {
+            Price description(String description);
+        }
+
+        interface Price {
+            GlutenFree price(BigDecimal price);
+        }
+
+        interface GlutenFree {
+            ExpirationDate isGlutenFree(Boolean isGlutenFree);
+        }
+
+        interface ExpirationDate {
+            ProductType expirationDate(LocalDate date);
+        }
+
+        interface ProductType {
+            ProductType productType(es.upm.miw.apaw_practice.domain.models.bakery.ProductType productType);
+
+            Product build();
+        }
+    }
+
+    public static class Builder implements ProductBuilder.Name, ProductBuilder.Description, ProductBuilder.Price,
+            ProductBuilder.GlutenFree, ProductBuilder.ExpirationDate, ProductBuilder.ProductType {
+        private final Product product;
+
+        public Builder() {
+            this.product = new Product();
+        }
+
+        @Override
+        public ProductBuilder.Description name(String name) {
+            this.product.setName(name);
+            return this;
+        }
+
+        @Override
+        public ProductBuilder.Price description(String description) {
+            this.product.setDescription(description);
+            return this;
+        }
+
+        @Override
+        public ProductBuilder.GlutenFree price(BigDecimal price) {
+            this.product.setPrice(price);
+            return this;
+        }
+
+        @Override
+        public ProductBuilder.ExpirationDate isGlutenFree(Boolean glutenFree) {
+            this.product.setGlutenFree(glutenFree);
+            return this;
+        }
+
+        @Override
+        public ProductBuilder.ProductType expirationDate(LocalDate date) {
+            this.product.setExpirationDate(date);
+            return this;
+        }
+
+        @Override
+        public Product build() {
+            return this.product;
+        }
+
+        @Override
+        public ProductBuilder.ProductType productType(
+                es.upm.miw.apaw_practice.domain.models.bakery.ProductType productType) {
+            this.product.setProductType(productType);
+            return this;
+        }
     }
 }

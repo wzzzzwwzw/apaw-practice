@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.climbing.entities;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.TagEntity;
 import es.upm.miw.apaw_practice.domain.models.climbing.Climber;
 import es.upm.miw.apaw_practice.domain.models.climbing.Expedition;
 import org.springframework.data.annotation.Id;
@@ -22,7 +21,7 @@ public class ClimberEntity {
     private List<ExpeditionEntity> expeditionEntities;
 
     public ClimberEntity() {
-
+        //empty for framework
     }
 
     public ClimberEntity(String email, LocalDate dateOfBirth, String level, List<ExpeditionEntity> expeditionEntities) {

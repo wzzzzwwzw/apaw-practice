@@ -1,9 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.rest.library;
 
+import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.library.BookWriter;
 import es.upm.miw.apaw_practice.domain.services.library.BookWriterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
 
 @RestController
 @RequestMapping(BookWriterResource.BOOKWRITER)
@@ -11,6 +14,7 @@ public class BookWriterResource {
     static final String BOOKWRITER = "/library/bookWriters";
     static final String NICKNAME_ID = "/{nickname}";
     static final String NUMBER_OF_BOOK = "/number-of-book";
+    static final String SEARCH = "/search-by-name";
     private final BookWriterService bookWriterService;
 
     @Autowired
@@ -26,5 +30,11 @@ public class BookWriterResource {
     @PutMapping(NICKNAME_ID + NUMBER_OF_BOOK)
     public BookWriter updateBookWriterNumberOfBook(@PathVariable String nickname, @RequestBody Integer numberOfBook) {
         return this.bookWriterService.updateNumberOfBook(nickname, numberOfBook);
+    }
+
+    @GetMapping(SEARCH)
+    public BigDecimal findAverageOfNumberOfBookByLibraryName(@RequestParam String q){
+        String name = new LexicalAnalyzer().extractWithAssure(q, "name");
+        return this.bookWriterService.findAverageOfNumberOfBookByLibraryName(name);
     }
 }

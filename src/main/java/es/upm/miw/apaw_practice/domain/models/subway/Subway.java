@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.subway;
 
 import java.util.List;
-import java.util.ArrayList;
 
 public class Subway {
 

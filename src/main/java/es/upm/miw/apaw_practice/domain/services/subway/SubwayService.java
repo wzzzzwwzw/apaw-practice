@@ -32,4 +32,8 @@ public class SubwayService {
         subway.setLines(lines);
         return this.subwayPersistence.update(subway);
     }
+
+    public List<String> findCapacityOverTen(String order) {
+        return this.subwayPersistence.findCapacityOverTen(order);
+    }
 }

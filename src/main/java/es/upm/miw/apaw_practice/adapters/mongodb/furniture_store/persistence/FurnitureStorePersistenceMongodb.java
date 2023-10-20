@@ -62,7 +62,9 @@ public class FurnitureStorePersistenceMongodb implements FurnitureStorePersisten
     public List<Furniture> findFurnituresByManagerPromotionCandidate(Boolean promotionCandidate) {
         return this.furnitureStoreRepository.findAll().stream()
                 .map(FurnitureStoreEntity::toFurnitureStore)
-                .filter(furnitureStore -> Objects.equals(furnitureStore.getManager().getPromotionCandidate(), promotionCandidate))
+                .filter(furnitureStore ->
+                        Objects.equals(furnitureStore.getManager().getPromotionCandidate(), promotionCandidate)
+                        && promotionCandidate != null)
                 .flatMap(furnitureStore -> furnitureStore.getFurnitures().stream())
                 .toList();
     }

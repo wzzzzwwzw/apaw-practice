@@ -4,6 +4,7 @@ import es.upm.miw.apaw_practice.domain.models.subway.Line;
 import es.upm.miw.apaw_practice.domain.models.subway.Subway;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @Repository
@@ -15,4 +16,6 @@ public interface SubwayPersistence {
     Line findLineByCityAndLabel(String city, String lineLabel);
 
     Subway update(Subway subway);
+
+    List<String> findCapacityOverTen(String order);
 }

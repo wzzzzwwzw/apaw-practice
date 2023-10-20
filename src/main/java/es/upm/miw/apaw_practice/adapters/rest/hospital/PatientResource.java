@@ -11,6 +11,8 @@ public class PatientResource {
     static final String PATIENTS = "/hospital/patients";
     static final String SOCIAL_INSURANCE_NUMBER = "/{socialInsuranceNumber}";
     static final String ALLERGIC_MEDICINE = "/allergicMedicine";
+    static final String SEARCH_APPOINTMENT = "/search/appointments";
+    static final String SEARCH_AVAILABLE = "/search/availableBeds";
     private final PatientService patientService;
 
     @Autowired
@@ -27,5 +29,15 @@ public class PatientResource {
     public Patient updateAllergicMedicine(@PathVariable String socialInsuranceNumber, @RequestBody String newAllergicMedicine) {
         return this.patientService.updateAllergicMedicineBySocialInsuranceNumber(socialInsuranceNumber,newAllergicMedicine);
     }
+
+    @GetMapping(SEARCH_AVAILABLE)
+    public Integer findAverageAgeByModel(String appointmentRoom, Boolean urgent){
+        return this.patientService.findTotalOccupiedBedsByAppointmentRoom(appointmentRoom,urgent);
+    }
+    @GetMapping(SEARCH_APPOINTMENT)
+    public Integer findTotalAppointmentBySpeciality(String speciality){
+        return this.patientService.findTotalAppointmentBySpeciality(speciality);
+    }
+
 
 }

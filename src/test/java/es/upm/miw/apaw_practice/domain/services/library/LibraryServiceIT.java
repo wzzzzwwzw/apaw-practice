@@ -5,7 +5,11 @@ import es.upm.miw.apaw_practice.domain.models.library.Library;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -23,5 +27,24 @@ public class LibraryServiceIT {
         assertEquals(2, library.getBooks().size());
         assertEquals("9788401020414", library.getBooks().get(0).getIsbn());
         assertEquals("9788416738090", library.getBooks().get(1).getIsbn());
+    }
+
+    @Test
+    void testFindAddressOfLibraryByLoanStatus(){
+        List<String> listOfAddress = this.libraryService.findAddressOfLibraryByLoanStatus(true);
+        assertNotNull(listOfAddress);
+        List<String> listAddressToCompare = new ArrayList<>();
+        listAddressToCompare.add("Calle atocha 10");
+        listAddressToCompare.add("Calle universidad 20");
+        assertEquals(listAddressToCompare, listOfAddress);
+        assertEquals(2, listOfAddress.size());
+    }
+
+    @Test
+    void testFindAverageOfNumberOfBookByLibraryName(){
+        BigDecimal average = this.libraryService.findAverageOfNumberOfBookByLibraryName("Biblioteca territorial");
+        assertEquals(BigDecimal.valueOf(2).setScale(2, RoundingMode.HALF_UP), average);
+        average = this.libraryService.findAverageOfNumberOfBookByLibraryName("Biblioteca Nacional");
+        assertEquals(BigDecimal.valueOf(16.33),average);
     }
 }

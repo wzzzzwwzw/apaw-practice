@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.hotel;
 
 import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
-import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.hotel.Hotel;
 import es.upm.miw.apaw_practice.domain.services.hotel.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;

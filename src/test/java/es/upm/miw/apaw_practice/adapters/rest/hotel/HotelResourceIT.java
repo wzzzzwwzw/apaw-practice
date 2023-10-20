@@ -44,4 +44,18 @@ class HotelResourceIT {
                 });
     }
 
+    @Test
+    void testGetMaxParticipantsSumByEmail(){
+        this.webTestClient.
+                get().uri(uriBuilder ->
+                        uriBuilder.path(HotelResource.HOTELS + HotelResource.SEARCH)
+                                .queryParam("q", "email:first@email.com")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Double.class)
+                .value(Assertions::assertNotNull).
+                isEqualTo(15.6);
+    }
+
 }

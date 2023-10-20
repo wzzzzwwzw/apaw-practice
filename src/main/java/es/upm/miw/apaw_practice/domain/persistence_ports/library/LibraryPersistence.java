@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface LibraryPersistence {
     Library read(String name);
-    BigDecimal findAverageOfNumberOfBookByLibraryName(String name);
     List<String> findAddressByBook(List<Book> listOfBook);
+    List<Book> findBookByLibraryName(String name);
 }

@@ -14,8 +14,7 @@ import java.util.List;
 public class LibraryResource {
     static final String LIBRARY = "/library/libraries";
     static final String NAME_ID = "/{name}";
-    static final String SEARCH2 = "/search2";
-    static final String SEARCH1 = "/search1";
+    static final String SEARCH = "/search";
     private final LibraryService libraryService;
     @Autowired
     public LibraryResource(LibraryService libraryService) {
@@ -27,16 +26,10 @@ public class LibraryResource {
         return this.libraryService.read(name);
     }
 
-    @GetMapping(SEARCH1)
+    @GetMapping(SEARCH)
     public List<String> findAddressOfLibraryByLoanStatus(@RequestParam String q){
         Boolean loanStatus = new LexicalAnalyzer().extractWithAssure(q, "loanStatus", Boolean::parseBoolean);
         return this.libraryService.findAddressOfLibraryByLoanStatus(loanStatus);
     }
-    @GetMapping(SEARCH2)
-    public BigDecimal findAverageOfNumberOfBookByLibraryName(@RequestParam String q){
-        String name = new LexicalAnalyzer().extractWithAssure(q, "name");
-        return this.libraryService.findAverageOfNumberOfBookByLibraryName(name);
-    }
-
 
 }

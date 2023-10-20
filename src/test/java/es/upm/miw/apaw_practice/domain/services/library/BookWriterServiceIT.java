@@ -7,6 +7,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -37,5 +40,13 @@ public class BookWriterServiceIT {
         assertEquals("Cixin", bookWriter.getNickname());
         assertEquals(30, bookWriter.getNumberOfBook());
         this.bookWriterService.updateNumberOfBook("Cixin",18);
+    }
+
+    @Test
+    void testFindAverageOfNumberOfBookByLibraryName(){
+        BigDecimal average = this.bookWriterService.findAverageOfNumberOfBookByLibraryName("Biblioteca territorial");
+        assertEquals(BigDecimal.valueOf(2).setScale(2, RoundingMode.HALF_UP), average.setScale(2,RoundingMode.HALF_UP));
+        average = this.bookWriterService.findAverageOfNumberOfBookByLibraryName("Biblioteca Nacional");
+        assertEquals(BigDecimal.valueOf(16.33),average.setScale(2,RoundingMode.HALF_UP));
     }
 }

@@ -23,8 +23,6 @@ public class LibraryService {
         return this.libraryPersistence.read(name);
     }
 
-    public BigDecimal findAverageOfNumberOfBookByLibraryName(String name){ return this.libraryPersistence.findAverageOfNumberOfBookByLibraryName(name); }
-
     public List<String> findAddressOfLibraryByLoanStatus(Boolean loanStatus){
         return this.libraryPersistence.findAddressByBook(this.loanPersistence.findAddressOfLibraryByLoanStatus(loanStatus));
     }

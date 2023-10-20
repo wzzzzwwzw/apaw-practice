@@ -41,7 +41,7 @@ class LibraryResourceIT {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
-                        uriBuilder.path(LibraryResource.LIBRARY + LibraryResource.SEARCH1)
+                        uriBuilder.path(LibraryResource.LIBRARY + LibraryResource.SEARCH)
                                 .queryParam("q", "loanStatus:false")
                                 .build())
                 .exchange()
@@ -52,22 +52,6 @@ class LibraryResourceIT {
                     assertEquals(1, addressList.size());
                     assertTrue(addressList.get(0).contains("Calle universidad 20"));
                 });
-    }
-
-    @Test
-    void testFindAverageOfNumberOfBookByLibraryName() {
-        this.webTestClient
-                .get()
-                .uri(uriBuilder ->
-                        uriBuilder.path(LibraryResource.LIBRARY + LibraryResource.SEARCH2)
-                                .queryParam("q", "name:Biblioteca Nacional")
-                                .build())
-                .exchange()
-                .expectStatus().isOk()
-                .expectBody(Double.class)
-                .value(Assertions::assertNotNull)
-                .value(averageOfNumberOfBook ->
-                        assertEquals(16.33, averageOfNumberOfBook));
     }
 
 }

@@ -54,7 +54,7 @@ class MaterialResourceIT {
     }
 
     @Test
-    void testFindUniqueMaterialTypeByManagerPromotionCandidate() {
+    void testFindUniqueMaterialsTypeByManagerPromotionCandidate() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
@@ -73,7 +73,7 @@ class MaterialResourceIT {
     }
 
     @Test
-    void testBadRequestFindUniqueMaterialTypeByManagerPromotionCandidate() {
+    void testBadRequestFindUniqueMaterialsTypeByManagerPromotionCandidate() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
@@ -85,7 +85,7 @@ class MaterialResourceIT {
     }
 
     @Test
-    void testNotFoundUniqueMaterialTypeByManagerPromotionCandidate() {
+    void testNotFoundUniqueMaterialsTypeByManagerPromotionCandidate() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->

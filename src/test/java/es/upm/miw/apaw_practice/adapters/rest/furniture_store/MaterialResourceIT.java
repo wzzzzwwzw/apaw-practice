@@ -54,7 +54,7 @@ class MaterialResourceIT {
     }
 
     @Test
-    void testSearchUniqueMaterialTypeByManagerPromotionCandidate() {
+    void testFindUniqueMaterialsTypeByManagerPromotionCandidateTrue() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
@@ -70,6 +70,49 @@ class MaterialResourceIT {
                     assertTrue(materialsType.getResponseBody().size()>0);
 
                 });
+    }
+
+    @Test
+    void testFindUniqueMaterialsTypeByManagerPromotionCandidateFalse() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(MATERIALS + SEARCH)
+                                .queryParam("q", "promotion-candidate:false")
+                                .build()
+                )
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .consumeWith(materialsType -> {
+                    assertEquals("[\"madera\",\"plástico\",\"metal\",\"vidrio\"]", Objects.requireNonNull(materialsType.getResponseBody()).get(0));
+                    assertTrue(materialsType.getResponseBody().size()>0);
+
+                });
+    }
+
+    @Test
+    void testBadRequestFindUniqueMaterialsTypeByManagerPromotionCandidate() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(MATERIALS + SEARCH)
+                                .queryParam("q", "promotionCandidate:true")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
+
+    @Test
+    void testNotFoundUniqueMaterialsTypeByManagerPromotionCandidate() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(MATERIALS + SEARCH)
+                                .queryParam("q", "promotion-candidate:null")
+                                .build())
+                .exchange()
+                .expectStatus().isNotFound();
     }
 
 }

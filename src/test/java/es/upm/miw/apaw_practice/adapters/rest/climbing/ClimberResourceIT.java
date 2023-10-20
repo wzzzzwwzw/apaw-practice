@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 import static es.upm.miw.apaw_practice.adapters.rest.climbing.ClimberResource.CLIMBERS;
 import static es.upm.miw.apaw_practice.adapters.rest.climbing.ClimberResource.EMAIL_ID;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RestTestConfig
 class ClimberResourceIT {

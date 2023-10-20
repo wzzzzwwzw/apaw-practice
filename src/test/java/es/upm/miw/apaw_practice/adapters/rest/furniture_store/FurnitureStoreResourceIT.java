@@ -13,10 +13,8 @@ import org.springframework.web.reactive.function.BodyInserters;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import static es.upm.miw.apaw_practice.adapters.rest.furniture_store.FurnitureStoreResource.*;
-import static es.upm.miw.apaw_practice.adapters.rest.furniture_store.MaterialResource.MATERIALS;
 import static es.upm.miw.apaw_practice.adapters.rest.furniture_store.MaterialResource.SEARCH;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -68,7 +66,7 @@ class FurnitureStoreResourceIT {
     }
 
     @Test
-    void testSearchAverageFurniturePriceByManagerName() {
+    void testFindAverageFurnituresPriceByManagerName() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
@@ -80,9 +78,31 @@ class FurnitureStoreResourceIT {
                 .expectStatus().isOk()
                 .expectBody(BigDecimal.class)
                 .value(Assertions::assertNotNull)
-                .value(decimal -> {
-                    assertEquals(new BigDecimal("20.24"), decimal);
-                });
+                .value(decimal -> assertEquals(new BigDecimal("20.24"), decimal));
+    }
+
+    @Test
+    void testBadRequestFindAverageFurnituresPriceByManagerName() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FURNITURE_STORES + SEARCH)
+                                .queryParam("q", "nombre:José")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
+
+    @Test
+    void testNotFoundAverageFurnituresPriceByManagerName() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FURNITURE_STORES + SEARCH)
+                                .queryParam("q", "name:No_exist")
+                                .build())
+                .exchange()
+                .expectStatus().isNotFound();
     }
 
 }

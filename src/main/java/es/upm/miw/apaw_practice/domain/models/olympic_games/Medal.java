@@ -11,7 +11,6 @@ public class Medal implements TreeMedals {
     private String competition;
     private Competitor winner;
 
-
     public Medal() {
     }
 

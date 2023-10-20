@@ -92,10 +92,8 @@ public class SubjectResourceIT {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(List.class)
-                .value(descriptions -> {
-                    assertEquals(List.of("desc1", "desc2", "desc3", "desc4", "desc5", "descSearch2", "descSearch3"),
-                                 descriptions);
-                });
+                .value(descriptions -> assertEquals(List.of("desc1", "desc2", "desc3", "desc4", "desc5", "descSearch2", "descSearch3"),
+                             descriptions));
 
         this.webTestClient
                 .get()
@@ -106,10 +104,8 @@ public class SubjectResourceIT {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(List.class)
-                .value(descriptions -> {
-                    assertEquals(List.of("desc2", "descSearch1", "descSearch3"),
-                                 descriptions);
-                });
+                .value(descriptions -> assertEquals(List.of("desc2", "descSearch1", "descSearch3"),
+                             descriptions));
     }
 
     @Test

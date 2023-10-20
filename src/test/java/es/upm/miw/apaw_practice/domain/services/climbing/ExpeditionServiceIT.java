@@ -31,7 +31,7 @@ class ExpeditionServiceIT {
 
     @Test
     void testUpdateTotalExpense() {
-        this.expeditionService.updateTotalExpense("1",  new BigDecimal("2000.00"));
+        this.expeditionService.updateTotalExpense("1", new BigDecimal("2000.00"));
         Expedition expedition = this.expeditionPersistence.readByIdentifier("1");
         assertEquals("1", expedition.getIdentifier());
         assertEquals(LocalDate.now(), expedition.getDate());

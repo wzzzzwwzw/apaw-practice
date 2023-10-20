@@ -1,12 +1,12 @@
 package es.upm.miw.apaw_practice.domain.models.library;
-
+import es.upm.miw.apaw_practice.domain.models.library.composite.TreeBooks;
 import es.upm.miw.apaw_practice.domain.models.library.builders.BookBuilders;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book {
+public class Book implements TreeBooks{
     private String title;
     private String isbn;
     private LocalDate publicationDate;
@@ -79,5 +79,25 @@ public class Book {
             return this.book;
         }
 
+    }
+
+    @Override
+    public Boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(TreeBooks treeBooks) {
+        throw new UnsupportedOperationException("Unsupported operation in Book leaf");
+    }
+
+    @Override
+    public void remove(TreeBooks treeBooks) {
+        // cannot remove in leaf
+    }
+
+    @Override
+    public int number() {
+        return 1;
     }
 }

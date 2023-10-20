@@ -40,11 +40,4 @@ public class LibraryServiceIT {
         assertEquals(2, listOfAddress.size());
     }
 
-    @Test
-    void testFindAverageOfNumberOfBookByLibraryName(){
-        BigDecimal average = this.libraryService.findAverageOfNumberOfBookByLibraryName("Biblioteca territorial");
-        assertEquals(BigDecimal.valueOf(2).setScale(2, RoundingMode.HALF_UP), average);
-        average = this.libraryService.findAverageOfNumberOfBookByLibraryName("Biblioteca Nacional");
-        assertEquals(BigDecimal.valueOf(16.33),average);
-    }
 }

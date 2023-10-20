@@ -14,7 +14,7 @@ import java.util.List;
 public class LibraryResource {
     static final String LIBRARY = "/library/libraries";
     static final String NAME_ID = "/{name}";
-    static final String SEARCH = "/search";
+    static final String SEARCH = "/search-by-loan-status";
     private final LibraryService libraryService;
     @Autowired
     public LibraryResource(LibraryService libraryService) {

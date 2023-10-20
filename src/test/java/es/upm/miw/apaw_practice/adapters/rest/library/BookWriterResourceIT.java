@@ -68,13 +68,13 @@ class BookWriterResourceIT {
                 .get()
                 .uri(uriBuilder ->
                         uriBuilder.path(BookWriterResource.BOOKWRITER+ BookWriterResource.SEARCH)
-                                .queryParam("q", "name:Biblioteca Nacional")
+                                .queryParam("q", "name:Biblioteca territorial")
                                 .build())
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Double.class)
                 .value(Assertions::assertNotNull)
                 .value(averageOfNumberOfBook ->
-                        assertEquals(BigDecimal.valueOf(16.33), BigDecimal.valueOf(averageOfNumberOfBook).setScale(2, RoundingMode.HALF_UP)));
+                        assertEquals(BigDecimal.valueOf(2).setScale(2,RoundingMode.HALF_UP), BigDecimal.valueOf(averageOfNumberOfBook).setScale(2, RoundingMode.HALF_UP)));
     }
 }

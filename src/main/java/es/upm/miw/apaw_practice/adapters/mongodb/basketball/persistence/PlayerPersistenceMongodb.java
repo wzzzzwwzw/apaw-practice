@@ -23,4 +23,9 @@ public class PlayerPersistenceMongodb implements PlayerPersistence {
                 .toPlayer();
     }
 
+    @Override
+    public void delete(String email) {
+        this.playerRepository.deleteByEmail(email);
+    }
+
 }

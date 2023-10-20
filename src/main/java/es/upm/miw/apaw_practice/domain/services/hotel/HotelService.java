@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.hotel.HotelPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class HotelService {
 
@@ -21,5 +23,9 @@ public class HotelService {
 
     public Double MaxParticipantsAverageByEmail(String email) {
         return this.hotelPersistence.MaxParticipantAverageByEmail(email);
+    }
+
+    public List<Integer> distinctRoomNumbersByInstructor(String instructorName) {
+        return this.hotelPersistence.distinctRoomNumbersByInstructor(instructorName);
     }
 }

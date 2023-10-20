@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.domain.persistence_ports.hotel;
 import es.upm.miw.apaw_practice.domain.models.hotel.Hotel;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 
@@ -10,7 +11,7 @@ import java.util.stream.Stream;
 public interface HotelPersistence {
     Hotel readByName(String name);
 
-    Stream<Hotel> readAll();
-
     Double MaxParticipantAverageByEmail(String email);
+
+    List<Integer> distinctRoomNumbersByInstructor(String instructorName);
 }

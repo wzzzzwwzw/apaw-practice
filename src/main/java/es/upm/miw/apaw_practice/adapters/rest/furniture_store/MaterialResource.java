@@ -32,11 +32,13 @@ public class MaterialResource {
     @GetMapping(SEARCH)
     public List<String> findUniqueMaterialTypeByManagerPromotionCandidate(@RequestParam String q) {
         String promotionCandidateString = new LexicalAnalyzer().extractWithAssure(q, "promotion-candidate");
-        Boolean promotionCandidate = Boolean.valueOf(promotionCandidateString);
-        if (!Objects.equals(promotionCandidateString, "true") || !Objects.equals(promotionCandidateString, "false")) {
-            promotionCandidate = null;
+        Boolean promotionCandidate = null;
+
+        if (Objects.equals(promotionCandidateString, "true") || Objects.equals(promotionCandidateString, "false")) {
+            promotionCandidate = Boolean.valueOf(promotionCandidateString);
         }
         return this.materialService.findUniqueMaterialTypeByManagerPromotionCandidate(promotionCandidate);
     }
+
 
 }

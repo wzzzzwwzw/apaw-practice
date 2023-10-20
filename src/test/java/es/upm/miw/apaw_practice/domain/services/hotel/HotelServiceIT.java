@@ -34,4 +34,10 @@ public class HotelServiceIT {
         assertNotNull(hotel.getBookings());
         assertNotNull(hotel.getActivities());
     }
+
+    @Test
+    void testMaxParticipantsSumByEmail() {
+        Double sum = this.hotelService.MaxParticipantsAverageByEmail("first@email.com");
+        assertEquals(sum,15.6);
+    }
 }

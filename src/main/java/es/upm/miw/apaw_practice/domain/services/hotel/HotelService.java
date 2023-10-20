@@ -1,9 +1,14 @@
 package es.upm.miw.apaw_practice.domain.services.hotel;
 
 import es.upm.miw.apaw_practice.domain.models.hotel.Hotel;
+import es.upm.miw.apaw_practice.domain.models.hotel.HotelActivity;
 import es.upm.miw.apaw_practice.domain.persistence_ports.hotel.HotelPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.OptionalDouble;
+import java.util.stream.Stream;
 
 
 @Service
@@ -20,4 +25,7 @@ public class HotelService {
         return this.hotelPersistence.readByName(name);
     }
 
+    public Double MaxParticipantsAverageByEmail(String email) {
+        return this.hotelPersistence.MaxParticipantAverageByEmail(email);
+    }
 }

@@ -12,7 +12,7 @@ public class Area implements TreeAreas {
     private Expedition expedition;
 
     public Area() {
-
+        //empty for framework
     }
 
     public Area(String name, String location, boolean easyAccess, List<Route> routes, Expedition expedition) {

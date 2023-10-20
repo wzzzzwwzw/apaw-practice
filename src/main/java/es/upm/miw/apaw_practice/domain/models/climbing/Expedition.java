@@ -9,7 +9,7 @@ public class Expedition {
     private BigDecimal totalExpense;
 
     public Expedition() {
-
+        //empty for framework
     }
 
     public Expedition(LocalDate date, BigDecimal totalExpense) {

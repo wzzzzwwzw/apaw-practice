@@ -21,7 +21,7 @@ public class ClimberEntity {
     private List<ExpeditionEntity> expeditionEntities;
 
     public ClimberEntity() {
-
+        //empty for framework
     }
 
     public ClimberEntity(String email, LocalDate dateOfBirth, String level, List<ExpeditionEntity> expeditionEntities) {

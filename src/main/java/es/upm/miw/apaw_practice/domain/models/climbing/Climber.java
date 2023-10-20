@@ -10,7 +10,7 @@ public class Climber {
     private List<Expedition> expeditions;
 
     public Climber() {
-
+        //empty for framework
     }
 
     public Climber(String email, LocalDate dateOfBirth, String level, List<Expedition> expeditions) {

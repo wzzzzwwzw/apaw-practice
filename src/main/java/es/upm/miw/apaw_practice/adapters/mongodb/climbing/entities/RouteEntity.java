@@ -10,7 +10,7 @@ public class RouteEntity {
     private String difficulty;
 
     public RouteEntity() {
-
+        //empty for framework
     }
 
     public RouteEntity(String key, String name, String difficulty) {

@@ -41,7 +41,7 @@ class AreaServiceIT {
     }
 
     @Test
-    void testFindRouteNamesByClimberLevel () {
+    void testFindRouteNamesByClimberLevel() {
         String[] routeNames = this.areaService.findRouteNamesByClimberLevel("Beginner");
         assertEquals(4, routeNames.length);
         assertEquals("Route 1", routeNames[0]);

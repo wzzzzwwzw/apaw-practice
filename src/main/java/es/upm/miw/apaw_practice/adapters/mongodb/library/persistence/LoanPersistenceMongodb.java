@@ -1,8 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.library.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.library.daos.LoanRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.library.entities.BookEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.library.entities.BookWriterEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.library.entities.LoanEntity;
 import es.upm.miw.apaw_practice.adapters.rest.library.dto.LoanDataDto;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
@@ -13,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository("loanPersistence")
 public class LoanPersistenceMongodb implements LoanPersistence {

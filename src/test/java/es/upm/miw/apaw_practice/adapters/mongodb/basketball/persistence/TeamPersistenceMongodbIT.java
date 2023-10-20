@@ -1,8 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.basketball.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
-import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.TeamBasketballEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.basketball.daos.TeamBasketballRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.TeamBasketballEntity;
 import es.upm.miw.apaw_practice.domain.models.basketball.Pavilion;
 import es.upm.miw.apaw_practice.domain.models.basketball.Player;
 import es.upm.miw.apaw_practice.domain.models.basketball.Team;
@@ -14,8 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 class TeamPersistenceMongodbIT {
@@ -45,5 +44,20 @@ class TeamPersistenceMongodbIT {
 
         assertEquals(expectedEmails, playerEmails);
         assertEquals(expectedPavilionNames, pavilionNames);
+    }
+
+
+    @Test
+    void testUpdate() {
+        Team team = this.teamPersistence.readByAlias("alias1");
+        team.getPlayers().get(0).setAge(10);
+        team.getPlayers().get(0).setPosition("pivot");
+        this.teamPersistence.update(team);
+        team = this.teamPersistence.readByAlias("alias1");
+        assertTrue(team.getPlayers().size() > 0);
+        assertEquals(10, team.getPlayers().get(0).getAge());
+        assertEquals("pivot", team.getPlayers().get(0).getPosition());
+        assertEquals("email2@gmail.com", team.getPlayers().get(1).getEmail());
+        assertEquals(2, team.getPavilions().size());
     }
 }

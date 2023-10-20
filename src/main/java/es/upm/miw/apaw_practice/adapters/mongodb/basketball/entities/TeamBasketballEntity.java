@@ -1,10 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities;
+
 import es.upm.miw.apaw_practice.domain.models.basketball.Pavilion;
 import es.upm.miw.apaw_practice.domain.models.basketball.Player;
 import es.upm.miw.apaw_practice.domain.models.basketball.Team;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -18,9 +18,7 @@ public class TeamBasketballEntity {
     private String alias;
     private Integer numPlayers;
     private String coach;
-    @DBRef
     private List<PavilionEntity> pavilionEntities;
-    @DBRef
     private List<PlayerEntity> playerEntities;
 
     public TeamBasketballEntity(){

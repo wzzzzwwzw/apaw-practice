@@ -14,7 +14,7 @@ public class BookWriterResource {
     static final String BOOKWRITER = "/library/bookWriters";
     static final String NICKNAME_ID = "/{nickname}";
     static final String NUMBER_OF_BOOK = "/number-of-book";
-    static final String SEARCH = "/search";
+    static final String SEARCH = "/search-by-name";
     private final BookWriterService bookWriterService;
 
     @Autowired

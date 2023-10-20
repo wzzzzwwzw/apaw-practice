@@ -7,8 +7,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 public class HotelServiceIT {
@@ -39,5 +41,11 @@ public class HotelServiceIT {
     void testMaxParticipantsSumByEmail() {
         Double sum = this.hotelService.MaxParticipantsAverageByEmail("first@email.com");
         assertEquals(sum,15.6);
+    }
+
+    @Test
+    void distinctRoomNumbersByInstructor() {
+        List<Integer> roomsNumberList = this.hotelService.distinctRoomNumbersByInstructor("Adam");
+        assertIterableEquals(Arrays.asList(700, 1000, 400), roomsNumberList);
     }
 }

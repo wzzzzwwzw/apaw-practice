@@ -9,6 +9,7 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.hotel.HotelPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @Repository("hotelPersistence")
@@ -30,13 +31,6 @@ public class HotelPersistenceMongodb implements HotelPersistence {
     }
 
     @Override
-    public Stream<Hotel> readAll() {
-        return this.hotelRepository.findAll()
-                .stream()
-                .map(HotelEntity::toObject);
-    }
-
-    @Override
     public Double MaxParticipantAverageByEmail(String email) {
         Stream<HotelEntity> filteredHotels = this.hotelRepository.findAll()
                 .stream().filter(hotel -> hotel.getBookings().stream()
@@ -47,6 +41,15 @@ public class HotelPersistenceMongodb implements HotelPersistence {
         return activities.mapToInt(HotelActivityEntity::getMaxParticipants)
                 .average()
                 .orElse(0.0);
+    }
+
+    @Override
+    public List<Integer> distinctRoomNumbersByInstructor(String instructorName) {
+        Stream<HotelEntity> filteredHotels = this.hotelRepository.findAll()
+                .stream().filter(hotel -> hotel.getActivities().stream()
+                        .anyMatch(activity -> activity.getInstructor().equals(instructorName)));
+
+        return filteredHotels.map(HotelEntity::getRooms).distinct().toList();
     }
 
 }

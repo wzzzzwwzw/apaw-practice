@@ -90,6 +90,6 @@ public class Area implements TreeAreas {
 
     @Override
     public void remove(TreeAreas treeAreas) {
-
+        // Do nothing because is a leaf
     }
 }

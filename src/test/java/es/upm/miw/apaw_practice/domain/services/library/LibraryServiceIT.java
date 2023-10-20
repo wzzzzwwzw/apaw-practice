@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.models.library.Library;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,5 +38,13 @@ public class LibraryServiceIT {
         listAddressToCompare.add("Calle universidad 20");
         assertEquals(listAddressToCompare, listOfAddress);
         assertEquals(2, listOfAddress.size());
+    }
+
+    @Test
+    void testFindAverageOfNumberOfBookByLibraryName(){
+        BigDecimal average = this.libraryService.findAverageOfNumberOfBookByLibraryName("Biblioteca territorial");
+        assertEquals(BigDecimal.valueOf(2).setScale(2, RoundingMode.HALF_UP), average);
+        average = this.libraryService.findAverageOfNumberOfBookByLibraryName("Biblioteca Nacional");
+        assertEquals(BigDecimal.valueOf(16.33),average);
     }
 }

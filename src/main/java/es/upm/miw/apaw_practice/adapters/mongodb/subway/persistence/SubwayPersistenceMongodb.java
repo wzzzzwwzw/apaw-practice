@@ -11,6 +11,7 @@ import es.upm.miw.apaw_practice.domain.models.subway.Subway;
 import es.upm.miw.apaw_practice.domain.persistence_ports.subway.SubwayPersistence;
 import org.springframework.stereotype.Repository;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -63,5 +64,19 @@ public class SubwayPersistenceMongodb implements SubwayPersistence {
                 )).toList();
         subwayEntity.setLines(lines);
         return this.subwayRepository.save(subwayEntity).toSubway();
+    }
+
+    @Override
+    public List<String> findCapacityOverTen(String order) {
+        List<String> colors = Arrays.stream(order.split("#"))
+                .map(parte -> parte.split("-")[0])
+                .toList();
+        return this.subwayRepository.findAll().stream()
+                .filter(subwayEntity -> subwayEntity.getCapacity() > 10)
+                .map(SubwayEntity::toSubway)
+                .flatMap(subway -> subway.getLines().stream())
+                .map(Line::getColor)
+                .filter(colors::contains)
+                .toList();
     }
 }

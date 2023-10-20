@@ -38,7 +38,7 @@ public class FurnitureStoreSeederService {
         };
         this.materialRepository.saveAll(Arrays.asList(materials));
         ManagerEntity[] managers = {
-                new ManagerEntity(new Manager("111222333444", "José", false)),
+                new ManagerEntity(new Manager("111222333444", "José", true)),
                 new ManagerEntity(new Manager("456745674567", "María", true)),
                 new ManagerEntity(new Manager("123456789012", "Fernando", true)),
         };

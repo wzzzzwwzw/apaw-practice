@@ -1,11 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.aquarium.entities;
+import es.upm.miw.apaw_practice.domain.models.aquarium.Fish;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 @Document
@@ -65,6 +64,9 @@ public class FishEntity {
         if (this == o) return true;
         if (!(o instanceof FishEntity that)) return false;
         return (Objects.equals(getId(), that.getId()) || Objects.equals(getColor(), that.getColor())||Objects.equals(getSpecies(),that.getSpecies()));
+    }
+    public Fish toFish(){
+        return new Fish(species,color,dateOfEntrance);
     }
     @Override
     public int hashCode() {

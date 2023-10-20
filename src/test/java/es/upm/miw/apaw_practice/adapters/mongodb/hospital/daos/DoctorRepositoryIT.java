@@ -26,10 +26,16 @@ class DoctorRepositoryIT {
     void testDoctorFindByMedicalLicenseCode() {
         assertTrue(this.doctorRepository.findByMedicalLicenseCode("M003").isPresent());
         DoctorEntity doctor = this.doctorRepository.findByMedicalLicenseCode("M003").get();
-        assertEquals("P01", doctor.getOffice());
+        assertEquals("P01", doctor.getSpeciality());
         assertEquals("Pediatrics", doctor.getDepartmentEntity().getDepartmentName());
         assertEquals(7, doctor.getDepartmentEntity().getAvailableBeds());
         assertEquals(1, doctor.getDepartmentEntity().getFloor());
+    }
+
+    @Test
+    void testDoctorDeleteByName() {
+        this.doctorRepository.deleteByMedicalLicenseCode("M999");
+        assertFalse(this.doctorRepository.findByMedicalLicenseCode("M999").isPresent());
     }
 
 }

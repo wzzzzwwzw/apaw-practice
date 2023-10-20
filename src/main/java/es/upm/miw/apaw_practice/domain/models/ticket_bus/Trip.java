@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.ticket_bus;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Trip {
     private String path;
@@ -21,7 +22,17 @@ public class Trip {
         this.numStops = numStops;
         this.bus = bus;
     }
+    public Trip(String path) {
+        this.path = path;
+    }
 
+    public Trip(String path, String departure) {
+        this.path = path;
+        this.departure = departure;
+    }
+    public static TripBuilder.Path builder() {
+        return new Builder();
+    }
     public String getPath() {
         return path;
     }
@@ -71,6 +82,18 @@ public class Trip {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Trip trip)) return false;
+        return Objects.equals(path, trip.path);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(path);
+    }
+
+    @Override
     public String toString() {
         return "Trip{" +
                 "path='" + path + '\'' +
@@ -80,5 +103,44 @@ public class Trip {
                 ", numStops='" + numStops + '\'' +
                 ", bus=" + bus +
                 '}';
+    }
+
+    public static class Builder implements TripBuilder.Path, TripBuilder.Departure, TripBuilder.Arrive, TripBuilder.RegistrationDate, TripBuilder.Optionals {
+
+        private final Trip trip;
+
+        private Builder() {
+            this.trip = new Trip();
+        }
+
+        @Override
+        public TripBuilder.Arrive departure(String departure) {
+            this.trip.departure = departure;
+            return this;
+        }
+
+
+        @Override
+        public TripBuilder.Departure path(String path) {
+            this.trip.path = path;
+            return this;
+        }
+
+        @Override
+        public TripBuilder.RegistrationDate arrive(String arrive) {
+            this.trip.arrive = arrive;
+            return this;
+        }
+
+        @Override
+        public TripBuilder.Optionals numStops(String numStops) {
+            this.trip.numStops = numStops;
+            return this;
+        }
+
+        @Override
+        public Trip build() {
+            return this.trip;
+        }
     }
 }

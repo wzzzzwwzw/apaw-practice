@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.music.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.music.MusicSeederService;
 import es.upm.miw.apaw_practice.domain.models.music.MusicGenre;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,6 +14,15 @@ class MusicGenrePersistenceMongodbIT {
 
     @Autowired
     private MusicGenrePersistenceMongodb musicGenrePersistenceMongodb;
+
+    @Autowired
+    private MusicSeederService musicSeederService;
+
+    @AfterEach
+    void resetDB() {
+        this.musicSeederService.deleteAll();
+        this.musicSeederService.seedDatabase();
+    }
 
     @Test
     void testCreateMusicGenre() {
@@ -32,6 +43,16 @@ class MusicGenrePersistenceMongodbIT {
     @Test
     void testNotExistsMusicGenreType() {
         assertFalse(this.musicGenrePersistenceMongodb.existsMusicGenreType("APAW"));
+    }
+
+    @Test
+    void testUpdateMusicGenrePopularity() {
+        MusicGenre musicGenre = this.musicGenrePersistenceMongodb.updatePopularityByType("trap");
+        assertNotNull(musicGenre);
+        assertEquals("trap", musicGenre.getType());
+        assertEquals("trap music", musicGenre.getDescription());
+        assertEquals(7, musicGenre.getPopularity());
+        assertEquals("United States", musicGenre.getCountryOrigin());
     }
 
 

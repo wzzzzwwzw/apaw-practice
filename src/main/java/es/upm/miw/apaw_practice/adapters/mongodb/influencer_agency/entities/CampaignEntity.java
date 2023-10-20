@@ -1,9 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.entities;
 
 import es.upm.miw.apaw_practice.domain.models.influencer_agency.Campaign;
+import es.upm.miw.apaw_practice.domain.models.influencer_agency.Content;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -23,8 +25,16 @@ public class CampaignEntity {
 
     public CampaignEntity(Campaign campaign) {
         BeanUtils.copyProperties(campaign, this);
+
+        this.contents = campaign.getContents() == null
+                ? new ArrayList<>()
+                : campaign.getContents().stream()
+                .map(ContentEntity::new)
+                .toList();
+
         this.id = UUID.randomUUID().toString();
     }
+
 
     public Date getStartDate() {
         return startDate;
@@ -66,5 +76,16 @@ public class CampaignEntity {
                 ", description='" + description + '\'' +
                 ", contents=" + contents +
                 '}';
+    }
+
+    public Campaign toCampaign() {
+        Campaign campaign = new Campaign(this.startDate, this.endDate);
+        campaign.setDescription(this.description);
+        List<Content> listOfContents = new ArrayList<>();
+        for (ContentEntity c : this.contents) {
+            listOfContents.add(c.toContent());
+        }
+        campaign.setContents(listOfContents);
+        return campaign;
     }
 }

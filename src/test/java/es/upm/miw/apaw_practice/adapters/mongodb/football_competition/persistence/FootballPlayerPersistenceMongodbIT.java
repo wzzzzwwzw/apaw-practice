@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.football_competition.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.FootballCompetitionSeederService;
 import es.upm.miw.apaw_practice.domain.models.football_competition.FootballPlayer;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,12 +11,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @TestConfig
-public class FootballPlayerPersistenceMongodbIT {
+class FootballPlayerPersistenceMongodbIT {
     @Autowired
     private FootballPlayerPersistenceMongodb footballPlayerPersistence;
+    @Autowired
+    private FootballCompetitionSeederService footballCompetitionSeederService;
+
+    @AfterEach
+    void after() {
+        this.footballCompetitionSeederService.deleteAll();
+        this.footballCompetitionSeederService.seedDatabase();
+    }
 
     @Test
-    public void testUpdateGoals() {
+    void testUpdateGoals() {
         String playerName = "Lionel Messi";
         FootballPlayer player = this.footballPlayerPersistence.readByName(playerName);
         assertNotNull(player);

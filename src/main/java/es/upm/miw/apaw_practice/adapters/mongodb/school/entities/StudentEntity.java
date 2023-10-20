@@ -29,10 +29,6 @@ public class StudentEntity {
         //empty from framework
     }
 
-    public StudentEntity(Student student) {
-        BeanUtils.copyProperties(student, this);
-        this.id = UUID.randomUUID().toString();
-    }
 
     public StudentEntity(String name, Integer age, long contact, String email, ClassroomEntity classroomEntity, List<SubjectEntity> subjectsEntities) {
         this.id = UUID.randomUUID().toString();
@@ -101,7 +97,14 @@ public class StudentEntity {
     }
 
     public Student toStudent() {
-        return new Student(this.name, this.age, this.contact, this.email, this.classroomEntity.toClassroom());
+        Student student = new Student(this.name, this.age, this.contact, this.email, this.classroomEntity.toClassroom());
+        student.setSubjects(this.subjectsEntities.stream()
+                .map(SubjectEntity::toSubject).toList());
+        return student;
+    }
+
+    public void fromStudent(Student student) {
+        BeanUtils.copyProperties(student, this);
     }
 
     @Override
@@ -114,5 +117,18 @@ public class StudentEntity {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return "StudentEntity{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", contact=" + contact +
+                ", email='" + email + '\'' +
+                ", classroomEntity=" + classroomEntity +
+                ", subjectsEntities=" + subjectsEntities +
+                '}';
     }
 }

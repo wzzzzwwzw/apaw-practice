@@ -1,20 +1,23 @@
 package es.upm.miw.apaw_practice.adapters.rest.furniture_store;
 
+import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.furniture_store.FurnitureStore;
+import es.upm.miw.apaw_practice.domain.models.furniture_store.Furniture;
 import es.upm.miw.apaw_practice.domain.services.furniture_store.FurnitureStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
-@RequestMapping(FurnitureStoreResource.FURNITURE_STORE)
+@RequestMapping(FurnitureStoreResource.FURNITURE_STORES)
 public class FurnitureStoreResource {
 
-    static final String FURNITURE_STORE = "/furniture-store/furniture-stores";
-
+    static final String FURNITURE_STORES = "/furniture-store/furniture-stores";
+    static final String FURNITURES = "/furnitures";
     static final String NAME_ID = "/{name}";
+    static final String SEARCH = "/search";
     private final FurnitureStoreService furnitureStoreService;
 
     @Autowired
@@ -22,9 +25,19 @@ public class FurnitureStoreResource {
         this.furnitureStoreService = furnitureStoreService;
     }
 
+    @PutMapping(NAME_ID + FURNITURES)
+    public FurnitureStore updateFurniture(@PathVariable String name, @RequestBody List<Furniture> furnitureList) {
+        return this.furnitureStoreService.updateFurnitures(name, furnitureList);
+    }
+
     @GetMapping(NAME_ID)
     public FurnitureStore read(@PathVariable String name) {
         return this.furnitureStoreService.read(name);
     }
 
+    @GetMapping(SEARCH)
+    public BigDecimal findUniqueMaterialTypeByManagerPromotionCandidate(@RequestParam String q) {
+        String name = new LexicalAnalyzer().extractWithAssure(q, "name");
+        return this.furnitureStoreService.findAverageFurniturePriceByManagerName(name);
+    }
 }

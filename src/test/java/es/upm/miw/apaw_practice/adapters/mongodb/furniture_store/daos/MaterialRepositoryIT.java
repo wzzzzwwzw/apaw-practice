@@ -16,9 +16,9 @@ class MaterialRepositoryIT {
 
     @Test
     void testFindByName() {
-        assertTrue(this.materialRepository.findByName("vidrio").isPresent());
-        MaterialEntity materialEntity = this.materialRepository.findByName("vidrio").get();
-        assertEquals("laminado", materialEntity.getType());
+        assertTrue(this.materialRepository.findByName("laminado").isPresent());
+        MaterialEntity materialEntity = this.materialRepository.findByName("laminado").get();
+        assertEquals("vidrio", materialEntity.getType());
         assertEquals(4, materialEntity.getDurability());
     }
 

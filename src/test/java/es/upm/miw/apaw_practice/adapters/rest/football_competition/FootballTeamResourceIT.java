@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.rest.football_competition;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.football_competition.FootballCompetitionSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.football_competition.FootballTeam;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +15,20 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RestTestConfig
-public class FootballTeamResourceIT {
+class FootballTeamResourceIT {
     @Autowired
     private WebTestClient webTestClient;
+    @Autowired
+    private FootballCompetitionSeederService footballCompetitionSeederService;
+
+    @AfterEach
+    void after() {
+        this.footballCompetitionSeederService.deleteAll();
+        this.footballCompetitionSeederService.seedDatabase();
+    }
 
     @Test
-    public void testGetByCity() {
+    void testGetByCity() {
         this.webTestClient
                 .get()
                 .uri(FootballTeamResource.TEAMS + FootballTeamResource.CITY_ID, "Madrid")
@@ -35,7 +45,7 @@ public class FootballTeamResourceIT {
     }
 
     @Test
-    public void testCreateFootballTeam() {
+    void testCreateFootballTeam() {
         FootballTeam footballTeam = new FootballTeam("Albacete", 1890, new BigDecimal("123922.16"), false);
 
         this.webTestClient

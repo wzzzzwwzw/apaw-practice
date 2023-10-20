@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.car_dealership.SellerPe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Stream;
+
 @Service
 public class SellerService {
 
@@ -17,5 +19,21 @@ public class SellerService {
 
     public Seller create(Seller seller) {
         return this.sellerPersistence.create(seller);
+    }
+
+    public Seller updateSellerName(String id, String name) {
+        Seller seller = this.sellerPersistence.readById(id);
+        seller.setName(name);
+        return this.sellerPersistence.updateName(seller);
+    }
+
+    public Seller updateSellerSurname(String id, String surname) {
+        Seller seller = this.sellerPersistence.readById(id);
+        seller.setSurname(surname);
+        return this.sellerPersistence.updateSurname(seller);
+    }
+
+    public Stream<String> findUniqueSurnamesMore20000ByBrand(String brand) {
+        return this.sellerPersistence.findUniqueSurnamesMore20000ByBrand(brand);
     }
 }

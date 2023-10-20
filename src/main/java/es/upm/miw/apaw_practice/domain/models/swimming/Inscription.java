@@ -4,16 +4,16 @@ import java.time.LocalDateTime;
 
 public class Inscription {
     private Integer inscriptionNumber;
-    private LocalDateTime registrationDate;
+    private LocalDateTime recordDate;
     private Boolean asset;
 
     public Inscription() {
         //empty for framework
     }
 
-    public Inscription(Integer inscriptionNumber, LocalDateTime registrationDate, Boolean asset) {
+    public Inscription(Integer inscriptionNumber, LocalDateTime recordDate, Boolean asset) {
         this.inscriptionNumber = inscriptionNumber;
-        this.registrationDate = registrationDate;
+        this.recordDate = recordDate;
         this.asset = asset;
     }
 
@@ -25,15 +25,15 @@ public class Inscription {
         this.inscriptionNumber = inscriptionNumber;
     }
 
-    public LocalDateTime getRegistrationDate() {
-        return registrationDate;
+    public LocalDateTime getRecordDate() {
+        return recordDate;
     }
 
-    public void setRegistrationDate(LocalDateTime registrationDate) {
-        this.registrationDate = registrationDate;
+    public void setRecordDate(LocalDateTime recordDate) {
+        this.recordDate = recordDate;
     }
 
-    public Boolean isAsset() {
+    public Boolean getAsset() {
         return this.asset;
     }
 
@@ -45,8 +45,8 @@ public class Inscription {
     public String toString() {
         return "Inscription{" +
                 "inscriptionNumber=" + inscriptionNumber + '\'' +
-                ", registrationDate=" + registrationDate + '\'' +
-                ", asset=" + asset + '\'' +
+                ", recordDate=" + recordDate + '\'' +
+                ", asset=" + asset +
                 '}';
     }
 }

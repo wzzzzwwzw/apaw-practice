@@ -1,6 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.coffee_shop.entities;
 
+import es.upm.miw.apaw_practice.domain.models.coffee_shop.Coffee;
 import es.upm.miw.apaw_practice.domain.models.coffee_shop.CoffeeClient;
+import es.upm.miw.apaw_practice.domain.models.coffee_shop.Dining;
+import es.upm.miw.apaw_practice.domain.models.coffee_shop.Transaction;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -29,7 +32,7 @@ public class CoffeeClientEntity {
     }
 
     public CoffeeClientEntity(String name, String address, String phoneNumber, List<TransactionEntity> transactionsEntities, List<CoffeeEntity> coffeesEntities, DiningEntity diningEntity) {
-        this.id = UUID.randomUUID().toString();;
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
@@ -94,13 +97,21 @@ public class CoffeeClientEntity {
         this.diningEntity = diningEntity;
     }
 
-    public void fromClient(CoffeeClient coffeeClient) {
-        BeanUtils.copyProperties(coffeeClient, this);
-    }
-
     public CoffeeClient toClient() {
         CoffeeClient coffeeClient = new CoffeeClient();
+        List<Coffee> coffees = this.coffeesEntities
+                .stream()
+                .map(CoffeeEntity::toCoffee)
+                .toList();
+        List<Transaction> transactions = this.transactionsEntities
+                .stream()
+                .map(TransactionEntity::toTransaction)
+                .toList();
+        Dining dining = this.diningEntity.toDining();
         BeanUtils.copyProperties(this, coffeeClient);
+        coffeeClient.setCoffees(coffees);
+        coffeeClient.setTransactions(transactions);
+        coffeeClient.setDining(dining);
         return coffeeClient;
     }
 

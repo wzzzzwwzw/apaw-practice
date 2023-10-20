@@ -25,6 +25,14 @@ public class AgencyEntity {
         this.id = UUID.randomUUID().toString();
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
     public String getCompany() {
         return company;
     }
@@ -56,5 +64,11 @@ public class AgencyEntity {
                 ", address='" + address + '\'' +
                 ", phone=" + phone +
                 '}';
+    }
+
+    public Agency toAgency() {
+        Agency agency = new Agency();
+        BeanUtils.copyProperties(this, agency);
+        return agency;
     }
 }

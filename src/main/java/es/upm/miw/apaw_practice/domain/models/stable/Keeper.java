@@ -1,8 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.stable;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Keeper {
     private String name;
@@ -18,6 +16,9 @@ public class Keeper {
         this.age = age;
         this.hireDate = hireDate;
         this.salary = salary;
+    }
+
+    public Keeper(Keeper keeper) {
     }
 
     public String getName() {

@@ -53,7 +53,7 @@ public class StationEntity {
         this.order = order;
     }
 
-    public Boolean isOpen() {
+    public Boolean getOpen() {
         return open;
     }
 
@@ -72,6 +72,12 @@ public class StationEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, order, open);
+    }
+
+    public Station toStation() {
+        Station station = new Station();
+        BeanUtils.copyProperties(this, station);
+        return station;
     }
 
     @java.lang.Override

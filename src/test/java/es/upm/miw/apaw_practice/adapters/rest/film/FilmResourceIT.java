@@ -76,4 +76,88 @@ class FilmResourceIT {
                 .exchange()
                 .expectStatus().isNotFound();
     }
+
+    @Test
+    void testFindAverageRatingByDirectorDni() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FILMS + SEARCH_RATING)
+                                .queryParam("q", "dni:05645800X")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Double.class)
+                .value(Assertions::assertNotNull)
+                .value(average -> assertEquals(8.0, average));
+    }
+
+    @Test
+    void testBadRequestFindAverageRatingByDirectorDni() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FILMS + SEARCH_RATING)
+                                .queryParam("q", "id:05645800X")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
+
+    @Test
+    void testZeroFindAverageRatingByDirectorDni() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FILMS + SEARCH_RATING)
+                                .queryParam("q", "dni:00")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Double.class)
+                .value(Assertions::assertNotNull)
+                .value(average -> assertEquals(0.0, average));
+    }
+
+    @Test
+    void testFindCommentsWithTrueRecommendationByGenreStyle() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FILMS + SEARCH_COMMENT)
+                                .queryParam("q", "style:Surrealist")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .consumeWith(comments -> {
+                    assertNotNull(comments.getResponseBody());
+                    assertTrue(comments.getResponseBody().size() > 0);
+                    assertEquals("[\"Comment 7\"]", comments.getResponseBody().get(0));
+                });
+    }
+
+    @Test
+    void testBadRequestFindCommentsWithTrueRecommendationByGenreStyle() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FILMS + SEARCH_COMMENT)
+                                .queryParam("q", "name:Surrealist")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
+
+    @Test
+    void testNotFoundCommentsWithTrueRecommendationByGenreStyle() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FILMS + SEARCH_COMMENT)
+                                .queryParam("q", "style:No_exist")
+                                .build())
+                .exchange()
+                .expectStatus().isNotFound();
+    }
 }

@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.domain.models.ticket_bus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Ticket {
     private String reference;
@@ -19,6 +20,12 @@ public class Ticket {
         this.arrive = arrive;
         this.registrationDate = registrationDate;
         this.price = price;
+    }
+
+    public Ticket(String departure, String arrive, BigDecimal price) {
+        this.departure=departure;
+        this.arrive=arrive;
+        this.price=price;
     }
 
     public String getReference() {
@@ -59,6 +66,22 @@ public class Ticket {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ticket ticket)) return false;
+        return Objects.equals(reference, ticket.reference)
+                && Objects.equals(departure, ticket.departure)
+                && Objects.equals(arrive, ticket.arrive)
+                && Objects.equals(registrationDate, ticket.registrationDate);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(reference, departure, arrive, registrationDate);
     }
 
     @Override

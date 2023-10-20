@@ -10,7 +10,7 @@ public class Climber {
     private List<Expedition> expeditions;
 
     public Climber() {
-
+        //empty for framework
     }
 
     public Climber(String email, LocalDate dateOfBirth, String level, List<Expedition> expeditions) {
@@ -18,12 +18,6 @@ public class Climber {
         this.dateOfBirth = dateOfBirth;
         this.level = level;
         this.expeditions = expeditions;
-    }
-
-    public static Climber ofClimberEmail(Climber climber) {
-        Climber climberDto = new Climber();
-        climberDto.setEmail(climber.getEmail());
-        return climberDto;
     }
 
     public String getEmail() {

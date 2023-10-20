@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities;
 
 import es.upm.miw.apaw_practice.domain.models.hospital.Doctor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -15,17 +14,17 @@ public class DoctorEntity {
     private String id;
     @Indexed(unique = true)
     private String medicalLicenseCode;
-    private String office;
+    private String speciality;
     private DepartmentEntity departmentEntity;
 
     public DoctorEntity() {
         //empty for framework
     }
 
-    public DoctorEntity(String medicalLicenseCode, String office, DepartmentEntity departmentEntity) {
+    public DoctorEntity(String medicalLicenseCode, String speciality, DepartmentEntity departmentEntity) {
         this.id = UUID.randomUUID().toString();
         this.medicalLicenseCode = medicalLicenseCode;
-        this.office = office;
+        this.speciality = speciality;
         this.departmentEntity = departmentEntity;
     }
 
@@ -45,12 +44,12 @@ public class DoctorEntity {
         this.medicalLicenseCode = medicalLicenseCode;
     }
 
-    public String getOffice() {
-        return office;
+    public String getSpeciality() {
+        return speciality;
     }
 
-    public void setOffice(String office) {
-        this.office = office;
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
     }
 
     public DepartmentEntity getDepartmentEntity() {
@@ -61,10 +60,9 @@ public class DoctorEntity {
         this.departmentEntity = departmentEntity;
     }
 
-    public Doctor toDoctor() {
-        Doctor doctor = new Doctor();
-        BeanUtils.copyProperties(this, doctor);
-        return doctor;
+    public Doctor toDoctor(){
+
+        return new Doctor(medicalLicenseCode, speciality,departmentEntity.toDepartment());
     }
 
     @Override
@@ -72,12 +70,12 @@ public class DoctorEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DoctorEntity that = (DoctorEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(medicalLicenseCode, that.medicalLicenseCode) && Objects.equals(office, that.office) && Objects.equals(departmentEntity, that.departmentEntity);
+        return Objects.equals(id, that.id) && Objects.equals(medicalLicenseCode, that.medicalLicenseCode) && Objects.equals(speciality, that.speciality) && Objects.equals(departmentEntity, that.departmentEntity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, medicalLicenseCode, office, departmentEntity);
+        return Objects.hash(id, medicalLicenseCode, speciality, departmentEntity);
     }
 
     @Override
@@ -85,7 +83,7 @@ public class DoctorEntity {
         return "DoctorEntity{" +
                 "id='" + id + '\'' +
                 ", medicalLicenseCode='" + medicalLicenseCode + '\'' +
-                ", office='" + office + '\'' +
+                ", speciality='" + speciality + '\'' +
                 ", departmentEntity=" + departmentEntity +
                 '}';
     }

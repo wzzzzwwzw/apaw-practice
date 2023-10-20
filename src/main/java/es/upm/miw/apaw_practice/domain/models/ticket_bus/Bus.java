@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.domain.models.ticket_bus;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 public class Bus {
 
@@ -24,6 +25,12 @@ public class Bus {
         this.accessibility = accessibility;
         this.trip = trip;
         this.passengers = passengers;
+    }
+    public Bus(String referenceBus, boolean accessibility, Trip trip) {
+
+        this.referenceBus = referenceBus;
+        this.accessibility = accessibility;
+        this.trip = trip;
     }
 
     public String getReferenceBus() {
@@ -80,6 +87,18 @@ public class Bus {
 
     public void setPassengers(List<Passenger> passengers) {
         this.passengers = passengers;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Bus bus)) return false;
+        return Objects.equals(referenceBus, bus.referenceBus);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(referenceBus);
     }
 
     @Override

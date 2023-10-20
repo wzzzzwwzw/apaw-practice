@@ -1,10 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.entities;
 
+import es.upm.miw.apaw_practice.domain.models.influencer_agency.Brand;
+import es.upm.miw.apaw_practice.domain.models.influencer_agency.Campaign;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -84,5 +87,13 @@ public class BrandEntity {
                 ", agency=" + agency +
                 ", campaigns=" + campaigns +
                 '}';
+    }
+
+    public Brand toBrand() {
+        List<Campaign> listOfCampaigns = new ArrayList<>();
+        for (CampaignEntity c : this.campaigns) {
+            listOfCampaigns.add(c.toCampaign());
+        }
+        return new Brand(this.trademark, this.agency.toAgency(), listOfCampaigns);
     }
 }

@@ -48,4 +48,34 @@ public class Manager {
                 '}';
     }
 
+    public static class Builder implements ManagerBuilders.AffiliationNumber, ManagerBuilders.Name, ManagerBuilders.Optionals {
+        private final Manager manager;
+
+        public Builder() {
+            this.manager = new Manager();
+        }
+
+        @Override
+        public ManagerBuilders.Name affiliationNumber(String dni) {
+            this.manager.affiliationNumber = dni;
+            return this;
+        }
+
+        @Override
+        public ManagerBuilders.Optionals name(String name) {
+            this.manager.name = name;
+            return this;
+        }
+
+        @Override
+        public ManagerBuilders.Optionals promotionCandidate(Boolean promotionCandidate) {
+            this.manager.promotionCandidate = promotionCandidate;
+            return this;
+        }
+
+        @Override
+        public Manager build() {
+            return this.manager;
+        }
+    }
 }

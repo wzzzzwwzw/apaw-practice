@@ -20,7 +20,20 @@ public class ExpeditionEntity {
     private BigDecimal totalExpense;
 
     public ExpeditionEntity() {
+        //empty for framework
+    }
 
+    public ExpeditionEntity(Expedition expedition) {
+        BeanUtils.copyProperties(expedition, this);
+        this.id = UUID.randomUUID().toString();
+        this.identifier = UUID.randomUUID().toString();
+    }
+
+    public ExpeditionEntity(String identifier, LocalDate date, BigDecimal totalExpense) {
+        this.id = UUID.randomUUID().toString();
+        this.identifier = identifier;
+        this.date = date;
+        this.totalExpense = totalExpense;
     }
 
     public ExpeditionEntity(LocalDate date, BigDecimal totalExpense) {

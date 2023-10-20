@@ -19,7 +19,7 @@ public class PatientEntity {
     private String id;
     @Indexed(unique = true)
     private String socialInsuranceNumber;
-    private String gender;
+    private String allergicMedicine;
     private LocalDate birthDate;
     private List<DoctorEntity> doctorsEntities;
     private List<AppointmentEntity> appointmentsEntities;
@@ -28,10 +28,10 @@ public class PatientEntity {
         //empty for framework
     }
 
-    public PatientEntity(String socialInsuranceNumber, String gender, LocalDate birthDate, List<DoctorEntity> doctorsEntities, List<AppointmentEntity> appointmentsEntities) {
+    public PatientEntity(String socialInsuranceNumber, String allergicMedicine, LocalDate birthDate, List<DoctorEntity> doctorsEntities, List<AppointmentEntity> appointmentsEntities) {
         this.id = UUID.randomUUID().toString();
         this.socialInsuranceNumber = socialInsuranceNumber;
-        this.gender = gender;
+        this.allergicMedicine = allergicMedicine;
         this.birthDate = birthDate;
         this.doctorsEntities = doctorsEntities;
         this.appointmentsEntities = appointmentsEntities;
@@ -53,12 +53,12 @@ public class PatientEntity {
         this.socialInsuranceNumber = socialInsuranceNumber;
     }
 
-    public String getGender() {
-        return gender;
+    public String getAllergicMedicine() {
+        return allergicMedicine;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setAllergicMedicine(String allergicMedicine) {
+        this.allergicMedicine = allergicMedicine;
     }
 
     public LocalDate getBirthDate() {
@@ -106,12 +106,12 @@ public class PatientEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PatientEntity that = (PatientEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(socialInsuranceNumber, that.socialInsuranceNumber) && Objects.equals(gender, that.gender) && Objects.equals(birthDate, that.birthDate) && Objects.equals(doctorsEntities, that.doctorsEntities) && Objects.equals(appointmentsEntities, that.appointmentsEntities);
+        return Objects.equals(id, that.id) && Objects.equals(socialInsuranceNumber, that.socialInsuranceNumber) && Objects.equals(allergicMedicine, that.allergicMedicine) && Objects.equals(birthDate, that.birthDate) && Objects.equals(doctorsEntities, that.doctorsEntities) && Objects.equals(appointmentsEntities, that.appointmentsEntities);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, socialInsuranceNumber, gender, birthDate, doctorsEntities, appointmentsEntities);
+        return Objects.hash(id, socialInsuranceNumber, allergicMedicine, birthDate, doctorsEntities, appointmentsEntities);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class PatientEntity {
         return "PatientEntity{" +
                 "id='" + id + '\'' +
                 ", socialInsuranceNumber='" + socialInsuranceNumber + '\'' +
-                ", gender='" + gender + '\'' +
+                ", allergicMedicine='" + allergicMedicine + '\'' +
                 ", birthDate=" + birthDate +
                 ", doctorsEntities=" + doctorsEntities +
                 ", appointmentsEntities=" + appointmentsEntities +

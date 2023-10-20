@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.web.reactive.function.BodyInserters;
 
 import java.math.BigDecimal;
 
@@ -28,6 +29,21 @@ public class CoffeeResourceIT {
                     assertEquals("caffé americano", coffee.getCoffee());
                     assertEquals("Espresso & Classic",coffee.getCategory());
                     assertEquals(new BigDecimal("5.00"),coffee.getPrice());
+                });
+    }
+
+    @Test
+    void testUpdate() {
+        this.webTestClient
+                .put()
+                .uri(CoffeeResource.COFFEES + CoffeeResource.NAME + CoffeeResource.UPDATE_DATA, "Mocha Frappuccino")
+                .body(BodyInserters.fromValue(new BigDecimal("6.50")))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Coffee.class)
+                .value(Assertions::assertNotNull)
+                .value(coffee -> {
+                    assertEquals(new BigDecimal("6.50"), coffee.getPrice());
                 });
     }
 }

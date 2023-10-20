@@ -1,20 +1,29 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.coffee_shop.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.coffee_shop.CoffeeShopSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.coffee_shop.entities.CoffeeClientEntity;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+
 @TestConfig
 public class CoffeeClientRepositoryIT {
     @Autowired
     private CoffeeClientRepository coffeeClientRepository;
+    @Autowired
+    private CoffeeShopSeederService coffeeShopSeederService;
 
+    @AfterEach
+    void cleanUpDB() {
+        this.coffeeShopSeederService.deleteAll();
+        this.coffeeShopSeederService.seedDatabase();
+    }
     @Test
     void testFindByName() {
         assertTrue(this.coffeeClientRepository.findByName("client1").isPresent());
@@ -47,5 +56,11 @@ public class CoffeeClientRepositoryIT {
                                 transaction.getPayDate().equals(LocalDateTime.of(2023, 1, 1, 12, 0, 0))
                         )
         );
+    }
+
+    @Test
+    void testDeleteByName() {
+        this.coffeeClientRepository.deleteByName("client1");
+        assertFalse(this.coffeeClientRepository.findByName("client1").isPresent());
     }
 }

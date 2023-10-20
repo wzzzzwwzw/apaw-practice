@@ -19,6 +19,8 @@ public class SubwayResource {
 
     static final String LABEL_ID = "/{label}";
 
+    static final String SEARCH = "/search";
+
     private final SubwayService subwayService;
 
     @Autowired
@@ -37,10 +39,14 @@ public class SubwayResource {
         return this.subwayService.findByCity(city);
     }
 
-
     @PutMapping(CITY_ID + LINES)
     public Subway updateLines(@PathVariable String city, @RequestBody List<Line> lines) {
         return this.subwayService.updateLines(city, lines);
+    }
+
+    @GetMapping(SEARCH)
+    public List<String> findCapacityOverTen(@RequestParam String order) {
+        return this.subwayService.findCapacityOverTen(order);
     }
 
 }

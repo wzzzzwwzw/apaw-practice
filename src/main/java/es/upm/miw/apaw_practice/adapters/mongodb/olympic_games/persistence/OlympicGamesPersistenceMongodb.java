@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository("olympicGamesPersistence")
 public class OlympicGamesPersistenceMongodb implements OlympicGamesPersistence {
@@ -54,7 +53,7 @@ public class OlympicGamesPersistenceMongodb implements OlympicGamesPersistence {
                                 )
                         )
                 )
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
@@ -72,7 +71,7 @@ public class OlympicGamesPersistenceMongodb implements OlympicGamesPersistence {
                         competitor.getAge() >= 18)
                 .map(CompetitorEntity::getName)
                 .distinct()
-                .collect(Collectors.toList());
+                .toList();
     }
 
 }

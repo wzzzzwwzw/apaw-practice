@@ -1,12 +1,15 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.basketball.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.BasketEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
@@ -17,16 +20,11 @@ class BasketRepositoryIT {
 
     @Test
     void testCreateAndRead() {
-        LocalDateTime expectedDateTime = LocalDateTime.of(2023, Month.OCTOBER, 16, 16, 0);
-        String playerEmail = "email1@gmail.com";
-        int expectedScore = 3;
-
-        assertTrue(this.basketRepository.findAll().stream()
-                .anyMatch(basket ->
-                        expectedScore == basket.getValue() &&
-                                expectedDateTime.equals(basket.getBasketTime()) &&
-                                playerEmail.equals(basket.getPlayer().getEmail())
-                ));
+        Optional<BasketEntity> basket = basketRepository.findByIdentifier("canasta2");
+        assertTrue(basket.isPresent());
+        assertEquals(2, basket.get().getValue());
+        assertEquals("canasta2", basket.get().getIdentifier());
+        assertEquals(LocalDateTime.of(2023, Month.OCTOBER, 16, 15, 0), basket.get().getBasketTime());
     }
 
 

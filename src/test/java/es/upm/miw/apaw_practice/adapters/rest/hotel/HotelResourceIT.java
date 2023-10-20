@@ -9,8 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @RestTestConfig
 class HotelResourceIT {
@@ -42,6 +44,33 @@ class HotelResourceIT {
                     assertNotNull(hotel.getBookings());
                     assertNotNull(hotel.getActivities());
                 });
+    }
+
+    @Test
+    void testGetMaxParticipantsSumByEmail(){
+        this.webTestClient.
+                get().uri(uriBuilder ->
+                        uriBuilder.path(HotelResource.HOTELS + HotelResource.SEARCH_MAX_PARTICIPANTS)
+                                .queryParam("q", "email:first@email.com")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Double.class)
+                .value(Assertions::assertNotNull).
+                isEqualTo(15.6);
+    }
+
+    @Test
+    void testGetRoomsNumberByInstructor(){
+        this.webTestClient.
+                get().uri(uriBuilder ->
+                        uriBuilder.path(HotelResource.HOTELS + HotelResource.SEARCH_ROOMS_NUMBERS)
+                                .queryParam("q", "instructorName:Adam")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(List.class)
+                .value(Assertions::assertNotNull).isEqualTo(Arrays.asList(700, 1000, 400));
     }
 
 }

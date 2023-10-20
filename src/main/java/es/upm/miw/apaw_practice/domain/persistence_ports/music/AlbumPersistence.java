@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.domain.persistence_ports.music;
 
+import es.upm.miw.apaw_practice.domain.models.music.Album;
 import es.upm.miw.apaw_practice.domain.models.music.Song;
 import org.springframework.stereotype.Repository;
 
@@ -11,9 +12,9 @@ public interface AlbumPersistence {
 
     Stream<Song> readSongsByAlbumDenomination(String denomination);
 
-    void delete(String denomination);
+    Stream<Album> findAlbumsByRecordLabel(String recordLabel);
 
-    Stream<Integer> getPhoneNumberByTypeAndRecordLabel(String type, String recordLabel);
+    void delete(String denomination);
 
     List<String> getDifferentDenominationsByFullname(String fullname);
 }

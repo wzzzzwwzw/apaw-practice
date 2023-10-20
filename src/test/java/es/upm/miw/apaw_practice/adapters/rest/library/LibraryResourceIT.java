@@ -10,6 +10,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RestTestConfig
 class LibraryResourceIT {
@@ -17,10 +18,10 @@ class LibraryResourceIT {
     private WebTestClient webTestClient;
 
     @Test
-    void testGetByName(){
+    void testGetByName() {
         this.webTestClient
                 .get()
-                .uri(LibraryResource.LIBRARY+LibraryResource.NAME_ID,"Biblioteca universitaria")
+                .uri(LibraryResource.LIBRARY + LibraryResource.NAME_ID, "Biblioteca universitaria")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Library.class)
@@ -34,4 +35,23 @@ class LibraryResourceIT {
                     assertEquals("9788466659734", libraryData.getBooks().get(2).getIsbn());
                 });
     }
+
+    @Test
+    void testFindAddressOfLibraryByLoanStatus() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(LibraryResource.LIBRARY + LibraryResource.SEARCH)
+                                .queryParam("q", "loanStatus:false")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(Assertions::assertNotNull)
+                .value(addressList -> {
+                    assertEquals(1, addressList.size());
+                    assertTrue(addressList.get(0).contains("Calle universidad 20"));
+                });
+    }
+
 }

@@ -1,12 +1,12 @@
 package es.upm.miw.apaw_practice.domain.services.library;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.library.LibrarySeederService;
 import es.upm.miw.apaw_practice.domain.models.library.Library;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class LibraryServiceIT {
     @Autowired
     private LibraryService libraryService;
+    @Autowired
+    private LibrarySeederService librarySeederService;
+
+    @AfterEach
+    void resetDataBaseAfter() {
+        this.librarySeederService.deleteAll();
+        this.librarySeederService.seedDatabase();
+    }
     @Test
     void testReadService(){
         Library library = this.libraryService.read("Biblioteca Nacional");

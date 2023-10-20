@@ -54,7 +54,7 @@ class MaterialResourceIT {
     }
 
     @Test
-    void testSearchUniqueMaterialTypeByManagerPromotionCandidate() {
+    void testFindUniqueMaterialTypeByManagerPromotionCandidate() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
@@ -70,6 +70,30 @@ class MaterialResourceIT {
                     assertTrue(materialsType.getResponseBody().size()>0);
 
                 });
+    }
+
+    @Test
+    void testBadRequestFindUniqueMaterialTypeByManagerPromotionCandidate() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(MATERIALS + SEARCH)
+                                .queryParam("q", "promotionCandidate:true")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
+
+    @Test
+    void testNotFoundUniqueMaterialTypeByManagerPromotionCandidate() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(MATERIALS + SEARCH)
+                                .queryParam("q", "promotion-candidate:null")
+                                .build())
+                .exchange()
+                .expectStatus().isNotFound();
     }
 
 }

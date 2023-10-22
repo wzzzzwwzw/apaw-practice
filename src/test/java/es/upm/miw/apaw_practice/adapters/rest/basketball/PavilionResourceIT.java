@@ -30,7 +30,11 @@ class PavilionResourceIT {
 
     @Test
     void testPostPavilion() {
-        Pavilion pavilion = new Pavilion("pavilion3", "location1", 40);
+        Pavilion pavilion = new Pavilion.Builder()
+                .pavname("pavilion3")
+                .direction("location1")
+                .capacity(40)
+                .build();
         this.webTestClient
                 .post()
                 .uri(PavilionResource.PAVILION)

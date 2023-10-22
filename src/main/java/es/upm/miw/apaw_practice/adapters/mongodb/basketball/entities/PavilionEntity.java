@@ -50,7 +50,11 @@ public class PavilionEntity {
     }
 
     public Pavilion toPavilion() {
-        return new Pavilion(this.pavname, this.direction, this.capacity);
+        return new Pavilion.Builder()
+                .pavname(this.pavname)
+                .direction(this.direction)
+                .capacity(this.capacity)
+                .build();
     }
 
     @Override

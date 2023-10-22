@@ -56,4 +56,37 @@ public class BankTypeResourceIT {
                 .expectStatus().isNotFound();
     }
 
+    @Test
+    void testObtainSumOfBalanceByDescription(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(TYPES+SEARCH)
+                        .queryParam("description","Banco que se especializa en servicios de inversión y asesoramiento financiero.")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BigDecimal.class)
+                .value(Assertions::assertNotNull)
+                .value(totalBalance ->assertEquals(new BigDecimal("26801.50"),totalBalance));
+
+
+    }
+
+    @Test
+    void testObtainSumOfBalanceByDescriptionNotFound(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(TYPES+SEARCH)
+                        .queryParam("description","Descripción inexistente")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BigDecimal.class)
+                .value(Assertions::assertNotNull)
+                .value(totalBalance ->assertEquals(new BigDecimal("0"),totalBalance));
+
+
+    }
 }

@@ -34,8 +34,16 @@ public class BasketballSeederService {
         LogManager.getLogger(this.getClass()).warn("------- Basketball Initial Load -----------");
 
         PavilionEntity[] pavilions = {
-                new PavilionEntity(new Pavilion("pavilion1", "direction1", 1000)),
-                new PavilionEntity(new Pavilion("pavilion2", "direction2", 2000))
+                new PavilionEntity(new Pavilion.Builder()
+                        .pavname("pavilion1")
+                        .direction("direction1")
+                        .capacity(1000)
+                        .build()),
+                new PavilionEntity(new Pavilion.Builder()
+                        .pavname("pavilion2")
+                        .direction("direction2")
+                        .capacity(2000)
+                        .build())
         };
         this.pavilionRepository.saveAll(Arrays.asList(pavilions));
 

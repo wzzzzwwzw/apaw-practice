@@ -49,5 +49,12 @@ public class TeamPersistenceMongodb implements TeamPersistence {
                 .orElseThrow(() -> new NotFoundException("Team alias: " + alias))
                 .toTeam();
     }
+    @Override
+    public List<Team> findAll() {
+        return this.teamBasketballRepository.findAll()
+                .stream()
+                .map(TeamBasketballEntity::toTeam)
+                .toList();
+    }
 
 }

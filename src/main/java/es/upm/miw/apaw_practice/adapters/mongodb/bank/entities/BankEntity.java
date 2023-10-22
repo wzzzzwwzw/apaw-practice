@@ -5,7 +5,6 @@ import es.upm.miw.apaw_practice.domain.models.bank.Bank;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
@@ -23,7 +22,6 @@ public class BankEntity {
     private String bankName;
     private String location;
     private BigDecimal capital;
-    @DBRef
     private BankTypeEntity bankTypeEntity;
 
     private List<BankAccountEntity> bankAccountEntityList;
@@ -44,27 +42,27 @@ public class BankEntity {
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public String getBankName() {
-        return bankName;
+        return this.bankName;
     }
 
     public BigDecimal getCapital() {
-        return capital;
+        return this.capital;
     }
 
     public String getLocation() {
-        return location;
+        return this.location;
     }
 
     public BankTypeEntity getBankTypeEntity() {
-        return bankTypeEntity;
+        return this.bankTypeEntity;
     }
 
     public List<BankAccountEntity> getBankAccountEntityList() {
-        return bankAccountEntityList;
+        return this.bankAccountEntityList;
     }
 
     public void setBankName(String bankName) {
@@ -94,13 +92,21 @@ public class BankEntity {
         this.bankAccountEntityList.remove(account);
     }
     public Bank toBank(){
-        Bank bank=new Bank();
-        BeanUtils.copyProperties(this,bank);
+        Bank bank = new Bank();
+
+        bank.setBankName(this.getBankName());
+        bank.setLocation(this.getLocation());
+        bank.setCapital(this.getCapital());
+
+        if (this.getBankTypeEntity() != null) {
+            bank.setBankType(this.getBankTypeEntity().toBankType());
+        }
         bank.setListAccounts(
                 this.bankAccountEntityList.stream()
                         .map(BankAccountEntity::toBankAccount)
                         .toList()
         );
+        System.out.println(bank);
         return bank;
     }
     @Override
@@ -119,12 +125,12 @@ public class BankEntity {
     @Override
     public String toString() {
         return "BankEntity{" +
-                "id='" + id + '\'' +
-                ", bankName='" + bankName + '\'' +
-                ", location='" + location + '\'' +
-                ", capital=" + capital +
-                ", bankTypeEntity=" + bankTypeEntity +
-                ", bankAccountEntityList=" + bankAccountEntityList +
+                "id='" + this.id + '\'' +
+                ", bankName='" + this.bankName + '\'' +
+                ", location='" + this.location + '\'' +
+                ", capital=" + this.capital +
+                ", bankTypeEntity=" + this.bankTypeEntity +
+                ", bankAccountEntityList=" + this.bankAccountEntityList +
                 '}';
     }
 }

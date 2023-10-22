@@ -35,23 +35,23 @@ public class BankAccountEntity {
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public String getNumAccount() {
-        return numAccount;
+        return this.numAccount;
     }
 
     public LocalDate getExpiration() {
-        return expiration;
+        return this.expiration;
     }
 
     public Integer getCvv() {
-        return cvv;
+        return this.cvv;
     }
 
     public BigDecimal getBalance() {
-        return balance;
+        return this.balance;
     }
 
     public void setNumAccount(String numAccount) {
@@ -90,11 +90,11 @@ public class BankAccountEntity {
     @Override
     public String toString() {
         return "BankAccountEntity{" +
-                "id='" + id + '\'' +
-                ", numAccount='" + numAccount + '\'' +
-                ", expiration=" + expiration +
-                ", cvv=" + cvv +
-                ", balance=" + balance +
+                "id='" + this.id + '\'' +
+                ", numAccount='" + this.numAccount + '\'' +
+                ", expiration=" + this.expiration +
+                ", cvv=" + this.cvv +
+                ", balance=" + this.balance +
                 '}';
     }
 }

@@ -42,4 +42,15 @@ public class BankTypePersistenceMongodbIT {
             this.bankTypePersistenceMongodb.readByTypeName("Rural");
         });
     }
+
+    @Test
+    void testObtainSumOfBalanceByDescription(){
+        BankType bankType=this.bankTypePersistenceMongodb.readByTypeName("Banco Comercial");
+        assertEquals(new BigDecimal("34375.75"),this.bankTypePersistenceMongodb.obtainSumOfBalanceByDescription(bankType.getDescription()));
+    }
+
+    @Test
+    void testObtainSumOfBalanceByDescriptionNotFoundDescription(){
+        assertEquals(new BigDecimal("0"),this.bankTypePersistenceMongodb.obtainSumOfBalanceByDescription("Descripcion inexistente"));
+    }
 }

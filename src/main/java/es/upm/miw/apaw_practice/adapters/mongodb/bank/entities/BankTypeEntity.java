@@ -36,19 +36,19 @@ public class BankTypeEntity {
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public String getTypeName() {
-        return typeName;
+        return this.typeName;
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public BigDecimal getMinimunCapital() {
-        return minimunCapital;
+        return this.minimunCapital;
     }
 
     public void setTypeName(String typeName) {
@@ -85,10 +85,10 @@ public class BankTypeEntity {
     @Override
     public String toString() {
         return "BankTypeEntity{" +
-                "id='" + id + '\'' +
-                ", typeName='" + typeName + '\'' +
-                ", description='" + description + '\'' +
-                ", minimunCapital=" + minimunCapital +
+                "id='" + this.id + '\'' +
+                ", typeName='" + this.typeName + '\'' +
+                ", description='" + this.description + '\'' +
+                ", minimunCapital=" + this.minimunCapital +
                 '}';
     }
 }

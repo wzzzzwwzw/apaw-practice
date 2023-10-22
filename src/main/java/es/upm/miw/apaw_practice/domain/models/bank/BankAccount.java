@@ -56,10 +56,10 @@ public class BankAccount {
     @Override
     public String toString() {
         return "BankAccount{" +
-                "numAccount='" + numAccount + '\'' +
-                ", expiration=" + expiration +
-                ", cvv=" + cvv +
-                ", balance=" + balance +
+                "numAccount='" + this.numAccount + '\'' +
+                ", expiration=" + this.expiration +
+                ", cvv=" + this.cvv +
+                ", balance=" + this.balance +
                 '}';
     }
 }

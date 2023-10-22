@@ -39,4 +39,15 @@ public class BankTypeServiceIT {
             this.bankTypeService.read("corporative");
         });
     }
+
+    @Test
+    void testObtainSumOfBalanceByDescription(){
+        BankType bankType=this.bankTypeService.read("Banco Comercial");
+        assertEquals(new BigDecimal("34375.75"),this.bankTypeService.obtainSumOfBalanceByDescription(bankType.getDescription()));
+    }
+
+    @Test
+    void testObtainSumOfBalanceByDescriptionNotFoundDescription(){
+        assertEquals(new BigDecimal("0"),this.bankTypeService.obtainSumOfBalanceByDescription("Descripcion inexistente"));
+    }
 }

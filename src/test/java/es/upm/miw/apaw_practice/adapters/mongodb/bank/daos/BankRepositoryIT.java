@@ -49,6 +49,8 @@ public class BankRepositoryIT {
     void testfindByBankName(){
         assertTrue(this.bankRepository.findByBankName(BANKNAME).isPresent());
         BankEntity bank = this.bankRepository.findByBankName(BANKNAME).get();
+        System.out.println("Este es el tipo");
+        System.out.println(bank.getBankTypeEntity());
         assertEquals(BANKNAME, bank.getBankName());
         assertEquals(LOCATION, bank.getLocation());
         assertEquals(CAPITAL, bank.getCapital());

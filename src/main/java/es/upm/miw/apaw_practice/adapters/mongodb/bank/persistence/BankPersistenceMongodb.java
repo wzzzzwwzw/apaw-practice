@@ -6,7 +6,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.BankAccountEntity
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.BankEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.BankTypeEntity;
 
-import es.upm.miw.apaw_practice.adapters.rest.bank.dto.IncrementBalanceDto;
+
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.bank.Bank;
 
@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,19 +58,21 @@ public class BankPersistenceMongodb implements BankPersistence {
                 .save(bankEntity)
                 .toBank();
     }
+
+
     @Override
-    public BankAccount updateIncreaseBankAccountBalance(String bankName , IncrementBalanceDto bodyIncrement){
+    public BankAccount updateIncreaseBankAccountBalance(String bankName , String numAccount, BigDecimal increment){
         BankEntity bankEntity=this.bankRepository.findByBankName(bankName)
                 .orElseThrow(() -> new NotFoundException(" bankName: " + bankName));
         List<BankAccountEntity> bankAccountEntities=bankEntity.getBankAccountEntityList();
 
-        BankAccountEntity bankAccountEntity=bankAccountEntities
-                .stream()
-                .filter(accountEntity -> accountEntity.getNumAccount().equals(bodyIncrement.getNumAccount()))
-                .findFirst().orElseThrow(() -> new NotFoundException("Cuenta con numAccount: " + bodyIncrement.getNumAccount() + " no encontrada en la lista de cuentas del banco."));
+        BankAccountEntity bankAccountEntity=bankAccountEntities.stream()
+                .filter(accountEntity -> numAccount.equals(accountEntity.getNumAccount()))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException("Cuenta no encontrada con número: " + numAccount));
 
         bankAccountEntities.remove(bankAccountEntity);
-        bankAccountEntity.setBalance(bankAccountEntity.getBalance().add(bodyIncrement.getIncrement()));
+        bankAccountEntity.setBalance(bankAccountEntity.getBalance().add(increment));
         bankAccountEntities.add(bankAccountEntity);
 
         bankEntity.setBankAccountEntityList(bankAccountEntities);

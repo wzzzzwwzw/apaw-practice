@@ -4,7 +4,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.BankTypeEntity;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 
-import es.upm.miw.apaw_practice.adapters.rest.bank.dto.IncrementBalanceDto;
+
 import es.upm.miw.apaw_practice.domain.models.bank.Bank;
 
 
@@ -100,6 +100,8 @@ public class BankResourceIT {
                         bank -> {
                             assertEquals("Huelva",bank.getLocation());
                             assertEquals(new BigDecimal("99999999.99"), bank.getCapital());
+                            assertEquals("Banco de Inversión",bank.getBankType().getTypeName());
+                            assertEquals(0,bank.getListAccounts().size());
                         }
                 );
     }
@@ -120,8 +122,8 @@ public class BankResourceIT {
     void testUpdateIncreaseBankAccountBalance(){
         this.webTestClient
                 .patch()
-                .uri(BANKS +BANK_NAME,"SrDell")
-                .body(BodyInserters.fromValue(new IncrementBalanceDto("5678-1234-7890-2345",new BigDecimal("100.00"))))
+                .uri(BANKS +BANK_NAME+ACCOUNTS+NUM_ACCOUNT,"SrDell","5678-1234-7890-2345")
+                .body(BodyInserters.fromValue(new BigDecimal("100.00")))
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(BankAccount.class)
@@ -137,8 +139,8 @@ public class BankResourceIT {
     void testUpdateIncreaseBankAccountBalanceBankAccountNotFound(){
         this.webTestClient
                 .patch()
-                .uri(BANKS +BANK_NAME,"SrDell")
-                .body(BodyInserters.fromValue(new IncrementBalanceDto("2345-2134-0099-0000",new BigDecimal("200"))))
+                .uri(BANKS +BANK_NAME+ACCOUNTS+NUM_ACCOUNT,"SrDell","2343-6666-6666-6666")
+                .body(BodyInserters.fromValue(new BigDecimal("200")))
                 .exchange()
                 .expectStatus()
                 .isNotFound();

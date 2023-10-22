@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.domain.services.bank;
 
-import es.upm.miw.apaw_practice.adapters.rest.bank.dto.IncrementBalanceDto;
 import es.upm.miw.apaw_practice.domain.models.bank.Bank;
 import es.upm.miw.apaw_practice.domain.models.bank.BankAccount;
 import es.upm.miw.apaw_practice.domain.persistence_ports.bank.BankPersistence;
@@ -30,7 +29,7 @@ public class BankService {
         return this.bankPersistence.updateBank(bankName,bankUpdate);
     }
 
-    public BankAccount updateIncreaseBankAccountBalance(String bankName, IncrementBalanceDto bodyIncrement){
-        return this.bankPersistence.updateIncreaseBankAccountBalance(bankName,bodyIncrement);
+    public BankAccount updateIncreaseBankAccountBalance(String bankName,String numAccount, BigDecimal increment){
+        return this.bankPersistence.updateIncreaseBankAccountBalance(bankName,numAccount,increment);
     }
 }

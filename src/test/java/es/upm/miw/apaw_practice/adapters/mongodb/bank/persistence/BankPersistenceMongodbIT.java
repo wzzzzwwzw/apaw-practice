@@ -4,9 +4,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.bank.persistence;
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.BankEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.BankTypeEntity;
-import es.upm.miw.apaw_practice.adapters.rest.bank.dto.IncrementBalanceDto;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 
 import es.upm.miw.apaw_practice.domain.models.bank.Bank;
@@ -19,6 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+
+import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -74,14 +73,12 @@ public class BankPersistenceMongodbIT {
         Bank bank = this.bankPersistenceMongodb.readByBankName("DreamBank");
         assertEquals(new BigDecimal("6500000.00"),bank.getCapital());
         bank.setCapital(new BigDecimal("155555555"));
-        this.bankPersistenceMongodb.updateBank("DreamBank",bank);
-        Bank bankUpdated = this.bankPersistenceMongodb.readByBankName("DreamBank");
+        bank.setBankName("BankDream");
+        bank.setListAccounts(new ArrayList<>());
+        Bank bankUpdated = this.bankPersistenceMongodb.updateBank("DreamBank",bank);
         assertEquals(new BigDecimal("155555555"), bankUpdated.getCapital());
-    }
-    @Test
-    void testNofunciona(){
-        BankEntity bankEntity=new BankEntity("LuisBank","Sevilla",new BigDecimal("5000000"),new BankTypeEntity("Extranjero","Banco no perteneciente al territorio nacional",new BigDecimal("1000000")));
-        bankEntity.toBank();
+        assertEquals("BankDream",bank.getBankName());
+        assertEquals(0,bankUpdated.getListAccounts().size());
     }
     @Test
     void testUpdateBankNotFound(){
@@ -93,7 +90,6 @@ public class BankPersistenceMongodbIT {
     @Test
     void testUpdateIncreaseBankAccountBalance(){
         Bank bank = this.bankPersistenceMongodb.readByBankName("DreamBank");
-        IncrementBalanceDto bodyIncrement=new IncrementBalanceDto("3210-9876-5432-1098",new BigDecimal("400.00"));
 
         Optional<BankAccount> accountToFind = bank.getListAccounts()
                 .stream()
@@ -102,15 +98,14 @@ public class BankPersistenceMongodbIT {
         assertTrue(accountToFind.isPresent());
         assertEquals(new BigDecimal("300.00"),accountToFind.get().getBalance());
 
-        BankAccount bankAccountUpdated=this.bankPersistenceMongodb.updateIncreaseBankAccountBalance("DreamBank",bodyIncrement);
+        BankAccount bankAccountUpdated=this.bankPersistenceMongodb.updateIncreaseBankAccountBalance("DreamBank","3210-9876-5432-1098",new BigDecimal("400.00"));
         assertEquals(new BigDecimal("700.00"),bankAccountUpdated.getBalance());
     }
 
     @Test
     void testUpdateIncreaseBankAccountBalanceBankAccountNotFound(){
         Bank bank = this.bankPersistenceMongodb.readByBankName("DreamBank");
-        IncrementBalanceDto bodyIncrement=new IncrementBalanceDto("9999-9211-1111-1098",new BigDecimal("777777777"));
         assertThrows(NotFoundException.class,
-                () -> this.bankPersistenceMongodb.updateIncreaseBankAccountBalance(bank.getBankName(),bodyIncrement));
+                () -> this.bankPersistenceMongodb.updateIncreaseBankAccountBalance(bank.getBankName(),"3210-3000-0020-0000",new BigDecimal("777777777")));
     }
 }

@@ -11,7 +11,7 @@ public interface BankPersistence {
     Bank readByBankName(String bankName);
     Bank createBank(Bank bank);
 
-    Bank updateBankCapital(Bank bank);
+    Bank updateBank(String bankName,Bank bank);
 
     BankAccount updateIncreaseBankAccountBalance(String bankName, IncrementBalanceDto bodyIncrement);
 

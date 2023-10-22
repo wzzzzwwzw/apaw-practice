@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.rest.bank;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.BankTypeEntity;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 
 import es.upm.miw.apaw_practice.adapters.rest.bank.dto.IncrementBalanceDto;
@@ -85,30 +86,31 @@ public class BankResourceIT {
 
 
     @Test
-    void testUpdateBankCapital(){
+    void testUpdateBank(){
         this.webTestClient
                 .put()
-                .uri(BANKS + BANK_NAME + CAPITAL,
+                .uri(BANKS + BANK_NAME ,
                         "SrDell")
-                .body(BodyInserters.fromValue(new BigDecimal("700000000.00")))
+                .body(BodyInserters.fromValue(new Bank("SrDell","Huelva",new BigDecimal("99999999.99"),new BankType("Banco de Inversión", "Banco que se especializa en servicios de inversión y asesoramiento financiero.", new BigDecimal("10000000.00")))))
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Bank.class)
                 .value(Assertions::assertNotNull)
                 .value(
                         bank -> {
-                            assertEquals(new BigDecimal("700000000.00"), bank.getCapital());
+                            assertEquals("Huelva",bank.getLocation());
+                            assertEquals(new BigDecimal("99999999.99"), bank.getCapital());
                         }
                 );
     }
 
     @Test
-    void testUpdateBankCapitalNotFound(){
+    void testUpdateBankNotFound(){
         this.webTestClient
                 .put()
-                .uri(BANKS + BANK_NAME + CAPITAL,
+                .uri(BANKS + BANK_NAME,
                         "TERESA")
-                .body(BodyInserters.fromValue(new BigDecimal("700000000.00")))
+                .body(BodyInserters.fromValue(new Bank("SrDell","Huelva",new BigDecimal("99999999.99"),new BankType("Banco de Inversión", "Banco que se especializa en servicios de inversión y asesoramiento financiero.", new BigDecimal("10000000.00")))))
                 .exchange()
                 .expectStatus()
                 .isNotFound();
@@ -118,7 +120,7 @@ public class BankResourceIT {
     void testUpdateIncreaseBankAccountBalance(){
         this.webTestClient
                 .patch()
-                .uri(BANKS +BANK_NAME+INCREASE_BALANCE,"SrDell")
+                .uri(BANKS +BANK_NAME,"SrDell")
                 .body(BodyInserters.fromValue(new IncrementBalanceDto("5678-1234-7890-2345",new BigDecimal("100.00"))))
                 .exchange()
                 .expectStatus().isOk()
@@ -135,7 +137,7 @@ public class BankResourceIT {
     void testUpdateIncreaseBankAccountBalanceBankAccountNotFound(){
         this.webTestClient
                 .patch()
-                .uri(BANKS +BANK_NAME+INCREASE_BALANCE,"SrDell")
+                .uri(BANKS +BANK_NAME,"SrDell")
                 .body(BodyInserters.fromValue(new IncrementBalanceDto("2345-2134-0099-0000",new BigDecimal("200"))))
                 .exchange()
                 .expectStatus()

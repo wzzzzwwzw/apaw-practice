@@ -4,6 +4,8 @@ package es.upm.miw.apaw_practice.adapters.mongodb.bank.persistence;
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.BankEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.BankTypeEntity;
 import es.upm.miw.apaw_practice.adapters.rest.bank.dto.IncrementBalanceDto;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 
@@ -24,8 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestConfig
 public class BankPersistenceMongodbIT {
 
-    @Autowired
-    private BankTypePersistenceMongodb bankTypePersistenceMongodb;
+
     @Autowired
     private BankPersistenceMongodb bankPersistenceMongodb;
     @Autowired
@@ -58,7 +59,7 @@ public class BankPersistenceMongodbIT {
 
     @Test
     void testCreateBank() {
-        BankType bankType= this.bankTypePersistenceMongodb.readByTypeName("Banco Comercial");
+        BankType bankType=new BankType("Banco Comercial", "Banco que ofrece una amplia gama de servicios financieros a empresas y consumidores.", new BigDecimal("19000000.00"));
         Bank bank = new Bank("Sadabell","Zaragoza",new BigDecimal("999999990"),bankType );
         Bank bankCreated=this.bankPersistenceMongodb.createBank(bank);
         assertEquals("Sadabell", bankCreated.getBankName());
@@ -69,19 +70,24 @@ public class BankPersistenceMongodbIT {
     }
 
     @Test
-    void testUpdateBankCapital(){
+    void testUpdateBank(){
         Bank bank = this.bankPersistenceMongodb.readByBankName("DreamBank");
-        bank.setCapital(new BigDecimal("150000000"));
-        this.bankPersistenceMongodb.updateBankCapital(bank);
+        assertEquals(new BigDecimal("6500000.00"),bank.getCapital());
+        bank.setCapital(new BigDecimal("155555555"));
+        this.bankPersistenceMongodb.updateBank("DreamBank",bank);
         Bank bankUpdated = this.bankPersistenceMongodb.readByBankName("DreamBank");
-        assertEquals(new BigDecimal("150000000"), bankUpdated.getCapital());
+        assertEquals(new BigDecimal("155555555"), bankUpdated.getCapital());
     }
-
     @Test
-    void testUpdateBankCapitalNotFound(){
-        Bank newBank = new Bank("LuisBank","Sevilla",new BigDecimal("5000000"),new BankType("Extranjero","Banco no perteneciente al territorio nacional",new BigDecimal("1000000")));
+    void testNofunciona(){
+        BankEntity bankEntity=new BankEntity("LuisBank","Sevilla",new BigDecimal("5000000"),new BankTypeEntity("Extranjero","Banco no perteneciente al territorio nacional",new BigDecimal("1000000")));
+        bankEntity.toBank();
+    }
+    @Test
+    void testUpdateBankNotFound(){
+        Bank updatedBank = new Bank("LuisBank","Sevilla",new BigDecimal("5000000"),new BankType("Extranjero","Banco no perteneciente al territorio nacional",new BigDecimal("1000000")));
         assertThrows(NotFoundException.class,
-                () -> this.bankPersistenceMongodb.updateBankCapital(newBank));
+                () -> this.bankPersistenceMongodb.updateBank("CMP",updatedBank));
     }
 
     @Test

@@ -26,10 +26,8 @@ public class BankService {
         return this.bankPersistence.createBank(bank);
     }
 
-    public Bank updateBankCapital(String bankName, BigDecimal capital){
-        Bank bank=this.bankPersistence.readByBankName(bankName);
-        bank.setCapital(capital);
-        return this.bankPersistence.updateBankCapital(bank);
+    public Bank updateBank(String bankName, Bank bankUpdate){
+        return this.bankPersistence.updateBank(bankName,bankUpdate);
     }
 
     public BankAccount updateIncreaseBankAccountBalance(String bankName, IncrementBalanceDto bodyIncrement){

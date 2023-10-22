@@ -71,11 +71,11 @@ public class Bank {
     @Override
     public String toString() {
         return "Bank{" +
-                "bankName='" + bankName + '\'' +
-                ", location='" + location + '\'' +
-                ", capital=" + capital +
-                ", bankType=" + bankType +
-                ", listAccounts=" + listAccounts +
+                "bankName='" + this.bankName + '\'' +
+                ", location='" + this.location + '\'' +
+                ", capital=" + this.capital +
+                ", bankType=" + this.bankType +
+                ", listAccounts=" + this.listAccounts +
                 '}';
     }
 }

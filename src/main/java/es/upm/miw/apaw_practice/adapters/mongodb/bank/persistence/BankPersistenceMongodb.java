@@ -16,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Repository("bankPersistence")
@@ -40,12 +42,19 @@ public class BankPersistenceMongodb implements BankPersistence {
     }
 
     @Override
-    public Bank updateBankCapital(Bank bank) {
+    public Bank updateBank(String bankName,Bank bankUpdated) {
         BankEntity bankEntity = this.bankRepository
-                .findByBankName(bank.getBankName())
-                .orElseThrow(() -> new NotFoundException("Bank name:" + bank.getBankName()));
-
-        bankEntity.setCapital(bank.getCapital());
+                .findByBankName(bankName)
+                .orElseThrow(() -> new NotFoundException("Bank name:" + bankName));
+        bankEntity.setBankName(bankUpdated.getBankName());
+        bankEntity.setCapital(bankUpdated.getCapital());
+        bankEntity.setLocation(bankUpdated.getLocation());
+        bankEntity.setBankTypeEntity(new BankTypeEntity(bankUpdated.getBankType().getTypeName(),bankUpdated.getBankType().getDescription(),bankUpdated.getBankType().getMinimunCapital()));
+        List<BankAccountEntity> updatedBankAccountList=bankUpdated.getListAccounts()
+                .stream()
+                .map(bankAccount -> new BankAccountEntity(bankAccount.getNumAccount(),bankAccount.getExpiration(),bankAccount.getCvv(),bankAccount.getBalance())).collect(Collectors.toList());
+        bankEntity.setBankAccountEntityList(updatedBankAccountList);
+        System.out.println(bankEntity);
         return this.bankRepository
                 .save(bankEntity)
                 .toBank();

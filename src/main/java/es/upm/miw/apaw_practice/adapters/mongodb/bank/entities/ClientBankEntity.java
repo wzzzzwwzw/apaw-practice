@@ -38,27 +38,27 @@ public class ClientBankEntity {
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public String getClientName() {
-        return clientName;
+        return this.clientName;
     }
 
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
     public Integer getAge() {
-        return age;
+        return this.age;
     }
 
     public String getDni() {
-        return dni;
+        return this.dni;
     }
 
     public List<BankAccountEntity> getListAccountsEntities() {
-        return listAccountsEntities;
+        return this.listAccountsEntities;
     }
 
     public void setClientName(String clientName) {
@@ -108,12 +108,12 @@ public class ClientBankEntity {
     @Override
     public String toString() {
         return "ClientEntity{" +
-                "id='" + id + '\'' +
-                ", dni='" + dni + '\'' +
-                ", clientName='" + clientName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                ", listAccountsEntities=" + listAccountsEntities +
+                "id='" + this.id + '\'' +
+                ", dni='" + this.dni + '\'' +
+                ", clientName='" + this.clientName + '\'' +
+                ", lastName='" + this.lastName + '\'' +
+                ", age=" + this.age +
+                ", listAccountsEntities=" + this.listAccountsEntities +
                 '}';
     }
 }

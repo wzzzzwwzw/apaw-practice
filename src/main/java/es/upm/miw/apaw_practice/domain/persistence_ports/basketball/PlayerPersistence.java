@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PlayerPersistence {
     Player readByEmail(String email);
+    void delete(String email);
 }

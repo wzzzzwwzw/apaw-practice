@@ -27,7 +27,11 @@ class PavilionPersistenceMongodbIT {
 
     @Test
     void testCreatePavilion() {
-        Pavilion pavilion = this.pavilionPersistenceMongodb.create(new Pavilion("pavilion3","location1",40));
+        Pavilion pavilion = this.pavilionPersistenceMongodb.create(new Pavilion.Builder()
+                .pavname("pavilion3")
+                .direction("location1")
+                .capacity(40)
+                .build());
         assertNotNull(pavilion);
         assertEquals("pavilion3", pavilion.getPavname());
         assertEquals("location1", pavilion.getDirection());

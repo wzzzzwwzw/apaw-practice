@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface PlayerRepository extends MongoRepository<PlayerEntity, String> {
     Optional<PlayerEntity> findByEmail(String email);
+    int deleteByEmail(String email);
 }

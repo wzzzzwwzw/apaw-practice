@@ -6,6 +6,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.bank.ClientBankPersiste
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClientBankService {
 
@@ -20,4 +22,8 @@ public class ClientBankService {
         return this.clientBankPersistence.readByDni(dni);
     }
     public void delete(String dni){this.clientBankPersistence.delete(dni);}
+
+    public List<String> findTypeNamesByDni(String dni){
+        return this.clientBankPersistence.findTypeNamesByDni(dni);
+    }
 }

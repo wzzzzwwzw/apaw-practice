@@ -12,8 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 
+import java.util.List;
+
 import static es.upm.miw.apaw_practice.adapters.rest.bank.ClientBankResource.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RestTestConfig
 public class ClientBankResourceIT {
@@ -65,5 +68,62 @@ public class ClientBankResourceIT {
                 .uri(CLIENTS + DNI, "4f654321B")
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testFindTypeNamesByDni(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(CLIENTS+SEARCH)
+                        .queryParam("dni","23456789D")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(List.class)
+                .value(Assertions::assertNotNull)
+                .value(typeList -> {
+                    assertTrue(typeList.contains("Banco de Inversión"));
+                    assertTrue(typeList.contains("Banco Comercial"));
+                    assertEquals(2,typeList.size());
+                });
+
+    }
+
+    @Test
+    void testFindTypeNamesByDniNoDuplicated(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(CLIENTS+SEARCH)
+                        .queryParam("dni","87654321B")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(List.class)
+                .value(Assertions::assertNotNull)
+                .value(typeList -> {
+                    assertTrue(typeList.contains("Banco de Inversión"));
+                    assertEquals(1,typeList.size());
+                });
+
+
+    }
+
+    @Test
+    void testFindTypeNamesByDniNotFound(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(CLIENTS+SEARCH)
+                        .queryParam("dni","243443R")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(List.class)
+                .value(Assertions::assertNotNull)
+                .value(typeList -> {
+                    assertEquals(0,typeList.size());
+                });
     }
 }

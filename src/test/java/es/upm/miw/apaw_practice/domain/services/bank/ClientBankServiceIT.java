@@ -10,6 +10,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
@@ -57,5 +59,25 @@ public class ClientBankServiceIT {
         assertThrows(NotFoundException.class, () -> {
             this.clientBankService.delete("87654321PO");
         });
+    }
+
+    @Test
+    void testFindTypeNamesByDni(){
+        List<String> typeNames=this.clientBankService.findTypeNamesByDni("23456789D");
+        assertEquals(2,typeNames.size());
+        assertTrue(typeNames.contains("Banco Comercial"));
+        assertTrue(typeNames.contains("Banco de Inversión"));
+    }
+
+    @Test
+    void testFindTypeNamesByDniNoDuplicated(){
+        List<String>typeNames=this.clientBankService.findTypeNamesByDni("87654321B");
+        assertEquals(1,typeNames.size());
+        assertTrue(typeNames.contains("Banco de Inversión"));
+    }
+
+    @Test
+    void testFindTypeNamesByDniNotFound(){
+        assertEquals(0,this.clientBankService.findTypeNamesByDni("777632P").size());
     }
 }

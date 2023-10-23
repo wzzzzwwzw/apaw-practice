@@ -8,6 +8,9 @@ import es.upm.miw.apaw_practice.domain.models.bank.ClientBank;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 @TestConfig
 public class ClientBankPersistenceMongodbIT {
@@ -61,4 +64,25 @@ public class ClientBankPersistenceMongodbIT {
             this.clientBankPersistenceMongodb.delete("234567wew");
         });
     }
+    @Test
+    void testFindTypeNamesByDni(){
+        List<String>typeNames=this.clientBankPersistenceMongodb.findTypeNamesByDni("23456789D");
+        assertEquals(2,typeNames.size());
+        assertTrue(typeNames.contains("Banco Comercial"));
+        assertTrue(typeNames.contains("Banco de Inversión"));
+    }
+
+    @Test
+    void testFindTypeNamesByDniNoDuplicated(){
+        List<String>typeNames=this.clientBankPersistenceMongodb.findTypeNamesByDni("87654321B");
+        assertEquals(1,typeNames.size());
+        assertTrue(typeNames.contains("Banco de Inversión"));
+    }
+
+    @Test
+    void testFindTypeNamesByDniNotFound(){
+        assertEquals(0,this.clientBankPersistenceMongodb.findTypeNamesByDni("777632P").size());
+    }
+
+
 }

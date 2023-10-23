@@ -23,7 +23,7 @@ public class BankAccountEntity {
     private BigDecimal balance;
 
     public BankAccountEntity(){
-
+        //empty for framework
     }
 
     public BankAccountEntity(String numAccount,LocalDate expiration,Integer cvv, BigDecimal balance){
@@ -70,9 +70,12 @@ public class BankAccountEntity {
         this.balance = balance;
     }
     public BankAccount toBankAccount(){
-        BankAccount bankAccount=new BankAccount();
-        BeanUtils.copyProperties(this,bankAccount);
-        return bankAccount;
+        return new BankAccount.Builder()
+                .numAccount(this.numAccount)
+                .expiration(this.expiration)
+                .cvv(this.cvv)
+                .balance(this.balance)
+                .build();
     }
     @Override
     public boolean equals(Object o) {

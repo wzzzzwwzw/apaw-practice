@@ -70,7 +70,7 @@ public class BankAccountEntity {
         this.balance = balance;
     }
     public BankAccount toBankAccount(){
-        return new BankAccount.Builder()
+        return BankAccount.builder()
                 .numAccount(this.numAccount)
                 .expiration(this.expiration)
                 .cvv(this.cvv)

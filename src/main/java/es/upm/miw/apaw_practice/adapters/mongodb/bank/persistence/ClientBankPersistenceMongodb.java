@@ -1,8 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.bank.persistence;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.daos.BankRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.daos.ClientBankRepository;
 
 
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.BankAccountEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.BankEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.BankTypeEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.ClientBankEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 
@@ -11,6 +15,9 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.bank.ClientBankPersiste
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Repository("clientBankPersistence")
@@ -18,10 +25,11 @@ public class ClientBankPersistenceMongodb implements ClientBankPersistence {
 
     private final ClientBankRepository clientBankRepository;
 
-
+    private final BankRepository bankRepository;
     @Autowired
-    public ClientBankPersistenceMongodb(ClientBankRepository clientBankRepository) {
+    public ClientBankPersistenceMongodb(ClientBankRepository clientBankRepository,BankRepository bankRepository) {
         this.clientBankRepository = clientBankRepository;
+        this.bankRepository=bankRepository;
     }
     @Override
     public ClientBank readByDni(String dni){
@@ -37,6 +45,25 @@ public class ClientBankPersistenceMongodb implements ClientBankPersistence {
         }
         else{
             throw new NotFoundException("Inexistente: " + dni);
+        }
+
+    }
+
+    @Override
+    public List<String> findTypeNamesByDni(String dni) {
+        try {
+            List<BankAccountEntity> bankAccountList = this.clientBankRepository.findByDni(dni).get().getListAccountsEntities();
+
+            return bankAccountList.stream()
+                    .flatMap(account -> bankRepository.findAll().stream()
+                            .filter(bank -> bank.getBankAccountEntityList().contains(account))
+                            .map(BankEntity::getBankTypeEntity)
+                            .map(BankTypeEntity::getTypeName)
+                    )
+                    .distinct()
+                    .toList();
+        } catch (NoSuchElementException e) {
+            return Collections.emptyList();
         }
 
     }

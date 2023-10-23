@@ -5,12 +5,16 @@ import es.upm.miw.apaw_practice.domain.services.bank.ClientBankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(ClientBankResource.CLIENTS)
 public class ClientBankResource {
     static final String CLIENTS="/bank_model/clients";
 
     static final String DNI="/{dni}";
+
+    static final String SEARCH="/search";
 
 
     private final ClientBankService clientBankService;
@@ -24,5 +28,10 @@ public class ClientBankResource {
     @DeleteMapping(DNI)
     public void delete(@PathVariable String dni) {
         this.clientBankService.delete(dni);
+    }
+
+    @GetMapping(SEARCH)
+    public List<String> findTypeNamesByDni(@RequestParam String dni ){
+        return this.clientBankService.findTypeNamesByDni(dni);
     }
 }

@@ -119,11 +119,6 @@ public class ClientBankResourceIT {
                         .queryParam("dni","243443R")
                         .build())
                 .exchange()
-                .expectStatus().isOk()
-                .expectBody(List.class)
-                .value(Assertions::assertNotNull)
-                .value(typeList -> {
-                    assertEquals(0,typeList.size());
-                });
+                .expectStatus().isNotFound();
     }
 }

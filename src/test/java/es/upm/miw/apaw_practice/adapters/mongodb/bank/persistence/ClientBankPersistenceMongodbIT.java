@@ -81,7 +81,10 @@ public class ClientBankPersistenceMongodbIT {
 
     @Test
     void testFindTypeNamesByDniNotFound(){
-        assertEquals(0,this.clientBankPersistenceMongodb.findTypeNamesByDni("777632P").size());
+
+        assertThrows(NotFoundException.class, () -> {
+            this.clientBankPersistenceMongodb.findTypeNamesByDni("777632P");
+        });
     }
 
 

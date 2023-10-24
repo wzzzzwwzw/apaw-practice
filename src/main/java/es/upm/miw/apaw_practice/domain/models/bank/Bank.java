@@ -1,10 +1,12 @@
 package es.upm.miw.apaw_practice.domain.models.bank;
 
+import es.upm.miw.apaw_practice.domain.models.bank.composite.TreeBank;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bank {
+public class Bank implements TreeBank {
     private String bankName;
     private String location;
     private BigDecimal capital;
@@ -77,5 +79,20 @@ public class Bank {
                 ", bankType=" + this.bankType +
                 ", listAccounts=" + this.listAccounts +
                 '}';
+    }
+
+    @Override
+    public boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(TreeBank treeBank) {
+        throw new UnsupportedOperationException("Unsupported operation in Bank leaf");
+    }
+
+    @Override
+    public void delete(TreeBank treeBank) {
+        //Do nothing because is a leaf
     }
 }

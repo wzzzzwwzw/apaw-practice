@@ -51,20 +51,16 @@ public class ClientBankPersistenceMongodb implements ClientBankPersistence {
 
     @Override
     public List<String> findTypeNamesByDni(String dni) {
-        try {
-            List<BankAccountEntity> bankAccountList = this.clientBankRepository.findByDni(dni).get().getListAccountsEntities();
-
-            return bankAccountList.stream()
-                    .flatMap(account -> bankRepository.findAll().stream()
-                            .filter(bank -> bank.getBankAccountEntityList().contains(account))
-                            .map(BankEntity::getBankTypeEntity)
-                            .map(BankTypeEntity::getTypeName)
-                    )
-                    .distinct()
-                    .toList();
-        } catch (NoSuchElementException e) {
-            return Collections.emptyList();
-        }
+        return clientBankRepository.findByDni(dni)
+                .map(ClientBankEntity::getListAccountsEntities)
+                .orElseThrow(() -> new NotFoundException("Cliente no encontrado para DNI: " + dni))
+                .stream()
+                .flatMap(account -> bankRepository.findAll().stream()
+                        .filter(bank -> bank.getBankAccountEntityList().contains(account))
+                        .map(BankEntity::getBankTypeEntity)
+                        .map(BankTypeEntity::getTypeName))
+                .distinct()
+                .toList();
 
     }
 }

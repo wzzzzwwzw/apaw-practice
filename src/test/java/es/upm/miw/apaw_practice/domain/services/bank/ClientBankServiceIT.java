@@ -78,6 +78,8 @@ public class ClientBankServiceIT {
 
     @Test
     void testFindTypeNamesByDniNotFound(){
-        assertEquals(0,this.clientBankService.findTypeNamesByDni("777632P").size());
+        assertThrows(NotFoundException.class, () -> {
+            this.clientBankService.findTypeNamesByDni("777632P");
+        });
     }
 }

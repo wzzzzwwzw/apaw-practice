@@ -1,6 +1,8 @@
 package es.upm.miw.apaw_practice.domain.models.basketball;
 
-public class Player {
+import es.upm.miw.apaw_practice.domain.models.basketball.composite.TreePlayers;
+
+public class Player implements TreePlayers {
     private String email;
     private String position;
     private Integer age;
@@ -46,6 +48,21 @@ public class Player {
                 ", age='" + age + '\'' +
                 ", position=" + position +
                 '}';
+    }
+
+    @Override
+    public Boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(TreePlayers component) {
+        throw new UnsupportedOperationException("Unsupported operation in Player leaf");
+    }
+
+    @Override
+    public void remove(TreePlayers component) {
+        // Do nothing because it's a leaf
     }
 }
 

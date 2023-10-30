@@ -1,8 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.rest.furniture_store;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.furniture_store.FurnitureStoreSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.furniture_store.Material;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,15 @@ class MaterialResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
+
+    @Autowired
+    private FurnitureStoreSeederService furnitureStoreSeederService;
+
+    @BeforeEach
+    void resetDB() {
+        this.furnitureStoreSeederService.deleteAll();
+        this.furnitureStoreSeederService.seedDatabase();
+    }
 
     @Test
     void testCreate() {

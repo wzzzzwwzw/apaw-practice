@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.swimming.entities;
 
+import es.upm.miw.apaw_practice.domain.models.swimming.Tutor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -61,6 +63,12 @@ public class TutorEntity {
 
     public void setExperience(Integer experience) {
         this.experience = experience;
+    }
+
+    public Tutor toTutor() {
+        Tutor tutor = new Tutor();
+        BeanUtils.copyProperties(this, tutor);
+        return tutor;
     }
 
     public LessonEntity getLessonEntity() {

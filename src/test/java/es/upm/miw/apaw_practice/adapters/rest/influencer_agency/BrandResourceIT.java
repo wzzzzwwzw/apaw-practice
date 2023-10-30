@@ -1,8 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.rest.influencer_agency;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.InfluencerAgencySeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.influencer_agency.Campaign;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -13,6 +15,15 @@ import java.math.BigDecimal;
 class BrandResourceIT {
     @Autowired
     private WebTestClient webTestClient;
+
+    @Autowired
+    private InfluencerAgencySeederService influencerAgencySeederService;
+
+    @BeforeEach
+    void resetDB() {
+        this.influencerAgencySeederService.deleteAll();
+        this.influencerAgencySeederService.seedDatabase();
+    }
 
     @Test
     void getCampaignsByBrand() {

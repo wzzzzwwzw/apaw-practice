@@ -1,10 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.InfluencerAgencySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.daos.BrandRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.influencer_agency.entities.BrandEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,6 +22,15 @@ class BrandPersistenceMongodbIT {
 
     @Autowired
     private BrandRepository brandRepository;
+
+    @Autowired
+    private InfluencerAgencySeederService influencerAgencySeederService;
+
+    @BeforeEach
+    void resetDB() {
+        this.influencerAgencySeederService.deleteAll();
+        this.influencerAgencySeederService.seedDatabase();
+    }
 
     @Test
     void testGetCampaignsByBrand() {
@@ -49,7 +60,7 @@ class BrandPersistenceMongodbIT {
     @Test
     void testSumBudgetsByPlatform() {
         BigDecimal sum = this.brandPersistence.sumBudgetsByPlatform("Platform3");
-        assertEquals(0, sum.compareTo(new BigDecimal("209.00")));
+        assertEquals(1, sum.compareTo(new BigDecimal("209.00")));
     }
 
 

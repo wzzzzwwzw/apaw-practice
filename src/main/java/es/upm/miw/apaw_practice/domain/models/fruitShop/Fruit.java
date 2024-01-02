@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.fruitShop;
 
+import es.upm.miw.apaw_practice.domain.models.fruitShop.builders.FruitBuilders;
+
 import java.time.LocalDate;
 import java.math.BigDecimal;
 import java.util.List;
@@ -11,26 +13,26 @@ public class Fruit {
 
     private BigDecimal unitPrice;
 
-    private Boolean isTropical;
+    private Boolean tropical;
 
     private LocalDate stockTime;
 
-    private FruitSpecies fruitSpecies;
+    private FruitSpecie fruitSpecie;
 
-    private List<Customer> customer;
+    private List<Customer> customers;
 
     public Fruit() {
         //empty for framework
     }
 
-
-    public Fruit(String type, BigDecimal unitPrice, Boolean isTropical, LocalDate stockTime, FruitSpecies fruitSpecies, List<Customer> customer) {
+    
+    public Fruit(String type, BigDecimal unitPrice, Boolean tropical, LocalDate stockTime, FruitSpecie fruitSpecie, List<Customer> customers) {
         this.type = type;
         this.unitPrice = unitPrice;
-        this.isTropical = isTropical;
+        this.tropical = tropical;
         this.stockTime = stockTime;
-        this.fruitSpecies = fruitSpecies;
-        this.customer = customer;
+        this.fruitSpecie = fruitSpecie;
+        this.customers = customers;
     }
 
     public String getType() {
@@ -49,12 +51,12 @@ public class Fruit {
         this.unitPrice = unitPrice;
     }
 
-    public Boolean getTropical() {
-        return isTropical;
+    public Boolean isTropical() {
+        return tropical;
     }
 
     public void setTropical(Boolean tropical) {
-        isTropical = tropical;
+        this.tropical = tropical;
     }
 
     public LocalDate getStockTime() {
@@ -65,20 +67,20 @@ public class Fruit {
         this.stockTime = stockTime;
     }
 
-    public FruitSpecies getFruitSpecies() {
-        return fruitSpecies;
+    public FruitSpecie getFruitSpecie() {
+        return fruitSpecie;
     }
 
-    public void setFruitSpecies(FruitSpecies fruitSpecies) {
-        this.fruitSpecies = fruitSpecies;
+    public void setFruitSpecie(FruitSpecie fruitSpecie) {
+        this.fruitSpecie = fruitSpecie;
     }
 
-    public List<Customer> getCustomer() {
-        return customer;
+    public List<Customer> getCustomers() {
+        return customers;
     }
 
-    public void setCustomer(List<Customer> customer) {
-        this.customer = customer;
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 
     @Override
@@ -86,10 +88,62 @@ public class Fruit {
         return "Fruit{" +
                 "type='" + type + '\'' +
                 ", unitPrice=" + unitPrice +
-                ", isTropical=" + isTropical +
+                ", tropical=" + tropical +
                 ", stockTime=" + stockTime +
-                ", fruitSpecies=" + fruitSpecies +
-                ", customer=" + customer +
+                ", fruitSpecie=" + fruitSpecie +
+                ", customers=" + customers +
                 '}';
     }
+
+    public static class Builder implements FruitBuilders.Type, FruitBuilders.Optionals {
+        private final Fruit fruit;
+
+        public Builder(){
+            fruit = new Fruit();
+        }
+
+        @Override
+        public FruitBuilders.Optionals type(String type){
+            this.fruit.type = type;
+            return this;
+        }
+
+        @Override
+        public FruitBuilders.Optionals unitPrice(BigDecimal unitPrice){
+            this.fruit.unitPrice = unitPrice;
+            return this;
+        }
+
+        @Override
+        public FruitBuilders.Optionals tropical(Boolean tropical){
+            this.fruit.tropical = tropical;
+            return this;
+        }
+
+        @Override
+        public FruitBuilders.Optionals stockTime(LocalDate stockTime){
+            this.fruit.stockTime = stockTime;
+            return this;
+        }
+
+        @Override
+        public FruitBuilders.Optionals fruitSpecie(FruitSpecie fruitSpecies){
+            this.fruit.fruitSpecie = fruitSpecies;
+            return this;
+        }
+
+        @Override
+        public FruitBuilders.Optionals customers(List<Customer> customers){
+            this.fruit.customers = customers;
+            return this;
+        }
+
+        @Override
+        public Fruit build(){
+            return this.fruit;
+        }
+
+    }
+
+
 }

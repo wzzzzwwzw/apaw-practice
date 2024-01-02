@@ -1,6 +1,8 @@
 package es.upm.miw.apaw_practice.domain.models.hospital;
 
-public class Doctor {
+import es.upm.miw.apaw_practice.domain.models.hospital.builders.DoctorBuilders;
+
+public class Doctor implements TreeDoctors{
 
     private String medicalLicenseCode;
     private String speciality;
@@ -48,5 +50,52 @@ public class Doctor {
                 ", speciality='" + speciality + '\'' +
                 ", department='" + department + '\'' +
                 '}';
+    }
+
+    public static class Builder implements DoctorBuilders.MedicalLicenseCode, DoctorBuilders.Optionals {
+        private final Doctor doctor;
+
+        public Builder() {
+            doctor = new Doctor();
+        }
+
+        @Override
+        public DoctorBuilders.Optionals medicalLicenseCode(String medicalLicenseCode) {
+            this.doctor.medicalLicenseCode = medicalLicenseCode;
+            return this;
+        }
+        @Override
+        public DoctorBuilders.Optionals speciality(String speciality) {
+            this.doctor.speciality = speciality;
+            return this;
+        }
+
+        @Override
+        public DoctorBuilders.Optionals department(Department department) {
+            this.doctor.department = department;
+            return this;
+        }
+
+        @Override
+        public Doctor build() {
+            return this.doctor;
+        }
+
+    }
+
+    @Override
+    public Boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(TreeDoctors treeDoctors) {
+        throw new UnsupportedOperationException("Unsupported operation in Doctor leaf");
+
+    }
+
+    @Override
+    public void remove(TreeDoctors treeDoctors) {
+        // cannot remove in leaf
     }
 }

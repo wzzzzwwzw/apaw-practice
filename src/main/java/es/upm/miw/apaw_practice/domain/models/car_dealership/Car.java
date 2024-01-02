@@ -13,13 +13,16 @@ public class Car {
     private CarModel carModel;
     private List<Seller> sellerList;
 
+    public Car() {
+        this.sellerList = new ArrayList<>();
+    }
     public Car(String chassisNumber, BigDecimal price, Boolean sold, LocalDate fabricationDate, CarModel carModel) {
+        this();
         this.chassisNumber = chassisNumber;
         this.price = price;
         this.sold = sold;
         this.fabricationDate = fabricationDate;
         this.carModel = carModel;
-        this.sellerList = new ArrayList<>();
     }
 
     public String getChassisNumber() {
@@ -38,7 +41,7 @@ public class Car {
         this.price = price;
     }
 
-    public Boolean isSold() {
+    public Boolean getSold() {
         return sold;
     }
 
@@ -70,7 +73,7 @@ public class Car {
         this.sellerList = sellerList;
     }
 
-    public void setSeller(Seller seller) {
+    public void addSeller(Seller seller) {
         this.sellerList.add(seller);
     }
 
@@ -84,5 +87,52 @@ public class Car {
                 ", carModel=" + carModel +
                 ", sellerList=" + sellerList +
                 '}';
+    }
+    public static class CarBuilder {
+        private final Car car;
+
+        public CarBuilder() {
+            this.car = new Car();
+        }
+
+        public CarBuilder chassisNumber(String chassisNumber) {
+            this.car.setChassisNumber(chassisNumber);
+            return this;
+        }
+
+        public CarBuilder price(BigDecimal price) {
+            this.car.setPrice(price);
+            return this;
+        }
+
+        public CarBuilder sold(Boolean sold) {
+            this.car.setSold(sold);
+            return this;
+        }
+
+        public CarBuilder fabricationDate(LocalDate fabricationDate) {
+            this.car.setFabricationDate(fabricationDate);
+            return this;
+        }
+
+        public CarModel.CarModelBuilder carModel() {
+            return new CarModel.CarModelBuilder(this);
+        }
+
+        void addCarModel(CarModel carModel) {
+            this.car.setCarModel(carModel);
+        }
+
+        public Seller.SellerBuilder seller() {
+            return new Seller.SellerBuilder(this);
+        }
+
+        void addSeller(Seller seller) {
+            this.car.addSeller(seller);
+        }
+
+        public Car build() {
+            return this.car;
+        }
     }
 }

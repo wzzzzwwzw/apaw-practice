@@ -10,6 +10,10 @@ public class Academy {
     private List<Instructor> instructors;
     private List<Court> courts;
 
+    public Academy() {
+        //empty for framework
+    }
+
     public Academy(String name, String address, String city, List<Instructor> instructors) {
         this.name = name;
         this.address = address;

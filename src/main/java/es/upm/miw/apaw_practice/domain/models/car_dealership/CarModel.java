@@ -3,22 +3,26 @@ package es.upm.miw.apaw_practice.domain.models.car_dealership;
 import java.time.LocalDate;
 
 public class CarModel {
-    private String model;
+    private String name;
     private String brand;
     private LocalDate createDate;
 
-    public CarModel(String model, String brand, LocalDate createDate) {
-        this.model = model;
+    public CarModel() {
+        //empty from framework
+    }
+
+    public CarModel(String name, String brand, LocalDate createDate) {
+        this.name = name;
         this.brand = brand;
         this.createDate = createDate;
     }
 
-    public String getModel() {
-        return model;
+    public String getName() {
+        return name;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getBrand() {
@@ -40,9 +44,38 @@ public class CarModel {
     @Override
     public String toString() {
         return "CarModel{" +
-                "model='" + model + '\'' +
+                "model='" + name + '\'' +
                 ", brand='" + brand + '\'' +
                 ", createDate=" + createDate +
                 '}';
+    }
+    public static class CarModelBuilder {
+        private final CarModel carModel;
+        private final Car.CarBuilder carBuilder;
+
+        public CarModelBuilder(Car.CarBuilder carBuilder) {
+            this.carModel = new CarModel();
+            this.carBuilder = carBuilder;
+        }
+
+        public CarModelBuilder name(String name) {
+            this.carModel.setName(name);
+            return this;
+        }
+
+        public CarModelBuilder brand(String brand) {
+            this.carModel.setBrand(brand);
+            return this;
+        }
+
+        public CarModelBuilder createDate(LocalDate createDate) {
+            this.carModel.setCreateDate(createDate);
+            return this;
+        }
+
+        public Car.CarBuilder build() {
+             carBuilder.addCarModel(this.carModel);
+            return this.carBuilder;
+        }
     }
 }

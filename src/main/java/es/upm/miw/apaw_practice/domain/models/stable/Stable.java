@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.stable;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Stable {
@@ -14,12 +13,12 @@ public class Stable {
     public Stable() {
     }
 
-    public Stable(String name, String address, Integer maxCapacity, LocalDate foundationDate) {
+    public Stable(String name, String address, Integer maxCapacity, LocalDate foundationDate, List<Horse> horses) {
         this.name = name;
         this.address = address;
         this.maxCapacity = maxCapacity;
         this.foundationDate = foundationDate;
-        this.horses = new ArrayList<>();
+        this.horses = horses;
     }
 
     public String getName() {
@@ -42,7 +41,7 @@ public class Stable {
         return maxCapacity;
     }
 
-    public void setMaxCapacity(int maxCapacity) {
+    public void setMaxCapacity(Integer maxCapacity) {
         this.maxCapacity = maxCapacity;
     }
 

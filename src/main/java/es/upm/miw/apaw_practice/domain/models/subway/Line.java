@@ -1,26 +1,27 @@
 package es.upm.miw.apaw_practice.domain.models.subway;
 
-import java.util.ArrayList;
+import es.upm.miw.apaw_practice.domain.models.subway.builders.LineBuilders;
+import es.upm.miw.apaw_practice.domain.models.subway.trees.TreeLines;
+
 import java.util.List;
 
-public class Line {
+public class Line implements TreeLines {
     private String label;
     private String color;
     private Boolean works;
     private List<Station> stations;
     private Schedule schedule;
 
-
-    public Line(String label, String color, boolean works, Schedule schedule) {
+    public Line(String label, String color, Boolean works, Schedule schedule, List<Station> stations) {
         this.label = label;
         this.color = color;
         this.works = works;
-        this.stations = new ArrayList<Station>();
+        this.stations = stations;
         this.schedule = schedule;
     }
 
     public Line() {
-        //for framework
+        // for framework
     }
 
     public String getLabel() {
@@ -39,7 +40,7 @@ public class Line {
         this.color = color;
     }
 
-    public Boolean isWorking() {
+    public Boolean getWorking() {
         return works;
     }
 
@@ -64,6 +65,21 @@ public class Line {
     }
 
     @Override
+    public Boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(TreeLines treeLines) {
+        throw new UnsupportedOperationException("Unsupported operation in line leaf");
+    }
+
+    @Override
+    public void remove(TreeLines treeLines) {
+        // cannot remove in leaf
+    }
+
+    @Override
     public String toString() {
         return "Line{" +
                 "label='" + label + '\'' +
@@ -72,5 +88,48 @@ public class Line {
                 ", stations=" + stations +
                 '}';
     }
-}
 
+    public static class Builder implements LineBuilders.Label, LineBuilders.Optionals{
+
+        private final Line line;
+
+        public Builder() {
+            this.line = new Line();
+        }
+
+        @Override
+        public LineBuilders.Optionals label(String label) {
+            this.line.setLabel(label);
+            return this;
+        }
+
+        @Override
+        public LineBuilders.Optionals color(String color) {
+            this.line.setColor(color);
+            return this;
+        }
+
+        @Override
+        public LineBuilders.Optionals works(Boolean works) {
+            this.line.setWorks(works);
+            return this;
+        }
+
+        @Override
+        public LineBuilders.Optionals schedule(Schedule schedule) {
+            this.line.setSchedule(schedule);
+            return this;
+        }
+
+        @Override
+        public LineBuilders.Optionals stations(List<Station> stations) {
+            this.line.setStations(stations);
+            return this;
+        }
+
+        public Line build() {
+            return this.line;
+        }
+    }
+
+}

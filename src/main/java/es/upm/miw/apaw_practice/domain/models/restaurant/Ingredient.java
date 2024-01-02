@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.restaurant;
 
+import es.upm.miw.apaw_practice.domain.models.restaurant.builders.IngredientBuilders;
+
 import java.util.Objects;
 
 public class Ingredient {
@@ -8,7 +10,7 @@ public class Ingredient {
     private Boolean spicy;
     private Boolean available;
 
-    Ingredient() {
+    public Ingredient() {
         //empty from framework
     }
 
@@ -62,6 +64,37 @@ public class Ingredient {
                 ", spicy=" + spicy +
                 ", available=" + available +
                 '}';
+    }
+
+    public static class Builder implements IngredientBuilders.Name, IngredientBuilders.Optionals {
+        private final Ingredient ingredient;
+
+        public Builder() {
+            ingredient = new Ingredient();
+        }
+
+        @Override
+        public IngredientBuilders.Optionals name(String name) {
+            this.ingredient.name = name;
+            return this;
+        }
+
+        @Override
+        public IngredientBuilders.Optionals spicy(Boolean spicy) {
+            this.ingredient.spicy = spicy;
+            return this;
+        }
+
+        @Override
+        public IngredientBuilders.Optionals available(Boolean available) {
+            this.ingredient.available = available;
+            return this;
+        }
+
+        @Override
+        public Ingredient build() {
+            return ingredient;
+        }
     }
 
 }

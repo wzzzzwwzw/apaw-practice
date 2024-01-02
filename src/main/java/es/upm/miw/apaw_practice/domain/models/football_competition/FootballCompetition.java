@@ -11,8 +11,7 @@ public class FootballCompetition {
     private List<FootballTeam> teams;
 
     public FootballCompetition() {
-        this.sponsors = new ArrayList<>() {
-        };
+        this.sponsors = new ArrayList<>();
         this.teams = new ArrayList<>();
     }
 

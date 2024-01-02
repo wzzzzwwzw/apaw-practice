@@ -18,7 +18,7 @@ class WireRepositoryIT {
 
     @Test
     void testFindByName() {
-        assertTrue(wireRepository.findByName(HDMI_NAME).isPresent());
+        assertTrue(this.wireRepository.findByName(HDMI_NAME).isPresent());
         WireEntity hdmiWire = wireRepository.findByName(HDMI_NAME).get();
         assertEquals(new BigDecimal("1.5"), hdmiWire.getLength());
         assertEquals("Plastic", hdmiWire.getJacketMaterial());

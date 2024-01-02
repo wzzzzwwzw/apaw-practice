@@ -1,10 +1,12 @@
 package es.upm.miw.apaw_practice.domain.models.influencer_agency;
 
+import es.upm.miw.apaw_practice.domain.models.influencer_agency.composite.TreeCampaigns;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Campaign {
+public class Campaign implements TreeCampaigns {
     private Date startDate;
     private Date endDate;
     private String description;
@@ -61,5 +63,20 @@ public class Campaign {
                 ", description='" + description + '\'' +
                 ", contents=" + contents +
                 '}';
+    }
+
+    @Override
+    public Boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(TreeCampaigns treeCampaigns) {
+        throw new UnsupportedOperationException("Unsupported operation in Campaign leaf");
+    }
+
+    @Override
+    public void remove(TreeCampaigns treeCampaigns) {
+        // cannot remove in leaf
     }
 }

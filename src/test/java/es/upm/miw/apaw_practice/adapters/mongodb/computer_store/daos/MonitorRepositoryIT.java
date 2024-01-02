@@ -12,24 +12,24 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
 class MonitorRepositoryIT {
+    private static final String XIAOMI_SERIAL_NUMBER = "XIAOMIC34001";
     @Autowired
     private MonitorRepository monitorRepository;
-    private static final String XIAOMI_SERIAL_NUMBER = "XIAOMIC34001";
 
     @Test
     void testFindBySerialNumber() {
-        assertTrue(monitorRepository.findBySerialNumber(XIAOMI_SERIAL_NUMBER).isPresent());
-        MonitorEntity monitor = monitorRepository.findBySerialNumber(XIAOMI_SERIAL_NUMBER).get();
+        assertTrue(this.monitorRepository.findBySerialNumber(XIAOMI_SERIAL_NUMBER).isPresent());
+        MonitorEntity monitor = this.monitorRepository.findBySerialNumber(XIAOMI_SERIAL_NUMBER).get();
         assertEquals(165, monitor.getRefreshRate());
         assertEquals(new BigDecimal("34"), monitor.getSize());
-        assertEquals(3, monitor.getWires().size());
+        assertEquals(3, monitor.getWireEntities().size());
         this.assertMonitorWires(monitor, "HDMI");
         this.assertMonitorWires(monitor, "Power");
         this.assertMonitorWires(monitor, "DisplayPort");
     }
 
     private void assertMonitorWires(MonitorEntity monitor, String wireName) {
-        assertTrue(monitor.getWires()
+        assertTrue(monitor.getWireEntities()
                 .stream()
                 .anyMatch(wire ->
                         wire.getName().equals(wireName)

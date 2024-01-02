@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.subway;
 
 import java.util.List;
-import java.util.ArrayList;
 
 public class Subway {
 
@@ -10,11 +9,11 @@ public class Subway {
     private Integer capacity;
     private List<Line> lines;
 
-    public Subway(String city, Boolean open24h, Integer capacity) {
+    public Subway(String city, Boolean open24h, Integer capacity, List<Line> lines) {
         this.city = city;
         this.open24h = open24h;
         this.capacity = capacity;
-        this.lines = new ArrayList<Line>();
+        this.lines = lines;
     }
 
     public Subway() {

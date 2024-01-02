@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.airport;
 
+import es.upm.miw.apaw_practice.domain.models.airport.builders.AirLineBuilders;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,12 +14,15 @@ public class AirLine {
         //empty for framework
     }
 
-    public AirLine(String name, LocalDate dayOfFundation, List<Aircraft> aircrafts) {
+    public AirLine(String name, LocalDate dayOfFoundation, List<Aircraft> aircrafts) {
         this.name = name;
-        this.dayOfFoundation = dayOfFundation;
+        this.dayOfFoundation = dayOfFoundation;
         this.aircrafts = aircrafts;
     }
 
+    public static AirLineBuilders.Name builder(){
+        return new Builder();
+    }
     public String getName() {
         return name;
     }
@@ -50,4 +55,36 @@ public class AirLine {
                 ", aircrafts=" + aircrafts +
                 '}';
     }
+    public static class Builder implements AirLineBuilders.Name, AirLineBuilders.DayOfFoundation, AirLineBuilders.Aircrafts, AirLineBuilders.Build{
+
+        private final AirLine airLine;
+
+        public Builder(){
+            this.airLine = new AirLine();
+        }
+
+        @Override
+        public AirLineBuilders.DayOfFoundation name(String name) {
+            this.airLine.name = name;
+            return this;
+        }
+
+        @Override
+        public AirLineBuilders.Aircrafts dayOfFoundation(LocalDate dayOfFoundations) {
+            this.airLine.dayOfFoundation = dayOfFoundations;
+            return this;
+        }
+
+        @Override
+        public AirLineBuilders.Build aricrafts(List<Aircraft> aircrafts) {
+            this.airLine.aircrafts = aircrafts;
+            return this;
+        }
+
+        @Override
+        public AirLine build() {
+            return this.airLine;
+        }
+    }
 }
+

@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @TestConfig
-public class PainterRepositoryIT {
+class PainterRepositoryIT {
 
     @Autowired
     private PainterRepository painterRepository;
@@ -19,8 +19,6 @@ public class PainterRepositoryIT {
     void testCreateAndRead() {
         Assertions.assertTrue(this.painterRepository.findAll().stream()
                 .anyMatch(painter ->
-                               // new PainterEntity("Francisco de", "Goya y Lucientes", LocalDate.of(1746, 3, 30), LocalDate.of(1828, 4, 16), List.of(artWorks[2], artWorks[3], artWorks[6])),
-
                         "Francisco de".equals(painter.getName())
                         && "Goya y Lucientes".equals(painter.getSurname())
                         && LocalDate.of(1746, 3, 30).equals(painter.getBirthDate())

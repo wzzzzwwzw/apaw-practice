@@ -9,12 +9,15 @@ public class FootballTeam {
 
     private Boolean removed;
 
-    public FootballTeam() {}
+    public FootballTeam() {
+        // empty for framework
+    }
 
-    public FootballTeam(String city, Integer foundationYear, BigDecimal budget) {
+    public FootballTeam(String city, Integer foundationYear, BigDecimal budget, boolean removed) {
         this.city = city;
         this.foundationYear = foundationYear;
         this.budget = budget;
+        this.removed = removed;
     }
 
     public String getCity() {

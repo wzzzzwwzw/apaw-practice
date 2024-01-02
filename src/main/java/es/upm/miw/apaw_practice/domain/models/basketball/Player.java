@@ -1,12 +1,14 @@
 package es.upm.miw.apaw_practice.domain.models.basketball;
 
-public class Player {
-    private String name;
+import es.upm.miw.apaw_practice.domain.models.basketball.composite.TreePlayers;
+
+public class Player implements TreePlayers {
+    private String email;
     private String position;
     private Integer age;
 
-    public Player(String name, String position, Integer age) {
-        this.name = name;
+    public Player(String email, String position, Integer age) {
+        this.email = email;
         this.position = position;
         this.age = age;
     }
@@ -15,8 +17,8 @@ public class Player {
 
     }
 
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return email;
     }
 
     public String getPosition() {
@@ -27,8 +29,8 @@ public class Player {
         return age;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPosition(String position) {
@@ -42,10 +44,25 @@ public class Player {
     @Override
     public String toString() {
         return "Player{" +
-                "name='" + name + '\'' +
+                "email='" + email + '\'' +
                 ", age='" + age + '\'' +
                 ", position=" + position +
                 '}';
+    }
+
+    @Override
+    public Boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(TreePlayers component) {
+        throw new UnsupportedOperationException("Unsupported operation in Player leaf");
+    }
+
+    @Override
+    public void remove(TreePlayers component) {
+        // Do nothing because it's a leaf
     }
 }
 

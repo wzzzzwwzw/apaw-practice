@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @TestConfig
-public class ExhibitionRepositoryIT {
+class ExhibitionRepositoryIT {
 
     @Autowired
     private ExhibitionRepository exhibitionRepository;

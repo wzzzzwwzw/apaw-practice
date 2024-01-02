@@ -22,6 +22,10 @@ public class ArtWorkEntity {
         // Empty for framework
     }
 
+    public ArtWorkEntity(ArtWork artWork) {
+        this.fromArtWork(artWork);
+    }
+
     public ArtWorkEntity(String inventoryNumber, String title, Integer approximateYear, Boolean exhibited, RoomEntity room) {
         this.inventoryNumber = inventoryNumber;
         this.title = title;
@@ -71,12 +75,15 @@ public class ArtWorkEntity {
     }
 
     public void fromArtWork(ArtWork artWork) {
-        BeanUtils.copyProperties(artWork, this);
+        BeanUtils.copyProperties(artWork, this, "exhibited", "room");
+        this.setExhibited(artWork.isExhibited());
+        this.setRoom(new RoomEntity(artWork.getRoom()));
     }
 
     public ArtWork toArtWork() {
         ArtWork artWork = new ArtWork();
-        BeanUtils.copyProperties(this, artWork);
+        BeanUtils.copyProperties(this, artWork, "room");
+        artWork.setRoom(this.getRoom().toRoom());
         return artWork;
     }
 

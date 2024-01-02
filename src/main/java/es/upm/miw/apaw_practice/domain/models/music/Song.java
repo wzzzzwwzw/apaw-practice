@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.music;
 
+import es.upm.miw.apaw_practice.domain.models.music.builders.SongBuilders;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,19 +17,20 @@ public class Song {
 
     private List<Artist> artistsList;
 
-    private Genre genre;
+    private MusicGenre musicGenre;
 
     public Song() {
         this.artistsList = new ArrayList<>();
     }
 
-    public Song(String title, Integer duration, Boolean remix, Double rating, Genre genre) {
+    public Song(String title, Integer duration, Boolean remix, Double rating, MusicGenre musicGenre, List<Artist> artistsList) {
         this();
         this.title = title;
         this.duration = duration;
         this.remix = remix;
         this.rating = rating;
-        this.genre = genre;
+        this.musicGenre = musicGenre;
+        this.artistsList = artistsList;
     }
 
     public String getTitle() {
@@ -74,12 +77,12 @@ public class Song {
         this.artistsList.add(artist);
     }
 
-    public Genre getGenre() {
-        return this.genre;
+    public MusicGenre getMusicGenre() {
+        return this.musicGenre;
     }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    public void setMusicGenre(MusicGenre musicGenre) {
+        this.musicGenre = musicGenre;
     }
 
     @Override
@@ -90,7 +93,56 @@ public class Song {
                 ", isRemix=" + this.remix +
                 ", rating=" + this.rating +
                 ", artistsList=" + this.artistsList +
-                ", genre=" + this.genre +
+                ", Musicgenre=" + this.musicGenre +
                 '}';
+    }
+
+    public static class Builder implements SongBuilders.Title, SongBuilders.Optionals {
+        private final Song song;
+
+        public Builder() {
+            song = new Song();
+        }
+
+        @Override
+        public SongBuilders.Optionals title(String title) {
+            this.song.title = title;
+            return this;
+        }
+
+        @Override
+        public SongBuilders.Optionals duration(Integer duration) {
+            this.song.duration = duration;
+            return this;
+        }
+
+        @Override
+        public SongBuilders.Optionals remix(Boolean remix) {
+            this.song.remix = remix;
+            return this;
+        }
+
+        @Override
+        public SongBuilders.Optionals rating(Double rating) {
+            this.song.rating = rating;
+            return this;
+        }
+
+        @Override
+        public SongBuilders.Optionals artistsList(List<Artist> artistsList) {
+            this.song.artistsList = artistsList;
+            return this;
+        }
+
+        @Override
+        public SongBuilders.Optionals musicGenre(MusicGenre musicGenre) {
+            this.song.musicGenre = musicGenre;
+            return this;
+        }
+
+        @Override
+        public Song build() {
+            return this.song;
+        }
     }
 }

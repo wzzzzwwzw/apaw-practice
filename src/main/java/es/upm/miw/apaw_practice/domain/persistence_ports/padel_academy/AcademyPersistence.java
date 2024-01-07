@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AcademyPersistence {
-    Academy findByName(String name);
+    Academy readByName(String name);
 }

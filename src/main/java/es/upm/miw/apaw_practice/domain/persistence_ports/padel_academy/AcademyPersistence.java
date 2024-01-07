@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AcademyPersistence {
     Academy readByName(String name);
+
+    void delete(String name);
 }

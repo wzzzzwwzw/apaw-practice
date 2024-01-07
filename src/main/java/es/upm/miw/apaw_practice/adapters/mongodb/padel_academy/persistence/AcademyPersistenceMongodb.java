@@ -22,4 +22,9 @@ public class AcademyPersistenceMongodb implements AcademyPersistence {
                 .orElseThrow(() -> new NotFoundException("Academy with name " + name + " not found."))
                 .toAcademy();
     }
+
+    @Override
+    public void delete(String name) {
+        this.academyRepository.delete(name);
+    }
 }

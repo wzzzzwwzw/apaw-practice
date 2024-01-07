@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.padel_academy;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.padel_academy.daos.AcademyRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.padel_academy.daos.CourtRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.padel_academy.daos.InstructorRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.padel_academy.daos.TournamentRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.padel_academy.entities.AcademyEntity;

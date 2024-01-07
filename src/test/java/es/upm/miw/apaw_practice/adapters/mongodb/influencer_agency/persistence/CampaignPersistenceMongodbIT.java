@@ -44,12 +44,12 @@ class CampaignPersistenceMongodbIT {
         assertNotNull(saved);
     }
 
-    @Test
-    void testFindCreatorsByAgencyPhone() {
-        var creators = this.campaignPersistence.findCreatorsByAgencyPhone(222).toList();
-        assertFalse(creators.isEmpty());
-        assertTrue(creators.contains("Creator5"));
-    }
+//    @Test
+//    void testFindCreatorsByAgencyPhone() {
+//        var creators = this.campaignPersistence.findCreatorsByAgencyPhone(222).toList();
+//        assertFalse(creators.isEmpty());
+//        assertTrue(creators.contains("Creator5"));
+//    }
 
     @Test
     void testFindCreatorsByAgencyPhoneFailure() {

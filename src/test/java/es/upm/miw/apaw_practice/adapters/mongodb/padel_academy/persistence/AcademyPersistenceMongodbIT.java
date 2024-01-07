@@ -38,4 +38,9 @@ public class AcademyPersistenceMongodbIT {
         });
         assertTrue(exception.getMessage().contains("Academy with name Ocio not found."));
     }
+
+    @Test
+    void testDeleteByName() {
+        this.academyPersistenceMongodb.deleteByName("Ocio y Deporte Canal");
+    }
 }

@@ -69,7 +69,7 @@ public class DatabaseSeederService {
         private final BakerySeederService bakerySeederService;
         private final StableSeederService stableSeederService;
         private final LibrarySeederService librarySeederService;
-        //private final TicketBusSeederService ticketBusSeederService;
+        private final TicketBusSeederService ticketBusSeederService;
         private final BankSeederService bankSeederService;
         private final HotelSeederService hotelSeederService;
         private final SwimmingSeederService swimmingSeederService;
@@ -101,7 +101,7 @@ public class DatabaseSeederService {
                                      BakerySeederService bakerySeederService,
                                      StableSeederService stableSeederService,
                                      LibrarySeederService librarySeederService, BankSeederService bankSeederService,
-                                     //TicketBusSeederService ticketBusSeederService,
+                                     TicketBusSeederService ticketBusSeederService,
                                      HotelSeederService hotelSeederService,
                                      SwimmingSeederService swimmingSeederService) {
 
@@ -136,7 +136,7 @@ public class DatabaseSeederService {
                 this.stableSeederService = stableSeederService;
                 this.librarySeederService = librarySeederService;
                 this.bankSeederService=bankSeederService;
-                //this.ticketBusSeederService=ticketBusSeederService;
+                this.ticketBusSeederService=ticketBusSeederService;
                 this.hotelSeederService = hotelSeederService;
                 this.swimmingSeederService = swimmingSeederService;
             this.seedDatabase();
@@ -174,7 +174,7 @@ public class DatabaseSeederService {
                 this.stableSeederService.seedDatabase();
                 this.librarySeederService.seedDatabase();
                 this.bankSeederService.seedDatabase();
-                //this.ticketBusSeederService.seedDatabase();
+                this.ticketBusSeederService.seedDatabase();
                 this.hotelSeederService.seedDatabase();
                 this.swimmingSeederService.seedDatabase();
         }
@@ -203,7 +203,7 @@ public class DatabaseSeederService {
                 this.padelAcademySeederService.deleteAll();
                 this.olympicGamesSeederService.deleteAll();
                 this.furnitureStoreSeederService.deleteAll();
-                // this.airportSeederService.deleteAll();
+                this.airportSeederService.deleteAll();
                 this.aquariumSeederService.deleteAll();
                 this.hospitalSeederService.deleteAll();
                 this.fruitShopSeederService.deleteAll();
@@ -211,7 +211,7 @@ public class DatabaseSeederService {
                 this.stableSeederService.deleteAll();
                 this.librarySeederService.deleteAll();
                 this.bankSeederService.deleteAll();
-                //this.ticketBusSeederService.deleteAll();
+                this.ticketBusSeederService.deleteAll();
                 this.hotelSeederService.deleteAll();
                 this.swimmingSeederService.deleteAll();
         }

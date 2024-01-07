@@ -24,7 +24,7 @@ public class AcademyPersistenceMongodb implements AcademyPersistence {
     }
 
     @Override
-    public void delete(String name) {
-        this.academyRepository.delete(name);
+    public void deleteByName(String name) {
+        this.academyRepository.deleteByName(name);
     }
 }

@@ -19,6 +19,6 @@ public class AcademyService {
     }
 
     public void delete(String name) {
-        this.academyPersistence.delete(name);
+        this.academyPersistence.deleteByName(name);
     }
 }

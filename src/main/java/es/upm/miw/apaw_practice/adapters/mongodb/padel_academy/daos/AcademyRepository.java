@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface AcademyRepository extends MongoRepository<AcademyEntity, String> {
     Optional<AcademyEntity> findByName(String name);
-    Optional<AcademyEntity> delete(String name);
+    Optional<AcademyEntity> deleteByName(String name);
 }

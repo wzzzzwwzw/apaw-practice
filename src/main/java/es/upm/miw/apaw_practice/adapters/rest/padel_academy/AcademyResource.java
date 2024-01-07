@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(AcademyResource.ACADEMIES)
 public class AcademyResource {
-    static final String ACADEMIES = "/padel-academy/academies";
+    static final String ACADEMIES = "/padel-academy/academy";
     static final String NAME = "/{name}";
     private final AcademyService academyService;
 
@@ -20,6 +20,6 @@ public class AcademyResource {
         this.academyService = academyService;
     }
 
-    @GetMapping
-    public Academy read(@PathVariable String name) {return this.academyService.findByName(name);}
+    @GetMapping(NAME)
+    public Academy read(@PathVariable String name) {return this.academyService.read(name);}
 }

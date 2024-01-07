@@ -14,7 +14,7 @@ public class AcademyService {
         this.academyPersistence = academyPersistence;
     }
 
-    public Academy findByName(String name) {
-        return this.academyPersistence.findByName(name);
+    public Academy read(String name) {
+        return this.academyPersistence.readByName(name);
     }
 }

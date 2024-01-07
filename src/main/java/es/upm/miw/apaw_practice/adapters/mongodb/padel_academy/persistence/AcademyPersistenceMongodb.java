@@ -17,10 +17,8 @@ public class AcademyPersistenceMongodb implements AcademyPersistence {
     }
 
     @Override
-    public Academy findByName(String name) {
-        return this.academyRepository.findAll().stream()
-                .filter(academy -> name.equals(academy.getName()))
-                .findFirst()
+    public Academy readByName(String name) {
+        return this.academyRepository.findByName(name)
                 .orElseThrow(() -> new NotFoundException("Academy with name " + name + " not found."))
                 .toAcademy();
     }

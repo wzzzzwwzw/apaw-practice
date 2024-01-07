@@ -1,6 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.padel_academy.entities;
 
 import es.upm.miw.apaw_practice.domain.models.padel_academy.Academy;
+import es.upm.miw.apaw_practice.domain.models.padel_academy.Tournament;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -22,6 +24,11 @@ public class TournamentEntity {
 
     public TournamentEntity() {
         // Empty for framework
+    }
+
+    public TournamentEntity(Tournament tournament) {
+        this.id = UUID.randomUUID().toString();
+        BeanUtils.copyProperties(tournament, this);
     }
 
     public TournamentEntity(String title, BigDecimal prize, LocalDate schedule, AcademyEntity academyEntity) {
@@ -72,6 +79,11 @@ public class TournamentEntity {
         this.academyEntity = academyEntity;
     }
 
+    public Tournament toTournament() {
+        Tournament tournament = new Tournament();
+        BeanUtils.copyProperties(this, tournament);
+        return tournament;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

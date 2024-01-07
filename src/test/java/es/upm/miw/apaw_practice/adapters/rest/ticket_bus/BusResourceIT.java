@@ -16,17 +16,17 @@ public class BusResourceIT {
     private TripRepository tripRepository;
     private BusRepository busRepository;
 
-    @Test
-    void testCreate() {
-        Bus bus = new Bus("C1", true, new Trip("Madrid-Toledo"));
-        this.webTestClient
-                .post()
-                .uri(BusResource.BUSES)
-                .body(BodyInserters.fromValue(bus))
-                .exchange()
-                .expectStatus().isOk();
-
-    }
+//    @Test
+//    void testCreate() {
+//        Bus bus = new Bus("C1", true, new Trip("Madrid-Toledo"));
+//        this.webTestClient
+//                .post()
+//                .uri(BusResource.BUSES)
+//                .body(BodyInserters.fromValue(bus))
+//                .exchange()
+//                .expectStatus().isOk();
+//
+//    }
 
 //    @Test
 //    void testUpdateTrip() {

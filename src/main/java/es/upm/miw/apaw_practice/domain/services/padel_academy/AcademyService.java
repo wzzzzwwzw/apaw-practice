@@ -17,4 +17,8 @@ public class AcademyService {
     public Academy read(String name) {
         return this.academyPersistence.readByName(name);
     }
+
+    public void delete(String name) {
+        this.academyPersistence.delete(name);
+    }
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(AcademyResource.ACADEMIES)
 public class AcademyResource {
-    static final String ACADEMIES = "/padel-academy/academy";
+    static final String ACADEMIES = "/padel-academy/academies";
     static final String NAME = "/{name}";
     private final AcademyService academyService;
 

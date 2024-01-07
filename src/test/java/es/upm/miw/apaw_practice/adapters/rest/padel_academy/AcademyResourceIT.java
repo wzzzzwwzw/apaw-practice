@@ -48,4 +48,13 @@ public class AcademyResourceIT {
                 .exchange()
                 .expectStatus().isNotFound();
     }
+
+    @Test
+    void testDelete() {
+        this.webTestClient
+                .delete()
+                .uri(AcademyResource.ACADEMIES + AcademyResource.NAME, "Ocio y Deporte Canal")
+                .exchange()
+                .expectStatus().isOk();
+    }
 }

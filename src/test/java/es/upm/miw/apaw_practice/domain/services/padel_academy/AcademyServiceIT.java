@@ -38,4 +38,9 @@ public class AcademyServiceIT {
         });
         assertTrue(exception.getMessage().contains("Academy with name Ocio not found."));
     }
+
+    @Test
+    void testDelete() {
+        this.academyService.delete("Ocio y Deporte Canal");
+    }
 }

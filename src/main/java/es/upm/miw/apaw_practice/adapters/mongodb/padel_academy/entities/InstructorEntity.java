@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.padel_academy.entities;
 
+import es.upm.miw.apaw_practice.domain.models.padel_academy.Instructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -57,6 +59,16 @@ public class InstructorEntity {
 
     public void setPhoneNumber(Integer phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Instructor toInstructor(){
+        Instructor instructor = new Instructor();
+        BeanUtils.copyProperties(this, instructor);
+        return instructor;
+    }
+
+    public void fromInstructor(Instructor instructor) {
+        BeanUtils.copyProperties(instructor, this);
     }
 
     @Override

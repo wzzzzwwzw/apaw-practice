@@ -3,7 +3,9 @@ package es.upm.miw.apaw_practice.domain.services.padel_academy;
 import es.upm.miw.apaw_practice.domain.models.padel_academy.Instructor;
 import es.upm.miw.apaw_practice.domain.persistence_ports.padel_academy.InstructorPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class InstructorService {
     private final InstructorPersistence instructorPersistence;
 

@@ -21,4 +21,10 @@ public class AcademyService {
     public void delete(String name) {
         this.academyPersistence.deleteByName(name);
     }
+
+    public Academy updateAddress(String name, String address) {
+        Academy academy = this.academyPersistence.readByName(name);
+        academy.setAddress(address);
+        return this.academyPersistence.updateAddress(academy);
+    }
 }

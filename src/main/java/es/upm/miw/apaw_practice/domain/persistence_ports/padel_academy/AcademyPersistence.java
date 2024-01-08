@@ -8,4 +8,6 @@ public interface AcademyPersistence {
     Academy readByName(String name);
 
     void deleteByName(String name);
+
+    Academy updateAddress(Academy academy);
 }

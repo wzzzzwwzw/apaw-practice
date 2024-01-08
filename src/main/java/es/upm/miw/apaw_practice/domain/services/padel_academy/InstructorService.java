@@ -13,6 +13,7 @@ public class InstructorService {
     public InstructorService(InstructorPersistence instructorPersistence) {
         this.instructorPersistence = instructorPersistence;
     }
+
     public Instructor updatePhoneNumber(String dni, Integer phoneNumber) {
         Instructor instructor = this.instructorPersistence.read(dni);
         instructor.setPhoneNumber(phoneNumber);

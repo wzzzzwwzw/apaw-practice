@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping()
+@RequestMapping(InstructorResource.INSTRUCTORS)
 public class InstructorResource {
     static final String INSTRUCTORS = "/padel-academy/instructors";
     static final String DNI = "/{dni}";

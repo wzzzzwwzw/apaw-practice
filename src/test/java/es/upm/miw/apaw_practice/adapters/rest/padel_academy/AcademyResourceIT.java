@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.web.reactive.function.BodyInserters;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -56,5 +57,22 @@ public class AcademyResourceIT {
                 .uri(AcademyResource.ACADEMIES + AcademyResource.NAME, "Ocio y Deporte Canal")
                 .exchange()
                 .expectStatus().isOk();
+    }
+
+    @Test
+    void testUpdateAddress() {
+        this.webTestClient
+                .put()
+                .uri(AcademyResource.ACADEMIES + AcademyResource.NAME + AcademyResource.ADDRESS, "Ocio y Deporte Canal")
+                .body(BodyInserters.fromValue("Nueva calle. Nos mudamos"))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Academy.class)
+                .value(Assertions::assertNotNull)
+                .value(academy -> {
+                    assertEquals("Nueva calle. Nos mudamos", academy.getAddress());
+                    assertEquals("Madrid", academy.getCity());
+                    assertEquals("Ocio y Deporte Canal", academy.getName());
+                });
     }
 }

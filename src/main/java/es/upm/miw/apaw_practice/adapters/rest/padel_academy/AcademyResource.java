@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class AcademyResource {
     static final String ACADEMIES = "/padel-academy/academies";
     static final String NAME = "/{name}";
+    static final String ADDRESS = "/address";
     private final AcademyService academyService;
 
     @Autowired
@@ -22,4 +23,9 @@ public class AcademyResource {
 
     @DeleteMapping(NAME)
     public void delete(@PathVariable String name) {this.academyService.delete(name);}
+
+    @PutMapping(NAME + ADDRESS)
+    public Academy updateAddress(@PathVariable String name, @RequestBody String address) {
+        return this.academyService.updateAddress(name, address);
+    }
 }

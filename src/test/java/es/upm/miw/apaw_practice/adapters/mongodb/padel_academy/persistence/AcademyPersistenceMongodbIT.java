@@ -43,4 +43,13 @@ public class AcademyPersistenceMongodbIT {
     void testDeleteByName() {
         this.academyPersistenceMongodb.deleteByName("Ocio y Deporte Canal");
     }
+
+    @Test
+    void testUpdateAddress() {
+        Academy academy = this.academyPersistenceMongodb.readByName("La Masó Sports Club");
+        academy.setAddress("Nueva calle. La academia se muda");
+        this.academyPersistenceMongodb.updateAddress(academy);
+        academy = this.academyPersistenceMongodb.readByName("La Masó Sports Club");
+        assertEquals("Nueva calle. La academia se muda", academy.getAddress());
+    }
 }

@@ -43,4 +43,12 @@ public class AcademyServiceIT {
     void testDelete() {
         this.academyService.delete("Ocio y Deporte Canal");
     }
+
+    @Test
+    void testUpdateAddress() {
+        Academy academy = this.academyService.updateAddress("Ocio y Deporte Canal", "Nueva calle");
+        assertEquals("Nueva calle", academy.getAddress());
+        assertEquals("Madrid", academy.getCity());
+        assertEquals("Ocio y Deporte Canal", academy.getName());
+    }
 }

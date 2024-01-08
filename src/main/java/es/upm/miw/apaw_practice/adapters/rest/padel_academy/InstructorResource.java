@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.padel_academy;
 
 import es.upm.miw.apaw_practice.domain.models.padel_academy.Instructor;
-import es.upm.miw.apaw_practice.domain.services.padel_academy.AcademyService;
 import es.upm.miw.apaw_practice.domain.services.padel_academy.InstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

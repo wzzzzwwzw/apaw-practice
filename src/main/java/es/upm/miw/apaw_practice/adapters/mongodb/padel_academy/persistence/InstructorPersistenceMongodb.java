@@ -1,13 +1,14 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.padel_academy.persistence;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.aquarium.daos.AquariumRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.padel_academy.daos.InstructorRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.padel_academy.entities.InstructorEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.padel_academy.Instructor;
 import es.upm.miw.apaw_practice.domain.persistence_ports.padel_academy.InstructorPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository("customInstructorRepository")
 public class InstructorPersistenceMongodb implements InstructorPersistence {
     private final InstructorRepository instructorRepository;
     @Autowired

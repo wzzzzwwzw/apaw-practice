@@ -51,7 +51,7 @@ public class PadelAcademySeederService {
 
         AcademyEntity[] academies = {
                 new AcademyEntity("Ocio y Deporte Canal", "Avda. Filipinas, esq. Pablo Iglesias, 28003", "Madrid", List.of(instructors[0], instructors[2], instructors[3]), List.of(courts[0], courts[2], courts[4], courts[6] )),
-                new AcademyEntity("La Masó Sports Club", "Calle de la Masó 34, 28035", "Madrid", List.of(instructors[1], instructors[3], instructors[4]), List.of(courts[1], courts[3], courts[5], courts[7])),
+                new AcademyEntity("La Masó Sports Club", "Calle de la Masó 34, 28035", "Madrid", List.of(instructors[0], instructors[1], instructors[3], instructors[4]), List.of(courts[1], courts[3], courts[5], courts[7])),
         };
         this.academyRepository.saveAll(Arrays.asList(academies));
 

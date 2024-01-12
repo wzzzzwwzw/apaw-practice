@@ -7,6 +7,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.padel_academy.Tournamen
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("tournamentPersistence")
 public class TournamentPersistenceMongodb implements TournamentPersistence {
     private final TournamentRepository tournamentRepository;
@@ -21,5 +23,12 @@ public class TournamentPersistenceMongodb implements TournamentPersistence {
         return this.tournamentRepository
                 .save(new TournamentEntity(tournament))
                 .toTournament();
+    }
+
+    @Override
+    public Stream<Tournament> readAll() {
+        return this.tournamentRepository.findAll()
+                .stream()
+                .map(TournamentEntity::toTournament);
     }
 }

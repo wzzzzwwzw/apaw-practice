@@ -47,5 +47,4 @@ public class TournamentPersistenceMongodbIT {
         Stream<Tournament> tournaments =  this.tournamentPersistenceMongodb.readAll();
         assertEquals(4, tournaments.count());
     }
-
 }

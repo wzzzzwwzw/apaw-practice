@@ -8,6 +8,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
@@ -51,5 +53,11 @@ public class AcademyPersistenceMongodbIT {
         this.academyPersistenceMongodb.updateAddress(academy);
         academy = this.academyPersistenceMongodb.readByName("La Masó Sports Club");
         assertEquals("Nueva calle. La academia se muda", academy.getAddress());
+    }
+
+    @Test
+    void testReadAll() {
+        Stream<Academy> academies =  this.academyPersistenceMongodb.readAll();
+        assertEquals(2, academies.count());
     }
 }

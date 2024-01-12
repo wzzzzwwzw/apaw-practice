@@ -30,8 +30,8 @@ public class InstructorService {
                 .filter(academy -> academy.getCourts()
                         .stream().anyMatch(court -> court.getSurface().equals(surface)))
                 .flatMap(academy -> academy.getInstructors().stream())
-                .map(Instructor::getName)
                 .distinct()
+                .map(Instructor::getName)
                 .toList();
     }
 }

@@ -7,8 +7,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 public class InstructorServiceIT {
@@ -31,4 +32,11 @@ public class InstructorServiceIT {
         assertNotNull(instructor);
         assertEquals(phoneNumber, instructor.getPhoneNumber());
     }
+
+    @Test
+    void testFindInstructorsNamesByCourtSurface() {
+        List<String> names = this.instructorService.findInstructorsNamesByCourtSurface("clay");
+        assertTrue(names.contains("Ana"));
+    }
+
 }

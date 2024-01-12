@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
 public class InstructorResourceIT {
@@ -30,4 +31,24 @@ public class InstructorResourceIT {
                 .exchange()
                 .expectStatus().isOk();
     }
+
+    @Test
+    void testFindInstructorsNamesByCourtSurface() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(InstructorResource.INSTRUCTORS + InstructorResource.SEARCH)
+                                .queryParam("q", "surface:clay")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(names -> {
+                    assertFalse(names.isEmpty());
+                    names.forEach(name -> {
+                        assertTrue(name.contains("Ana") && name.contains("Luis"));
+                    });
+                });
+    }
+
 }

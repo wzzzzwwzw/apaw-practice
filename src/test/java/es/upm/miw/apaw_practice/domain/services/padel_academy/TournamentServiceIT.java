@@ -43,4 +43,16 @@ public class TournamentServiceIT {
         assertEquals(LocalDate.of(2024, 11, 1), tournament.getSchedule());
 
     }
+
+    @Test
+    void testFindSumOfPrizeByInstructorDni() {
+        BigDecimal total = this.tournamentService.findSumOfPrizeByInstructorDni("12345678A");
+        assertEquals(new BigDecimal("245.00"), total);
+    }
+
+    @Test
+    void testNotFoundFindSumOfPrizeByInstructorDni() {
+        BigDecimal total = this.tournamentService.findSumOfPrizeByInstructorDni("12341A");
+        assertEquals(new BigDecimal("0"), total);
+    }
 }

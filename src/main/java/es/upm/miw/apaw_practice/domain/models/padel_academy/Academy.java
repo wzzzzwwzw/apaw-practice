@@ -19,7 +19,7 @@ public class Academy {
         this.address = address;
         this.city = city;
         this.instructors = instructors;
-        this.courts = new ArrayList<Court>();
+        this.courts = new ArrayList<>();
     }
 
     public String getName() {

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -40,4 +41,11 @@ public class TournamentPersistenceMongodbIT {
         assertEquals(new BigDecimal("100.00"), tournament.getPrize());
         assertEquals(LocalDate.of(2024, 11, 1), tournament.getSchedule());
     }
+
+    @Test
+    void testReadAll() {
+        Stream<Tournament> tournaments =  this.tournamentPersistenceMongodb.readAll();
+        assertEquals(4, tournaments.count());
+    }
+
 }

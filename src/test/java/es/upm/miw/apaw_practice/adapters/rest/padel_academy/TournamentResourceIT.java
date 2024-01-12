@@ -54,4 +54,19 @@ public class TournamentResourceIT {
                             });
                 });
     }
+
+    @Test
+    void testFindSumOfPrizeByInstructorDni() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(TournamentResource.TOURNAMENTS+TournamentResource.SEARCH)
+                                .queryParam("q", "dni:12345678A")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BigDecimal.class)
+                .value(Assertions::assertNotNull)
+                .value(total -> assertEquals(new BigDecimal("245.00"), total));
+    }
 }

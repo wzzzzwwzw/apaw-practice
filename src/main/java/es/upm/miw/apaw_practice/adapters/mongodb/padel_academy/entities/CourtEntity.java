@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.padel_academy.entities;
 
+import es.upm.miw.apaw_practice.domain.models.padel_academy.Court;
+import org.springframework.beans.BeanUtils;
+
 import java.util.Objects;
 
 public class CourtEntity {
@@ -39,6 +42,12 @@ public class CourtEntity {
 
     public void setSurface(String surface) {
         this.surface = surface;
+    }
+
+    public Court toCourt() {
+        Court court = new Court();
+        BeanUtils.copyProperties(this, court);
+        return court;
     }
 
     @Override

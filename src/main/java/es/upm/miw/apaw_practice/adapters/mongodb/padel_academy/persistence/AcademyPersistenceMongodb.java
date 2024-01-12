@@ -8,6 +8,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.padel_academy.AcademyPe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("academyPersistence")
 public class AcademyPersistenceMongodb implements AcademyPersistence {
     private final AcademyRepository academyRepository;
@@ -36,5 +38,12 @@ public class AcademyPersistenceMongodb implements AcademyPersistence {
                 .orElseThrow(() -> new NotFoundException("Academy with name " + academy.getName() + " not found."));
         academyEntity.setAddress(academy.getAddress());
         return this.academyRepository.save(academyEntity).toAcademy();
+    }
+
+    @Override
+    public Stream<Academy> readAll() {
+        return this.academyRepository.findAll()
+                .stream()
+                .map(AcademyEntity::toAcademy);
     }
 }

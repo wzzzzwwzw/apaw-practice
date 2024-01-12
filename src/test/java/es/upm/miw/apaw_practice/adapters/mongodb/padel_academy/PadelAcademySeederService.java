@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.List;
 
 @Service
 public class PadelAcademySeederService {
@@ -50,8 +49,8 @@ public class PadelAcademySeederService {
         this.instructorRepository.saveAll(Arrays.asList(instructors));
 
         AcademyEntity[] academies = {
-                new AcademyEntity("Ocio y Deporte Canal", "Avda. Filipinas, esq. Pablo Iglesias, 28003", "Madrid", List.of(instructors[0], instructors[2], instructors[3]), List.of(courts[0], courts[2], courts[4], courts[6] )),
-                new AcademyEntity("La Masó Sports Club", "Calle de la Masó 34, 28035", "Madrid", List.of(instructors[0], instructors[1], instructors[3], instructors[4]), List.of(courts[1], courts[3], courts[5], courts[7])),
+                new AcademyEntity("Ocio y Deporte Canal", "Avda. Filipinas, esq. Pablo Iglesias, 28003", "Madrid", Arrays.asList(instructors[0], instructors[2], instructors[3]), Arrays.asList(courts[0], courts[2], courts[4], courts[6] )),
+                new AcademyEntity("La Masó Sports Club", "Calle de la Masó 34, 28035", "Madrid", Arrays.asList(instructors[0], instructors[1], instructors[3], instructors[4]), Arrays.asList(courts[1], courts[3], courts[5], courts[7])),
         };
         this.academyRepository.saveAll(Arrays.asList(academies));
 

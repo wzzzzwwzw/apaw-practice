@@ -1,9 +1,11 @@
 package es.upm.miw.apaw_practice.domain.models.padel_academy;
 
+import es.upm.miw.apaw_practice.domain.models.padel_academy.composite.TreeAcademies;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Academy {
+public class Academy implements TreeAcademies {
     private String name;
     private String address;
     private String city;
@@ -71,5 +73,20 @@ public class Academy {
                 ", instructors=" + instructors +
                 ", courts=" + courts +
                 '}';
+    }
+
+    @Override
+    public Boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public void add(TreeAcademies treeAcademies) {
+        throw new UnsupportedOperationException("Unsupported operation in academy leaf");
+    }
+
+    @Override
+    public void remove(TreeAcademies treeAcademies) {
+
     }
 }

@@ -4,6 +4,6 @@ import es.upm.miw.apaw_practice.adapters.mongodb.ticket_bus.entities.PassengerEn
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository("PassengerTRepository")
+@Repository("passengerTRepository")
 public interface PassengerRepository extends MongoRepository<PassengerEntity,String> {
 }

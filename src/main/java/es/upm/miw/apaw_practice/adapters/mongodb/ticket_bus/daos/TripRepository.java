@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository("TripTRepository")
+@Repository("tripTRepository")
 public interface TripRepository extends MongoRepository<TripEntity,String> {
     Optional<TripEntity> findByPath(String path);
 

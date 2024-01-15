@@ -17,9 +17,7 @@ public class PassengerEntity {
     private Integer number;
     private Boolean accessibility;
 
-    public PassengerEntity(){
-        //open for framework
-    }
+
     public PassengerEntity(String nie, String fullName, Integer number, Boolean accessibility) {
         this.id = UUID.randomUUID().toString();
         this.nie = nie;
@@ -28,7 +26,7 @@ public class PassengerEntity {
         this.accessibility = accessibility;
     }
 
-    public PassengerEntity(Passenger passenger) {
+    public PassengerEntity() {
         this.id = UUID.randomUUID().toString();
 
     }

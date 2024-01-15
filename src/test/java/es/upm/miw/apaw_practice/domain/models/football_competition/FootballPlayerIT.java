@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @TestConfig
-public class FootballPlayerIT {
+class FootballPlayerIT {
     @Test
-    public void testFootballPlayerBuilder() {
+    void testFootballPlayerBuilder() {
         FootballPlayerBuilders.Name builder = FootballPlayer.builder();
         FootballPlayer player = builder
                 .name("Federico López")

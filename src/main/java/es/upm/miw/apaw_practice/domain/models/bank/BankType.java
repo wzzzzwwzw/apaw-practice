@@ -43,9 +43,9 @@ public class BankType {
     @Override
     public String toString() {
         return "BankType{" +
-                "typeName='" + typeName + '\'' +
-                ", description='" + description + '\'' +
-                ", minimunCapital=" + minimunCapital +
+                "typeName='" + this.typeName + '\'' +
+                ", description='" + this.description + '\'' +
+                ", minimunCapital=" + this.minimunCapital +
                 '}';
     }
 }

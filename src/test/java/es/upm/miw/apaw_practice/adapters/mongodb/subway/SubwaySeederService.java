@@ -39,18 +39,22 @@ public class SubwaySeederService {
         };
         this.stationRepository.saveAll(List.of(stations));
 
-        ScheduleEntity schedule =
+        ScheduleEntity[] schedules = {
                 new ScheduleEntity(new Schedule(
                         LocalDateTime.of(2023, Month.OCTOBER, 7, 6, 0, 0),
                         LocalDateTime.of(2023, Month.OCTOBER, 7, 1, 30, 0),
-                        4F));
-
-        this.scheduleRepository.save(schedule);
+                        4F)),
+                new ScheduleEntity(new Schedule(
+                        LocalDateTime.of(2023, Month.OCTOBER, 7, 6, 0, 0),
+                        LocalDateTime.of(2023, Month.OCTOBER, 7, 1, 30, 0),
+                        5F)),
+        };
+        this.scheduleRepository.saveAll(List.of(schedules));
 
         LineEntity[] lines = {
-                new LineEntity("Red Line", "RED", true, schedule,
+                new LineEntity("Red Line", "RED", true, schedules[0],
                         List.of(stations[0], stations[1], stations[2])),
-                new LineEntity("Orange Line", "ORANGE", true, schedule,
+                new LineEntity("Orange Line", "ORANGE", true, schedules[1],
                         List.of(stations[3], stations[1], stations[4])),
         };
 

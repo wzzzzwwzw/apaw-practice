@@ -1,26 +1,25 @@
 package es.upm.miw.apaw_practice.domain.models.basketball;
 
-class Pavilion {
-    private String pavName;
+import es.upm.miw.apaw_practice.domain.models.basketball.builders.PavilionBuilders;
+
+public class Pavilion {
+    private String pavname;
     private String direction;
     private Integer capacity;
 
     public Pavilion(){
-
+        // empty for framework
     }
 
-    public Pavilion(String pavName, String direction, Integer capacity) {
-        this.pavName = pavName;
-        this.direction = direction;
-        this.capacity = capacity;
+    public static PavilionBuilders.Pavname builder() {
+        return new Builder();
+    }
+    public String getPavname() {
+        return pavname;
     }
 
-    public String getPavName() {
-        return pavName;
-    }
-
-    public void setPavName(String pavName) {
-        this.pavName = pavName;
+    public void setPavname(String pavname) {
+        this.pavname = pavname;
     }
 
     public String getDirection() {
@@ -41,9 +40,41 @@ class Pavilion {
     @Override
     public String toString() {
         return "Pavilion{" +
-                "pavName='" + pavName + '\'' +
+                "pavname='" + pavname + '\'' +
                 ", direction='" + direction + '\'' +
                 ", capacity=" + capacity +
                 '}';
+    }
+
+
+    public static class Builder implements PavilionBuilders.Pavname, PavilionBuilders.Direction, PavilionBuilders.Capacity {
+        private final Pavilion pavilion;
+
+        public Builder() {
+            this.pavilion = new Pavilion();
+        }
+
+        @Override
+        public PavilionBuilders.Direction pavname(String pavname) {
+            this.pavilion.setPavname(pavname);
+            return this;
+        }
+
+        @Override
+        public PavilionBuilders.Capacity direction(String direction) {
+            this.pavilion.setDirection(direction);
+            return this;
+        }
+
+        @Override
+        public Pavilion build() {
+            return this.pavilion;
+        }
+
+        @Override
+        public PavilionBuilders.Capacity capacity(int i) {
+            this.pavilion.setCapacity(i);
+            return this;
+        }
     }
 }

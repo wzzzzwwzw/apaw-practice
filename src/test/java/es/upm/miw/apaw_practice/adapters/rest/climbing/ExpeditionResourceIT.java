@@ -10,11 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RestTestConfig
 class ExpeditionResourceIT {
@@ -62,5 +61,37 @@ class ExpeditionResourceIT {
                     assertEquals(LocalDate.now(), expedition.getDate());
                     assertEquals(0, new BigDecimal("2000.00").compareTo(expedition.getTotalExpense()));
                 });
+    }
+
+    // expeditions/search?q=difficulty:Easy
+    @Test
+    void testFindSumOfTotalExpenseByRouteDifficulty() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(ExpeditionResource.EXPEDITIONS + ExpeditionResource.SEARCH)
+                                .queryParam("q", "difficulty:Easy")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BigDecimal.class)
+                .value(Assertions::assertNotNull)
+                .value(sumOfTotalExpense ->
+                        assertEquals(0, new BigDecimal("2000.00").compareTo(sumOfTotalExpense))
+                );
+
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(ExpeditionResource.EXPEDITIONS + ExpeditionResource.SEARCH)
+                                .queryParam("q", "difficulty:Hard")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BigDecimal.class)
+                .value(Assertions::assertNotNull)
+                .value(sumOfTotalExpense ->
+                        assertEquals(0, new BigDecimal("2500.00").compareTo(sumOfTotalExpense))
+                );
     }
 }

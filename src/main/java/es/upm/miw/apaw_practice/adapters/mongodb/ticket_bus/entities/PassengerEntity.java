@@ -17,6 +17,12 @@ public class PassengerEntity {
     private Integer number;
     private Boolean accessibility;
 
+<<<<<<< HEAD
+=======
+    public PassengerEntity(){
+        //open for framework
+    }
+>>>>>>> develop
 
     public PassengerEntity(String nie, String fullName, Integer number, Boolean accessibility) {
         this.id = UUID.randomUUID().toString();

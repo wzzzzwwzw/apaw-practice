@@ -22,4 +22,8 @@ public class AquariumResource {
     public Aquarium create(@RequestBody Aquarium aquarium){
         return this.aquariumService.create(aquarium);
     }
+    @PatchMapping(DESCRIPTION)
+    public Aquarium updateSize(@PathVariable String description,@RequestBody double size){
+        return this.aquariumService.updateDescription(description,size);
+    }
 }

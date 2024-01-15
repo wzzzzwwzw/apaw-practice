@@ -8,7 +8,7 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.school.SchoolPersistenc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.stream.Stream;
+import java.math.BigDecimal;
 
 @Repository("SchoolPersistence")
 public class SchoolPersistenceMongodb implements SchoolPersistence {
@@ -28,31 +28,17 @@ public class SchoolPersistenceMongodb implements SchoolPersistence {
     }
 
     @Override
-    public School readByName(String name) {
+    public BigDecimal registrationPriceSumGivenBilingual(Boolean bilingual) {
         return this.schoolRepository
-                .findByName(name)
-                .orElseThrow(() -> new NotFoundException("School name:" + name))
-                .toSchool();
-    }
-
-    @Override
-    public boolean existName(String name) {
-        return this.schoolRepository
-                .findByName(name)
-                .isPresent();
-    }
-
-    @Override
-    public Stream<School> readAll() {
-        return this.schoolRepository
-                .findAll().stream()
-                .map(SchoolEntity::toSchool);
-    }
-
-    @Override
-    public School create(School school) {
-        return this.schoolRepository
-                .save(new SchoolEntity(school))
-                .toSchool();
+                    .findAll().stream()
+                        .filter(school -> school.getStudents().stream()
+                            .allMatch(studentEntity -> studentEntity.toStudent().getSubjects().stream()
+                                .allMatch(subject -> subject.getBilingual().equals(bilingual)
+                                )
+                            )
+                        )
+                        .map(SchoolEntity::toSchool)
+                        .map(School::getRegistrationPrice)
+                        .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

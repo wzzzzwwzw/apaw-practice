@@ -6,6 +6,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.school.SchoolPersistenc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class SchoolService {
 
@@ -16,18 +18,10 @@ public class SchoolService {
         this.schoolPersistence = schoolPersistence;
     }
 
-    public void assertNameNotExist(String name) {
-        if (this.schoolPersistence.existName(name)) {
-            throw new ConflictException("Name does not exist: " + name);
-        }
-    }
-
-    public School create(School school) {
-        this.assertNameNotExist(school.getName());
-        return this.schoolPersistence.create(school);
-    }
-
     public School read(String name) {
         return this.schoolPersistence.read(name);
+    }
+    public BigDecimal registrationPriceSumGivenBilingual(Boolean bilingual) {
+        return this.schoolPersistence.registrationPriceSumGivenBilingual(bilingual);
     }
 }

@@ -1,8 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.aquarium.entities;
-import es.upm.miw.apaw_practice.adapters.mongodb.computer_store.entities.ComputerEntity;
-import es.upm.miw.apaw_practice.domain.models.aquarium.Fish;
 import es.upm.miw.apaw_practice.domain.models.aquarium.Fishpond;
-import es.upm.miw.apaw_practice.domain.models.aquarium.Aquarium;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,7 +9,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.stream.Collectors;
 @Document
 public class FishpondEntity {
     @Id
@@ -33,6 +30,8 @@ public class FishpondEntity {
         this.openTime = openTime;
         this.fishEntities = fishEntities;
     }
+
+
 
     public String getId() {
         return id;
@@ -74,6 +73,7 @@ public class FishpondEntity {
         this.fishEntities = fishEntities;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -96,4 +96,16 @@ public class FishpondEntity {
                 ", fishes=" + fishEntities +
                 '}';
     }
+
+    public Fishpond toFishpond() {
+        Fishpond fishpond = new Fishpond();
+        BeanUtils.copyProperties(this, fishpond);
+        return fishpond;
+    }
+    public FishpondEntity(Fishpond fishpond) {
+        BeanUtils.copyProperties(fishpond, this);
+        this.id = UUID.randomUUID().toString();
+    }
+
+
 }

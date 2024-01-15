@@ -12,7 +12,6 @@ import org.springframework.web.reactive.function.BodyInserters;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 @RestTestConfig
 public class FeatureResourceIT{
     @Autowired

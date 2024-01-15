@@ -1,6 +1,8 @@
 package es.upm.miw.apaw_practice.domain.models.padel_academy;
 
 
+import es.upm.miw.apaw_practice.domain.models.padel_academy.builder.InstructorBuilder;
+
 public class Instructor {
     private String dni;
     private String name;
@@ -47,5 +49,36 @@ public class Instructor {
                 ", name='" + name + '\'' +
                 ", phoneNumber=" + phoneNumber +
                 '}';
+    }
+
+    public static InstructorBuilder.Dni builder() {return new Builder();}
+
+    public static class Builder implements InstructorBuilder.Dni, InstructorBuilder.Name, InstructorBuilder.PhoneNumber, InstructorBuilder.Build {
+        private final Instructor instructor;
+
+        public Builder() {this.instructor = new Instructor();}
+
+        @Override
+        public InstructorBuilder.Name dni(String dni) {
+            this.instructor.dni = dni;
+            return this;
+        }
+
+        @Override
+        public InstructorBuilder.PhoneNumber name(String name) {
+            this.instructor.name = name;
+            return this;
+        }
+
+        @Override
+        public InstructorBuilder.Build phoneNumber(Integer phoneNumber) {
+            this.instructor.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        @Override
+        public Instructor build() {
+            return this.instructor;
+        }
     }
 }

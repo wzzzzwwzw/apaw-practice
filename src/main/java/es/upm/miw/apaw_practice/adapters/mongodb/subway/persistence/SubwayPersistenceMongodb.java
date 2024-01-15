@@ -11,6 +11,7 @@ import es.upm.miw.apaw_practice.domain.models.subway.Subway;
 import es.upm.miw.apaw_practice.domain.persistence_ports.subway.SubwayPersistence;
 import org.springframework.stereotype.Repository;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -54,18 +55,28 @@ public class SubwayPersistenceMongodb implements SubwayPersistence {
                 .map(line -> new LineEntity(
                         line.getLabel(),
                         line.getColor(),
-                        line.isWorking(),
+                        line.getWorking(),
                         subwayEntity.getLines().get(0).getSchedule(),
                         line.getStations().stream()
                                 .map(station -> new StationEntity(
-                                        new Station(
-                                                station.getName(),
-                                                station.getOrder(),
-                                                station.isOpen()
-                                        )
+                                        new Station(station.getName(), station.getOrder(), station.getOpen())
                                 )).toList()
                 )).toList();
         subwayEntity.setLines(lines);
         return this.subwayRepository.save(subwayEntity).toSubway();
+    }
+
+    @Override
+    public List<String> findCapacityOverTen(String order) {
+        List<String> colors = Arrays.stream(order.split("#"))
+                .map(parte -> parte.split("-")[0])
+                .toList();
+        return this.subwayRepository.findAll().stream()
+                .filter(subwayEntity -> subwayEntity.getCapacity() > 10)
+                .map(SubwayEntity::toSubway)
+                .flatMap(subway -> subway.getLines().stream())
+                .map(Line::getColor)
+                .filter(colors::contains)
+                .toList();
     }
 }

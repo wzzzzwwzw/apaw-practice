@@ -3,7 +3,7 @@ package es.upm.miw.apaw_practice.domain.models.furniture_store;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class Furniture {
+public class Furniture implements TreeFurniture {
     private String name;
     private BigDecimal price;
     private List<Material> materials;
@@ -49,6 +49,16 @@ public class Furniture {
                 ", price=" + price +
                 ", materials=" + materials +
                 '}';
+    }
+
+    @Override
+    public void add(TreeFurniture treeFurniture) {
+        throw new UnsupportedOperationException("Unsupported operation in leaf");
+    }
+
+    @Override
+    public void remove(TreeFurniture treeFurniture) {
+        // Do nothing in leaf
     }
 
 }

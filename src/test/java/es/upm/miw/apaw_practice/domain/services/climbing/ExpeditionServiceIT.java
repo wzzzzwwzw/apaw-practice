@@ -31,10 +31,17 @@ class ExpeditionServiceIT {
 
     @Test
     void testUpdateTotalExpense() {
-        this.expeditionService.updateTotalExpense("1",  new BigDecimal("2000.00"));
+        this.expeditionService.updateTotalExpense("1", new BigDecimal("2000.00"));
         Expedition expedition = this.expeditionPersistence.readByIdentifier("1");
         assertEquals("1", expedition.getIdentifier());
         assertEquals(LocalDate.now(), expedition.getDate());
         assertEquals(0, new BigDecimal("2000.00").compareTo(expedition.getTotalExpense()));
+    }
+
+    @Test
+    void testFindSumOfTotalExpenseByRouteDifficulty() {
+        assertEquals(0, new BigDecimal("2000.00").compareTo(this.expeditionService.findSumOfTotalExpenseByRouteDifficulty("Easy")));
+        assertEquals(0, new BigDecimal("3500.00").compareTo(this.expeditionService.findSumOfTotalExpenseByRouteDifficulty("Medium")));
+        assertEquals(0, new BigDecimal("2500.00").compareTo(this.expeditionService.findSumOfTotalExpenseByRouteDifficulty("Hard")));
     }
 }

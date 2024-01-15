@@ -59,7 +59,11 @@ class AreaResourceIT {
 
     @Test
     void testUpdateRoute() {
-        Route route = new Route("3", "Route 3 updated", "Easy");
+        Route route = new Route.Builder()
+                .name("Route 4 updated")
+                .difficulty("Easy")
+                .key("4")
+                .build();
         this.webTestClient
                 .put()
                 .uri(AREAS + NAME_ID + ROUTES + KEY_ID, "Area 2", route.getKey())
@@ -69,8 +73,26 @@ class AreaResourceIT {
                 .expectBody(Area.class)
                 .value(Assertions::assertNotNull)
                 .value(areaData -> {
-                    assertEquals("Route 3 updated", areaData.getRoutes().get(1).getName());
+                    assertEquals("Route 4 updated", areaData.getRoutes().get(1).getName());
                     assertEquals("Easy", areaData.getRoutes().get(1).getDifficulty());
+                });
+    }
+
+    @Test
+    void testFindRouteNamesByClimberLevel() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(AREAS + SEARCH)
+                        .queryParam("q", "level:Beginner")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(String[].class)
+                .value(Assertions::assertNotNull)
+                .value(routeNames -> {
+                    assertEquals(4, routeNames.length);
+                    assertArrayEquals(new String[]{"Route 1", "Route 2", "Route 3", "Route 4"}, routeNames);
                 });
     }
 }

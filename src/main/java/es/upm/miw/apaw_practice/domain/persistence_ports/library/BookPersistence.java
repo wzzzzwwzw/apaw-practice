@@ -4,5 +4,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BookPersistence {
-    void delete(String isbn);
+    void deleteByIsbn(String isbn);
 }

@@ -72,11 +72,11 @@ public class ClientBank {
     @Override
     public String toString() {
         return "Client{" +
-                "clientName='" + clientName + '\'' +
-                ", dni='" + dni + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                ", listAccounts=" + listAccounts +
+                "clientName='" + this.clientName + '\'' +
+                ", dni='" + this.dni + '\'' +
+                ", lastName='" + this.lastName + '\'' +
+                ", age=" + this.age +
+                ", listAccounts=" + this.listAccounts +
                 '}';
     }
 }

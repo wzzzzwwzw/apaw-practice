@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @TestConfig
-public class FootballPlayerPersistenceMongodbIT {
+class FootballPlayerPersistenceMongodbIT {
     @Autowired
     private FootballPlayerPersistenceMongodb footballPlayerPersistence;
     @Autowired
@@ -24,7 +24,7 @@ public class FootballPlayerPersistenceMongodbIT {
     }
 
     @Test
-    public void testUpdateGoals() {
+    void testUpdateGoals() {
         String playerName = "Lionel Messi";
         FootballPlayer player = this.footballPlayerPersistence.readByName(playerName);
         assertNotNull(player);

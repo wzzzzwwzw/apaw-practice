@@ -6,6 +6,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.aiport.FlightPersistenc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Stream;
+
 @Service
 public class FlightService {
     private final FlightPersistence flightPersistence;
@@ -22,5 +24,11 @@ public class FlightService {
         if (this.flightPersistence.existFlight(numberOfFlight)) {
             throw new ConflictException("Flight exist: " + numberOfFlight);
         }
+    }
+    public Stream<String> findAirlineNameByPassengerAgeGreaterThan(Integer age){
+        return this.flightPersistence.findAirlineNameByPassengerAgeGreaterThan(age);
+    }
+    public Double findAverageAgeByModel(String model){
+        return this.flightPersistence.findAverageAgeByModel(model);
     }
 }

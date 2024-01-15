@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static es.upm.miw.apaw_practice.adapters.rest.furniture_store.FurnitureStoreResource.*;
+import static es.upm.miw.apaw_practice.adapters.rest.furniture_store.MaterialResource.SEARCH;
 import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
@@ -27,12 +28,12 @@ class FurnitureStoreResourceIT {
     void testRead() {
         this.webTestClient
                 .get()
-                .uri(FURNITURE_STORE + NAME_ID, "ikia")
+                .uri(FURNITURE_STORES + NAME_ID, "ikia")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(FurnitureStore.class)
                 .value(Assertions::assertNotNull)
-                .value(furnitureStoreData -> {;
+                .value(furnitureStoreData -> {
                     assertEquals(3, furnitureStoreData.getFurnitures().size());
                     assertEquals("456745674567", furnitureStoreData.getManager().getAffiliationNumber());
                 });
@@ -42,7 +43,7 @@ class FurnitureStoreResourceIT {
     void testReadNotFound() {
         this.webTestClient
                 .get()
-                .uri(FURNITURE_STORE + NAME_ID, "None")
+                .uri(FURNITURE_STORES + NAME_ID, "None")
                 .exchange()
                 .expectStatus().isNotFound();
     }
@@ -58,10 +59,50 @@ class FurnitureStoreResourceIT {
         );
         this.webTestClient
                 .put()
-                .uri(FURNITURE_STORE + NAME_ID + FURNITURE, "muebles vintage")
+                .uri(FURNITURE_STORES + NAME_ID + FURNITURES, "muebles vintage")
                 .body(BodyInserters.fromValue(furnitureList))
                 .exchange()
                 .expectStatus().isOk();
+    }
+
+    @Test
+    void testFindAverageFurnituresPriceByManagerName() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FURNITURE_STORES + SEARCH)
+                                .queryParam("q", "name:José")
+                                .build()
+                )
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BigDecimal.class)
+                .value(Assertions::assertNotNull)
+                .value(decimal -> assertEquals(new BigDecimal("20.24"), decimal));
+    }
+
+    @Test
+    void testBadRequestFindAverageFurnituresPriceByManagerName() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FURNITURE_STORES + SEARCH)
+                                .queryParam("q", "nombre:José")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
+
+    @Test
+    void testNotFoundAverageFurnituresPriceByManagerName() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FURNITURE_STORES + SEARCH)
+                                .queryParam("q", "name:No_exist")
+                                .build())
+                .exchange()
+                .expectStatus().isNotFound();
     }
 
 }

@@ -4,6 +4,8 @@ import es.upm.miw.apaw_practice.domain.models.bank.BankType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class BankTypeService {
 
@@ -15,6 +17,10 @@ public class BankTypeService {
 
     public BankType read(String typeName){
         return this.bankTypePersistence.readByTypeName(typeName);
+    }
+
+    public BigDecimal obtainSumOfBalanceByDescription(String description){
+        return this.bankTypePersistence.obtainSumOfBalanceByDescription(description);
     }
 
 }

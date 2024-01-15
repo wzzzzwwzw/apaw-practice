@@ -29,10 +29,24 @@ class AreaServiceIT {
 
     @Test
     void testUpdateRoute() {
-        Route route = new Route("3", "Route 3 updated", "Easy");
+        Route route = new Route.Builder()
+                .name("Route 4 updated")
+                .difficulty("Easy")
+                .key("4")
+                .build();
         this.areaService.updateRoute("Area 2", route.getKey(), route);
         Area area = this.areaPersistence.readByName("Area 2");
-        assertEquals("Route 3 updated", area.getRoutes().get(1).getName());
+        assertEquals("Route 4 updated", area.getRoutes().get(1).getName());
         assertEquals("Easy", area.getRoutes().get(1).getDifficulty());
+    }
+
+    @Test
+    void testFindRouteNamesByClimberLevel() {
+        String[] routeNames = this.areaService.findRouteNamesByClimberLevel("Beginner");
+        assertEquals(4, routeNames.length);
+        assertEquals("Route 1", routeNames[0]);
+        assertEquals("Route 2", routeNames[1]);
+        assertEquals("Route 3", routeNames[2]);
+        assertEquals("Route 4", routeNames[3]);
     }
 }

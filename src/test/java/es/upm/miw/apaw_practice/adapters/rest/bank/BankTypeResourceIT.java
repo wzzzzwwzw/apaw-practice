@@ -3,9 +3,10 @@ package es.upm.miw.apaw_practice.adapters.rest.bank;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.bank.BankType;
-import es.upm.miw.apaw_practice.domain.models.climbing.Area;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -22,7 +23,14 @@ public class BankTypeResourceIT {
     @Autowired
     private WebTestClient webTestClient;
 
+    @Autowired
+    private BankSeederService bankSeederService;
 
+    @AfterEach
+    void resetDataBase() {
+        this.bankSeederService.deleteAll();
+        this.bankSeederService.seedDatabase();
+    }
     @Test
     void testRead() {
         this.webTestClient
@@ -48,4 +56,37 @@ public class BankTypeResourceIT {
                 .expectStatus().isNotFound();
     }
 
+    @Test
+    void testObtainSumOfBalanceByDescription(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(TYPES+SEARCH)
+                        .queryParam("description","Banco que se especializa en servicios de inversión y asesoramiento financiero.")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BigDecimal.class)
+                .value(Assertions::assertNotNull)
+                .value(totalBalance ->assertEquals(new BigDecimal("26801.50"),totalBalance));
+
+
+    }
+
+    @Test
+    void testObtainSumOfBalanceByDescriptionNotFound(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(TYPES+SEARCH)
+                        .queryParam("description","Descripción inexistente")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(BigDecimal.class)
+                .value(Assertions::assertNotNull)
+                .value(totalBalance ->assertEquals(new BigDecimal("0"),totalBalance));
+
+
+    }
 }

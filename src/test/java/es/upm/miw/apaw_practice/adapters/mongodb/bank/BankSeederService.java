@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.bank;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.bank.daos.BankAccountRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.daos.BankRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.daos.BankTypeRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.daos.ClientBankRepository;
@@ -20,8 +19,7 @@ import java.util.List;
 
 @Service
 public class BankSeederService {
-    @Autowired
-    private BankAccountRepository bankAccountRepository;
+
     @Autowired
     private BankRepository bankRepository;
     @Autowired
@@ -33,14 +31,20 @@ public class BankSeederService {
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Bank Initial Load -----------");
 
+        BankTypeEntity bancoTipoComercial= new BankTypeEntity("Banco Comercial", "Banco que ofrece una amplia gama de servicios financieros a empresas y consumidores.", new BigDecimal("19000000.00"));
+        BankTypeEntity bancoTipoInversion= new BankTypeEntity("Banco de Inversión", "Banco que se especializa en servicios de inversión y asesoramiento financiero.", new BigDecimal("10000000.00"));
+        BankTypeEntity bancoTipoCooperativo=new BankTypeEntity("Banco Cooperativo", "Banco que es propiedad de sus miembros y opera con principios cooperativos.", new BigDecimal("30000000.00"));
+        BankTypeEntity bancoTipoDesarrollo=new BankTypeEntity("Banco de Desarrollo", "Banco público o privado que se enfoca en financiar proyectos de desarrollo y crecimiento económico en una región o país.", new BigDecimal("20000000.00"));
+
         BankTypeEntity[] bankTypes = {
-                new BankTypeEntity("Banco Comercial", "Banco que ofrece una amplia gama de servicios financieros a empresas y consumidores.", new BigDecimal("19000000.00")),
+                bancoTipoComercial,
 
-                new BankTypeEntity("Banco de Inversión", "Banco que se especializa en servicios de inversión y asesoramiento financiero.", new BigDecimal("10000000.00")),
+               bancoTipoInversion,
 
-                new BankTypeEntity("Banco Cooperativo", "Banco que es propiedad de sus miembros y opera con principios cooperativos.", new BigDecimal("30000000.00")),
+                bancoTipoCooperativo,
 
-                new BankTypeEntity("Banco de Desarrollo", "Banco público o privado que se enfoca en financiar proyectos de desarrollo y crecimiento económico en una región o país.", new BigDecimal("20000000.00"))
+                bancoTipoDesarrollo
+
 
         };
         this.bankTypeRepository.saveAll(Arrays.asList(bankTypes));
@@ -61,7 +65,7 @@ public class BankSeederService {
                 new BankAccountEntity("1357-8642-9081-2468", LocalDate.of(2024, 11, 9), 135, new BigDecimal("875.25"))
         };
 
-        this.bankAccountRepository.saveAll(Arrays.asList(bankAccounts));
+
 
         ClientBankEntity[] clientsBank = {
                 new ClientBankEntity("Juan", "12345678A", "Pérez", 30, new ArrayList<>(Arrays.asList(bankAccounts[0], bankAccounts[1]))),
@@ -75,15 +79,15 @@ public class BankSeederService {
         };
         this.clientBankRepository.saveAll(Arrays.asList(clientsBank));
 
-        BankEntity srDellBank = new BankEntity("SrDell", "Madrid", new BigDecimal("90000000.00"), bankTypes[1]);
+        BankEntity srDellBank = new BankEntity("SrDell", "Madrid", new BigDecimal("90000000.00"), bancoTipoInversion);
         List<BankAccountEntity> accountListbankSrDell = new ArrayList<>(Arrays.asList(bankAccounts[0], bankAccounts[1], bankAccounts[2], bankAccounts[3], bankAccounts[4], bankAccounts[5], bankAccounts[6]));
         srDellBank.setBankAccountEntityList(accountListbankSrDell);
 
-        BankEntity bankPavon = new BankEntity("Bank Pavon", "Barcelona", new BigDecimal("12000000.00"), bankTypes[0]);
+        BankEntity bankPavon = new BankEntity("Bank Pavon", "Barcelona", new BigDecimal("12000000.00"), bancoTipoComercial);
         List<BankAccountEntity> accountListbankPavon = new ArrayList<>(Arrays.asList(bankAccounts[7],bankAccounts[8],bankAccounts[9]));
         bankPavon.setBankAccountEntityList(accountListbankPavon);
 
-        BankEntity dreamBank=new BankEntity("DreamBank", "Vigo", new BigDecimal("6500000.00"), bankTypes[0]);
+        BankEntity dreamBank=new BankEntity("DreamBank", "Vigo", new BigDecimal("6500000.00"), bancoTipoComercial);
         List<BankAccountEntity> accountListbankDream=new ArrayList<>(Arrays.asList(bankAccounts[10],bankAccounts[11],bankAccounts[12]));
         dreamBank.setBankAccountEntityList(accountListbankDream);
 
@@ -99,9 +103,8 @@ public class BankSeederService {
     }
 
     public void deleteAll(){
-        this.bankRepository.deleteAll();
         this.bankTypeRepository.deleteAll();
+        this.bankRepository.deleteAll();
         this.clientBankRepository.deleteAll();
-        this.bankAccountRepository.deleteAll();
     }
 }

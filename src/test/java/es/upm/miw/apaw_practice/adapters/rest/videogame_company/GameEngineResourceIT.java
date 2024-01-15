@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @RestTestConfig
 public class GameEngineResourceIT {
@@ -29,5 +31,23 @@ public class GameEngineResourceIT {
                             assertEquals("Free", gameEngine.getLicense());
                         }
                 );
+    }
+
+    @Test
+    void testGetGameEngineNamesByCompanyCountryAndGameGenre(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                    uriBuilder.path(GameEngineResource.GAME_ENGINES + GameEngineResource.SEARCH)
+                            .queryParam("q","country:Japan"+";genre:Action")
+                            .build()
+                )
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(names -> assertFalse(names.isEmpty()))
+                .value(names -> assertTrue(names.get(0).contains("Unity")))
+                .value(names -> assertTrue(names.get(0).contains("Unreal Engine")));
+
     }
 }

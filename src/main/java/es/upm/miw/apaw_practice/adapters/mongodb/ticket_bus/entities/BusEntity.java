@@ -24,7 +24,7 @@ public class BusEntity {
     @DBRef
     private TripEntity trip;
     @DBRef
-    private List<PassengerEntity> passengersEntities;
+    private List<PassengerEntity> passengers;
 
     public BusEntity() {
         //open for framework
@@ -35,7 +35,14 @@ public class BusEntity {
         this.referenceBus = referenceBus;
         this.accessibility = accessibility;
         this.trip = tripEntity;
-        this.passengersEntities = passengersEntities;
+        this.passengers = passengersEntities;
+    }
+
+    public BusEntity(String referenceBus, boolean accessibility, TripEntity trip) {
+
+        this.referenceBus = referenceBus;
+        this.accessibility = accessibility;
+        this.trip = trip;
     }
 
     public BusEntity(Bus bus) {
@@ -99,11 +106,11 @@ public class BusEntity {
     }
 
     public List<PassengerEntity> getPassengers() {
-        return passengersEntities;
+        return passengers;
     }
 
     public void setPassengers(List<PassengerEntity> passengersEntities) {
-        this.passengersEntities = passengersEntities;
+        this.passengers = passengersEntities;
     }
 
     public Boolean isAccessibility() {
@@ -131,7 +138,7 @@ public class BusEntity {
                 ", registrationDate=" + registrationDate +
                 ", accessibility=" + accessibility +
                 ", trip=" + trip +
-                ", passengers=" + passengersEntities +
+                ", passengers=" + passengers +
                 '}';
     }
 }

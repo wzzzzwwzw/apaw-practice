@@ -24,11 +24,7 @@ class StationResourceIT {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Station.class)
-                .value(
-                        station -> {
-                            assertEquals("Canal", station.getName());
-                        }
-                );
+                .value( station -> assertEquals("Canal", station.getName()) );
     }
 
     @Test

@@ -1,9 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.bank.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.BankEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.BankTypeEntity;
 
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,6 +17,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BankRepositoryIT {
     @Autowired
     private BankRepository bankRepository;
+    @Autowired
+    private BankSeederService bankSeederService;
+
+
+
 
     private static final String BANKNAME="DreamBank";
 
@@ -23,6 +30,11 @@ public class BankRepositoryIT {
     private static final BigDecimal CAPITAL=new BigDecimal("6500000.00");
 
 
+    @AfterEach
+    void resetDataBase() {
+        this.bankSeederService.deleteAll();
+        this.bankSeederService.seedDatabase();
+    }
     @Test
     void testCreateAndRead() {
         assertTrue(this.bankRepository.findAll().stream()
@@ -37,6 +49,8 @@ public class BankRepositoryIT {
     void testfindByBankName(){
         assertTrue(this.bankRepository.findByBankName(BANKNAME).isPresent());
         BankEntity bank = this.bankRepository.findByBankName(BANKNAME).get();
+        System.out.println("Este es el tipo");
+        System.out.println(bank.getBankTypeEntity());
         assertEquals(BANKNAME, bank.getBankName());
         assertEquals(LOCATION, bank.getLocation());
         assertEquals(CAPITAL, bank.getCapital());

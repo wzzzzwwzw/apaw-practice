@@ -1,8 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.furniture_store.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.furniture_store.FurnitureStoreSeederService;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.furniture_store.Material;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,6 +16,15 @@ class MaterialPersistenceMongodbIT {
 
     @Autowired
     private MaterialPersistenceMongodb materialPersistenceMongodb;
+
+    @Autowired
+    private FurnitureStoreSeederService furnitureStoreSeederService;
+
+    @BeforeEach
+    void resetDB() {
+        this.furnitureStoreSeederService.deleteAll();
+        this.furnitureStoreSeederService.seedDatabase();
+    }
 
     @Test
     void testReadNotFound() {

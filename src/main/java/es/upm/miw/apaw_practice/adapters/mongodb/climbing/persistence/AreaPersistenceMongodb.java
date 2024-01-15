@@ -29,7 +29,7 @@ public class AreaPersistenceMongodb implements AreaPersistence {
 
     @Override
     public Area update(Area area) {
-        AreaEntity areaEntityEntity = this.areaRepository
+        AreaEntity areaEntity = this.areaRepository
                 .findByName(area.getName())
                 .orElseThrow(() -> new NotFoundException("Area name:" + area.getName()));
         List<RouteEntity> areaEntities = area.getRoutes().stream()
@@ -37,9 +37,28 @@ public class AreaPersistenceMongodb implements AreaPersistence {
                         route.getName(),
                         route.getDifficulty()
                 )).toList();
-        areaEntityEntity.setRouteEntities(areaEntities);
+        areaEntity.setRouteEntities(areaEntities);
         return this.areaRepository
-                .save(areaEntityEntity)
+                .save(areaEntity)
                 .toArea();
     }
+
+    @Override
+    public List<Area> findAll() {
+        return this.areaRepository.findAll()
+                .stream()
+                .map(AreaEntity::toArea)
+                .toList();
+    }
+
+    @Override
+    public Area findByExpeditionIdentifier(String identifier) {
+        return this.areaRepository.findAll()
+                .stream()
+                .filter(areaEntity -> areaEntity.getExpeditionEntity().getIdentifier().equals(identifier))
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException("Area expedition identifier: " + identifier))
+                .toArea();
+    }
+
 }

@@ -9,8 +9,8 @@ public class FishpondService {
     public FishpondService(FishpondPersistence fishpondPersistence) {
         this.fishpondPersistence = fishpondPersistence;
     }
-
     public void delete(String direction) {
         this.fishpondPersistence.delete(direction);
     }
+
 }

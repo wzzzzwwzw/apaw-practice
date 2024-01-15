@@ -10,24 +10,17 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.school.StudentPersisten
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 @Repository("StudentPersistence")
 public class StudentPersistenceMongodb implements StudentPersistence {
     private final StudentRepository studentRepository;
+    private final SubjectRepository subjectRepository;
 
     @Autowired
-    public StudentPersistenceMongodb(StudentRepository studentRepository) {
+    public StudentPersistenceMongodb(StudentRepository studentRepository, SubjectRepository subjectRepository) {
         this.studentRepository = studentRepository;
-    }
-
-    @Override
-    public Student read(String name) {
-        return this.studentRepository
-                .findByName(name)
-                .orElseThrow(() -> new NotFoundException("Student location: " + name))
-                .toStudent();
+        this.subjectRepository = subjectRepository;
     }
 
     @Override
@@ -39,24 +32,10 @@ public class StudentPersistenceMongodb implements StudentPersistence {
     }
 
     @Override
-    public boolean existName(String name) {
-        return this.studentRepository
-                .findByName(name)
-                .isPresent();
-    }
-
-    @Override
     public Stream<Student> readAll() {
         return this.studentRepository
                 .findAll().stream()
                 .map(StudentEntity::toStudent);
-    }
-
-    @Override
-    public Student create(Student student) {
-        return this.studentRepository
-                .save(new StudentEntity(student))
-                .toStudent();
     }
 
     @Override
@@ -65,9 +44,13 @@ public class StudentPersistenceMongodb implements StudentPersistence {
                 .findByName(student.getName())
                 .orElseThrow(() -> new NotFoundException("Student name: " + student.getName()));
 
-        List<SubjectEntity> subjectEntities = student.getSubjects().stream()
-                .map(SubjectEntity::new).toList();
-        studentEntity.setSubjectsEntities(subjectEntities);
+        studentEntity.setSubjectsEntities(
+            student.getSubjects().stream()
+                    .map(subject -> this.subjectRepository.findByTitle(subject.getTitle())
+                            .orElseGet(() -> {
+                                SubjectEntity newSubject = new SubjectEntity(subject);
+                                return this.subjectRepository.save(newSubject);
+                            })).toList());
 
         return this.studentRepository
                 .save(studentEntity)

@@ -15,10 +15,6 @@ public class DoctorService {
         this.doctorPersistence = doctorPersistence;
     }
 
-    public Doctor read(String medicalLicenseCode) {
-        return this.doctorPersistence.read(medicalLicenseCode);
-    }
-
     public Doctor create(Doctor doctor) {
         this.assertDoctorNotExists(doctor.getMedicalLicenseCode());
         return this.doctorPersistence.create(doctor);

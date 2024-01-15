@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.padel_academy.entities;
 
-import es.upm.miw.apaw_practice.domain.models.padel_academy.Academy;
+import es.upm.miw.apaw_practice.domain.models.padel_academy.Tournament;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -17,19 +18,25 @@ public class TournamentEntity {
     private String title;
     private BigDecimal prize;
     private LocalDate schedule;
+
     @DBRef
-    private AcademyEntity academyEntity;
+    private AcademyEntity academy;
 
     public TournamentEntity() {
         // Empty for framework
     }
 
-    public TournamentEntity(String title, BigDecimal prize, LocalDate schedule, AcademyEntity academyEntity) {
+    public TournamentEntity(Tournament tournament) {
+        this.id = UUID.randomUUID().toString();
+        BeanUtils.copyProperties(tournament, this);
+    }
+
+    public TournamentEntity(String title, BigDecimal prize, LocalDate schedule, AcademyEntity academy) {
         this.id = UUID.randomUUID().toString();
         this.title = title;
         this.prize = prize;
         this.schedule = schedule;
-        this.academyEntity = academyEntity;
+        this.academy = academy;
     }
 
     public String getId() {
@@ -64,14 +71,23 @@ public class TournamentEntity {
         this.schedule = schedule;
     }
 
-    public AcademyEntity getAcademyEntity() {
-        return academyEntity;
+    public AcademyEntity getAcademy() {
+        return academy;
     }
 
-    public void setAcademyEntity(AcademyEntity academyEntity) {
-        this.academyEntity = academyEntity;
+    public void setAcademy(AcademyEntity academy) {
+        this.academy = academy;
     }
 
+    public Tournament toTournament() {
+        Tournament tournament = new Tournament();
+        BeanUtils.copyProperties(this, tournament);
+
+        if(this.getAcademy() != null) {
+            tournament.setAcademy(this.academy.toAcademy());
+        }
+        return tournament;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -92,7 +108,7 @@ public class TournamentEntity {
                 ", title='" + title + '\'' +
                 ", prize=" + prize +
                 ", schedule=" + schedule +
-                ", academyEntity=" + academyEntity +
+                ", academy=" + academy +
                 '}';
     }
 }

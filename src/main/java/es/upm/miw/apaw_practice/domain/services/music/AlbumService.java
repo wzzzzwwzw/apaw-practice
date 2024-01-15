@@ -5,6 +5,7 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.music.AlbumPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @Service
@@ -23,5 +24,9 @@ public class AlbumService {
 
     public void delete(String denomination) {
         this.albumPersistence.delete(denomination);
+    }
+
+    public List<String> getDifferentDenominationsByFullname(String fullname) {
+        return this.albumPersistence.getDifferentDenominationsByFullname(fullname);
     }
 }

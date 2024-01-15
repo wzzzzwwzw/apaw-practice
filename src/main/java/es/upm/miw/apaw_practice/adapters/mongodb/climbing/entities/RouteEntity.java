@@ -10,7 +10,7 @@ public class RouteEntity {
     private String difficulty;
 
     public RouteEntity() {
-
+        //empty for framework
     }
 
     public RouteEntity(String key, String name, String difficulty) {
@@ -50,7 +50,11 @@ public class RouteEntity {
     }
 
     public Route toRoute() {
-        return new Route(this.key, this.name, this.difficulty);
+        return new Route.Builder()
+                .name(this.name)
+                .difficulty(this.difficulty)
+                .key(this.key)
+                .build();
     }
 
     @Override

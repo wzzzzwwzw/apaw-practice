@@ -43,7 +43,7 @@ public class TripEntity {
     public TripEntity(Trip trip) {
         this.id = UUID.randomUUID().toString();
         this.registrationDate = LocalDateTime.now();
-        this.numStops = numStops;
+        this.numStops = trip.getNumStops();
 
 
     }
